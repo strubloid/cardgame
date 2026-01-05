@@ -20,6 +20,12 @@ public class Card : MonoBehaviour
     // Reference to the images that we will be using it
     public Image characterImage, backgroundImage;
 
+    // Target point for the card movement
+    private Vector3 targetPoint;
+
+    // Speed of the card movement
+    public float moveSpeed = 5f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {   
@@ -60,6 +66,14 @@ public class Card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.position = Vector3.Lerp(transform.position, targetPoint, moveSpeed * Time.deltaTime);
+    }
+
+    /**
+     * Function that will be moving the card to a specific point
+     */
+    public void MoveCardToPoint(Vector3 pointToMoveTo) 
+    {
+        targetPoint = pointToMoveTo;
     }
 }

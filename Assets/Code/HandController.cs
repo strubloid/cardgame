@@ -46,8 +46,13 @@ public class HandController : MonoBehaviour
             cardPositions.Add(cardPos);
 
             // now we set the card position to the calculated position
-            heldCards[i].transform.position = cardPositions[i];
             heldCards[i].transform.rotation = minPos.rotation;
+
+            // console.log for the position
+            //Debug.Log("Card " + i + " position set to: " + cardPositions[i]);
+
+            // Moving the card to the position smoothly
+            heldCards[i].MoveCardToPoint(cardPositions[i]);
         }
     }
 }
