@@ -47,6 +47,7 @@ public class HandController : MonoBehaviour
 
             // now we set the card position to the calculated position
             heldCards[i].transform.position = cardPositions[i];
+            heldCards[i].transform.rotation = minPos.rotation;
         }
     }
 }
