@@ -1,0 +1,19 @@
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "New Card", menuName = "Objects/Card", order = 1)]
+public class CardScriptableObject : ScriptableObject
+{
+    // current values of health, power and mana cost
+    public int currentHealth, attackPower, manaCost;
+
+    // name of the card value
+    public string cardName;
+
+    // Description is what is the card do, lore is the extra description bellow
+    [TextArea]
+    public string actionDescription, cardLore;
+
+    // Reference to the images that we will be using it
+    public Sprite characterSprite, backgroundSprite;
+
+}

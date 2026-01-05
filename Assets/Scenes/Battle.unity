@@ -1698,9 +1698,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af2e03d5212a0240b0c8db7c5c479e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Card
+  cardData: {fileID: 11400000, guid: 0bbce49a972ced543b1b82beb72fe392, type: 2}
   currentHealth: 5
   attackPower: 2
-  manaCost: 0
+  manaCost: 3
   healthText: {fileID: 1927079497}
   attackText: {fileID: 1276191892}
   manaText: {fileID: 515238088}
