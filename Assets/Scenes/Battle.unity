@@ -1063,6 +1063,9 @@ MonoBehaviour:
   loreText: {fileID: 1168092553}
   characterImage: {fileID: 688385384}
   backgroundImage: {fileID: 870285920}
+  moveSpeed: 5
+  rotateSpeed: 540
+  targetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!4 &165067655
 Transform:
   m_ObjectHideFlags: 0
@@ -1072,7 +1075,7 @@ Transform:
   m_GameObject: {fileID: 165067653}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.03, y: 0, z: 0.5836899}
+  m_LocalPosition: {x: 3.03, y: 0.04, z: 0.5836899}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1767,6 +1770,9 @@ MonoBehaviour:
   loreText: {fileID: 1569847372}
   characterImage: {fileID: 1617707076}
   backgroundImage: {fileID: 1711849619}
+  moveSpeed: 5
+  rotateSpeed: 540
+  targetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!4 &222759885
 Transform:
   m_ObjectHideFlags: 0
@@ -1776,7 +1782,7 @@ Transform:
   m_GameObject: {fileID: 222759883}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.03, y: 0, z: 0.5836899}
+  m_LocalPosition: {x: 3.03, y: 0.04, z: 0.5836899}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3032,6 +3038,9 @@ MonoBehaviour:
   loreText: {fileID: 1353767121}
   characterImage: {fileID: 410006820}
   backgroundImage: {fileID: 937841786}
+  moveSpeed: 5
+  rotateSpeed: 540
+  targetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!4 &425907543
 Transform:
   m_ObjectHideFlags: 0
@@ -3041,7 +3050,7 @@ Transform:
   m_GameObject: {fileID: 425907541}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.49, y: 0, z: 0.5836899}
+  m_LocalPosition: {x: -1.49, y: 0.04, z: 0.5836899}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4987,6 +4996,9 @@ MonoBehaviour:
   loreText: {fileID: 1573478998}
   characterImage: {fileID: 1116659228}
   backgroundImage: {fileID: 202967873}
+  moveSpeed: 5
+  rotateSpeed: 540
+  targetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!4 &701350957
 Transform:
   m_ObjectHideFlags: 0
@@ -4996,7 +5008,7 @@ Transform:
   m_GameObject: {fileID: 701350955}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.03, y: 0, z: 0.5836899}
+  m_LocalPosition: {x: 3.03, y: 0.04, z: 0.5836899}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8749,7 +8761,7 @@ Transform:
   m_GameObject: {fileID: 1318418464}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5836899}
+  m_LocalPosition: {x: 0, y: 0.04, z: 0.5836899}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8780,6 +8792,9 @@ MonoBehaviour:
   loreText: {fileID: 210821488}
   characterImage: {fileID: 1395885488}
   backgroundImage: {fileID: 424364621}
+  moveSpeed: 5
+  rotateSpeed: 540
+  targetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1331708824
 GameObject:
   m_ObjectHideFlags: 0
@@ -9747,6 +9762,9 @@ MonoBehaviour:
   loreText: {fileID: 1836737720}
   characterImage: {fileID: 931939479}
   backgroundImage: {fileID: 687953058}
+  moveSpeed: 5
+  rotateSpeed: 540
+  targetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!4 &1457639724
 Transform:
   m_ObjectHideFlags: 0
@@ -9756,7 +9774,7 @@ Transform:
   m_GameObject: {fileID: 1457639722}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.99, y: 0, z: 0.5836899}
+  m_LocalPosition: {x: -2.99, y: 0.04, z: 0.5836899}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12294,13 +12312,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759108184}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.01745245, w: 0.99984777}
+  m_LocalRotation: {x: 0, y: 0, z: -0.043619405, w: 0.9990483}
   m_LocalPosition: {x: -2.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 185810332}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -2}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -5}
 --- !u!1 &1763002763
 GameObject:
   m_ObjectHideFlags: 0
@@ -12871,6 +12889,9 @@ MonoBehaviour:
   loreText: {fileID: 1671659727}
   characterImage: {fileID: 745344740}
   backgroundImage: {fileID: 606654655}
+  moveSpeed: 5
+  rotateSpeed: 540
+  targetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!4 &1830018551
 Transform:
   m_ObjectHideFlags: 0
@@ -12880,7 +12901,7 @@ Transform:
   m_GameObject: {fileID: 1830018549}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.03, y: 0, z: 0.5836899}
+  m_LocalPosition: {x: 3.03, y: 0.04, z: 0.5836899}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13786,6 +13807,9 @@ MonoBehaviour:
   loreText: {fileID: 1064989636}
   characterImage: {fileID: 1331708827}
   backgroundImage: {fileID: 183142366}
+  moveSpeed: 5
+  rotateSpeed: 540
+  targetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!4 &1930297579
 Transform:
   m_ObjectHideFlags: 0
@@ -13795,7 +13819,7 @@ Transform:
   m_GameObject: {fileID: 1930297577}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.51, y: 0, z: 0.5836899}
+  m_LocalPosition: {x: 1.51, y: 0.04, z: 0.5836899}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

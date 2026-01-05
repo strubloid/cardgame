@@ -24,7 +24,10 @@ public class Card : MonoBehaviour
     private Vector3 targetPoint;
 
     // Speed of the card movement
-    public float moveSpeed = 5f;
+    public float moveSpeed = 5f, rotateSpeed = 540f;
+
+    // Rotation of the card
+    public Quaternion targetRotation;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -66,14 +69,22 @@ public class Card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // moving the card to the target point
         transform.position = Vector3.Lerp(transform.position, targetPoint, moveSpeed * Time.deltaTime);
+
+        // rotating the card to the target rotation
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
     }
 
     /**
      * Function that will be moving the card to a specific point
      */
-    public void MoveCardToPoint(Vector3 pointToMoveTo) 
+    public void MoveCardToPoint(Vector3 pointToMoveTo, Quaternion rotationToMatch) 
     {
+        // this will set the point to move to
         targetPoint = pointToMoveTo;
+
+        // this will set the rotation while we are moving the card
+        targetRotation = rotationToMatch;
     }
 }

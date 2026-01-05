@@ -52,7 +52,7 @@ public class HandController : MonoBehaviour
             //Debug.Log("Card " + i + " position set to: " + cardPositions[i]);
 
             // Moving the card to the position smoothly
-            heldCards[i].MoveCardToPoint(cardPositions[i]);
+            heldCards[i].MoveCardToPoint(cardPositions[i], minPos.rotation);
         }
     }
 }
