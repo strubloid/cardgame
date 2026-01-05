@@ -5,7 +5,7 @@ using UnityEngine;
 public class HandController : MonoBehaviour
 {
     // Cards array that the player is holding
-    public Card[] heldCards;
+    public List<Card> heldCards = new List<Card>();
 
     // Min and max position of the hand
     public Transform minPos, maxPos;
@@ -35,12 +35,12 @@ public class HandController : MonoBehaviour
         Vector3 distanceBetweenPoints = Vector3.zero;
 
         // Checking if we have more than one card
-        if (heldCards.Length > 1) {
-            distanceBetweenPoints = (maxPos.position - minPos.position) / (heldCards.Length - 1);
+        if (heldCards.Count > 1) {
+            distanceBetweenPoints = (maxPos.position - minPos.position) / (heldCards.Count - 1);
         }
 
         // for loop that will be setting the card positions in the hand
-        for (int i = 0; i < heldCards.Length; i++) 
+        for (int i = 0; i < heldCards.Count; i++) 
         {
             Vector3 cardPos = minPos.position + (distanceBetweenPoints * i);
             cardPositions.Add(cardPos);
@@ -48,12 +48,5 @@ public class HandController : MonoBehaviour
             // now we set the card position to the calculated position
             heldCards[i].transform.position = cardPositions[i];
         }
-
-        //for (int i = 0; i < heldCards.Length; i++) 
-        //{
-        //    float t = heldCards.Length == 1 ? 0.5f : (float)i / (heldCards.Length - 1);
-        //    Vector3 cardPos = Vector3.Lerp(minPos.position, maxPos.position, t);
-        //    cardPositions.Add(cardPos);
-        //}
     }
 }
