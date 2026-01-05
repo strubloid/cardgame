@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 /**
  * Class that will be adding the rules of a card
@@ -12,8 +13,12 @@ public class Card : MonoBehaviour
     // Basic Integer values of a card
     public int currentHealth, attackPower, manaCost;
 
+    // Reference to the text components that we will be using it
     public TMP_Text healthText, attackText, manaText;
     public TMP_Text nameText, actionDescriptionText, loreText;
+
+    // Reference to the images that we will be using it
+    public Image characterImage, backgroundImage;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -44,6 +49,12 @@ public class Card : MonoBehaviour
         nameText.text = cardData.cardName;
         actionDescriptionText.text = cardData.actionDescription;
         loreText.text = cardData.cardLore;
+
+        // getting the images from the scriptable object to the card
+        characterImage.sprite = cardData.characterSprite;
+
+        // getting the background image from the scriptable object to the card
+        backgroundImage.sprite = cardData.backgroundSprite;
     }
 
     // Update is called once per frame
