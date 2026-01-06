@@ -192,8 +192,8 @@ public class Card : MonoBehaviourWithMouseControls
                         // Removing the card from the array
                         handController.RemoveCardFromHand(this);
 
-                        // remove
-                        BattleController.instance.spendPlayerMana(manaCost);
+                        // removing the player mana after playing the card
+                        BattleController.instance.SpendPlayerMana(manaCost);
 
                     } else {
                         ReturnToHand();

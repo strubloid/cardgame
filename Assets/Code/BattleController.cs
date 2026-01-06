@@ -5,6 +5,11 @@ public class BattleController : MonoBehaviour
     // Singleton instance
     public static BattleController instance;
 
+    // Starting mana variables
+    public int startMana = 4;
+    public int maxMana = 12;
+    public int playerMana;
+
     /**
      * Awake is called when the script instance is being loaded
      */
@@ -17,14 +22,13 @@ public class BattleController : MonoBehaviour
         }
     }
 
-    public int startMana = 4;
-    public int maxMana = 12;
-    public int playerMana;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerMana = startMana;
+
+        // Update the UI at the start
+        UiController.instance.SetPlayerManaText(playerMana);
     }
 
     // Update is called once per frame
@@ -37,7 +41,7 @@ public class BattleController : MonoBehaviour
      * This will be spending the mana of the player, 
      * after check if is with a value bellow zero, if does, will set it to zero
      */
-    public void spendPlayerMana(int ammountToSpend) {
+    public void SpendPlayerMana(int ammountToSpend) {
 
         // remove mana spent
         playerMana -= ammountToSpend;
@@ -46,6 +50,12 @@ public class BattleController : MonoBehaviour
         if (playerMana < 0) {
             playerMana = 0;
         }
+
+        // updating the UI if the instance exists
+        if (UiController.instance != null){
+            UiController.instance.SetPlayerManaText(playerMana);
+        }
+
     }
 
 }
