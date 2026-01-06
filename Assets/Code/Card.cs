@@ -173,6 +173,7 @@ public class Card : MonoBehaviourWithMouseControls
                 CardPlacePoint selectedPoint = hit.collider.GetComponent<CardPlacePoint>();
 
                 // there is nothing assined to the current card
+                // select card section!
                 if (selectedPoint.activeCard == null && selectedPoint.isPlayerPoint)
                 {
                     selectedPoint.activeCard = this;
@@ -184,6 +185,8 @@ public class Card : MonoBehaviourWithMouseControls
                     // reset the in hand as it was placed and isnt selected as it is in place
                     inHand = false;
                     isSelected = false;
+
+                    handController.RemoveCardFromHand(this);
 
                 } else {
                     ReturnToHand();

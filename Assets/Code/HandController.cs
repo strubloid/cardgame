@@ -59,4 +59,17 @@ public class HandController : MonoBehaviour
             heldCards[i].handPosition = i;
         }
     }
+
+    /**
+     * This will be removing a card from the hand
+     */
+    public void RemoveCardFromHand(Card cardToRemove) {
+
+        // Double check that the card is actually in the hand before removing
+        if (heldCards[cardToRemove.handPosition] == cardToRemove)
+        {
+            heldCards.RemoveAt(cardToRemove.handPosition);
+            SetCardPositionsInHand();
+        }
+    }
 }

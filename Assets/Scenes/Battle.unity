@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 10292629}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.38, y: 0, z: 0}
+  m_LocalPosition: {x: 3.47, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -303,6 +303,7 @@ GameObject:
   - component: {fileID: 38308048}
   - component: {fileID: 38308050}
   - component: {fileID: 38308049}
+  - component: {fileID: 38308051}
   m_Layer: 7
   m_Name: Card Frame 4
   m_TagString: Untagged
@@ -319,7 +320,7 @@ Transform:
   m_GameObject: {fileID: 38308047}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -2.5, y: 0, z: -3.07}
+  m_LocalPosition: {x: 4.5, y: 0, z: -3.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -405,6 +406,20 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &38308051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38308047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e0b4aac9c27dab48a9959160d1a863e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardPlacePoint
+  activeCard: {fileID: 0}
+  isPlayerPoint: 0
 --- !u!1 &59424569
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +445,7 @@ Transform:
   m_GameObject: {fileID: 59424569}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.53, y: 0.01, z: 7.31}
+  m_LocalPosition: {x: 0, y: 0.01, z: 7.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1182,6 +1197,7 @@ GameObject:
   - component: {fileID: 162036960}
   - component: {fileID: 162036962}
   - component: {fileID: 162036961}
+  - component: {fileID: 162036963}
   m_Layer: 7
   m_Name: Card Frame 2
   m_TagString: Untagged
@@ -1198,7 +1214,7 @@ Transform:
   m_GameObject: {fileID: 162036959}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -5.5, y: 0, z: -3.07}
+  m_LocalPosition: {x: 1.5, y: 0, z: -3.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1284,6 +1300,20 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &162036963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162036959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e0b4aac9c27dab48a9959160d1a863e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardPlacePoint
+  activeCard: {fileID: 0}
+  isPlayerPoint: 0
 --- !u!1 &165067653
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,7 +1368,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   assignedPlace: {fileID: 0}
-  defaultDeckPosition: {x: 0.017366704, y: 0.00026055693, z: 0.005086804, w: 0.9998362}
+  defaultDeckPosition: {fileID: 0}
 --- !u!4 &165067655
 Transform:
   m_ObjectHideFlags: 0
@@ -1348,7 +1378,7 @@ Transform:
   m_GameObject: {fileID: 165067653}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 1.99, y: 0.04, z: 0.5836899}
+  m_LocalPosition: {x: -1.4, y: 0.04, z: 0.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1673,7 +1703,7 @@ Transform:
   m_GameObject: {fileID: 185810330}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.5, y: 0.26, z: -1.57}
+  m_LocalPosition: {x: 2.48, y: 0.26, z: -1.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2074,7 +2104,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   assignedPlace: {fileID: 0}
-  defaultDeckPosition: {x: 0.017366704, y: 0.00026055693, z: 0.005086804, w: 0.9998362}
+  defaultDeckPosition: {fileID: 0}
 --- !u!4 &222759885
 Transform:
   m_ObjectHideFlags: 0
@@ -2084,7 +2114,7 @@ Transform:
   m_GameObject: {fileID: 222759883}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 1.99, y: 0.04, z: 0.5836899}
+  m_LocalPosition: {x: -1.4, y: 0.04, z: 0.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3374,7 +3404,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   assignedPlace: {fileID: 0}
-  defaultDeckPosition: {x: 0.017366704, y: 0.00026055693, z: 0.005086804, w: 0.9998362}
+  defaultDeckPosition: {fileID: 0}
 --- !u!4 &425907543
 Transform:
   m_ObjectHideFlags: 0
@@ -3384,7 +3414,7 @@ Transform:
   m_GameObject: {fileID: 425907541}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 1.99, y: 0.04, z: 0.5836899}
+  m_LocalPosition: {x: -1.4, y: 0.04, z: 0.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3975,7 +4005,7 @@ Transform:
   m_GameObject: {fileID: 500302625}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -7, y: 0, z: -3.07}
+  m_LocalPosition: {x: 0, y: 0, z: -3.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4627,7 +4657,7 @@ Transform:
   m_GameObject: {fileID: 628798422}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -2.5, y: 0, z: -3.07}
+  m_LocalPosition: {x: 4.5, y: 0, z: -3.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5034,7 +5064,7 @@ Transform:
   m_GameObject: {fileID: 670330381}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -4, y: 0, z: -3.07}
+  m_LocalPosition: {x: 3, y: 0, z: -3.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5475,7 +5505,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   assignedPlace: {fileID: 0}
-  defaultDeckPosition: {x: 0.017366704, y: 0.00026055693, z: 0.005086804, w: 0.9998362}
+  defaultDeckPosition: {fileID: 0}
 --- !u!4 &701350957
 Transform:
   m_ObjectHideFlags: 0
@@ -5485,7 +5515,7 @@ Transform:
   m_GameObject: {fileID: 701350955}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 1.99, y: 0.04, z: 0.5836899}
+  m_LocalPosition: {x: -1.4, y: 0.04, z: 0.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6995,7 +7025,7 @@ Transform:
   m_GameObject: {fileID: 961739749}
   serializedVersion: 2
   m_LocalRotation: {x: 0.60876137, y: 0, z: 0, w: 0.7933534}
-  m_LocalPosition: {x: 7.28, y: 8.7, z: -1.39}
+  m_LocalPosition: {x: 2.58, y: 8.7, z: -0.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8195,6 +8225,7 @@ GameObject:
   - component: {fileID: 1098561011}
   - component: {fileID: 1098561013}
   - component: {fileID: 1098561012}
+  - component: {fileID: 1098561014}
   m_Layer: 7
   m_Name: Card Frame 3
   m_TagString: Untagged
@@ -8211,7 +8242,7 @@ Transform:
   m_GameObject: {fileID: 1098561010}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -4, y: 0, z: -3.07}
+  m_LocalPosition: {x: 3, y: 0, z: -3.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8297,6 +8328,20 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1098561014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098561010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e0b4aac9c27dab48a9959160d1a863e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardPlacePoint
+  activeCard: {fileID: 0}
+  isPlayerPoint: 0
 --- !u!1 &1116659225
 GameObject:
   m_ObjectHideFlags: 0
@@ -8383,6 +8428,7 @@ GameObject:
   - component: {fileID: 1161976239}
   - component: {fileID: 1161976241}
   - component: {fileID: 1161976240}
+  - component: {fileID: 1161976242}
   m_Layer: 7
   m_Name: Card Frame 1
   m_TagString: Untagged
@@ -8399,7 +8445,7 @@ Transform:
   m_GameObject: {fileID: 1161976238}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -7, y: 0, z: -3.07}
+  m_LocalPosition: {x: 0, y: 0, z: -3.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8485,6 +8531,20 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1161976242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161976238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e0b4aac9c27dab48a9959160d1a863e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardPlacePoint
+  activeCard: {fileID: 0}
+  isPlayerPoint: 0
 --- !u!1 &1168092550
 GameObject:
   m_ObjectHideFlags: 0
@@ -9582,7 +9642,7 @@ Transform:
   m_GameObject: {fileID: 1318418464}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 1.99, y: 0.04, z: 0.5836899}
+  m_LocalPosition: {x: -1.4, y: 0.04, z: 0.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9625,7 +9685,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   assignedPlace: {fileID: 0}
-  defaultDeckPosition: {x: 0.017366704, y: 0.00026055693, z: 0.005086804, w: 0.9998362}
+  defaultDeckPosition: {fileID: 0}
 --- !u!65 &1318418467
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10627,7 +10687,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   assignedPlace: {fileID: 0}
-  defaultDeckPosition: {x: 0.017366704, y: 0.00026055693, z: 0.005086804, w: 0.9998362}
+  defaultDeckPosition: {fileID: 0}
 --- !u!4 &1457639724
 Transform:
   m_ObjectHideFlags: 0
@@ -10637,7 +10697,7 @@ Transform:
   m_GameObject: {fileID: 1457639722}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 1.99, y: 0.04, z: 0.5836899}
+  m_LocalPosition: {x: -1.4, y: 0.04, z: 0.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12859,7 +12919,7 @@ Transform:
   m_GameObject: {fileID: 1693332073}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -5.5, y: 0, z: -3.07}
+  m_LocalPosition: {x: 1.5, y: 0, z: -3.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13234,7 +13294,7 @@ Transform:
   m_GameObject: {fileID: 1759108184}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.043619405, w: 0.9990483}
-  m_LocalPosition: {x: -2.75, y: 0, z: 0}
+  m_LocalPosition: {x: -2.98, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13824,7 +13884,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   assignedPlace: {fileID: 0}
-  defaultDeckPosition: {x: 0.017366704, y: 0.00026055693, z: 0.005086804, w: 0.9998362}
+  defaultDeckPosition: {fileID: 0}
 --- !u!4 &1830018551
 Transform:
   m_ObjectHideFlags: 0
@@ -13834,7 +13894,7 @@ Transform:
   m_GameObject: {fileID: 1830018549}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 1.99, y: 0.04, z: 0.5836899}
+  m_LocalPosition: {x: -1.4, y: 0.04, z: 0.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13887,7 +13947,7 @@ Transform:
   m_GameObject: {fileID: 1833367374}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.53, y: 0.01, z: 5.26}
+  m_LocalPosition: {x: 0, y: 0.01, z: 5.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14046,6 +14106,7 @@ GameObject:
   - component: {fileID: 1840525895}
   - component: {fileID: 1840525897}
   - component: {fileID: 1840525896}
+  - component: {fileID: 1840525898}
   m_Layer: 7
   m_Name: Card Frame 5
   m_TagString: Untagged
@@ -14062,7 +14123,7 @@ Transform:
   m_GameObject: {fileID: 1840525894}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1, y: 0, z: -3.07}
+  m_LocalPosition: {x: 6, y: 0, z: -3.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14148,6 +14209,20 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1840525898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840525894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e0b4aac9c27dab48a9959160d1a863e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardPlacePoint
+  activeCard: {fileID: 0}
+  isPlayerPoint: 0
 --- !u!1 &1864784832
 GameObject:
   m_ObjectHideFlags: 0
@@ -14887,7 +14962,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   assignedPlace: {fileID: 0}
-  defaultDeckPosition: {x: 0.017366704, y: 0.00026055693, z: 0.005086804, w: 0.9998362}
+  defaultDeckPosition: {fileID: 0}
 --- !u!4 &1930297579
 Transform:
   m_ObjectHideFlags: 0
@@ -14897,7 +14972,7 @@ Transform:
   m_GameObject: {fileID: 1930297577}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 1.99, y: 0.04, z: 0.5836899}
+  m_LocalPosition: {x: -1.4, y: 0.04, z: 0.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16256,7 +16331,7 @@ Transform:
   m_GameObject: {fileID: 2101379261}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1, y: 0, z: -3.07}
+  m_LocalPosition: {x: 6, y: 0, z: -3.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
