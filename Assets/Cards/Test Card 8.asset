@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Test Card 8
   m_EditorClassIdentifier: Assembly-CSharp::CardScriptableObject
   currentHealth: 3
-  attackPower: 7
-  manaCost: 6
+  attackPower: 1
+  manaCost: 1
   cardName: ImpMAN
   actionDescription: Die!
   cardLore: Web auround all characters

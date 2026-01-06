@@ -1347,7 +1347,7 @@ MonoBehaviour:
   cardData: {fileID: 11400000, guid: f3e648820013b454fbaae4968e6f65e0, type: 2}
   currentHealth: 5
   attackPower: 2
-  manaCost: 3
+  manaCost: 2
   healthText: {fileID: 1802509694}
   attackText: {fileID: 1969749087}
   manaText: {fileID: 2013839675}
@@ -2083,7 +2083,7 @@ MonoBehaviour:
   cardData: {fileID: 11400000, guid: e287e3b1757a5bb4fb52a1730edaae27, type: 2}
   currentHealth: 5
   attackPower: 2
-  manaCost: 3
+  manaCost: 2
   healthText: {fileID: 282561751}
   attackText: {fileID: 559903557}
   manaText: {fileID: 1742287755}
@@ -3383,7 +3383,7 @@ MonoBehaviour:
   cardData: {fileID: 11400000, guid: 72bc8c667ea1a2c4ca6f4a7a4d46bf5e, type: 2}
   currentHealth: 5
   attackPower: 2
-  manaCost: 3
+  manaCost: 2
   healthText: {fileID: 2003296167}
   attackText: {fileID: 1084696480}
   manaText: {fileID: 140093945}
@@ -5484,7 +5484,7 @@ MonoBehaviour:
   cardData: {fileID: 11400000, guid: cd7c22a9f9b286248a14bdc86e581cb2, type: 2}
   currentHealth: 5
   attackPower: 2
-  manaCost: 3
+  manaCost: 2
   healthText: {fileID: 1087671250}
   attackText: {fileID: 1937040591}
   manaText: {fileID: 74289403}
@@ -8884,6 +8884,53 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f89a578ed4ecee4b9b3d0429697416a, type: 3}
+--- !u!1 &1240796586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1240796588}
+  - component: {fileID: 1240796587}
+  m_Layer: 0
+  m_Name: Battle Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1240796587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240796586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1f27eadc982c4c498103b6973885d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleController
+  startMana: 4
+  maxMana: 12
+  playerMana: 0
+--- !u!4 &1240796588
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240796586}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.05622, y: 1.03, z: 0.86675}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1241854222
 GameObject:
   m_ObjectHideFlags: 0
@@ -9664,7 +9711,7 @@ MonoBehaviour:
   cardData: {fileID: 11400000, guid: 0bbce49a972ced543b1b82beb72fe392, type: 2}
   currentHealth: 5
   attackPower: 2
-  manaCost: 3
+  manaCost: 2
   healthText: {fileID: 1927079497}
   attackText: {fileID: 1276191892}
   manaText: {fileID: 515238088}
@@ -10666,7 +10713,7 @@ MonoBehaviour:
   cardData: {fileID: 11400000, guid: 22f7224e63ab6c44f90efe1634d16000, type: 2}
   currentHealth: 5
   attackPower: 2
-  manaCost: 3
+  manaCost: 2
   healthText: {fileID: 112390589}
   attackText: {fileID: 652797700}
   manaText: {fileID: 1377787083}
@@ -13863,7 +13910,7 @@ MonoBehaviour:
   cardData: {fileID: 11400000, guid: fe896f13fb621fa4a8db59b48f1a632f, type: 2}
   currentHealth: 5
   attackPower: 2
-  manaCost: 3
+  manaCost: 2
   healthText: {fileID: 959508383}
   attackText: {fileID: 2118839364}
   manaText: {fileID: 2019472187}
@@ -14941,7 +14988,7 @@ MonoBehaviour:
   cardData: {fileID: 11400000, guid: 2da3f64955fe92742924fdb664aeeacc, type: 2}
   currentHealth: 5
   attackPower: 2
-  manaCost: 3
+  manaCost: 2
   healthText: {fileID: 1667710057}
   attackText: {fileID: 1560459810}
   manaText: {fileID: 1241854225}
@@ -16864,3 +16911,4 @@ SceneRoots:
   - {fileID: 222759885}
   - {fileID: 185810332}
   - {fileID: 983074919}
+  - {fileID: 1240796588}

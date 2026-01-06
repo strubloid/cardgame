@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardScriptableObject
   currentHealth: 1
   attackPower: 2
-  manaCost: 3
+  manaCost: 1
   cardName: Test Card 1
   actionDescription: This is the first card of the game
   cardLore: Card for testing...

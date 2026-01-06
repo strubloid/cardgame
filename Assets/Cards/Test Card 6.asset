@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Test Card 6
   m_EditorClassIdentifier: Assembly-CSharp::CardScriptableObject
   currentHealth: 3
-  attackPower: 4
-  manaCost: 2
+  attackPower: 3
+  manaCost: 1
   cardName: SpiderMan
   actionDescription: Web +3
   cardLore: Web auround all characters

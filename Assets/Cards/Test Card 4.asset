@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e85ec32995833a4ea6a11692296444b, type: 3}
   m_Name: Test Card 4
   m_EditorClassIdentifier: Assembly-CSharp::CardScriptableObject
-  currentHealth: 3
-  attackPower: 2
+  currentHealth: 6
+  attackPower: 5
   manaCost: 6
   cardName: Doom
   actionDescription: This will stop your magics for a round

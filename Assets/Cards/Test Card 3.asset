@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e85ec32995833a4ea6a11692296444b, type: 3}
   m_Name: Test Card 3
   m_EditorClassIdentifier: Assembly-CSharp::CardScriptableObject
-  currentHealth: 2
-  attackPower: 5
-  manaCost: 4
+  currentHealth: 1
+  attackPower: 4
+  manaCost: 2
   cardName: Gelinho Seco
   actionDescription: This will freeze you for a round
   cardLore: Sleep for a round

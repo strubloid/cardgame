@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardScriptableObject
   currentHealth: 3
   attackPower: 4
-  manaCost: 3
+  manaCost: 2
   cardName: Soninho Brabo
   actionDescription: This card will suck your soul while sleeping it, so be carefull
     about sleeping at **the** *battle*

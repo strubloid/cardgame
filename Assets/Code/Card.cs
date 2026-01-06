@@ -176,17 +176,28 @@ public class Card : MonoBehaviourWithMouseControls
                 // select card section!
                 if (selectedPoint.activeCard == null && selectedPoint.isPlayerPoint)
                 {
-                    selectedPoint.activeCard = this;
-                    assignedPlace = selectedPoint;
+                    // Check if we can play the card, if we have the quantity of mana to cast
+                    if (BattleController.instance.playerMana >= manaCost)
+                    {
+                        selectedPoint.activeCard = this;
+                        assignedPlace = selectedPoint;
 
-                    // We move to the point
-                    MoveCardToPoint(selectedPoint.transform.position + new Vector3(-0.07f, 0f, 0.9f), Quaternion.identity);
+                        // We move to the point
+                        MoveCardToPoint(selectedPoint.transform.position + new Vector3(-0.07f, 0f, 0.9f), Quaternion.identity);
 
-                    // reset the in hand as it was placed and isnt selected as it is in place
-                    inHand = false;
-                    isSelected = false;
+                        // reset the in hand as it was placed and isnt selected as it is in place
+                        inHand = false;
+                        isSelected = false;
 
-                    handController.RemoveCardFromHand(this);
+                        // Removing the card from the array
+                        handController.RemoveCardFromHand(this);
+
+                        // remove
+                        BattleController.instance.spendPlayerMana(manaCost);
+
+                    } else {
+                        ReturnToHand();
+                    }
 
                 } else {
                     ReturnToHand();

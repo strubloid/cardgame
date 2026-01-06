@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardScriptableObject
   currentHealth: 3
   attackPower: 4
-  manaCost: 2
+  manaCost: 3
   cardName: Saelpa
   actionDescription: Lightpower + 2
   cardLore: You cant see for a round
