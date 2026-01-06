@@ -156,7 +156,11 @@ public class Card : MonoBehaviourWithMouseControls
             handController.minPos.rotation
         );
     }
-    private void OnMouseDown()
+
+    /**
+     * This will be called when the mouse button is pressed down on the card
+     */
+    protected override void MouseDown()
     {
         // This will check if the card is in hand
         if (inHand) {

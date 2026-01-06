@@ -33,6 +33,13 @@ public abstract class MonoBehaviourWithMouseControls : MonoBehaviour
         if (!isHovering)
             return;
 
+        // Mouse down (old Unity-style semantic)
+        if (Mouse.current.leftButton.wasPressedThisFrame ||
+            Mouse.current.rightButton.wasPressedThisFrame)
+        {
+            MouseDown();
+        }
+
         // Checking for left click
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
@@ -66,4 +73,8 @@ public abstract class MonoBehaviourWithMouseControls : MonoBehaviour
     // Abstract methods for mouse wheel
     protected virtual void OnWheelUp() { }
     protected virtual void OnWheelDown() { }
+
+    // Abstract method for mouse down
+    protected virtual void MouseDown() { }
+
 }
