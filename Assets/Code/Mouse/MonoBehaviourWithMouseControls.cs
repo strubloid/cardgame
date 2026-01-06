@@ -49,14 +49,9 @@ public abstract class MonoBehaviourWithMouseControls : MonoBehaviour
         // Checking for mouse wheel
         Vector2 scroll = Mouse.current.scroll.ReadValue();
 
-        if (scroll.y > 0f)
-        {
-            OnWheelUp();
-        }
-        else if (scroll.y < 0f)
-        {
-            OnWheelDown();
-        }
+        // Checkinf for scroll up or down
+        if (scroll.y > 0f) OnWheelUp();
+        else if (scroll.y < 0f) OnWheelDown();
 
     }
 
