@@ -51,6 +51,13 @@ public class Card : MonoBehaviourWithMouseControls
     // Boolean to check if the card was just pressed
     private bool justPressed;
 
+    // this will store the asigned place point
+    public CardPlacePoint assignedPlace;
+
+    // Default deck position/rotation (set these in Inspector or capture in Start)
+    public Transform defaultDeckPosition;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -61,6 +68,15 @@ public class Card : MonoBehaviourWithMouseControls
 
         // Getting the collider component of the card
         theCollider = GetComponent<Collider>();
+
+        // If no deck position assigned, use current as default
+        if (defaultDeckPosition == null)
+        {
+            GameObject deckAnchor = new GameObject($"{name}_DefaultDeckAnchor");
+            deckAnchor.transform.position = transform.position;
+            deckAnchor.transform.rotation = transform.rotation;
+            defaultDeckPosition = deckAnchor.transform;
+        }
     }
 
     /**
@@ -97,28 +113,28 @@ public class Card : MonoBehaviourWithMouseControls
     // Update is called once per frame
     protected override void Update()
     {
-        try
+        base.Update();
+
+        // Moving the card to the target point
+        transform.position = Vector3.Lerp(transform.position, targetPoint, moveSpeed * Time.deltaTime);
+
+        // Rotating the card to the target rotation
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+
+        // Checking if the card is selected
+        if (isSelected)
         {
-            base.Update();
-
-            // Moving the card to the target point
-            transform.position = Vector3.Lerp(transform.position, targetPoint, moveSpeed * Time.deltaTime);
-
-            // Rotating the card to the target rotation
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
-
-            // Checking if the card is selected
-            if (isSelected)
+            selectedCardAction();
+        } else {
+            // When not selected and not in hand, keep it at the deck default position
+            if (!inHand && assignedPlace == null && defaultDeckPosition != null)
             {
-                selectedCardAction();
+                MoveCardToPoint(defaultDeckPosition.position, defaultDeckPosition.rotation);
             }
         }
-        catch (System.Exception exception)
-        {
-            Debug.Log("Exception" + exception);
-        } finally {
-            justPressed = false; // Resetting the just pressed boolean
-        }
+
+        // Resetting the just pressed boolean
+        justPressed = false; 
     }
 
     /**
@@ -144,6 +160,7 @@ public class Card : MonoBehaviourWithMouseControls
         if (Mouse.current.rightButton.wasPressedThisFrame)
         {
             ReturnToHand();
+            return;
         }
 
         // This will allow if we press the left mouse button and isnt the just pressed
@@ -152,6 +169,32 @@ public class Card : MonoBehaviourWithMouseControls
             // if we click and iteract with what is placement, we hit one of those card place points
             if (Physics.Raycast(ray, out hit, 100f, whatIsPlacement))
             {
+
+                CardPlacePoint selectedPoint = hit.collider.GetComponent<CardPlacePoint>();
+
+                // there is nothing assined to the current card
+                if (selectedPoint.activeCard == null && selectedPoint.isPlayerPoint)
+                {
+                    selectedPoint.activeCard = this;
+                    assignedPlace = selectedPoint;
+
+                    Debug.Log("depois");
+                    Debug.Log(selectedPoint.ToString());
+                    Debug.Log(selectedPoint.transform.position);
+                    Debug.Log(hit.transform.position);
+
+
+                    // We move to the point
+                    //MoveCardToPoint(hit.transform.position, Quaternion.identity);
+                    MoveCardToPoint(selectedPoint.transform.position, Quaternion.identity);
+
+                    // reset the in hand as it was placed and isnt selected as it is in place
+                    inHand = false;
+                    isSelected = false;
+
+                } else {
+                    ReturnToHand();
+                }
 
             } else {
                 ReturnToHand();

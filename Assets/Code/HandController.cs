@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,30 +21,35 @@ public class HandController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     /**
      * This will be setting the card positions in the hand
      */
-    public void SetCardPositionsInHand() 
+    public void SetCardPositionsInHand()
     {
         cardPositions.Clear();
 
+        // Always calculate positions using a fixed hand size, not heldCards.Count
+        int handSize = Mathf.Max(heldCards.Count, 1);
+
         Vector3 distanceBetweenPoints = Vector3.zero;
 
-        // Checking if we have more than one card
-        if (heldCards.Count > 1) {
-            distanceBetweenPoints = (maxPos.position - minPos.position) / (heldCards.Count - 1);
+        // Checking if we have more than one position in the hand span
+        if (handSize > 1)
+        {
+            distanceBetweenPoints = (maxPos.position - minPos.position) / (handSize - 1);
         }
 
         // for loop that will be setting the card positions in the hand
-        for (int i = 0; i < heldCards.Count; i++) 
+        for (int i = 0; i < heldCards.Count; i++)
         {
-            cardPositions.Add(minPos.position + (distanceBetweenPoints * i));
+            // Clamp index into the span so cards always start at minPos and move right
+            float t = (handSize == 1) ? 0f : (float)i / (handSize - 1);
+            Vector3 position = Vector3.Lerp(minPos.position, maxPos.position, t);
 
-            // now we set the card position to the calculated position
-            //heldCards[i].transform.rotation = minPos.rotation;
+            cardPositions.Add(position);
 
             // Moving the card to the position smoothly
             heldCards[i].MoveCardToPoint(cardPositions[i], minPos.rotation);
