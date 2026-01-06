@@ -46,7 +46,10 @@ public class Card : MonoBehaviourWithMouseControls
     private Collider theCollider;
 
     // Layer mask to identify the desktop area
-    public LayerMask whatIsDesktop;
+    public LayerMask whatIsDesktop, whatIsPlacement;
+
+    // Boolean to check if the card was just pressed
+    private bool justPressed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -94,19 +97,28 @@ public class Card : MonoBehaviourWithMouseControls
     // Update is called once per frame
     protected override void Update()
     {
-        base.Update();
+        try
+        {
+            base.Update();
 
-        // Moving the card to the target point
-        transform.position = Vector3.Lerp(transform.position, targetPoint, moveSpeed * Time.deltaTime);
+            // Moving the card to the target point
+            transform.position = Vector3.Lerp(transform.position, targetPoint, moveSpeed * Time.deltaTime);
 
-        // Rotating the card to the target rotation
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+            // Rotating the card to the target rotation
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
 
-        // Checking if the card is selected
-        if (isSelected) {
-            selectedCardAction();
+            // Checking if the card is selected
+            if (isSelected)
+            {
+                selectedCardAction();
+            }
         }
-        
+        catch (System.Exception exception)
+        {
+            Debug.Log("Exception" + exception);
+        } finally {
+            justPressed = false; // Resetting the just pressed boolean
+        }
     }
 
     /**
@@ -132,6 +144,18 @@ public class Card : MonoBehaviourWithMouseControls
         if (Mouse.current.rightButton.wasPressedThisFrame)
         {
             ReturnToHand();
+        }
+
+        // This will allow if we press the left mouse button and isnt the just pressed
+        if (Mouse.current.leftButton.wasPressedThisFrame && justPressed == false)
+        {
+            // if we click and iteract with what is placement, we hit one of those card place points
+            if (Physics.Raycast(ray, out hit, 100f, whatIsPlacement))
+            {
+
+            } else {
+                ReturnToHand();
+            }
         }
     }
 
@@ -183,6 +207,7 @@ public class Card : MonoBehaviourWithMouseControls
             isSelected = true;
             // Disabling the collider while we are dragging the card
             theCollider.enabled = false;
+            justPressed = true;
         }
     }
 
