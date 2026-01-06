@@ -153,7 +153,7 @@ public class Card : MonoBehaviourWithMouseControls
         // Moving a card if we hit the desktop area
         if (Physics.Raycast(ray, out hit, 100f, whatIsDesktop))
         {
-            MoveCardToPoint(hit.point + new Vector3(0f, 1f, 0f), Quaternion.identity);
+            MoveCardToPoint(hit.point + new Vector3(0f, 0.1f, 0f), Quaternion.identity);
         }
 
         // Returning the card to hand if we right click
@@ -178,15 +178,8 @@ public class Card : MonoBehaviourWithMouseControls
                     selectedPoint.activeCard = this;
                     assignedPlace = selectedPoint;
 
-                    Debug.Log("depois");
-                    Debug.Log(selectedPoint.ToString());
-                    Debug.Log(selectedPoint.transform.position);
-                    Debug.Log(hit.transform.position);
-
-
                     // We move to the point
-                    //MoveCardToPoint(hit.transform.position, Quaternion.identity);
-                    MoveCardToPoint(selectedPoint.transform.position, Quaternion.identity);
+                    MoveCardToPoint(selectedPoint.transform.position + new Vector3(-0.07f, 0f, 0.9f), Quaternion.identity);
 
                     // reset the in hand as it was placed and isnt selected as it is in place
                     inHand = false;
