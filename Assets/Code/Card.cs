@@ -186,6 +186,9 @@ public class Card : MonoBehaviourWithMouseControls
         }
     }
 
+    /**
+     * Function that will be returning the card to hand
+     */
     public void ReturnToHand() {
 
         isSelected = false;
