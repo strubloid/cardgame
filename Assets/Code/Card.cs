@@ -104,21 +104,35 @@ public class Card : MonoBehaviourWithMouseControls
 
         // Checking if the card is selected
         if (isSelected) {
-            Ray ray = Camera.main.ScreenPointToRay(
-                Mouse.current.position.ReadValue()
-            );
-            RaycastHit hit;
-
-            // Moving a card if we hit the desktop area
-            if (Physics.Raycast(ray, out hit, 100f, whatIsDesktop)) { 
-                MoveCardToPoint(
-                    hit.point + new Vector3(0f, 1f, 0f),
-                    Quaternion.identity
-                );
-
-            }
+            selectedCardAction();
         }
         
+    }
+
+    /**
+     * This will be the action when the card is selected
+     */
+    private void selectedCardAction() 
+    {
+        // Creating a ray from the camera to the mouse position
+        Ray ray = Camera.main.ScreenPointToRay(
+            Mouse.current.position.ReadValue()
+        );
+
+        // Variable to store the raycast hit information
+        RaycastHit hit;
+
+        // Moving a card if we hit the desktop area
+        if (Physics.Raycast(ray, out hit, 100f, whatIsDesktop))
+        {
+            MoveCardToPoint(hit.point + new Vector3(0f, 1f, 0f), Quaternion.identity);
+        }
+
+        // Returning the card to hand if we right click
+        if (Mouse.current.rightButton.wasPressedThisFrame)
+        {
+            ReturnToHand();
+        }
     }
 
     /**
@@ -170,5 +184,12 @@ public class Card : MonoBehaviourWithMouseControls
             // Disabling the collider while we are dragging the card
             theCollider.enabled = false;
         }
+    }
+
+    public void ReturnToHand() {
+
+        isSelected = false;
+        theCollider.enabled = true;
+        MoveCardToPoint(handController.cardPositions[handPosition], handController.minPos.rotation);
     }
 }
