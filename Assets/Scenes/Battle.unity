@@ -1069,6 +1069,9 @@ MonoBehaviour:
   targetRotation: {x: 0, y: 0, z: 0, w: 0}
   inHand: 0
   handPosition: 0
+  whatIsDesktop:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &165067655
 Transform:
   m_ObjectHideFlags: 0
@@ -1800,6 +1803,9 @@ MonoBehaviour:
   targetRotation: {x: 0, y: 0, z: 0, w: 0}
   inHand: 0
   handPosition: 0
+  whatIsDesktop:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &222759885
 Transform:
   m_ObjectHideFlags: 0
@@ -3092,6 +3098,9 @@ MonoBehaviour:
   targetRotation: {x: 0, y: 0, z: 0, w: 0}
   inHand: 0
   handPosition: 0
+  whatIsDesktop:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &425907543
 Transform:
   m_ObjectHideFlags: 0
@@ -5074,6 +5083,9 @@ MonoBehaviour:
   targetRotation: {x: 0, y: 0, z: 0, w: 0}
   inHand: 0
   handPosition: 0
+  whatIsDesktop:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &701350957
 Transform:
   m_ObjectHideFlags: 0
@@ -8990,6 +9002,9 @@ MonoBehaviour:
   targetRotation: {x: 0, y: 0, z: 0, w: 0}
   inHand: 0
   handPosition: 0
+  whatIsDesktop:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &1318418467
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9984,6 +9999,9 @@ MonoBehaviour:
   targetRotation: {x: 0, y: 0, z: 0, w: 0}
   inHand: 0
   handPosition: 0
+  whatIsDesktop:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &1457639724
 Transform:
   m_ObjectHideFlags: 0
@@ -12609,7 +12627,7 @@ GameObject:
   - component: {fileID: 1774610673}
   - component: {fileID: 1774610672}
   - component: {fileID: 1774610671}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Desktop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13135,6 +13153,9 @@ MonoBehaviour:
   targetRotation: {x: 0, y: 0, z: 0, w: 0}
   inHand: 0
   handPosition: 0
+  whatIsDesktop:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &1830018551
 Transform:
   m_ObjectHideFlags: 0
@@ -14077,6 +14098,9 @@ MonoBehaviour:
   targetRotation: {x: 0, y: 0, z: 0, w: 0}
   inHand: 0
   handPosition: 0
+  whatIsDesktop:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &1930297579
 Transform:
   m_ObjectHideFlags: 0

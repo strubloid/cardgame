@@ -39,8 +39,14 @@ public class Card : MonoBehaviourWithMouseControls
     // Reference to the hand controller
     private HandController handController;
 
+    // Boolean to check if the card is selected
+    private bool isSelected;
+
     // Reference to the collider of the card
     private Collider theCollider;
+
+    // Layer mask to identify the desktop area
+    public LayerMask whatIsDesktop;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -95,6 +101,21 @@ public class Card : MonoBehaviourWithMouseControls
 
         // Rotating the card to the target rotation
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+
+        // Checking if the card is selected
+        if (isSelected) {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            // Moving a card if we hit the desktop area
+            if (Physics.Raycast(ray, out hit, 100f, whatIsDesktop)) { 
+                MoveCardToPoint(
+                    hit.point + new Vector3(0f, 1f, 0f),
+                    Quaternion.identity
+                );
+
+            }
+        }
         
     }
 
@@ -134,5 +155,14 @@ public class Card : MonoBehaviourWithMouseControls
             handController.cardPositions[handPosition],
             handController.minPos.rotation
         );
+    }
+    private void OnMouseDown()
+    {
+        // This will check if the card is in hand
+        if (inHand) {
+            isSelected = true;
+            // Disabling the collider while we are dragging the card
+            theCollider.enabled = false;
+        }
     }
 }
