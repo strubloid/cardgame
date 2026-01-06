@@ -1,5 +1,5 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 /**
@@ -29,62 +29,107 @@ public class Card : MonoBehaviour
     // Rotation of the card
     public Quaternion targetRotation;
 
+    // Boolean to check if the card is in hand
+    public bool inHand;
+
+    // Position of the card in hand
+    public int handPosition;
+
+    // Reference to the hand controller
+    private HandController handController;
+
+    // Reference to the collider of the card
+    private Collider theCollider;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {   
+    {
         SetupCard();
+
+        // Finding the hand controller in the scene
+        handController = Object.FindFirstObjectByType<HandController>();
+
+        // Getting the collider component of the card
+        theCollider = GetComponent<Collider>();
     }
 
     /**
      * Function that will be setting up the card values
      */
-    public void SetupCard() 
+    public void SetupCard()
     {
         // Setting up the basic values of the card
         currentHealth = cardData.currentHealth;
         attackPower = cardData.attackPower;
         manaCost = cardData.manaCost;
 
-        // loading the health of the card to be the current health
+        // Loading the health of the card to be the current health
         healthText.text = currentHealth.ToString();
 
-        // loading the attack power configured at the card to be the current attack
+        // Loading the attack power configured at the card to be the current attack
         attackText.text = attackPower.ToString();
 
-        // loading the current mana cost to be at the mana text 
+        // Loading the current mana cost to be at the mana text 
         manaText.text = manaCost.ToString();
 
-        // loading the text values from the scriptable object to the card
+        // Loading the text values from the scriptable object to the card
         nameText.text = cardData.cardName;
         actionDescriptionText.text = cardData.actionDescription;
         loreText.text = cardData.cardLore;
 
-        // getting the images from the scriptable object to the card
+        // Getting the images from the scriptable object to the card
         characterImage.sprite = cardData.characterSprite;
 
-        // getting the background image from the scriptable object to the card
+        // Getting the background image from the scriptable object to the card
         backgroundImage.sprite = cardData.backgroundSprite;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // moving the card to the target point
+        // Moving the card to the target point
         transform.position = Vector3.Lerp(transform.position, targetPoint, moveSpeed * Time.deltaTime);
 
-        // rotating the card to the target rotation
+        // Rotating the card to the target rotation
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
     }
 
     /**
      * Function that will be moving the card to a specific point
      */
-    public void MoveCardToPoint(Vector3 pointToMoveTo, Quaternion rotationToMatch) 
+    public void MoveCardToPoint(Vector3 pointToMoveTo, Quaternion rotationToMatch)
     {
-        // this will set the point to move to
+        // This will set the point to move to
         targetPoint = pointToMoveTo;
 
-        // this will set the rotation while we are moving the card
+        // This will set the rotation while we are moving the card
         targetRotation = rotationToMatch;
+    }
+
+    /**
+     * This function will be called when the pointer enters the card area
+     */
+    void OnMouseOver()
+    {
+        // This will check if the card is in hand
+        if (!inHand) return;
+
+        MoveCardToPoint(
+            handController.cardPositions[handPosition] + new Vector3(0f, 0.5f, 0.5f),
+            Quaternion.identity
+        );
+    }
+
+    /**
+     * This function will be called when the pointer exits the card area
+     */
+    void OnMouseExit()
+    {
+        if (!inHand) return;
+
+        MoveCardToPoint(
+            handController.cardPositions[handPosition],
+            handController.minPos.rotation
+        );
     }
 }

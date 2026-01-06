@@ -42,17 +42,17 @@ public class HandController : MonoBehaviour
         // for loop that will be setting the card positions in the hand
         for (int i = 0; i < heldCards.Count; i++) 
         {
-            Vector3 cardPos = minPos.position + (distanceBetweenPoints * i);
-            cardPositions.Add(cardPos);
+            cardPositions.Add(minPos.position + (distanceBetweenPoints * i));
 
             // now we set the card position to the calculated position
-            heldCards[i].transform.rotation = minPos.rotation;
-
-            // console.log for the position
-            //Debug.Log("Card " + i + " position set to: " + cardPositions[i]);
+            //heldCards[i].transform.rotation = minPos.rotation;
 
             // Moving the card to the position smoothly
             heldCards[i].MoveCardToPoint(cardPositions[i], minPos.rotation);
+
+            // hold the cart in the moment
+            heldCards[i].inHand = true;
+            heldCards[i].handPosition = i;
         }
     }
 }
