@@ -136,4 +136,23 @@ public class Card : MonoBehaviourWithMouseControls
         );
     }
 
+    protected override void OnLeftClick()
+    {
+        Debug.Log("Card left click");
+    }
+
+    protected override void OnRightClick()
+    {
+        Debug.Log("Card right click");
+    }
+    protected override void OnWheelUp()
+    {
+        Debug.Log("Zoom card in");
+    }
+
+    protected override void OnWheelDown()
+    {
+        Debug.Log("Zoom card out");
+    }
+
 }
