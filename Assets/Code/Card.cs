@@ -1,11 +1,12 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 /**
  * Class that will be adding the rules of a card
  */
-public class Card : MonoBehaviour
+public class Card : MonoBehaviourWithMouseControls
 {
     // This will be the reference to the scriptable object of the card
     public CardScriptableObject cardData;
@@ -85,13 +86,16 @@ public class Card : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+
         // Moving the card to the target point
         transform.position = Vector3.Lerp(transform.position, targetPoint, moveSpeed * Time.deltaTime);
 
         // Rotating the card to the target rotation
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+        
     }
 
     /**
@@ -106,10 +110,11 @@ public class Card : MonoBehaviour
         targetRotation = rotationToMatch;
     }
 
+
     /**
-     * This function will be called when the pointer enters the card area
+     * This will be called when the mouse hover enters the card
      */
-    void OnMouseOver()
+    protected override void OnHoverEnter()
     {
         // This will check if the card is in hand
         if (!inHand) return;
@@ -121,15 +126,14 @@ public class Card : MonoBehaviour
     }
 
     /**
-     * This function will be called when the pointer exits the card area
+     * This will be called when the mouse hover exits the card
      */
-    void OnMouseExit()
+    protected override void OnHoverExit()
     {
-        if (!inHand) return;
-
         MoveCardToPoint(
             handController.cardPositions[handPosition],
             handController.minPos.rotation
         );
     }
+
 }

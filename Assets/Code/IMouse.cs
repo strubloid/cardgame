@@ -1,4 +1,4 @@
-public interface IHoverable
+﻿public interface IMouse
 {
     void OnHoverEnter();
     void OnHoverExit();
