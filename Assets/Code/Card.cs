@@ -104,7 +104,9 @@ public class Card : MonoBehaviourWithMouseControls
 
         // Checking if the card is selected
         if (isSelected) {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(
+                Mouse.current.position.ReadValue()
+            );
             RaycastHit hit;
 
             // Moving a card if we hit the desktop area
@@ -160,7 +162,7 @@ public class Card : MonoBehaviourWithMouseControls
     /**
      * This will be called when the mouse button is pressed down on the card
      */
-    protected override void MouseDown()
+    protected override void OnMouseDown()
     {
         // This will check if the card is in hand
         if (inHand) {

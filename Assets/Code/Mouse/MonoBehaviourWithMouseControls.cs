@@ -37,7 +37,7 @@ public abstract class MonoBehaviourWithMouseControls : MonoBehaviour
         if (Mouse.current.leftButton.wasPressedThisFrame ||
             Mouse.current.rightButton.wasPressedThisFrame)
         {
-            MouseDown();
+            OnMouseDown();
         }
 
         // Checking for left click
@@ -75,6 +75,6 @@ public abstract class MonoBehaviourWithMouseControls : MonoBehaviour
     protected virtual void OnWheelDown() { }
 
     // Abstract method for mouse down
-    protected virtual void MouseDown() { }
+    protected virtual void OnMouseDown() { }
 
 }
