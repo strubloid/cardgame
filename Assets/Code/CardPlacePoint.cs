@@ -3,7 +3,10 @@ using UnityEngine.XR;
 
 public class CardPlacePoint : MonoBehaviourWithMouseControls
 {
+    // The active card assigned to this place point
     public Card activeCard;
+
+    // Boolean to check if this is for the player
     public bool isPlayerPoint;
 
     // getting the sprite renderer for being able to change the frame color
@@ -47,6 +50,16 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
         return handController != null && handController.heldCards.Count > 0;
     }
 
+
+    /**
+     * This will show if there is already a card placed in this point 
+     */
+    private bool HasCardAlreadyPlaced()
+    {
+        return activeCard != null;
+    }
+
+
     /**
      * This will be called when the mouse hover enters the card
      */
@@ -58,7 +71,14 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
             // Change to selected color when is hovering
             if (spriteRenderer != null)
             {
-                spriteRenderer.color = frameSelectedColor;
+
+                if (!HasCardAlreadyPlaced())
+                {
+                    spriteRenderer.color = frameSelectedColor;
+                }
+                else {                     
+                    spriteRenderer.color = errorSelectionColor; 
+                }
             }
         }
     }
