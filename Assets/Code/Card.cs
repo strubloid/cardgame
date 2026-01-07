@@ -8,6 +8,9 @@ using UnityEngine.InputSystem;
  */
 public class Card : MonoBehaviourWithMouseControls
 {
+    // Singleton-ish reference to the currently selected card (the one being dragged/played)
+    public static Card SelectedCard { get; private set; }
+
     // This will be the reference to the scriptable object of the card
     public CardScriptableObject cardData;
 
@@ -123,8 +126,10 @@ public class Card : MonoBehaviourWithMouseControls
         // Checking if the card is selected
         if (isSelected)
         {
-            selectedCardAction();
-        } else {
+            WithCardOnTheHandAction();
+        }
+        else
+        {
             // When not selected and not in hand, keep it at the deck default position
             if (!inHand && assignedPlace == null && defaultDeckPosition != null)
             {
@@ -133,13 +138,13 @@ public class Card : MonoBehaviourWithMouseControls
         }
 
         // Resetting the just pressed boolean
-        justPressed = false; 
+        justPressed = false;
     }
 
     /**
      * This will be the action when the card is selected
      */
-    private void selectedCardAction() 
+    private void WithCardOnTheHandAction()
     {
         // Creating a ray from the camera to the mouse position
         Ray ray = Camera.main.ScreenPointToRay(
@@ -168,9 +173,8 @@ public class Card : MonoBehaviourWithMouseControls
             // if we click and iteract with what is placement, we hit one of those card place points
             if (Physics.Raycast(ray, out hit, 100f, whatIsPlacement))
             {
-
                 CardPlacePoint selectedPoint = hit.collider.GetComponent<CardPlacePoint>();
-                
+
                 // there is nothing assined to the current card
                 // select card section!
                 if (selectedPoint.activeCard == null && selectedPoint.isPlayerPoint)
@@ -188,22 +192,29 @@ public class Card : MonoBehaviourWithMouseControls
                         inHand = false;
                         isSelected = false;
 
+                        // Clear the current selected card reference (no longer in hand)
+                        if (SelectedCard == this)
+                            SelectedCard = null;
+
                         // Removing the card from the array
                         handController.RemoveCardFromHand(this);
 
                         // removing the player mana after playing the card
                         BattleController.instance.SpendPlayerMana(manaCost);
-
-                    } else {
+                    }
+                    else
+                    {
                         ReturnToHand();
                         UiController.instance.ShowManaWarning();
                     }
-
-                } else {
+                }
+                else
+                {
                     ReturnToHand();
                 }
-
-            } else {
+            }
+            else
+            {
                 ReturnToHand();
             }
         }
@@ -220,7 +231,6 @@ public class Card : MonoBehaviourWithMouseControls
         // This will set the rotation while we are moving the card
         targetRotation = rotationToMatch;
     }
-
 
     /**
      * This will be called when the mouse hover enters the card
@@ -253,10 +263,16 @@ public class Card : MonoBehaviourWithMouseControls
     protected override void OnMouseDown()
     {
         // This will check if the card is in hand
-        if (inHand) {
+        if (inHand)
+        {
+            // Mark this as the selected card (the one being dragged/played)
+            SelectedCard = this;
+
             isSelected = true;
+
             // Disabling the collider while we are dragging the card
             theCollider.enabled = false;
+
             justPressed = true;
         }
     }
@@ -264,9 +280,14 @@ public class Card : MonoBehaviourWithMouseControls
     /**
      * Function that will be returning the card to hand
      */
-    public void ReturnToHand() {
-
+    public void ReturnToHand()
+    {
         isSelected = false;
+
+        // If this was the selected card, clear it
+        if (SelectedCard == this)
+            SelectedCard = null;
+
         theCollider.enabled = true;
         MoveCardToPoint(handController.cardPositions[handPosition], handController.minPos.rotation);
     }

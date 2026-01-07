@@ -59,6 +59,17 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
         return activeCard != null;
     }
 
+    /**
+     * This will show if the player has a card selected and is in hand
+     */
+    private bool PlayerHasACardInHands()
+    {
+        Debug.Log("Selected Card: " + Card.SelectedCard);
+        //Debug.Log("Is in Hand: " + Card.SelectedCard.inHand.ToString());
+
+        return Card.SelectedCard != null && Card.SelectedCard.inHand;
+    }
+
 
     /**
      * This will be called when the mouse hover enters the card
@@ -66,8 +77,10 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
     protected override void OnHoverEnter()
     {
         // just changed for the player point for now
-        if (isPlayerPoint && PlayerHasCardInHand())
+        if (isPlayerPoint && PlayerHasCardInHand() && PlayerHasACardInHands())
         {
+            Debug.Log("Hovering over CardPlacePoint" + PlayerHasCardInHand());
+
             // Change to selected color when is hovering
             if (spriteRenderer != null)
             {
@@ -89,7 +102,7 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
     protected override void OnHoverExit()
     {
         // just changed for the player point for now
-        if (isPlayerPoint && PlayerHasCardInHand())
+        if (isPlayerPoint)
         {
             // Reset to base color when not hovering
             if (spriteRenderer != null)
