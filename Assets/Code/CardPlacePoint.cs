@@ -29,11 +29,11 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
         // Finding the hand controller in the scene
         handController = Object.FindFirstObjectByType<HandController>();
 
-        // just changed for the player point for now
-        if (isPlayerPoint && PlayerHasCardInHand()) {
-            // Initialize the sprite renderer
-            spriteRenderer = GetComponent<SpriteRenderer>();
+        // Initialize the sprite renderer
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
+        // just changed for the player point for now
+        if (isPlayerPoint) {
             // Set the initial frame color to base color
             if (spriteRenderer != null)
             {
@@ -73,21 +73,18 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
      */
     protected override void OnHoverEnter()
     {
+
         // just changed for the player point for now
-        if (isPlayerPoint && PlayerHasCardInHand() && PlayerHasACardInHands())
+        if (isPlayerPoint && PlayerHasCardInHand() && PlayerHasACardInHands() && spriteRenderer != null)
         {
             // Change to selected color when is hovering
-            if (spriteRenderer != null)
+            if (!HasCardAlreadyPlaced())
             {
-
-                if (!HasCardAlreadyPlaced())
-                {
-                    spriteRenderer.color = frameSelectedColor;
-                }
-                else {                     
-                    spriteRenderer.color = errorSelectionColor; 
-                }
+                spriteRenderer.color = frameSelectedColor;
+            } else {                     
+                spriteRenderer.color = errorSelectionColor; 
             }
+            
         }
     }
 
@@ -97,13 +94,11 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
     protected override void OnHoverExit()
     {
         // just changed for the player point for now
-        if (isPlayerPoint)
+        if (isPlayerPoint && spriteRenderer != null)
         {
-            // Reset to base color when not hovering
-            if (spriteRenderer != null)
-            {
-                spriteRenderer.color = frameBaseColor;
-            }
+            // Reset to base color when not hovering    
+            spriteRenderer.color = frameBaseColor;
+            
         }
         
     }
