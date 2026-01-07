@@ -39,6 +39,11 @@ public class DeckController : MonoBehaviour
     void Start()
     {
         SetupDeck();
+
+        Debug.Log("STARTING" );
+
+        // Update the UI text once at start
+        UiController.instance.SetDrawCardButtonText(drawCost);
     }
 
     // Update is called once per frame
@@ -130,4 +135,6 @@ public class DeckController : MonoBehaviour
         }
 
     }
+
+    
 }
