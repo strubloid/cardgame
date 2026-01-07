@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 /**
  * Class that will be adding the rules of the deck
@@ -28,6 +29,9 @@ public class DeckController : MonoBehaviour
     // This will be the active cards in the deck
     private List<CardScriptableObject> activeCards = new List<CardScriptableObject>();
 
+    // This will be the card to spawn from the deck
+    public Card cardToSpawn;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,7 +41,11 @@ public class DeckController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Keyboard.current != null && Keyboard.current.tKey.wasPressedThisFrame)
+        {
+            DrawCardToHand();
+
+        }
     }
     /**
      * Rules about how to setup the deck at the start of the battle
@@ -60,9 +68,6 @@ public class DeckController : MonoBehaviour
         // This will be shuffling the deck
         while (tempDeck.Count > 0 && iterations < maxIterations) {
 
-            Debug.Log("Here");
-
-
             // getting a random element from the tempDeck
             int selected = Random.Range(0, tempDeck.Count);
 
@@ -75,5 +80,35 @@ public class DeckController : MonoBehaviour
             // incrementing the iterations counter
             iterations++;
         }
+    }
+
+    /**
+     * 2.92 0.56
+     * This will be drawing a card from the deck to the hand
+     */
+    public void DrawCardToHand() 
+    {
+        // Checking if we have cards to draw
+        if (activeCards.Count == 0) {
+            SetupDeck();
+        }
+
+        Debug.Log("Transform" + transform.ToString());
+
+
+        Vector3 initialPosition = transform.position;
+        Quaternion initialRotation = transform.rotation;
+
+        // This will create a copy of the card prefab at the deck position
+        Card newCard = Instantiate(cardToSpawn, initialPosition, initialRotation);
+
+        // Setting the card data to be the first card in the active cards
+        newCard.cardData = activeCards[0];
+
+        // Removing the drawn card from the active cards
+        newCard.SetupCard();
+
+        // removing the first card from the active cards list
+        activeCards.RemoveAt(0);
     }
 }
