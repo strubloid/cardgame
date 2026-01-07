@@ -58,9 +58,6 @@ public class DeckController : MonoBehaviour
         // Create a temporary copy of the deck to use
         List<CardScriptableObject> tempDeck = new List<CardScriptableObject>(deckToUse);
 
-        // gets the deckToUse and add it to the tempDeck, for more cards in it
-        //tempDeck.AddRange(deckToUse);
-
         // Creating a safe check to avoid infinite loops
         int iterations = 0;
         int maxIterations = 500;
@@ -92,9 +89,6 @@ public class DeckController : MonoBehaviour
         if (activeCards.Count == 0) {
             SetupDeck();
         }
-
-        Debug.Log("Transform" + transform.ToString());
-
 
         Vector3 initialPosition = transform.position;
         Quaternion initialRotation = transform.rotation;

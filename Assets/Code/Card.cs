@@ -57,7 +57,6 @@ public class Card : MonoBehaviourWithMouseControls
     // Default deck position/rotation (set these in Inspector or capture in Start)
     public Transform defaultDeckPosition;
 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -171,7 +170,7 @@ public class Card : MonoBehaviourWithMouseControls
             {
 
                 CardPlacePoint selectedPoint = hit.collider.GetComponent<CardPlacePoint>();
-
+                
                 // there is nothing assined to the current card
                 // select card section!
                 if (selectedPoint.activeCard == null && selectedPoint.isPlayerPoint)
