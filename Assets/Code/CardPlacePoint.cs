@@ -84,7 +84,6 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
             } else {                     
                 spriteRenderer.color = errorSelectionColor; 
             }
-            
         }
     }
 
@@ -97,8 +96,7 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
         if (isPlayerPoint && spriteRenderer != null)
         {
             // Reset to base color when not hovering    
-            spriteRenderer.color = frameBaseColor;
-            
+            spriteRenderer.color = frameBaseColor;    
         }
         
     }
