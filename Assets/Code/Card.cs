@@ -182,7 +182,7 @@ public class Card : MonoBehaviourWithMouseControls
                         assignedPlace = selectedPoint;
 
                         // We move to the point
-                        MoveCardToPoint(selectedPoint.transform.position + new Vector3(-0.07f, 0f, 0.9f), Quaternion.identity);
+                        MoveCardToPoint(selectedPoint.transform.position + new Vector3(0f, 0f, 0.9f), Quaternion.identity);
 
                         // reset the in hand as it was placed and isnt selected as it is in place
                         inHand = false;
