@@ -80,7 +80,6 @@ public class DeckController : MonoBehaviour
     }
 
     /**
-     * 2.92 0.56
      * This will be drawing a card from the deck to the hand
      */
     public void DrawCardToHand() 
