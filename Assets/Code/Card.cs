@@ -197,6 +197,7 @@ public class Card : MonoBehaviourWithMouseControls
 
                     } else {
                         ReturnToHand();
+                        UiController.instance.ShowManaWarning();
                     }
 
                 } else {
