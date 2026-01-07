@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class HandController : MonoBehaviour
 {
+    // Singleton instance
+    public static HandController instance;
+
     // Cards array that the player is holding
     public List<Card> heldCards = new List<Card>();
 
@@ -16,6 +19,18 @@ public class HandController : MonoBehaviour
     void Start()
     {
         SetCardPositionsInHand();
+    }
+
+    /**
+     * Awake is called when the script instance is being loaded
+     */
+    private void Awake()
+    {
+        // Ensure only one instance of BattleController exists
+        if (instance == null)
+        {
+            instance = this;
+        }
     }
 
     // Update is called once per frame
@@ -71,5 +86,15 @@ public class HandController : MonoBehaviour
             heldCards.RemoveAt(cardToRemove.handPosition);
             SetCardPositionsInHand();
         }
+    }
+
+    /**
+     * This will be adding a card to the hand
+     */
+    public void AddCardToHand(Card cardToAdd) {
+
+        // Add the card to the held cards list
+        heldCards.Add(cardToAdd);
+        SetCardPositionsInHand();
     }
 }

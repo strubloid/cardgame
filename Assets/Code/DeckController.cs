@@ -110,5 +110,8 @@ public class DeckController : MonoBehaviour
 
         // removing the first card from the active cards list
         activeCards.RemoveAt(0);
+
+        // Adding the new card to the player's hand
+        HandController.instance.AddCardToHand(newCard);
     }
 }
