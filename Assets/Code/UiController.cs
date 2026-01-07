@@ -25,6 +25,9 @@ public class UiController : MonoBehaviour
     public float manaWarningTime = 2.0f;
     private float manaWarningCounter;
 
+    // reference of the draw card button
+    public GameObject drawCardButton;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -60,5 +63,13 @@ public class UiController : MonoBehaviour
         // Activate the mana warning UI element
         manaWarning.SetActive(true);
         manaWarningCounter = manaWarningTime;
+    }
+
+    /**
+     * This will be the function to draw a card from the deck
+     */
+    public void DrawCard() { 
+        DeckController.instance.DrawCardForMana();
+
     }
 }

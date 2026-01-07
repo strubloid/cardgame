@@ -11,6 +11,9 @@ public class DeckController : MonoBehaviour
     // Singleton instance
     public static DeckController instance;
 
+    // Cost to draw a card from the deck
+    public int drawCost = 1;
+
     /**
      * Awake is called when the script instance is being loaded
      */
@@ -41,10 +44,10 @@ public class DeckController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current != null && Keyboard.current.tKey.wasPressedThisFrame)
+        // Tab as key for drawing a card for mana
+        if (Keyboard.current != null && Keyboard.current.tabKey.wasPressedThisFrame)
         {
-            DrawCardToHand();
-
+            DrawCardForMana();
         }
     }
     /**
@@ -106,5 +109,25 @@ public class DeckController : MonoBehaviour
 
         // Adding the new card to the player's hand
         HandController.instance.AddCardToHand(newCard);
+    }
+
+
+    /**
+     * 
+     * This will be drawing a card for mana (if any special rules apply)
+     */
+    public void DrawCardForMana()
+    {
+        // 
+        if (BattleController.instance.playerMana >= drawCost)
+        {
+            DrawCardToHand();
+            BattleController.instance.SpendPlayerMana(drawCost);
+        }
+        else { 
+            UiController.instance.ShowManaWarning();
+            UiController.instance.drawCardButton.SetActive(false);
+        }
+
     }
 }
