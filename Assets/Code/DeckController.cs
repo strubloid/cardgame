@@ -40,8 +40,6 @@ public class DeckController : MonoBehaviour
     {
         SetupDeck();
 
-        Debug.Log("STARTING" );
-
         // Update the UI text once at start
         UiController.instance.SetDrawCardButtonText(drawCost);
     }
@@ -134,6 +132,18 @@ public class DeckController : MonoBehaviour
             UiController.instance.drawCardButton.SetActive(false);
         }
 
+    }
+
+    /**
+     * This will be drawing multiple cards from the deck to the hand
+     */
+    public void DrawMultipleCards(int amountToDraw) {
+
+        // Main loop to draw multiple cards, in this case the ammount to draw will
+        // be the the number to draw
+        for (int i = 0; i < amountToDraw; i++) { 
+            DrawCardToHand();
+        }
     }
 
     

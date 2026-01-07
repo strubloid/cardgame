@@ -10,6 +10,9 @@ public class BattleController : MonoBehaviour
     public int maxMana = 12;
     public int playerMana;
 
+    // Quantity of starting cards
+    public int startingCardsAmount = 5;
+
     /**
      * Awake is called when the script instance is being loaded
      */
@@ -29,6 +32,9 @@ public class BattleController : MonoBehaviour
 
         // Update the UI at the start
         UiController.instance.SetPlayerManaText(playerMana);
+
+        // This at the start of the battle we draw the starting cards
+        DeckController.instance.DrawMultipleCards(startingCardsAmount);
     }
 
     // Update is called once per frame
