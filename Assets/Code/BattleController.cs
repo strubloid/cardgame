@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class BattleController : MonoBehaviour
 {
@@ -18,14 +19,17 @@ public class BattleController : MonoBehaviour
     // should add it here
     public enum TurnOrder
     {
-        PlayerActive,
+        PlayerTurn,
         PlayerCardAttack,
-        EnemyActive,
+        EnemyTurn,
         EnemyCardAttack
     }
 
     // Current phase of the turn
     public TurnOrder currentPhrase;
+
+    // Time before starting the turn
+    public float timeBeforeStartingTurn = 1f;
 
     /**
      * Awake is called when the script instance is being loaded
@@ -49,6 +53,10 @@ public class BattleController : MonoBehaviour
 
         // This at the start of the battle we draw the starting cards
         DeckController.instance.DrawMultipleCards(startingCardsAmount);
+
+        // taking some seconds before starting the first turn
+        StartingTheInitialPhrase(timeBeforeStartingTurn);
+
     }
 
     // Update is called once per frame
@@ -59,7 +67,27 @@ public class BattleController : MonoBehaviour
         {
             AdvanceTurn();
         }
+    }
 
+    /**
+     * This will be starting the initial phrase after a waiting time
+     */
+    public void StartingTheInitialPhrase(float waitingTime) { 
+
+        StartCoroutine(StartingTheInitialPhraseCo(waitingTime));
+
+    }
+
+    /**
+     * Coroutine to advance the turn after a waiting time
+     */
+    IEnumerator StartingTheInitialPhraseCo(float waitingTime)
+    {
+        // will wait for the time between drawing cards
+        yield return new WaitForSeconds(waitingTime);
+
+        // will run the draw card to hand function
+        ShowTurn();
     }
 
     /**
@@ -88,13 +116,28 @@ public class BattleController : MonoBehaviour
      * the main responsibility of this method is to handle the turn order
      */
     public void AdvanceTurn() {
-
         
-        // we c/*heck the current phase to see what to do
-        switch (currentPhrase++)
+        // advance to the next turn phase
+        currentPhrase++;
+
+        // if we exceed the max size, we reset to zero
+        if ( (int) currentPhrase >= System.Enum.GetValues(typeof(TurnOrder)).Length){
+            currentPhrase = 0;
+        }
+
+        // Show the turn change in the UI
+        ShowTurn();
+    }
+
+    /**
+     * This will be showing the current turn based on the parameter
+     */
+    public void ShowTurn() {
+
+        switch (currentPhrase)
         {
             // Player's turn to play cards
-            case TurnOrder.PlayerActive:
+            case TurnOrder.PlayerTurn:
                 UiController.instance.SetPlayerTurn();
                 break;
 
@@ -105,19 +148,15 @@ public class BattleController : MonoBehaviour
                 break;
 
             // Enemy's turn to play cards
-            case TurnOrder.EnemyActive:
-
+            case TurnOrder.EnemyTurn:
                 UiController.instance.SetEnemyTurn();
                 break;
 
             // Enemy's cards attack
             case TurnOrder.EnemyCardAttack:
-
                 UiController.instance.SetEnemyCardAttack();
-                currentPhrase = TurnOrder.PlayerActive;
                 break;
         }
-
     }
 
 }

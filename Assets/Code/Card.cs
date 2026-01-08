@@ -171,10 +171,10 @@ public class Card : MonoBehaviourWithMouseControls
         }
 
         // This will allow if we press the left mouse button and isnt the just pressed
-        if (Mouse.current.leftButton.wasPressedThisFrame && justPressed == false)
-        {
+        if (Mouse.current.leftButton.wasPressedThisFrame && justPressed == false ) {
+
             // if we click and iteract with what is placement, we hit one of those card place points
-            if (Physics.Raycast(ray, out hit, 100f, whatIsPlacement))
+            if (Physics.Raycast(ray, out hit, 100f, whatIsPlacement) && BattleController.instance.currentPhrase == BattleController.TurnOrder.PlayerTurn )
             {
                 CardPlacePoint selectedPoint = hit.collider.GetComponent<CardPlacePoint>();
 
@@ -260,7 +260,7 @@ public class Card : MonoBehaviourWithMouseControls
     protected override void OnMouseDown()
     {
         // This will check if the card is in hand
-        if (inHand)
+        if (inHand && BattleController.instance.currentPhrase == BattleController.TurnOrder.PlayerTurn)
         {
             // Mark this as the selected card (the one being dragged/played)
             SelectedCard = this;
