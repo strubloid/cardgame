@@ -57,8 +57,12 @@ public class Card : MonoBehaviourWithMouseControls
     // this will store the asigned place point
     public CardPlacePoint assignedPlace;
 
-    // Default deck position/rotation (set these in Inspector or capture in Start)
-    public Transform defaultDeckPosition;
+    // Default deck position
+    public Vector3 defaultDeckPosition;
+
+    // Default deck rotation
+    private Quaternion defaultDeckRotation;
+    private bool hasDefaultDeckPosition;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -72,12 +76,11 @@ public class Card : MonoBehaviourWithMouseControls
         theCollider = GetComponent<Collider>();
 
         // If no deck position assigned, use current as default
-        if (defaultDeckPosition == null)
+        if (!hasDefaultDeckPosition)
         {
-            GameObject deckAnchor = new GameObject($"{name}_DefaultDeckAnchor");
-            deckAnchor.transform.position = transform.position;
-            deckAnchor.transform.rotation = transform.rotation;
-            defaultDeckPosition = deckAnchor.transform;
+            defaultDeckPosition = transform.position;
+            defaultDeckRotation = transform.rotation;
+            hasDefaultDeckPosition = true;
         }
     }
 
@@ -131,9 +134,9 @@ public class Card : MonoBehaviourWithMouseControls
         else
         {
             // When not selected and not in hand, keep it at the deck default position
-            if (!inHand && assignedPlace == null && defaultDeckPosition != null)
+            if (!inHand && assignedPlace == null && hasDefaultDeckPosition)
             {
-                MoveCardToPoint(defaultDeckPosition.position, defaultDeckPosition.rotation);
+                MoveCardToPoint(defaultDeckPosition, defaultDeckRotation);
             }
         }
 

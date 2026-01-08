@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BattleController : MonoBehaviour
 {
@@ -12,6 +13,19 @@ public class BattleController : MonoBehaviour
 
     // Quantity of starting cards
     public int startingCardsAmount = 5;
+
+    // This is for the order of the turns in the game, if we add any new stage, we
+    // should add it here
+    public enum TurnOrder
+    {
+        PlayerActive,
+        PlayerCardAttack,
+        EnemyActive,
+        EnemyCardAttack
+    }
+
+    // Current phase of the turn
+    public TurnOrder currentPhrase;
 
     /**
      * Awake is called when the script instance is being loaded
@@ -40,7 +54,12 @@ public class BattleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //If we press T, we advance the turn
+        if (Keyboard.current != null && Keyboard.current.tKey.wasPressedThisFrame)
+        {
+            AdvanceTurn();
+        }
+
     }
 
     /**
@@ -60,6 +79,43 @@ public class BattleController : MonoBehaviour
         // updating the UI if the instance exists
         if (UiController.instance != null){
             UiController.instance.SetPlayerManaText(playerMana);
+        }
+
+    }
+
+    /**
+     * This will be changing the turn to the next phase
+     * the main responsibility of this method is to handle the turn order
+     */
+    public void AdvanceTurn() {
+
+        
+        // we c/*heck the current phase to see what to do
+        switch (currentPhrase++)
+        {
+            // Player's turn to play cards
+            case TurnOrder.PlayerActive:
+                UiController.instance.SetPlayerTurn();
+                break;
+
+            // Player's cards attack
+            case TurnOrder.PlayerCardAttack:
+
+                UiController.instance.SetPlayerCardAttack();
+                break;
+
+            // Enemy's turn to play cards
+            case TurnOrder.EnemyActive:
+
+                UiController.instance.SetEnemyTurn();
+                break;
+
+            // Enemy's cards attack
+            case TurnOrder.EnemyCardAttack:
+
+                UiController.instance.SetEnemyCardAttack();
+                currentPhrase = TurnOrder.PlayerActive;
+                break;
         }
 
     }
