@@ -201,20 +201,14 @@ public class Card : MonoBehaviourWithMouseControls
 
                         // removing the player mana after playing the card
                         BattleController.instance.SpendPlayerMana(manaCost);
-                    }
-                    else
-                    {
+                    } else {
                         ReturnToHand();
                         UiController.instance.ShowManaWarning();
                     }
-                }
-                else
-                {
+                } else {
                     ReturnToHand();
                 }
-            }
-            else
-            {
+            } else {
                 ReturnToHand();
             }
         }

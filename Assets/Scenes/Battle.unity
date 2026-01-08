@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 10292630}
   m_Layer: 0
-  m_Name: Max Pos
+  m_Name: Min Pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -347,6 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeckController
   drawCost: 1
+  timeBetweenDrawingCards: 0.35
   deckToUse:
   - {fileID: 11400000, guid: 0bbce49a972ced543b1b82beb72fe392, type: 2}
   - {fileID: 11400000, guid: 72bc8c667ea1a2c4ca6f4a7a4d46bf5e, type: 2}
@@ -529,8 +530,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandController
   heldCards: []
-  minPos: {fileID: 1759108185}
-  maxPos: {fileID: 10292630}
+  minPos: {fileID: 10292630}
+  maxPos: {fileID: 1759108185}
   cardPositions: []
 --- !u!4 &185810332
 Transform:
@@ -545,8 +546,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1759108185}
   - {fileID: 10292630}
+  - {fileID: 1759108185}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &203844586
@@ -1733,7 +1734,7 @@ MonoBehaviour:
   startMana: 4
   maxMana: 12
   playerMana: 0
-  startingCardsAmmount: 0
+  startingCardsAmount: 5
 --- !u!4 &1240796588
 Transform:
   m_ObjectHideFlags: 0
@@ -2150,7 +2151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1759108185}
   m_Layer: 0
-  m_Name: Min Pos
+  m_Name: Max Pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

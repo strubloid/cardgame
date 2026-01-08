@@ -2,6 +2,7 @@ using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 /**
  * Class that will be adding the rules of the deck
@@ -13,6 +14,9 @@ public class DeckController : MonoBehaviour
 
     // Cost to draw a card from the deck
     public int drawCost = 1;
+
+    // This is the time between drawing each card, so they dont all draw at once
+    public float timeBetweenDrawingCards = .35f;
 
     /**
      * Awake is called when the script instance is being loaded
@@ -139,12 +143,24 @@ public class DeckController : MonoBehaviour
      */
     public void DrawMultipleCards(int amountToDraw) {
 
-        // Main loop to draw multiple cards, in this case the ammount to draw will
-        // be the the number to draw
-        for (int i = 0; i < amountToDraw; i++) { 
-            DrawCardToHand();
-        }
+        // this is the way to start an IEnumerator function
+        StartCoroutine(DrawMultipleCo(amountToDraw));
     }
 
+    /**
+     * This will be drawing multiple cards from the deck to the hand with a delay
+     */
+    IEnumerator DrawMultipleCo(int amountToDraw) 
+    {
+        // Main loop to draw multiple cards, in this case the ammount to draw will
+        for (int i = 0; i < amountToDraw; i++)
+        {
+            // will run the draw card to hand function
+            DrawCardToHand();
+
+            // will wait for the time between drawing cards
+            yield return new WaitForSeconds(timeBetweenDrawingCards);
+        }
+    }
     
 }
