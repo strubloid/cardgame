@@ -11,6 +11,9 @@ public class Card : MonoBehaviourWithMouseControls
     // Singleton-ish reference to the currently selected card (the one being dragged/played)
     public static Card SelectedCard { get; private set; }
 
+    // Boolean to check if the card belongs to the player or the enemy
+    public bool isPlayer;
+
     // This will be the reference to the scriptable object of the card
     public CardScriptableObject cardData;
 
@@ -64,9 +67,20 @@ public class Card : MonoBehaviourWithMouseControls
     private Quaternion defaultDeckRotation;
     private bool hasDefaultDeckPosition;
 
+    // To know when we are hovering an enemy card
+    private bool enemyHoverActive;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        // Failsafe in case the main target point is not set
+        if (targetPoint == Vector3.zero) {
+            targetPoint = transform.position;
+            targetRotation = transform.rotation;
+        } 
+
         SetupCard();
 
         // Finding the hand controller in the scene
@@ -134,9 +148,9 @@ public class Card : MonoBehaviourWithMouseControls
         else
         {
             // When not selected and not in hand, keep it at the deck default position
-            if (!inHand && assignedPlace == null && hasDefaultDeckPosition)
+            if (!inHand && assignedPlace == null && hasDefaultDeckPosition && isPlayer)
             {
-                MoveCardToPoint(defaultDeckPosition, defaultDeckRotation);
+                MoveCardToPoint(defaultDeckPosition, defaultDeckRotation);                
             }
         }
 
@@ -234,12 +248,37 @@ public class Card : MonoBehaviourWithMouseControls
      */
     protected override void OnHoverEnter()
     {
-        // This will check if the card is in hand
-        if (!inHand) return;
+        // player card hands action
+        if (inHand && isPlayer) {
+            onHoverEnterPlayer();
+        }
 
+        // enemy card hover action
+        if (!inHand && !isPlayer) {
+            onHoverEnterEnemy();
+        }
+    }
+
+    /**
+     * This will be called when the mouse hover enters a player card
+     */
+    public void onHoverEnterPlayer() {
         MoveCardToPoint(
             handController.cardPositions[handPosition] + new Vector3(0f, 0.5f, 0.5f),
             Quaternion.identity
+        );
+    }
+
+    /**
+     * This will be called when the mouse hover enters an enemy card
+     */
+    public void onHoverEnterEnemy()
+    {
+        float enemyHoverLiftY = 1.6f;
+        enemyHoverActive = true;
+        MoveCardToPoint(
+         defaultDeckPosition + Vector3.up * enemyHoverLiftY,
+         Quaternion.identity
         );
     }
 
@@ -248,10 +287,48 @@ public class Card : MonoBehaviourWithMouseControls
      */
     protected override void OnHoverExit()
     {
+        // player card hands action
+        if (inHand && isPlayer)
+        {
+            onHoverExitPlayer();
+        }
+
+        // enemy card hover action
+        if (!inHand && !isPlayer)
+        {
+            onHoverExitEnemy();
+        }
+    }
+
+    /**
+     * This will be called when the mouse hover exits a player card
+     */
+    public void onHoverExitPlayer()
+    {
         MoveCardToPoint(
             handController.cardPositions[handPosition],
             handController.minPos.rotation
         );
+    }
+
+    /**
+     * This will be called when the mouse hover exits an enemy card
+     */
+    public void onHoverExitEnemy()
+    {
+        try 
+        {
+            if (!enemyHoverActive) {
+                return;
+            }
+            // reset hover state
+            enemyHoverActive = false;
+
+            MoveCardToPoint(defaultDeckPosition, defaultDeckRotation);
+
+        } finally {
+            assignedPlace = null;
+        }
     }
 
     /**
@@ -260,7 +337,7 @@ public class Card : MonoBehaviourWithMouseControls
     protected override void OnMouseDown()
     {
         // This will check if the card is in hand
-        if (inHand && BattleController.instance.currentPhrase == BattleController.TurnOrder.PlayerTurn)
+        if (inHand && BattleController.instance.currentPhrase == BattleController.TurnOrder.PlayerTurn && isPlayer)
         {
             // Mark this as the selected card (the one being dragged/played)
             SelectedCard = this;
