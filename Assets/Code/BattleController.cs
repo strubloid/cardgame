@@ -13,6 +13,9 @@ public class BattleController : MonoBehaviour
     public int playerMana;
     public int manaPerTurn = 2;
 
+    // cards variable
+    public int DrawingCardsPerTurn = 1;
+
     // Quantity of starting cards
     public int startingCardsAmount = 5;
 
@@ -88,7 +91,7 @@ public class BattleController : MonoBehaviour
         yield return new WaitForSeconds(waitingTime);
 
         // will run the draw card to hand function
-        ShowTurn();
+        UiController.instance.SetPlayerTurn();
     }
 
     /**
@@ -127,46 +130,6 @@ public class BattleController : MonoBehaviour
         }
 
         // Show the turn change in the UI
-        ShowTurn();
-    }
-
-    /**
-     * This will be responsible to add things to the next turn of the player
-     */
-    public void NewTurnActions() {
-
-        // we restart the turn order
-        currentPhrase = 0;
-
-        // when we get to this stage the next one will be the start of the player turn
-        // so we can refill mana here
-        IncrementMana();
-    }
-
-    /**
-     * This will be increasing the player mana at the start of their turn,
-     * we have a rule of not exceeding the maximum mana.
-     */
-    public void IncrementMana() {
-
-        // increase the player mana by the defined amount
-        playerMana += manaPerTurn;
-
-        // rule 1: we cant exceed the maximum mana
-        if (playerMana > maxMana) {
-            playerMana = maxMana;
-        }
-
-        // Update the UI at the start
-        UiController.instance.SetPlayerManaText(playerMana);       
-
-    }
-
-    /**
-     * This will be showing the current turn based on the parameter
-     */
-    public void ShowTurn() {
-
         switch (currentPhrase)
         {
             // Player's turn to play cards
@@ -191,6 +154,43 @@ public class BattleController : MonoBehaviour
                 break;
         }
     }
+
+    /**
+     * This will be responsible to add things to the next turn of the player
+     */
+    public void NewTurnActions() {
+
+        // we restart the turn order
+        currentPhrase = 0;
+
+        // when we get to this stage the next one will be the start of the player turn
+        // so we can refill mana here
+        IncrementMana();
+
+        // Those are the free action we can do at the start of the turn
+        DeckController.instance.DrawMultipleCards(DrawingCardsPerTurn);
+    }
+
+    /**
+     * This will be increasing the player mana at the start of their turn,
+     * we have a rule of not exceeding the maximum mana.
+     */
+    public void IncrementMana() {
+
+        // increase the player mana by the defined amount
+        playerMana += manaPerTurn;
+
+        // rule 1: we cant exceed the maximum mana
+        if (playerMana > maxMana) {
+            playerMana = maxMana;
+        }
+
+        // Update the UI at the start
+        UiController.instance.SetPlayerManaText(playerMana);       
+
+    }
+
+   
 
     /**
      * This will be called when the player ends their turn
