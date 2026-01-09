@@ -123,15 +123,24 @@ public class BattleController : MonoBehaviour
 
         // if we exceed the max size, we reset to zero
         if ( (int) currentPhrase >= System.Enum.GetValues(typeof(TurnOrder)).Length){
-            currentPhrase = 0;
-
-            // when we get to this stage the next one will be the start of the player turn
-            // so we can refill mana here
-            IncrementMana();
+            NewTurnActions();
         }
 
         // Show the turn change in the UI
         ShowTurn();
+    }
+
+    /**
+     * This will be responsible to add things to the next turn of the player
+     */
+    public void NewTurnActions() {
+
+        // we restart the turn order
+        currentPhrase = 0;
+
+        // when we get to this stage the next one will be the start of the player turn
+        // so we can refill mana here
+        IncrementMana();
     }
 
     /**
