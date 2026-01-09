@@ -11,6 +11,7 @@ public class BattleController : MonoBehaviour
     public int startMana = 4;
     public int maxMana = 12;
     public int playerMana;
+    public int manaPerTurn = 2;
 
     // Quantity of starting cards
     public int startingCardsAmount = 5;
@@ -123,10 +124,33 @@ public class BattleController : MonoBehaviour
         // if we exceed the max size, we reset to zero
         if ( (int) currentPhrase >= System.Enum.GetValues(typeof(TurnOrder)).Length){
             currentPhrase = 0;
+
+            // when we get to this stage the next one will be the start of the player turn
+            // so we can refill mana here
+            IncrementMana();
         }
 
         // Show the turn change in the UI
         ShowTurn();
+    }
+
+    /**
+     * This will be increasing the player mana at the start of their turn,
+     * we have a rule of not exceeding the maximum mana.
+     */
+    public void IncrementMana() {
+
+        // increase the player mana by the defined amount
+        playerMana += manaPerTurn;
+
+        // rule 1: we cant exceed the maximum mana
+        if (playerMana > maxMana) {
+            playerMana = maxMana;
+        }
+
+        // Update the UI at the start
+        UiController.instance.SetPlayerManaText(playerMana);       
+
     }
 
     /**
@@ -157,6 +181,18 @@ public class BattleController : MonoBehaviour
                 UiController.instance.SetEnemyCardAttack();
                 break;
         }
+    }
+
+    /**
+     * This will be called when the player ends their turn
+     */
+    public void EndPlayerTurn() 
+    {
+        // Disable the end turn button to prevent multiple clicks
+        UiController.instance.endTurnButton.SetActive(false);
+
+        // For now this is the same as advancing the turn
+        AdvanceTurn();
     }
 
 }

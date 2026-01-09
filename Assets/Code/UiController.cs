@@ -14,6 +14,7 @@ public class UiController : MonoBehaviour
 
     // reference of the draw card button
     public GameObject drawCardButton;
+    public GameObject endTurnButton;
 
     // Text oject of the Draw Card Button
     public TMP_Text drawCardButtonText;
@@ -79,6 +80,13 @@ public class UiController : MonoBehaviour
      */
     public void SetPlayerTurn() {
 
+        // enabling the end turn button
+        endTurnButton.SetActive(true);
+
+        // enabling the draw card button
+        drawCardButton.SetActive(true);
+
+        // Setting up the player turn Text as visble and the other ones disabled
         PlayerTurnText.fontSizeMax = 50;
         PlayerTurnText.color = PlayerTurnColor;
         PlayerTurnText.fontStyle = FontStyles.Italic;
@@ -102,6 +110,13 @@ public class UiController : MonoBehaviour
      */
     public void SetPlayerCardAttack() {
 
+        // disabling the end turn button
+        endTurnButton.SetActive(false);
+
+        // disabling the draw card button
+        drawCardButton.SetActive(false);
+
+        // Setting up the player attack Text as visble and the other ones disabled
         PlayerTurnText.fontSizeMax = 40;
         PlayerTurnText.color = DisabledTurn;
         PlayerTurnText.fontStyle = FontStyles.Normal;
@@ -123,6 +138,14 @@ public class UiController : MonoBehaviour
      * This will be setting the UI for the enemy turn
      */
     public void SetEnemyTurn() {
+
+        // disabling the end turn button
+        endTurnButton.SetActive(false);
+
+        // disabling the draw card button
+        drawCardButton.SetActive(false);
+
+        // Setting up the enemy turn Text as visble and the other ones disabled
         PlayerTurnText.fontSizeMax = 40;
         PlayerTurnText.color = DisabledTurn;
         PlayerTurnText.fontStyle = FontStyles.Normal;
@@ -144,6 +167,14 @@ public class UiController : MonoBehaviour
      * This will be setting the UI for the enemy card attack phase
      */
     public void SetEnemyCardAttack() {
+
+        // disabling the end turn button
+        endTurnButton.SetActive(false);
+
+        // disabling the draw card button
+        drawCardButton.SetActive(false);
+
+        // Setting up the enemy attack Text as visble and the other ones disabled
         PlayerTurnText.fontSizeMax = 40;
         PlayerTurnText.color = DisabledTurn;
         PlayerTurnText.fontStyle = FontStyles.Normal;
@@ -152,11 +183,9 @@ public class UiController : MonoBehaviour
         PlayerCardAttackText.color = DisabledTurn;
         PlayerTurnText.fontStyle = FontStyles.Normal;
 
-
         EnemyTurnText.fontSizeMax = 40;
         EnemyTurnText.color = DisabledTurn;
         EnemyTurnText.fontStyle = FontStyles.Normal;
-
 
         EnemyCardAttackText.fontSizeMax = 50;
         EnemyCardAttackText.color = EnemyCardAttackColor;
@@ -188,5 +217,13 @@ public class UiController : MonoBehaviour
     {
         if (drawCardButtonText == null) return;
         drawCardButtonText.text = $"Draw Card\n-{drawCost} Mana :)";
+    }
+
+    /**
+     * This will be ending the player turn
+     */
+    public void EndPlayerTurn() { 
+        BattleController.instance.EndPlayerTurn();
+
     }
 }
