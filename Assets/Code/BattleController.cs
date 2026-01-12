@@ -134,23 +134,37 @@ public class BattleController : MonoBehaviour
         {
             // Player's turn to play cards
             case TurnOrder.PlayerTurn:
+
+                // Update the UI to show it's the player's turn
                 UiController.instance.SetPlayerTurn();
                 break;
 
             // Player's cards attack
             case TurnOrder.PlayerCardAttack:
 
+                // Update the UI to show it's the player's card attack phase
                 UiController.instance.SetPlayerCardAttack();
+
+                // Let the cards attack
+                CardPointsController.instance.PlayerAttack();
+
                 break;
 
             // Enemy's turn to play cards
             case TurnOrder.EnemyTurn:
+
+                // Update the UI to show it's the enemy's turn
                 UiController.instance.SetEnemyTurn();
+
                 break;
 
             // Enemy's cards attack
             case TurnOrder.EnemyCardAttack:
+
+                // Update the UI to show it's the enemy's card attack phase
                 UiController.instance.SetEnemyCardAttack();
+
+
                 break;
         }
     }
