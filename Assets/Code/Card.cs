@@ -108,14 +108,8 @@ public class Card : MonoBehaviourWithMouseControls
         attackPower = cardData.attackPower;
         manaCost = cardData.manaCost;
 
-        // Loading the health of the card to be the current health
-        healthText.text = currentHealth.ToString();
-
-        // Loading the attack power configured at the card to be the current attack
-        attackText.text = attackPower.ToString();
-
-        // Loading the current mana cost to be at the mana text 
-        manaText.text = manaCost.ToString();
+        // Initial update of the card display
+        UpdateCardDisplay();
 
         // Loading the text values from the scriptable object to the card
         nameText.text = cardData.cardName;
@@ -374,10 +368,38 @@ public class Card : MonoBehaviourWithMouseControls
         // reducing the current health
         currentHealth -= damageAmmount;
         
-        if (currentHealth <= 0) { 
-            currentHealth = 0;                  // updating the health text
-            assignedPlace.activeCard = null;    // removing the reference from the place point
-            Destroy(gameObject);                // destroy the card if health is zero
+        if (currentHealth <= 0) {
+
+            // updating the health text
+            currentHealth = 0;
+
+            // checkinf if we can remove the active card from the place point
+            if (assignedPlace != null)
+            {
+                assignedPlace.activeCard = null;
+            }
+
+            // destroy the card if health is zero
+            Destroy(gameObject);
         }
+
+        // updating the ui text
+        UpdateCardDisplay();
+    }
+
+    /**
+     * This will be updating the card display values
+     */
+    public void UpdateCardDisplay() {
+
+        // Loading the health of the card to be the current health
+        healthText.text = currentHealth.ToString();
+
+        // Loading the attack power configured at the card to be the current attack
+        attackText.text = attackPower.ToString();
+
+        // Loading the current mana cost to be at the mana text 
+        manaText.text = manaCost.ToString();
+
     }
 }
