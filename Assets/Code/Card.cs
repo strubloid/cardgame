@@ -390,9 +390,16 @@ public class Card : MonoBehaviourWithMouseControls
                 BattleController.instance.DiscardPoint.rotation
             );
 
+            // Trigger the Jump animation while being destroyed
+            animator.SetTrigger("Jump");
+
             // destroy the card if health is zero, will wait for 5 seconds before destroying
             Destroy(gameObject, TimeToDestroyACard);
         }
+
+
+        // This will trigger the hurt animation
+        animator.SetTrigger("Hurt");
 
         // updating the ui text
         UpdateCardDisplay();

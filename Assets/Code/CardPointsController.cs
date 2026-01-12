@@ -127,6 +127,9 @@ public class CardPointsController : MonoBehaviour
                     activePlayerCards[currentPlayerCardIndex].activeCard.attackPower
                 );
 
+                // This will trigger the animation of Attack
+                activePlayerCards[currentPlayerCardIndex].activeCard.animator.SetTrigger("Attack");
+
                 // If enemy died, advance enemy index
                 if (activeEnemyCards[currentEnemyCardIndex].activeCard == null)
                 {

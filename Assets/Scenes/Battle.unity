@@ -2633,6 +2633,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card
       objectReference: {fileID: 0}
+    - target: {fileID: 3975388675051988823, guid: 273d8a735135c6740964932b91a159a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9188531512986509299, guid: 273d8a735135c6740964932b91a159a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.53
@@ -2676,38 +2680,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7752361462376598007, guid: 273d8a735135c6740964932b91a159a6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1565590631}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 273d8a735135c6740964932b91a159a6, type: 3}
---- !u!1 &1565590630 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7752361462376598007, guid: 273d8a735135c6740964932b91a159a6, type: 3}
-  m_PrefabInstance: {fileID: 1565590629}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1565590631
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1565590630}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4f431b17011adc14e9c9090ca0b15cb9, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1594912773
 GameObject:
   m_ObjectHideFlags: 0
