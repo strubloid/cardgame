@@ -127,14 +127,14 @@ public class CardPointsController : MonoBehaviour
                     activePlayerCards[currentPlayerCardIndex].activeCard.attackPower
                 );
 
-                // This will trigger the animation of Attack
-                activePlayerCards[currentPlayerCardIndex].activeCard.animator.SetTrigger("Attack");
-
                 // If enemy died, advance enemy index
                 if (activeEnemyCards[currentEnemyCardIndex].activeCard == null)
                 {
                     currentEnemyCardIndex++;
                 }
+
+                // This will trigger the animation of Attack
+                activePlayerCards[currentPlayerCardIndex].activeCard.animator.SetTrigger("Attack");
 
                 yield return new WaitForSeconds(timeBetweenActions);
             }
@@ -215,14 +215,14 @@ public class CardPointsController : MonoBehaviour
                     activeEnemyCards[currentEnemyCardIndex].activeCard.attackPower
                 );
 
-                // Trigger attacker animation
-                activeEnemyCards[currentEnemyCardIndex].activeCard.animator.SetTrigger("Attack");
-
                 // If player died, advance defender index
                 if (activePlayerCards[currentPlayerCardIndex].activeCard == null)
                 {
                     currentPlayerCardIndex++;
                 }
+
+                // Trigger attacker animation
+                activeEnemyCards[currentEnemyCardIndex].activeCard.animator.SetTrigger("Attack");
 
                 yield return new WaitForSeconds(timeBetweenActions);
             }
