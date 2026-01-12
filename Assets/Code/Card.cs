@@ -379,8 +379,14 @@ public class Card : MonoBehaviourWithMouseControls
                 assignedPlace.activeCard = null;
             }
 
-            // destroy the card if health is zero
-            Destroy(gameObject);
+            // moving to the point
+            MoveCardToPoint(
+                BattleController.instance.DiscardPoint.position,
+                BattleController.instance.DiscardPoint.rotation
+            );
+
+            // destroy the card if health is zero, will wait for 5 seconds before destroying
+            Destroy(gameObject, 5f);
         }
 
         // updating the ui text

@@ -35,6 +35,9 @@ public class BattleController : MonoBehaviour
     // Time before starting the turn
     public float timeBeforeStartingTurn = 1f;
 
+    // Position that the card will move when discarded
+    public Transform DiscardPoint;
+
     /**
      * Awake is called when the script instance is being loaded
      */
