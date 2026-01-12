@@ -365,4 +365,19 @@ public class Card : MonoBehaviourWithMouseControls
         theCollider.enabled = true;
         MoveCardToPoint(handController.cardPositions[handPosition], handController.minPos.rotation);
     }
+
+    /**
+     * This will be damaging the card with a specific ammount
+     */
+    public void DamageCard(int damageAmmount) {
+
+        // reducing the current health
+        currentHealth -= damageAmmount;
+        
+        if (currentHealth <= 0) { 
+            currentHealth = 0;                  // updating the health text
+            assignedPlace.activeCard = null;    // removing the reference from the place point
+            Destroy(gameObject);                // destroy the card if health is zero
+        }
+    }
 }
