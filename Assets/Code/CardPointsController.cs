@@ -152,6 +152,97 @@ public class CardPointsController : MonoBehaviour
     }
 
     /**
+     * This will be starting the enemy attack phase
+     */
+    public void EnemyAttack() {
+        // we start the player attack coroutine
+        StartCoroutine(EnemyAttackCo());
+    }
+
+    /**
+     * Coroutine to handle enemy attack phase
+     */
+    IEnumerator EnemyAttackCo()
+    {
+        // Wait a bit between actions
+        yield return new WaitForSeconds(timeBetweenActions);
+
+        // Get all active enemy cards (attackers)
+        CardPlacePoint[] activeEnemyCards = GetActiveEnemyCards();
+
+        // Get all active player cards (defenders)
+        CardPlacePoint[] activePlayerCards = GetActivePlayerCards();
+
+        // If enemy has no attackers, just advance
+        if (activeEnemyCards.Length == 0)
+        {
+            Debug.Log("Enemy has no cards to attack.");
+            BattleController.instance.AdvanceTurn();
+            CheckAssignedCards();
+            yield break;
+        }
+
+        // This will store what is the current player card index (defender)
+        int currentPlayerCardIndex = 0;
+
+        // If player has cards to defend, loop through them
+        if (activePlayerCards.Length > 0)
+        {
+            // Loop through each enemy card (attacker)
+            for (int currentEnemyCardIndex = 0; currentEnemyCardIndex < activeEnemyCards.Length; currentEnemyCardIndex++)
+            {
+                // If we ran out of player defenders, enemy attacks directly
+                if (currentPlayerCardIndex >= activePlayerCards.Length)
+                {
+                    Debug.Log("Enemy Attacking: directly");
+                    continue;
+                }
+
+                // Safety checks
+                if (activeEnemyCards[currentEnemyCardIndex].activeCard == null)
+                    continue;
+
+                // Player card already destroyed -> move to next player defender
+                if (activePlayerCards[currentPlayerCardIndex].activeCard == null)
+                {
+                    currentPlayerCardIndex++;
+                    currentEnemyCardIndex--; // retry same attacker on next defender
+                    continue;
+                }
+
+                // Attack from enemy card to player card
+                activePlayerCards[currentPlayerCardIndex].activeCard.DamageCard(
+                    activeEnemyCards[currentEnemyCardIndex].activeCard.attackPower
+                );
+
+                // Trigger attacker animation
+                activeEnemyCards[currentEnemyCardIndex].activeCard.animator.SetTrigger("Attack");
+
+                // If player died, advance defender index
+                if (activePlayerCards[currentPlayerCardIndex].activeCard == null)
+                {
+                    currentPlayerCardIndex++;
+                }
+
+                yield return new WaitForSeconds(timeBetweenActions);
+            }
+        }
+        else
+        {
+            // No defending cards -> enemy attacks player directly
+            Debug.Log("Enemy Attacking the player directly");
+        }
+
+        // After all attacks, advance the turn
+        BattleController.instance.AdvanceTurn();
+
+        // Extra check for destroyed cards
+        CheckAssignedCards();
+    }
+
+
+
+    /**
      * This will be checking assigned cards for both player and enemy card points
      */
     public void CheckAssignedCards() {
