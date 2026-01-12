@@ -38,6 +38,15 @@ public class BattleController : MonoBehaviour
     // Position that the card will move when discarded
     public Transform DiscardPoint;
 
+    // default starting health
+    private int startHealth = 40;
+
+    // Player Health
+    public int PlayerHealth;
+
+    // Enemy Health
+    public int EnemyHealth;
+
     /**
      * Awake is called when the script instance is being loaded
      */
@@ -54,6 +63,14 @@ public class BattleController : MonoBehaviour
     void Start()
     {
         playerMana = startMana;
+        PlayerHealth = startHealth;
+        EnemyHealth = startHealth;
+
+        // updating the UI of the player health
+        UiController.instance.SetPlayerHealthText(PlayerHealth);
+
+        // updating the UI of the enemy health
+        UiController.instance.SetEnemyHealthText(EnemyHealth);
 
         // Update the UI at the start
         UiController.instance.SetPlayerManaText(playerMana);
@@ -212,8 +229,6 @@ public class BattleController : MonoBehaviour
 
     }
 
-   
-
     /**
      * This will be called when the player ends their turn
      */
@@ -226,4 +241,44 @@ public class BattleController : MonoBehaviour
         AdvanceTurn();
     }
 
+
+    /**
+     * This will be damaging the player with the given ammount
+     */
+    public void DamagePlayer(int damageAmmount) {
+
+        // reduce the player health
+        if (PlayerHealth > 0) {
+            PlayerHealth -= damageAmmount;
+        }
+
+        // check if the health goes below zero
+        if (PlayerHealth <= 0) {
+            PlayerHealth = 0;
+        }
+
+        // updating the UI
+        UiController.instance.SetPlayerHealthText(PlayerHealth);
+    }
+
+    /**
+     * This will be damaging the enemy with the given ammount
+     */
+    public void DamageEnemy(int damageAmmount)
+    {
+        // reduce the player health
+        if (EnemyHealth > 0)
+        {
+            EnemyHealth -= damageAmmount;
+        }
+
+        // check if the enemy health goes below zero
+        if (EnemyHealth <= 0)
+        {
+            EnemyHealth = 0;
+        }
+
+        // updating the UI
+        UiController.instance.SetEnemyHealthText(EnemyHealth);
+    }
 }

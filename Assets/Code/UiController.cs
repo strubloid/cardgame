@@ -12,6 +12,10 @@ public class UiController : MonoBehaviour
     public float manaWarningTime = 2.0f;
     private float manaWarningCounter;
 
+    // Text elements to display player and enemy health
+    public TMP_Text PlayerHealthText;
+    public TMP_Text EnemyHealthText;
+
     // reference of the draw card button
     public GameObject drawCardButton;
     public GameObject endTurnButton;
@@ -73,6 +77,22 @@ public class UiController : MonoBehaviour
      */
     public void SetPlayerManaText(int manaAmmount) {
         playerManaText.text = "Mana: " + manaAmmount;
+    }
+
+    /**
+     * This will be updating the player health text in the UI
+     */
+    public void SetPlayerHealthText(int life)
+    {
+        PlayerHealthText.text = "Health: " + life;
+    }
+
+    /**
+     * This will be updating the enemy health text in the UI
+     */
+    public void SetEnemyHealthText(int life)
+    {
+        EnemyHealthText.text = "Health: " + life;
     }
 
     /**
