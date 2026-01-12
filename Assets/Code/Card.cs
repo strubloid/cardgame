@@ -70,6 +70,8 @@ public class Card : MonoBehaviourWithMouseControls
     // To know when we are hovering an enemy card
     private bool enemyHoverActive;
 
+    // Time to destroy a card after being moved to discard pile
+    private float TimeToDestroyACard = 3f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -386,7 +388,7 @@ public class Card : MonoBehaviourWithMouseControls
             );
 
             // destroy the card if health is zero, will wait for 5 seconds before destroying
-            Destroy(gameObject, 5f);
+            Destroy(gameObject, TimeToDestroyACard);
         }
 
         // updating the ui text

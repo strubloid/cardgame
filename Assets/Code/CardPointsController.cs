@@ -144,5 +144,42 @@ public class CardPointsController : MonoBehaviour
         // After all attacks, advance the turn
         BattleController.instance.AdvanceTurn();
 
+        // extra check for destroyed cards
+        CheckAssignedCards();
+    }
+
+    /**
+     * This will be checking assigned cards for both player and enemy card points
+     */
+    public void CheckAssignedCards() {
+
+        // Check enemy card points for destroyed cards
+        foreach (CardPlacePoint point in EnemyCardPoints) {
+
+            // Check if there is an active card
+            if (point.activeCard != null) {
+
+                // Check if the card's health is zero or below
+                if (point.activeCard.currentHealth <= 0) {
+                    // Remove destroyed card
+                    point.activeCard = null;
+                }
+            }
+        }
+
+        // Check player card points for destroyed cards
+        foreach (CardPlacePoint point in PlayerCardPoints)
+        {
+            // Check if there is an active card
+            if (point.activeCard != null)
+            {
+                // Check if the card's health is zero or below
+                if (point.activeCard.currentHealth <= 0)
+                {
+                    // Remove destroyed card
+                    point.activeCard = null;
+                }
+            }
+        }
     }
 }
