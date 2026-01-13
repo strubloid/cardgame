@@ -7,7 +7,7 @@ public class UiController : MonoBehaviour
     public static UiController instance;
 
     // Text element to display player's mana and mana warning UI
-    public TMP_Text playerManaText;
+    public TMP_Text playerManaText, enemyManaText;
     public GameObject manaWarning;
     public float manaWarningTime = 2.0f;
     private float manaWarningCounter;
@@ -76,7 +76,15 @@ public class UiController : MonoBehaviour
      * This will be updating the player mana text in the UI
      */
     public void SetPlayerManaText(int manaAmmount) {
-        playerManaText.text = "Mana: " + manaAmmount;
+        playerManaText.text = "" + manaAmmount;
+    }
+
+    /**
+     * This will be updating the enemy mana text in the UI
+     */
+    public void SetEnemyManaText(int manaAmmount)
+    {
+        enemyManaText.text = "" + manaAmmount;
     }
 
     /**
@@ -84,7 +92,7 @@ public class UiController : MonoBehaviour
      */
     public void SetPlayerHealthText(int life)
     {
-        PlayerHealthText.text = "Health: " + life;
+        PlayerHealthText.text = "" + life;
     }
 
     /**
@@ -92,7 +100,7 @@ public class UiController : MonoBehaviour
      */
     public void SetEnemyHealthText(int life)
     {
-        EnemyHealthText.text = "Health: " + life;
+        EnemyHealthText.text = "" + life;
     }
 
     /**

@@ -10,7 +10,7 @@ public class BattleController : MonoBehaviour
     // Starting mana variables
     public int startMana = 4;
     public int maxMana = 12;
-    public int playerMana;
+    public int playerMana, enemyMana;
     public int manaPerTurn = 2;
 
     // cards variable
@@ -72,8 +72,11 @@ public class BattleController : MonoBehaviour
         // updating the UI of the enemy health
         UiController.instance.SetEnemyHealthText(EnemyHealth);
 
-        // Update the UI at the start
+        // Update the mana for the player at the start
         UiController.instance.SetPlayerManaText(playerMana);
+
+        // Update the mana for the enemy at the start
+        UiController.instance.SetEnemyManaText(playerMana);
 
         // This at the start of the battle we draw the starting cards
         DeckController.instance.DrawMultipleCards(startingCardsAmount);
@@ -218,14 +221,21 @@ public class BattleController : MonoBehaviour
 
         // increase the player mana by the defined amount
         playerMana += manaPerTurn;
+        enemyMana += manaPerTurn;
 
         // rule 1: we cant exceed the maximum mana
         if (playerMana > maxMana) {
             playerMana = maxMana;
         }
 
+        // Rule 2: enemy cant exceed the maximum mana
+        if (enemyMana> maxMana) {
+            enemyMana = maxMana;
+        }
+
         // Update the UI at the start
-        UiController.instance.SetPlayerManaText(playerMana);       
+        UiController.instance.SetPlayerManaText(playerMana);
+        UiController.instance.SetEnemyManaText(enemyMana);
 
     }
 

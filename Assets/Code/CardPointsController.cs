@@ -116,6 +116,7 @@ public class CardPointsController : MonoBehaviour
                 // checkinf if we have enemy cards to attack
                 if (currentEnemyCardIndex >= activeEnemyCards.Length)
                 {
+                    // This will attacking the enemy directly
                     BattleController.instance.DamageEnemy(activePlayerCards[currentPlayerCardIndex].activeCard.attackPower);
 
                 } else {
@@ -142,6 +143,7 @@ public class CardPointsController : MonoBehaviour
                     {
                         currentEnemyCardIndex++;
                     }
+
                 }
 
                 // This will trigger the animation of Attack
