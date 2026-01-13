@@ -2467,7 +2467,6 @@ MonoBehaviour:
   currentPhrase: 0
   timeBeforeStartingTurn: 1
   DiscardPoint: {fileID: 79906682}
-  startHealth: 100
   PlayerHealth: 0
   EnemyHealth: 0
 --- !u!4 &1240796588

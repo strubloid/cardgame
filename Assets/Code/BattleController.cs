@@ -39,7 +39,7 @@ public class BattleController : MonoBehaviour
     public Transform DiscardPoint;
 
     // default starting health
-    private int startHealth = 40;
+    private int startHealth = 20;
 
     // Player Health
     public int PlayerHealth;
