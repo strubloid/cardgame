@@ -103,6 +103,7 @@ public class UiController : MonoBehaviour
         EnemyHealthText.text = "" + life;
     }
 
+
     /**
      * This will be setting the UI for the player turn
      */
@@ -115,19 +116,19 @@ public class UiController : MonoBehaviour
         drawCardButton.SetActive(true);
 
         // Setting up the player turn Text as visble and the other ones disabled
-        PlayerTurnText.fontSizeMax = 50;
+        PlayerTurnText.fontSizeMax = 30;
         PlayerTurnText.color = PlayerTurnColor;
         PlayerTurnText.fontStyle = FontStyles.Italic;
 
-        PlayerCardAttackText.fontSizeMax = 40;
+        PlayerCardAttackText.fontSizeMax = 26;
         PlayerCardAttackText.color= DisabledTurn;
         PlayerCardAttackText.fontStyle = FontStyles.Normal;
 
-        EnemyTurnText.fontSizeMax = 40;
+        EnemyTurnText.fontSizeMax = 26;
         EnemyTurnText.color = DisabledTurn;
         EnemyTurnText.fontStyle = FontStyles.Normal;
 
-        EnemyCardAttackText.fontSizeMax = 40;
+        EnemyCardAttackText.fontSizeMax = 26;
         EnemyCardAttackText.color = DisabledTurn;
         EnemyCardAttackText.fontStyle = FontStyles.Normal;
 
@@ -145,19 +146,19 @@ public class UiController : MonoBehaviour
         drawCardButton.SetActive(false);
 
         // Setting up the player attack Text as visble and the other ones disabled
-        PlayerTurnText.fontSizeMax = 40;
+        PlayerTurnText.fontSizeMax = 26;
         PlayerTurnText.color = DisabledTurn;
         PlayerTurnText.fontStyle = FontStyles.Normal;
 
-        PlayerCardAttackText.fontSizeMax = 50;
+        PlayerCardAttackText.fontSizeMax = 30;
         PlayerCardAttackText.color = PlayerCardAttackColor;
         PlayerCardAttackText.fontStyle = FontStyles.Italic;
 
-        EnemyTurnText.fontSizeMax = 40;
+        EnemyTurnText.fontSizeMax = 26;
         EnemyTurnText.color = DisabledTurn;
         EnemyTurnText.fontStyle = FontStyles.Normal;
 
-        EnemyCardAttackText.fontSizeMax = 40;
+        EnemyCardAttackText.fontSizeMax = 26;
         EnemyCardAttackText.color = DisabledTurn;
         EnemyCardAttackText.fontStyle = FontStyles.Normal;
     }
@@ -174,19 +175,19 @@ public class UiController : MonoBehaviour
         drawCardButton.SetActive(false);
 
         // Setting up the enemy turn Text as visble and the other ones disabled
-        PlayerTurnText.fontSizeMax = 40;
+        PlayerTurnText.fontSizeMax = 26;
         PlayerTurnText.color = DisabledTurn;
         PlayerTurnText.fontStyle = FontStyles.Normal;
 
-        PlayerCardAttackText.fontSizeMax = 40;
+        PlayerCardAttackText.fontSizeMax = 26;
         PlayerCardAttackText.color = DisabledTurn;
         PlayerTurnText.fontStyle = FontStyles.Normal;
 
-        EnemyTurnText.fontSizeMax = 50;
+        EnemyTurnText.fontSizeMax = 30;
         EnemyTurnText.color = EnemyTurnColor;
         EnemyTurnText.fontStyle = FontStyles.Italic;
 
-        EnemyCardAttackText.fontSizeMax = 40;
+        EnemyCardAttackText.fontSizeMax = 26;
         EnemyCardAttackText.color = DisabledTurn;
         EnemyCardAttackText.fontStyle = FontStyles.Normal;
     }
@@ -203,19 +204,19 @@ public class UiController : MonoBehaviour
         drawCardButton.SetActive(false);
 
         // Setting up the enemy attack Text as visble and the other ones disabled
-        PlayerTurnText.fontSizeMax = 40;
+        PlayerTurnText.fontSizeMax = 26;
         PlayerTurnText.color = DisabledTurn;
         PlayerTurnText.fontStyle = FontStyles.Normal;
 
-        PlayerCardAttackText.fontSizeMax = 40;
+        PlayerCardAttackText.fontSizeMax = 26;
         PlayerCardAttackText.color = DisabledTurn;
         PlayerTurnText.fontStyle = FontStyles.Normal;
 
-        EnemyTurnText.fontSizeMax = 40;
+        EnemyTurnText.fontSizeMax = 26;
         EnemyTurnText.color = DisabledTurn;
         EnemyTurnText.fontStyle = FontStyles.Normal;
 
-        EnemyCardAttackText.fontSizeMax = 50;
+        EnemyCardAttackText.fontSizeMax = 30;
         EnemyCardAttackText.color = EnemyCardAttackColor;
         EnemyCardAttackText.fontStyle = FontStyles.Italic;
     }
