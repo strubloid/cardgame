@@ -104,9 +104,6 @@ public class EnemyController : MonoBehaviour
         // will run the draw card to hand function
         yield return new WaitForSeconds(timeBetweenDrawingCards);
 
-        // Advancing the turn to the player
-        BattleController.instance.AdvanceTurn();
-
         // temporary list to hold the card points
         List<CardPlacePoint> cardPoints = new List<CardPlacePoint>();
 
@@ -157,6 +154,12 @@ public class EnemyController : MonoBehaviour
             newCard.assignedPlace = selectedPoint;
 
         }
+
+        // will run the draw card to hand function
+        yield return new WaitForSeconds(timeBetweenDrawingCards);
+
+        // Advancing the turn to the player
+        BattleController.instance.AdvanceTurn();
     }
 
 
