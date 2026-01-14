@@ -17,6 +17,12 @@ public class EnemyController : MonoBehaviour
     // This is the time between drawing each card, so they dont all draw at once
     public float timeBetweenDrawingCards = .5f;
 
+    // This will be the card to spawn from the deck
+    public Card cardToSpawn;
+
+    // This is the point where the cards will spawn from the deck
+    public Transform cardSpawnPoint;
+
     /**
     * Awake is called when the script instance is being loaded
     */
@@ -101,15 +107,56 @@ public class EnemyController : MonoBehaviour
         // Advancing the turn to the player
         BattleController.instance.AdvanceTurn();
 
-        //// Main loop to draw multiple cards, in this case the ammount to draw will
-        //for (int i = 0; i < amountToDraw; i++)
-        //{
-        //    // will run the draw card to hand function
-        //    DrawCardToHand();
+        // temporary list to hold the card points
+        List<CardPlacePoint> cardPoints = new List<CardPlacePoint>();
 
-        //    // will wait for the time between drawing cards
+        // adding the player card points to the list
+        cardPoints.AddRange(CardPointsController.instance.EnemyCardPoints);
 
-        //}
+        // getting a random point index
+        int randomPointIndex = Random.Range(0, cardPoints.Count);
+
+        // getting the selected point
+        CardPlacePoint selectedPoint = cardPoints[randomPointIndex];
+
+        // ensuring the selected point is free
+        while (selectedPoint.activeCard != null && cardPoints.Count > 0)
+        {
+            // getting a new random point index
+            randomPointIndex = Random.Range(0, cardPoints.Count);
+
+            // getting the selected point
+            selectedPoint = cardPoints[randomPointIndex];
+
+            // removing the point from the list
+            cardPoints.RemoveAt(randomPointIndex);
+        }
+
+        // checking if the selected point is free
+        if (selectedPoint.activeCard == null) {
+
+            // Spawning the card at the spawn point
+            Card newCard = Instantiate(cardToSpawn, cardSpawnPoint.position, cardSpawnPoint.rotation);
+
+            // Setting the card as enemy card
+            newCard.cardData = activeCards[0];
+
+            // Setting up the card
+            activeCards.RemoveAt(0);
+
+            // Because of the setup of the card prefab, we need to apply an extra rotation to make it face the correct way
+            Quaternion finalRotation = Quaternion.Euler(0f, 180f, 0f);
+
+            // Moving the card to the selected point
+            newCard.MoveCardToPoint(selectedPoint.transform.position, finalRotation);
+
+            // Assigning the card to the selected point
+            selectedPoint.activeCard = newCard;
+
+            // Assigning the selected point to the card
+            newCard.assignedPlace = selectedPoint;
+
+        }
     }
 
 

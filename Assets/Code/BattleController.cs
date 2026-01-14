@@ -256,8 +256,6 @@ public class BattleController : MonoBehaviour
      */
     private void ShowDamage(UiDamageIndicator playerDamagePrefab, int damageAmount, Transform parent)
     {
-        Debug.Log("Showing damage: " + damageAmount);
-
         // show the damage indicator
         UiDamageIndicator damageClone = Instantiate(playerDamagePrefab, parent);
 
