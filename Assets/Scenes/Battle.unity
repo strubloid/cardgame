@@ -163,6 +163,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba9d13827ad6164b915eceecca13943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
+  deckToUse:
+  - {fileID: 11400000, guid: 0bbce49a972ced543b1b82beb72fe392, type: 2}
+  - {fileID: 11400000, guid: 72bc8c667ea1a2c4ca6f4a7a4d46bf5e, type: 2}
+  - {fileID: 11400000, guid: 22f7224e63ab6c44f90efe1634d16000, type: 2}
+  timeBetweenDrawingCards: 0.5
 --- !u!1 &10292629
 GameObject:
   m_ObjectHideFlags: 0
