@@ -23,6 +23,18 @@ public class EnemyController : MonoBehaviour
     // This is the point where the cards will spawn from the deck
     public Transform cardSpawnPoint;
 
+    // This is the type of AI the enemy will use
+    public enum AIType
+    {
+        placeFromDeck,
+        handRandomPlace,
+        handDefensive,
+        handAttacking
+    }
+
+    // This is the type of AI the enemy will use
+    public AIType enemyAIType;
+
     /**
     * Awake is called when the script instance is being loaded
     */
@@ -129,31 +141,58 @@ public class EnemyController : MonoBehaviour
             cardPoints.RemoveAt(randomPointIndex);
         }
 
-        // checking if the selected point is free
-        if (selectedPoint.activeCard == null) {
+        // executing the AI type
+        switch (enemyAIType) {
 
-            // Spawning the card at the spawn point
-            Card newCard = Instantiate(cardToSpawn, cardSpawnPoint.position, cardSpawnPoint.rotation);
+            // AI that places a card from the deck to the field
+            case AIType.placeFromDeck:
 
-            // Setting the card as enemy card
-            newCard.cardData = activeCards[0];
+                // checking if the selected point is free
+                if (selectedPoint.activeCard == null)
+                {
 
-            // Setting up the card
-            activeCards.RemoveAt(0);
+                    // Spawning the card at the spawn point
+                    Card newCard = Instantiate(cardToSpawn, cardSpawnPoint.position, cardSpawnPoint.rotation);
 
-            // Because of the setup of the card prefab, we need to apply an extra rotation to make it face the correct way
-            Quaternion finalRotation = Quaternion.Euler(0f, 180f, 0f);
+                    // Setting the card as enemy card
+                    newCard.cardData = activeCards[0];
 
-            // Moving the card to the selected point
-            newCard.MoveCardToPoint(selectedPoint.transform.position, finalRotation);
+                    // Setting up the card
+                    activeCards.RemoveAt(0);
 
-            // Assigning the card to the selected point
-            selectedPoint.activeCard = newCard;
+                    // Because of the setup of the card prefab, we need to apply an extra rotation to make it face the correct way
+                    Quaternion finalRotation = Quaternion.Euler(0f, 180f, 0f);
 
-            // Assigning the selected point to the card
-            newCard.assignedPlace = selectedPoint;
+                    // Moving the card to the selected point
+                    newCard.MoveCardToPoint(selectedPoint.transform.position, finalRotation);
+
+                    // Assigning the card to the selected point
+                    selectedPoint.activeCard = newCard;
+
+                    // Assigning the selected point to the card
+                    newCard.assignedPlace = selectedPoint;
+
+                }
+                break;
+
+            // AI that places a random card from hand to the field
+            case AIType.handRandomPlace:
+
+                break;
+
+            // AI that places a defensive card from hand to the field
+            case AIType.handDefensive:
+
+                break;
+
+            // AI that places an attacking card from hand to the field
+            case AIType.handAttacking:
+
+                break;
 
         }
+
+        
 
         // will run the draw card to hand function
         yield return new WaitForSeconds(timeBetweenDrawingCards);
