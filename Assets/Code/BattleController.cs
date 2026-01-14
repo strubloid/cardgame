@@ -179,8 +179,8 @@ public class BattleController : MonoBehaviour
                 // Update the UI to show it's the enemy's turn
                 UiController.instance.SetEnemyTurn();
 
-                // After all attacks, advance the turn
-                AdvanceTurn();
+                // Let the enemy play their actions
+                EnemyController.instance.StartAction();
 
                 break;
 

@@ -57,6 +57,7 @@ public class DeckController : MonoBehaviour
             DrawCardForMana();
         }
     }
+
     /**
      * Rules about how to setup the deck at the start of the battle
      */
