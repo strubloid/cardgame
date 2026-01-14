@@ -251,6 +251,23 @@ public class BattleController : MonoBehaviour
         AdvanceTurn();
     }
 
+    /**
+     * This will be showing the damage indicator for the player or enemy
+     */
+    private void ShowDamage(UiDamageIndicator playerDamagePrefab, int damageAmount, Transform parent)
+    {
+        Debug.Log("Showing damage: " + damageAmount);
+
+        // show the damage indicator
+        UiDamageIndicator damageClone = Instantiate(playerDamagePrefab, parent);
+
+        // update the text
+        damageClone.damageText.text = damageAmount.ToString();
+
+        // activate the damage indicator
+        damageClone.gameObject.SetActive(true);
+    }
+
 
     /**
      * This will be damaging the player with the given ammount
@@ -269,6 +286,9 @@ public class BattleController : MonoBehaviour
 
         // updating the UI
         UiController.instance.SetPlayerHealthText(PlayerHealth);
+
+        // show the damage indicator
+        ShowDamage(UiController.instance.playerDamage, damageAmmount, UiController.instance.playerDamage.transform.parent);
     }
 
     /**
@@ -290,5 +310,8 @@ public class BattleController : MonoBehaviour
 
         // updating the UI
         UiController.instance.SetEnemyHealthText(EnemyHealth);
+
+        // show the damage indicator
+        ShowDamage(UiController.instance.enemyDamage, damageAmmount, UiController.instance.enemyDamage.transform.parent);
     }
 }

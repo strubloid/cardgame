@@ -40,6 +40,9 @@ public class UiController : MonoBehaviour
     // Disabled turn color
     private Color DisabledTurn = new Color32(0x55, 0x55, 0x55, 0xB1); // #555555
 
+    // Damage indicator references
+    public UiDamageIndicator playerDamage, enemyDamage;
+
     /**
     * Awake is called when the script instance is being loaded
     */
