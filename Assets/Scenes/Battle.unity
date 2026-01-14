@@ -171,6 +171,8 @@ MonoBehaviour:
   timeBetweenDrawingCards: 0.5
   cardToSpawn: {fileID: 559753285050379698, guid: f4c233d32bdd5934883d65d520848a34, type: 3}
   cardSpawnPoint: {fileID: 909210620}
+  enemyAIType: 1
+  startHandSize: 5
 --- !u!1 &10292629
 GameObject:
   m_ObjectHideFlags: 0
@@ -3414,7 +3416,6 @@ MonoBehaviour:
   startMana: 4
   maxMana: 12
   playerMana: 0
-  enemyMana: 0
   manaPerTurn: 2
   DrawingCardsPerTurn: 1
   startingCardsAmount: 5
@@ -3423,6 +3424,8 @@ MonoBehaviour:
   DiscardPoint: {fileID: 79906682}
   PlayerHealth: 0
   EnemyHealth: 0
+  enemyMana: 0
+  enemyMaxMana: 12
 --- !u!4 &1240796588
 Transform:
   m_ObjectHideFlags: 0

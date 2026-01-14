@@ -101,7 +101,6 @@ public class CardPointsController : MonoBehaviour
         // If players has no attackers, just advance
         if (activePlayerCards.Length == 0)
         {
-            Debug.Log("Player has no cards to attack.");
             BattleController.instance.AdvanceTurn();
             CheckAssignedCards();
             yield break;
@@ -157,7 +156,6 @@ public class CardPointsController : MonoBehaviour
             // looping through each player card point
             for (int currentPlayerCardIndex = 0; currentPlayerCardIndex < activePlayerCards.Length; currentPlayerCardIndex++)
             {
-                Debug.Log("Attacking the enemy directly");
                 // No defending cards → player attacks enemy directly
                 BattleController.instance.DamageEnemy(activePlayerCards[currentPlayerCardIndex].activeCard.attackPower);
 

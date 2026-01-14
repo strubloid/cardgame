@@ -35,6 +35,12 @@ public class EnemyController : MonoBehaviour
     // This is the type of AI the enemy will use
     public AIType enemyAIType;
 
+    // This will be the cards in the enemy hand
+    private List<CardScriptableObject> cardsInHand = new List<CardScriptableObject>();
+
+    // This is the starting hand size for the enemy
+    public int startHandSize = 5;
+
     /**
     * Awake is called when the script instance is being loaded
     */
@@ -52,6 +58,16 @@ public class EnemyController : MonoBehaviour
     {
         // Setting up the deck at the start of the battle
         SetupDeck();
+
+        Debug.Log("Type " + enemyAIType);
+        Debug.Log("?  " + AIType.placeFromDeck);
+
+        // Setting up the starting hand based on the AI type
+        if (enemyAIType != AIType.placeFromDeck) {
+            Debug.Log("XXX");
+            SetupHand();
+        }
+        
     }
 
     // Update is called once per frame
@@ -128,18 +144,25 @@ public class EnemyController : MonoBehaviour
         // getting the selected point
         CardPlacePoint selectedPoint = cardPoints[randomPointIndex];
 
-        // ensuring the selected point is free
-        while (selectedPoint.activeCard != null && cardPoints.Count > 0)
+        // if the AI type is place from deck or hand random place, we need to ensure the selected point is free
+        if (enemyAIType == AIType.placeFromDeck || enemyAIType == AIType.handRandomPlace)
         {
-            // getting a new random point index
-            randomPointIndex = Random.Range(0, cardPoints.Count);
-
-            // getting the selected point
-            selectedPoint = cardPoints[randomPointIndex];
-
             // removing the point from the list
-            cardPoints.RemoveAt(randomPointIndex);
-        }
+            cardPoints.Remove(selectedPoint);
+
+            // ensuring the selected point is free
+            while (selectedPoint.activeCard != null && cardPoints.Count > 0)
+            {
+                // getting a new random point index
+                randomPointIndex = Random.Range(0, cardPoints.Count);
+
+                // getting the selected point
+                selectedPoint = cardPoints[randomPointIndex];
+
+                // removing the point from the list
+                cardPoints.RemoveAt(randomPointIndex);
+            }
+        }            
 
         // executing the AI type
         switch (enemyAIType) {
@@ -201,5 +224,25 @@ public class EnemyController : MonoBehaviour
         BattleController.instance.AdvanceTurn();
     }
 
+    /**
+     * Setting up the enemy starting hand
+     */
+    void SetupHand() 
+    {
+        Debug.Log("Setting up enemy hand");
 
+        // drawing the starting hand size
+        for (int i = 0; i < startHandSize; i++) 
+        {
+            // checking if we have cards to draw
+            if (activeCards.Count == 0) {
+                SetupDeck();
+            }
+            // adding the top card to the hand
+            cardsInHand.Add(activeCards[0]);
+
+            // removing the card from the active deck
+            activeCards.RemoveAt(0);
+        }
+    }
 }

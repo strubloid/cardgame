@@ -10,7 +10,7 @@ public class BattleController : MonoBehaviour
     // Starting mana variables
     public int startMana = 4;
     public int maxMana = 12;
-    public int playerMana, enemyMana;
+    public int playerMana;
     public int manaPerTurn = 2;
 
     // cards variable
@@ -47,6 +47,12 @@ public class BattleController : MonoBehaviour
     // Enemy Health
     public int EnemyHealth;
 
+    // Enemy Mana
+    public int enemyMana;
+
+    // Enemy maximum mana
+    public int enemyMaxMana = 12;
+
     /**
      * Awake is called when the script instance is being loaded
      */
@@ -65,6 +71,7 @@ public class BattleController : MonoBehaviour
         playerMana = startMana;
         PlayerHealth = startHealth;
         EnemyHealth = startHealth;
+        enemyMana = startMana;
 
         // updating the UI of the player health
         UiController.instance.SetPlayerHealthText(PlayerHealth);
@@ -80,6 +87,10 @@ public class BattleController : MonoBehaviour
 
         // This at the start of the battle we draw the starting cards
         DeckController.instance.DrawMultipleCards(startingCardsAmount);
+
+        // Fill the mana at the start of the battle
+        FillPlayerMana();
+        FillEnemyMana();
 
         // taking some seconds before starting the first turn
         StartingTheInitialPhrase(timeBeforeStartingTurn);
@@ -118,27 +129,6 @@ public class BattleController : MonoBehaviour
     }
 
     /**
-     * This will be spending the mana of the player, 
-     * after check if is with a value bellow zero, if does, will set it to zero
-     */
-    public void SpendPlayerMana(int ammountToSpend) {
-
-        // remove mana spent
-        playerMana -= ammountToSpend;
-
-        // double check if the value gets below 0
-        if (playerMana < 0) {
-            playerMana = 0;
-        }
-
-        // updating the UI if the instance exists
-        if (UiController.instance != null){
-            UiController.instance.SetPlayerManaText(playerMana);
-        }
-
-    }
-
-    /**
      * This will be changing the turn to the next phase
      * the main responsibility of this method is to handle the turn order
      */
@@ -149,7 +139,7 @@ public class BattleController : MonoBehaviour
 
         // if we exceed the max size, we reset to zero
         if ( (int) currentPhrase >= System.Enum.GetValues(typeof(TurnOrder)).Length){
-            NewTurnActions();
+            currentPhrase = 0;
         }
 
         // Show the turn change in the UI
@@ -160,6 +150,16 @@ public class BattleController : MonoBehaviour
 
                 // Update the UI to show it's the player's turn
                 UiController.instance.SetPlayerTurn();
+
+                // we restart the turn order
+                currentPhrase = 0;
+
+                // when we get to this stage the next one will be the start of the player turn
+                // so we can refill mana here
+                IncrementMana();
+
+                // Those are the free action we can do at the start of the turn
+                DeckController.instance.DrawMultipleCards(DrawingCardsPerTurn);
                 break;
 
             // Player's cards attack
@@ -178,6 +178,9 @@ public class BattleController : MonoBehaviour
 
                 // Update the UI to show it's the enemy's turn
                 UiController.instance.SetEnemyTurn();
+
+                // Refill enemy mana at the start of their turn
+                IncrementEnemyMana();
 
                 // Let the enemy play their actions
                 EnemyController.instance.StartAction();
@@ -198,19 +201,27 @@ public class BattleController : MonoBehaviour
     }
 
     /**
-     * This will be responsible to add things to the next turn of the player
+     * This will be spending the mana of the player, 
+     * after check if is with a value bellow zero, if does, will set it to zero
      */
-    public void NewTurnActions() {
+    public void SpendPlayerMana(int ammountToSpend)
+    {
 
-        // we restart the turn order
-        currentPhrase = 0;
+        // remove mana spent
+        playerMana -= ammountToSpend;
 
-        // when we get to this stage the next one will be the start of the player turn
-        // so we can refill mana here
-        IncrementMana();
+        // double check if the value gets below 0
+        if (playerMana < 0)
+        {
+            playerMana = 0;
+        }
 
-        // Those are the free action we can do at the start of the turn
-        DeckController.instance.DrawMultipleCards(DrawingCardsPerTurn);
+        // updating the UI if the instance exists
+        if (UiController.instance != null)
+        {
+            UiController.instance.SetPlayerManaText(playerMana);
+        }
+
     }
 
     /**
@@ -221,22 +232,81 @@ public class BattleController : MonoBehaviour
 
         // increase the player mana by the defined amount
         playerMana += manaPerTurn;
-        enemyMana += manaPerTurn;
-
+        
         // rule 1: we cant exceed the maximum mana
         if (playerMana > maxMana) {
             playerMana = maxMana;
         }
 
-        // Rule 2: enemy cant exceed the maximum mana
-        if (enemyMana> maxMana) {
-            enemyMana = maxMana;
+        // Update the UI at the start
+        UiController.instance.SetPlayerManaText(playerMana);
+        
+    }
+
+    /**
+    * This will be spending the mana of the enemy, 
+    * after check if is with a value bellow zero, if does, will set it to zero
+    */
+    public void SpendEnemyMana(int ammountToSpend)
+    {
+
+        // remove mana spent
+        enemyMana -= ammountToSpend;
+
+        // double check if the value gets below 0
+        if (enemyMana < 0)
+        {
+            enemyMana = 0;
         }
+
+        // updating the UI if the instance exists
+        if (UiController.instance != null)
+        {
+            UiController.instance.SetEnemyManaText(enemyMana);
+        }
+    }
+
+    /**
+     * This will be filling the player mana to the maximum at the start of the battle
+     */
+    public void FillPlayerMana()
+    {
+        // increase the wnwmy mana by the defined amount
+        playerMana = maxMana;
 
         // Update the UI at the start
         UiController.instance.SetPlayerManaText(playerMana);
-        UiController.instance.SetEnemyManaText(enemyMana);
+    }
 
+    /**
+     * This will be filling the enemy mana to the maximum at the start of the battle
+     */
+    public void FillEnemyMana()
+    {
+        // increase the wnwmy mana by the defined amount
+        enemyMana = enemyMaxMana;
+
+        // Update the UI at the start
+        UiController.instance.SetEnemyManaText(enemyMana);
+    }
+
+    /**
+     * This will be increasing the enemy mana at the start of their turn,
+     * we have a rule of not exceeding the maximum mana.
+     */
+    public void IncrementEnemyMana()
+    {
+        // increase the wnwmy mana by the defined amount
+        enemyMana += manaPerTurn;
+
+        // we cant exceed the maximum mana
+        if (enemyMana > enemyMaxMana)
+        {
+            enemyMana = enemyMaxMana;
+        }
+
+        // Update the UI at the start
+        UiController.instance.SetEnemyManaText(enemyMana);
     }
 
     /**
