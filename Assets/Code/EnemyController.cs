@@ -114,12 +114,15 @@ public class EnemyController : MonoBehaviour
         StartCoroutine(EnemyActionCo());
     }
 
-
     /**
      * This will be drawing multiple cards from the deck to the hand with a delay
      */
     IEnumerator EnemyActionCo()
     {
+
+        // we call this first 
+
+
         // Checking if we have cards to draw
         if (activeCards.Count == 0) { 
             SetupDeck();
@@ -184,6 +187,10 @@ public class EnemyController : MonoBehaviour
 
         // safety iterations
         int iterations = 0;
+
+        // preferred and secondary points
+        List<CardPlacePoint> preferredPoints = new List<CardPlacePoint>();
+        List<CardPlacePoint> secondaryPoints = new List<CardPlacePoint>();
 
         // executing the AI type
         switch (enemyAIType) {
@@ -257,10 +264,77 @@ public class EnemyController : MonoBehaviour
                     }
 
                 }
+
                 break;
 
             // AI that places a defensive card from hand to the field
             case AIType.handDefensive:
+
+                Debug.Log("HAND DEFENSIVE");
+                // getting a random card index from hand
+                selectedCard = SelectedCardToPlay();
+
+                // safety iterations
+                preferredPoints.Clear();
+                secondaryPoints.Clear();
+
+                // categorizing the card points
+                for (int i = 0; i < cardPoints.Count; i++) 
+                {
+                    // checking if the point is at the back line
+                    if (cardPoints[i].activeCard == null) 
+                    {
+                        // when we want to be defensive we put at the same line as the player
+                        if (CardPointsController.instance.PlayerCardPoints[i].activeCard != null) {
+                            preferredPoints.Add(cardPoints[i]);
+                        } else {
+                            secondaryPoints.Add(cardPoints[i]);
+                        }
+                    }
+                }
+
+                Debug.Log("Preferred Points: " + preferredPoints.Count);
+                Debug.Log(preferredPoints);
+
+                iterations = 20;
+
+                // we check if we have a card to play, the safe net of iterations and if we have a prefered or secondary point
+                while (selectedCard != null && iterations > 0 && preferredPoints.Count + secondaryPoints.Count > 0)
+                {
+
+                    // checking if we use preferred or secondary points
+                    if (preferredPoints.Count > 0)
+                    {
+                        // getting a random point index
+                        int selectPoint = Random.Range(0, preferredPoints.Count);
+
+                        // playing the selected card and removing the point from the list
+                        selectedPoint = preferredPoints[selectPoint];
+                        preferredPoints.RemoveAt(selectPoint);
+
+                    } else {
+                        // getting a random point index
+                        int selectPoint = Random.Range(0, secondaryPoints.Count);
+
+                        // playing the selected card and removing the point from the list
+                        selectedPoint = secondaryPoints[selectPoint];
+                        secondaryPoints.RemoveAt(selectPoint);
+                    }
+
+                    // playing the selected card
+                    PlayCard(selectedCard, selectedPoint);
+
+                    // check if we should play another
+                    selectedCard = SelectedCardToPlay();
+
+                    // decrementing iterations
+                    iterations--;
+
+                    // will run the draw card to hand function
+                    yield return new WaitForSeconds(timeBetweenDrawingCards);
+
+                }
+                
 
                 break;
 
@@ -270,8 +344,6 @@ public class EnemyController : MonoBehaviour
                 break;
 
         }
-
-        
 
         // will run the draw card to hand function
         yield return new WaitForSeconds(timeBetweenDrawingCards);
@@ -344,6 +416,7 @@ public class EnemyController : MonoBehaviour
         // check all the cards that has less or lower than the current mana
         foreach (CardScriptableObject card in cardsInHand) 
         {
+
             // checking if the card mana cost is less than or equal to the current mana
             if (card.manaCost <= BattleController.instance.enemyMana) 
             {
@@ -355,61 +428,14 @@ public class EnemyController : MonoBehaviour
         if (cardsToPlay.Count > 0) 
         {
             // this will select a card based on the AI type
-            cardToPlay = SelectCardByLevel(cardsToPlay);
+            int selectedIndex = Random.Range(0, cardsToPlay.Count);
+
+            // selecting the card to play
+            cardToPlay = cardsToPlay[selectedIndex];
         }
 
         return cardToPlay;
 
-    }
-
-    /**
-     * Selecting a card to play based on the AI type
-     */
-    private CardScriptableObject SelectCardByLevel(List<CardScriptableObject> cardsToPlay) 
-    {
-        // instance of the card to play
-        CardScriptableObject cardToPlay = null;
-
-        // selected index
-        int selectedIndex = 0;
-
-        switch (enemyAIType)
-        {
-            // AI that places a card from the deck to the field
-            case AIType.placeFromDeck:
-
-                // getting a random index
-                selectedIndex = Random.Range(0, cardsToPlay.Count);
-
-                // selecting the card to play
-                cardToPlay = cardsToPlay[selectedIndex];
-
-                break;
-
-            // AI that places a random card from hand to the field
-            case AIType.handRandomPlace:
-
-                // getting a random index
-                selectedIndex = Random.Range(0, cardsToPlay.Count);
-
-                // selecting the card to play
-                cardToPlay = cardsToPlay[selectedIndex];
-
-                break;
-
-            // AI that places a defensive card from hand to the field
-            case AIType.handDefensive:
-
-                break;
-
-            // AI that places an attacking card from hand to the field
-            case AIType.handAttacking:
-
-                break;
-
-        }
-
-        return cardToPlay;
     }
 
 }

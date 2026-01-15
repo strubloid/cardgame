@@ -260,11 +260,8 @@ public class BattleController : MonoBehaviour
             enemyMana = 0;
         }
 
-        // updating the UI if the instance exists
-        if (UiController.instance != null)
-        {
-            UiController.instance.SetEnemyManaText(enemyMana);
-        }
+        // updating the UI
+        UiController.instance.SetEnemyManaText(enemyMana);
     }
 
     /**

@@ -9,7 +9,8 @@ public class CardPointsController : MonoBehaviour
     public static CardPointsController instance;
 
     // Arrays to hold player and enemy card points
-    public CardPlacePoint[] PlayerCardPoints, EnemyCardPoints;
+    public CardPlacePoint[] PlayerCardPoints;
+    public CardPlacePoint[] EnemyCardPoints;
 
     // Time between actions in seconds
     public float timeBetweenActions = 0.5f;

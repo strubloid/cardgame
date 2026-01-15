@@ -171,7 +171,7 @@ MonoBehaviour:
   timeBetweenDrawingCards: 0.5
   cardToSpawn: {fileID: 559753285050379698, guid: f4c233d32bdd5934883d65d520848a34, type: 3}
   cardSpawnPoint: {fileID: 909210620}
-  enemyAIType: 1
+  enemyAIType: 2
   startHandSize: 5
 --- !u!1 &10292629
 GameObject:

@@ -254,6 +254,7 @@ public class Card : MonoBehaviourWithMouseControls
 
         // enemy card hover action
         if (!inHand && !isPlayer) {
+            Debug.Log("Hovering enemy card");
             onHoverEnterEnemy();
         }
     }
@@ -275,10 +276,30 @@ public class Card : MonoBehaviourWithMouseControls
     {
         float enemyHoverLiftY = 1.6f;
         enemyHoverActive = true;
+
+
+        Quaternion finalRotation = Quaternion.Euler(0f, 180f, 0f);
+
+        Debug.Log(defaultDeckPosition + Vector3.up * enemyHoverLiftY);
+        //Debug.Log(defaultDeckPosition);
+        //Debug.Log(Quaternion.identity);
+        //Debug.Log(finalRotation);
+
         MoveCardToPoint(
-         defaultDeckPosition + Vector3.up * enemyHoverLiftY,
-         Quaternion.identity
-        );
+           handController.cardPositions[handPosition] + new Vector3(0f, 0.5f, 0.5f),
+           Quaternion.identity
+       );
+
+        //MoveCardToPoint(
+        // defaultDeckPosition + Vector3.up * enemyHoverLiftY,
+        // finalRotation
+        //);
+
+
+        //MoveCardToPoint(
+        // defaultDeckPosition + Vector3.up * enemyHoverLiftY,
+        // Quaternion.identity
+        //);
     }
 
     /**
