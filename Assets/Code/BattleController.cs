@@ -53,6 +53,7 @@ public class BattleController : MonoBehaviour
     // Enemy maximum mana
     public int enemyMaxMana = 12;
 
+
     /**
      * Awake is called when the script instance is being loaded
      */
@@ -68,10 +69,8 @@ public class BattleController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerMana = startMana;
         PlayerHealth = startHealth;
         EnemyHealth = startHealth;
-        enemyMana = startMana;
 
         // updating the UI of the player health
         UiController.instance.SetPlayerHealthText(PlayerHealth);
@@ -89,8 +88,9 @@ public class BattleController : MonoBehaviour
         DeckController.instance.DrawMultipleCards(startingCardsAmount);
 
         // Fill the mana at the start of the battle
-        FillPlayerMana();
-        FillEnemyMana();
+        bool startMatch = true;
+        FillPlayerMana(startMatch);
+        FillEnemyMana(startMatch);
 
         // taking some seconds before starting the first turn
         StartingTheInitialPhrase(timeBeforeStartingTurn);
@@ -236,6 +236,7 @@ public class BattleController : MonoBehaviour
         // rule 1: we cant exceed the maximum mana
         if (playerMana > maxMana) {
             playerMana = maxMana;
+            maxMana++;
         }
 
         // Update the UI at the start
@@ -269,10 +270,10 @@ public class BattleController : MonoBehaviour
     /**
      * This will be filling the player mana to the maximum at the start of the battle
      */
-    public void FillPlayerMana()
+    public void FillPlayerMana(bool startMatch)
     {
         // increase the wnwmy mana by the defined amount
-        playerMana = maxMana;
+        playerMana = startMatch ? startMana : maxMana;
 
         // Update the UI at the start
         UiController.instance.SetPlayerManaText(playerMana);
@@ -281,10 +282,10 @@ public class BattleController : MonoBehaviour
     /**
      * This will be filling the enemy mana to the maximum at the start of the battle
      */
-    public void FillEnemyMana()
+    public void FillEnemyMana(bool startMatch)
     {
-        // increase the wnwmy mana by the defined amount
-        enemyMana = enemyMaxMana;
+        // increase the enemy mana by the defined amount
+        enemyMana = startMatch ? startMana : enemyMaxMana;
 
         // Update the UI at the start
         UiController.instance.SetEnemyManaText(enemyMana);
@@ -303,6 +304,7 @@ public class BattleController : MonoBehaviour
         if (enemyMana > enemyMaxMana)
         {
             enemyMana = enemyMaxMana;
+            enemyMaxMana++;
         }
 
         // Update the UI at the start

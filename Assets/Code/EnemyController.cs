@@ -59,12 +59,8 @@ public class EnemyController : MonoBehaviour
         // Setting up the deck at the start of the battle
         SetupDeck();
 
-        Debug.Log("Type " + enemyAIType);
-        Debug.Log("?  " + AIType.placeFromDeck);
-
         // Setting up the starting hand based on the AI type
         if (enemyAIType != AIType.placeFromDeck) {
-            Debug.Log("XXX");
             SetupHand();
         }
         
@@ -132,6 +128,25 @@ public class EnemyController : MonoBehaviour
         // will run the draw card to hand function
         yield return new WaitForSeconds(timeBetweenDrawingCards);
 
+        // we are ignoring the place from deck AI type
+        if (enemyAIType != AIType.placeFromDeck) {
+
+            // Drawing the cards to hand
+            for (int i = 0; i < BattleController.instance.DrawingCardsPerTurn; i++) 
+            {
+                // adding the top card to the hand
+                cardsInHand.Add(activeCards[0]);
+
+                // removing the card from the active deck
+                activeCards.RemoveAt(0);
+
+                // Checking if we have cards to draw, and we will do fi we have it
+                if (activeCards.Count == 0) { 
+                    SetupDeck();
+                }
+            }
+        }
+
         // temporary list to hold the card points
         List<CardPlacePoint> cardPoints = new List<CardPlacePoint>();
 
@@ -162,7 +177,13 @@ public class EnemyController : MonoBehaviour
                 // removing the point from the list
                 cardPoints.RemoveAt(randomPointIndex);
             }
-        }            
+        }
+
+        // selected card to play
+        CardScriptableObject selectedCard = null;
+
+        // safety iterations
+        int iterations = 0;
 
         // executing the AI type
         switch (enemyAIType) {
@@ -201,6 +222,41 @@ public class EnemyController : MonoBehaviour
             // AI that places a random card from hand to the field
             case AIType.handRandomPlace:
 
+                // getting a random card index from hand
+                selectedCard = SelectedCardToPlay();
+
+                // safety iterations
+                iterations = 20;
+
+                // double checking if we have a card to play
+                while (selectedCard != null && iterations > 0 && selectedPoint.activeCard == null)
+                {
+                    // playing the selected card
+                    PlayCard(selectedCard, selectedPoint);
+
+                    // getting another random card index from hand
+                    selectedCard = SelectedCardToPlay();
+
+                    // decrementing iterations
+                    iterations--;
+
+                    // having a small delay so we can feel the card being played
+                    yield return new WaitForSeconds(timeBetweenDrawingCards);
+
+                    // ensuring the selected point is free
+                    while (selectedPoint.activeCard != null && cardPoints.Count > 0)
+                    {
+                        // getting a new random point index
+                        randomPointIndex = Random.Range(0, cardPoints.Count);
+
+                        // getting the selected point
+                        selectedPoint = cardPoints[randomPointIndex];
+
+                        // removing the point from the list
+                        cardPoints.RemoveAt(randomPointIndex);
+                    }
+
+                }
                 break;
 
             // AI that places a defensive card from hand to the field
@@ -229,8 +285,6 @@ public class EnemyController : MonoBehaviour
      */
     void SetupHand() 
     {
-        Debug.Log("Setting up enemy hand");
-
         // drawing the starting hand size
         for (int i = 0; i < startHandSize; i++) 
         {
@@ -245,4 +299,117 @@ public class EnemyController : MonoBehaviour
             activeCards.RemoveAt(0);
         }
     }
+
+    /**
+     * Playing a card from the deck to the selected point
+     */
+    public void PlayCard(CardScriptableObject cardToPlay, CardPlacePoint placePoint) 
+    {
+        // Spawning the card at the spawn point
+        Card newCard = Instantiate(cardToSpawn, cardSpawnPoint.position, cardSpawnPoint.rotation);
+
+        // Setting the card as enemy card
+        newCard.cardData = cardToPlay;
+
+        // Because of the setup of the card prefab, we need to apply an extra rotation to make it face the correct way
+        Quaternion finalRotation = Quaternion.Euler(0f, 180f, 0f);
+
+        // Moving the card to the selected point
+        newCard.MoveCardToPoint(placePoint.transform.position, finalRotation);
+
+        // Assigning the card to the selected point
+        placePoint.activeCard = newCard;
+
+        // Assigning the selected point to the card
+        newCard.assignedPlace = placePoint;
+
+        // Removing the card from the hand
+        cardsInHand.Remove(cardToPlay);
+
+        // Spending the enemy mana
+        BattleController.instance.SpendEnemyMana(cardToPlay.manaCost);
+    }
+
+    /**
+     * Selecting a card to play to the player
+     */
+    public CardScriptableObject SelectedCardToPlay() 
+    {
+        // instance of the card to play
+        CardScriptableObject cardToPlay = null;
+
+        // this is a list that will store all the cards that can be played
+        List<CardScriptableObject> cardsToPlay = new List<CardScriptableObject>();
+
+        // check all the cards that has less or lower than the current mana
+        foreach (CardScriptableObject card in cardsInHand) 
+        {
+            // checking if the card mana cost is less than or equal to the current mana
+            if (card.manaCost <= BattleController.instance.enemyMana) 
+            {
+                cardsToPlay.Add(card);
+            }
+        }
+
+        // if we have a card to play we will do
+        if (cardsToPlay.Count > 0) 
+        {
+            // this will select a card based on the AI type
+            cardToPlay = SelectCardByLevel(cardsToPlay);
+        }
+
+        return cardToPlay;
+
+    }
+
+    /**
+     * Selecting a card to play based on the AI type
+     */
+    private CardScriptableObject SelectCardByLevel(List<CardScriptableObject> cardsToPlay) 
+    {
+        // instance of the card to play
+        CardScriptableObject cardToPlay = null;
+
+        // selected index
+        int selectedIndex = 0;
+
+        switch (enemyAIType)
+        {
+            // AI that places a card from the deck to the field
+            case AIType.placeFromDeck:
+
+                // getting a random index
+                selectedIndex = Random.Range(0, cardsToPlay.Count);
+
+                // selecting the card to play
+                cardToPlay = cardsToPlay[selectedIndex];
+
+                break;
+
+            // AI that places a random card from hand to the field
+            case AIType.handRandomPlace:
+
+                // getting a random index
+                selectedIndex = Random.Range(0, cardsToPlay.Count);
+
+                // selecting the card to play
+                cardToPlay = cardsToPlay[selectedIndex];
+
+                break;
+
+            // AI that places a defensive card from hand to the field
+            case AIType.handDefensive:
+
+                break;
+
+            // AI that places an attacking card from hand to the field
+            case AIType.handAttacking:
+
+                break;
+
+        }
+
+        return cardToPlay;
+    }
+
 }
