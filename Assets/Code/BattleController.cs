@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using UnityEngine.UI;
 
 public class BattleController : MonoBehaviour
 {
@@ -59,6 +60,10 @@ public class BattleController : MonoBehaviour
     // Delay time before showing the results screen
     public float resultsScreenDelayTime = 1.0f;
 
+    // some default colors
+    Color greenColor = new Color32(0x08, 0xA1, 0x06, 0xFF); // #08A106
+    Color redColor = new Color32(0xA1, 0x31, 0x05, 0xFF); // #A13105
+
     /**
      * Awake is called when the script instance is being loaded
      */
@@ -75,7 +80,7 @@ public class BattleController : MonoBehaviour
     void Start()
     {
         PlayerHealth = startHealth;
-        EnemyHealth = startHealth;
+        EnemyHealth = 2;
 
         // updating the UI of the player health
         UiController.instance.SetPlayerHealthText(PlayerHealth);
@@ -410,6 +415,23 @@ public class BattleController : MonoBehaviour
         // clear the player's hand
         HandController.instance.EmptyHand();
 
+        // Determine the battle outcome and update the UI
+        if (EnemyHealth <= 0) {
+            UiController.instance.battleEndTitleText.text = "You Won";
+
+            // changing the color of the background
+            Image background = UiController.instance.battleEndScreen.GetComponent<Image>();
+            background.color = greenColor;
+
+        }
+        else {
+            UiController.instance.battleEndTitleText.text = "You Lost";
+
+            // changing the color of the background
+            Image background = UiController.instance.battleEndScreen.GetComponent<Image>();
+            background.color = redColor;
+
+        }
         // Start the coroutine to show the results screen after a delay
         StartCoroutine(ShowResultCo());
     }

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UiController : MonoBehaviour
 {
@@ -45,6 +46,9 @@ public class UiController : MonoBehaviour
 
     // This will be the reference of the battle end screen
     public GameObject battleEndScreen;
+
+    // This will be the battle end title text
+    public TMP_Text battleEndTitleText;
 
     /**
     * Awake is called when the script instance is being loaded

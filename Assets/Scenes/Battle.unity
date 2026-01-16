@@ -3926,10 +3926,11 @@ MonoBehaviour:
   timeBeforeStartingTurn: 1
   DiscardPoint: {fileID: 79906682}
   PlayerHealth: 0
-  EnemyHealth: 0
+  EnemyHealth: 2
   enemyMana: 0
   enemyMaxMana: 12
   battleEnded: 0
+  resultsScreenDelayTime: 1
 --- !u!4 &1240796588
 Transform:
   m_ObjectHideFlags: 0
@@ -5753,6 +5754,7 @@ MonoBehaviour:
   playerDamage: {fileID: 1237667303}
   enemyDamage: {fileID: 1551113263}
   battleEndScreen: {fileID: 1146574317}
+  battleEndTitleText: {fileID: 2006381717}
 --- !u!1001 &1741588294
 PrefabInstance:
   m_ObjectHideFlags: 0
