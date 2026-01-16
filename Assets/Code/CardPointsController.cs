@@ -199,7 +199,6 @@ public class CardPointsController : MonoBehaviour
         // If enemy has no attackers, just advance
         if (activeEnemyCards.Length == 0)
         {
-            Debug.Log("Enemy has no cards to attack.");
             BattleController.instance.AdvanceTurn();
             CheckAssignedCards();
             yield break;

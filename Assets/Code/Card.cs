@@ -64,8 +64,8 @@ public class Card : MonoBehaviourWithMouseControls
     public Vector3 defaultDeckPosition;
 
     // Default deck rotation
-    private Quaternion defaultDeckRotation;
-    private bool hasDefaultDeckPosition;
+    public Quaternion defaultDeckRotation;
+    public bool hasDefaultDeckPosition;
 
     // To know when we are hovering an enemy card
     private bool enemyHoverActive;
@@ -93,14 +93,6 @@ public class Card : MonoBehaviourWithMouseControls
 
         // Getting the collider component of the card
         theCollider = GetComponent<Collider>();
-
-        // If no deck position assigned, use current as default
-        if (!hasDefaultDeckPosition)
-        {
-            defaultDeckPosition = transform.position;
-            defaultDeckRotation = transform.rotation;
-            hasDefaultDeckPosition = true;
-        }
     }
 
     /**
@@ -201,6 +193,15 @@ public class Card : MonoBehaviourWithMouseControls
                         selectedPoint.activeCard = this;
                         assignedPlace = selectedPoint;
 
+                        // here we will be assinging the default deck position to be the place point position
+                        // If no deck position assigned, use current as default
+                        if (!hasDefaultDeckPosition)
+                        {
+                            defaultDeckPosition = selectedPoint.transform.position;
+                            defaultDeckRotation = selectedPoint.transform.rotation;
+                            hasDefaultDeckPosition = true;
+                        }
+
                         // We move to the point
                         MoveCardToPoint(selectedPoint.transform.position, Quaternion.identity);
 
@@ -254,7 +255,6 @@ public class Card : MonoBehaviourWithMouseControls
 
         // enemy card hover action
         if (!inHand && !isPlayer) {
-            Debug.Log("Hovering enemy card");
             onHoverEnterEnemy();
         }
     }
@@ -277,29 +277,15 @@ public class Card : MonoBehaviourWithMouseControls
         float enemyHoverLiftY = 1.6f;
         enemyHoverActive = true;
 
+        // rotation basic when a card is back to the center
+        Quaternion finalRotation = Quaternion.Euler(0f, 0f, 0f);
 
-        Quaternion finalRotation = Quaternion.Euler(0f, 180f, 0f);
+        // point to move to when hovering
+        Vector3 pointToMoveTo = defaultDeckPosition + Vector3.up * enemyHoverLiftY;
 
-        Debug.Log(defaultDeckPosition + Vector3.up * enemyHoverLiftY);
-        //Debug.Log(defaultDeckPosition);
-        //Debug.Log(Quaternion.identity);
-        //Debug.Log(finalRotation);
+        // moving to the point
+        MoveCardToPoint(pointToMoveTo, finalRotation);
 
-        MoveCardToPoint(
-           handController.cardPositions[handPosition] + new Vector3(0f, 0.5f, 0.5f),
-           Quaternion.identity
-       );
-
-        //MoveCardToPoint(
-        // defaultDeckPosition + Vector3.up * enemyHoverLiftY,
-        // finalRotation
-        //);
-
-
-        //MoveCardToPoint(
-        // defaultDeckPosition + Vector3.up * enemyHoverLiftY,
-        // Quaternion.identity
-        //);
     }
 
     /**
@@ -341,10 +327,13 @@ public class Card : MonoBehaviourWithMouseControls
             if (!enemyHoverActive) {
                 return;
             }
+
             // reset hover state
             enemyHoverActive = false;
+            Quaternion finalRotation = defaultDeckRotation;
+            Vector3 pointToMoveTo = defaultDeckPosition;
 
-            MoveCardToPoint(defaultDeckPosition, defaultDeckRotation);
+            MoveCardToPoint(pointToMoveTo, finalRotation);
 
         } finally {
             assignedPlace = null;

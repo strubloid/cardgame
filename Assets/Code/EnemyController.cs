@@ -270,7 +270,6 @@ public class EnemyController : MonoBehaviour
             // AI that places a defensive card from hand to the field
             case AIType.handDefensive:
 
-                Debug.Log("HAND DEFENSIVE");
                 // getting a random card index from hand
                 selectedCard = SelectedCardToPlay();
 
@@ -292,9 +291,6 @@ public class EnemyController : MonoBehaviour
                         }
                     }
                 }
-
-                Debug.Log("Preferred Points: " + preferredPoints.Count);
-                Debug.Log(preferredPoints);
 
                 iterations = 20;
 
@@ -385,6 +381,14 @@ public class EnemyController : MonoBehaviour
 
         // Because of the setup of the card prefab, we need to apply an extra rotation to make it face the correct way
         Quaternion finalRotation = Quaternion.Euler(0f, 180f, 0f);
+
+        // setting up the default deck position and rotation if not set
+        if (!newCard.hasDefaultDeckPosition)
+        {
+            newCard.defaultDeckPosition = placePoint.transform.position;
+            newCard.defaultDeckRotation = finalRotation;
+            newCard.hasDefaultDeckPosition = true;
+        }
 
         // Moving the card to the selected point
         newCard.MoveCardToPoint(placePoint.transform.position, finalRotation);
