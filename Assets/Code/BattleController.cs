@@ -56,6 +56,9 @@ public class BattleController : MonoBehaviour
     // Flag to indicate if the battle has ended
     public bool battleEnded = false;
 
+    // Delay time before showing the results screen
+    public float resultsScreenDelayTime = 1.0f;
+
     /**
      * Awake is called when the script instance is being loaded
      */
@@ -406,5 +409,21 @@ public class BattleController : MonoBehaviour
 
         // clear the player's hand
         HandController.instance.EmptyHand();
+
+        // Start the coroutine to show the results screen after a delay
+        StartCoroutine(ShowResultCo());
+    }
+
+    /**
+     * Coroutine to show the results screen after a delay
+     */
+    IEnumerator ShowResultCo() 
+    {
+        // wait for the defined delay time
+        yield return new WaitForSeconds(resultsScreenDelayTime);
+
+        // Show the battle end screen
+        UiController.instance.battleEndScreen.SetActive(true);
+
     }
 }

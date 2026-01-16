@@ -43,6 +43,9 @@ public class UiController : MonoBehaviour
     // Damage indicator references
     public UiDamageIndicator playerDamage, enemyDamage;
 
+    // This will be the reference of the battle end screen
+    public GameObject battleEndScreen;
+
     /**
     * Awake is called when the script instance is being loaded
     */
@@ -258,4 +261,32 @@ public class UiController : MonoBehaviour
         BattleController.instance.EndPlayerTurn();
 
     }
+
+    /**
+     * This will be handling the battle end screen buttons
+     */
+    public void MainMenu() { 
+    
+        Debug.Log("Returning to Main Menu...");
+    }
+
+    /**
+     * This will be restarting the level
+     */
+    public void RestartLevel()
+    {
+        Debug.Log("Restarting Level...");
+
+    }
+
+
+    /**
+     * This will be choosing a new battle
+     */
+    public void ChooseNewBattle()
+    {
+        Debug.Log("Choosing New Battle...");
+
+    }
+
 }
