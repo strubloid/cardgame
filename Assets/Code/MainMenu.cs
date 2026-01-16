@@ -1,7 +1,11 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    // Name of the battle scene to load
+    public string BattleSceneName = "BattleScene";
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,9 +22,9 @@ public class MainMenu : MonoBehaviour
      * This will start the game when the player clicks the "Start Game" button.
      */
     public void StartGame() 
-    { 
-    
-    
+    {
+        // Loading the battle scene
+        SceneManager.LoadScene(BattleSceneName);
     }
 
     /**

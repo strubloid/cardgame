@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UiController : MonoBehaviour
@@ -272,6 +273,9 @@ public class UiController : MonoBehaviour
     public void MainMenu() { 
     
         Debug.Log("Returning to Main Menu...");
+
+        // Loading the main menu scene
+        SceneManager.LoadScene("MainMenu");
     }
 
     /**
@@ -290,6 +294,9 @@ public class UiController : MonoBehaviour
     public void ChooseNewBattle()
     {
         Debug.Log("Choosing New Battle...");
+
+        // Loading the main menu scene
+        SceneManager.LoadScene("Battle");
 
     }
 
