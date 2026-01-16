@@ -337,6 +337,72 @@ public class EnemyController : MonoBehaviour
             // AI that places an attacking card from hand to the field
             case AIType.handAttacking:
 
+                // getting a random card index from hand
+                selectedCard = SelectedCardToPlay();
+
+                // safety iterations
+                preferredPoints.Clear();
+                secondaryPoints.Clear();
+
+                // categorizing the card points
+                for (int i = 0; i < cardPoints.Count; i++)
+                {
+                    // checking if the point is at the back line
+                    if (cardPoints[i].activeCard == null)
+                    {
+                        // when we want to be defensive we put at the same line as the player
+                        if (CardPointsController.instance.PlayerCardPoints[i].activeCard == null)
+                        {
+                            preferredPoints.Add(cardPoints[i]);
+                        }
+                        else
+                        {
+                            secondaryPoints.Add(cardPoints[i]);
+                        }
+                    }
+                }
+
+                iterations = 20;
+
+                // we check if we have a card to play, the safe net of iterations and if we have a prefered or secondary point
+                while (selectedCard != null && iterations > 0 && preferredPoints.Count + secondaryPoints.Count > 0)
+                {
+
+                    // checking if we use preferred or secondary points
+                    if (preferredPoints.Count > 0)
+                    {
+                        // getting a random point index
+                        int selectPoint = Random.Range(0, preferredPoints.Count);
+
+                        // playing the selected card and removing the point from the list
+                        selectedPoint = preferredPoints[selectPoint];
+                        preferredPoints.RemoveAt(selectPoint);
+
+                    }
+                    else
+                    {
+                        // getting a random point index
+                        int selectPoint = Random.Range(0, secondaryPoints.Count);
+
+                        // playing the selected card and removing the point from the list
+                        selectedPoint = secondaryPoints[selectPoint];
+                        secondaryPoints.RemoveAt(selectPoint);
+                    }
+
+                    // playing the selected card
+                    PlayCard(selectedCard, selectedPoint);
+
+                    // check if we should play another
+                    selectedCard = SelectedCardToPlay();
+
+                    // decrementing iterations
+                    iterations--;
+
+                    // will run the draw card to hand function
+                    yield return new WaitForSeconds(timeBetweenDrawingCards);
+
+                }
+
                 break;
 
         }
