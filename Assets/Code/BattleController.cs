@@ -53,6 +53,8 @@ public class BattleController : MonoBehaviour
     // Enemy maximum mana
     public int enemyMaxMana = 12;
 
+    // Flag to indicate if the battle has ended
+    public bool battleEnded = false;
 
     /**
      * Awake is called when the script instance is being loaded
@@ -133,7 +135,13 @@ public class BattleController : MonoBehaviour
      * the main responsibility of this method is to handle the turn order
      */
     public void AdvanceTurn() {
-        
+
+        // we wont advance the turn if the battle has ended
+        if (battleEnded)
+        {
+            return;
+        }
+
         // advance to the next turn phase
         currentPhrase++;
 
@@ -342,13 +350,16 @@ public class BattleController : MonoBehaviour
     public void DamagePlayer(int damageAmmount) {
 
         // reduce the player health
-        if (PlayerHealth > 0) {
+        if (PlayerHealth > 0 || battleEnded == false) {
             PlayerHealth -= damageAmmount;
         }
 
         // check if the health goes below zero
         if (PlayerHealth <= 0) {
             PlayerHealth = 0;
+            
+            // end the battle
+            EndBattle();
         }
 
         // updating the UI
@@ -364,7 +375,7 @@ public class BattleController : MonoBehaviour
     public void DamageEnemy(int damageAmmount)
     {
         // reduce the player health
-        if (EnemyHealth > 0)
+        if (EnemyHealth > 0 || battleEnded == false)
         {
             EnemyHealth -= damageAmmount;
         }
@@ -373,6 +384,9 @@ public class BattleController : MonoBehaviour
         if (EnemyHealth <= 0)
         {
             EnemyHealth = 0;
+
+            // end the battle
+            EndBattle();
         }
 
         // updating the UI
@@ -380,5 +394,13 @@ public class BattleController : MonoBehaviour
 
         // show the damage indicator
         ShowDamage(UiController.instance.enemyDamage, damageAmmount, UiController.instance.enemyDamage.transform.parent);
+    }
+
+    /**
+     * This will be ending the battle when one of the players reach 0 health
+     */
+    void EndBattle() {
+        // Set the battle ended flag to true
+        battleEnded = true;
     }
 }

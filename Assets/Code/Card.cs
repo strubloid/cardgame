@@ -154,6 +154,12 @@ public class Card : MonoBehaviourWithMouseControls
      */
     private void WithCardOnTheHandAction()
     {
+        // if the battle has ended, no actions
+        if (BattleController.instance.battleEnded == true)
+        {
+            return;
+        }
+
         // Creating a ray from the camera to the mouse position
         Ray ray = Camera.main.ScreenPointToRay(
             Mouse.current.position.ReadValue()
@@ -248,6 +254,12 @@ public class Card : MonoBehaviourWithMouseControls
      */
     protected override void OnHoverEnter()
     {
+        // if the battle has ended, no hover actions
+        if (BattleController.instance.battleEnded == true)
+        {
+            return;
+        }
+
         // player card hands action
         if (inHand && isPlayer) {
             onHoverEnterPlayer();
@@ -293,6 +305,11 @@ public class Card : MonoBehaviourWithMouseControls
      */
     protected override void OnHoverExit()
     {
+        // if the battle has ended, no hover actions
+        if (BattleController.instance.battleEnded == true) {
+            return;
+        }
+
         // player card hands action
         if (inHand && isPlayer)
         {
@@ -345,6 +362,12 @@ public class Card : MonoBehaviourWithMouseControls
      */
     protected override void OnMouseDown()
     {
+        // if the battle has ended, no hover actions
+        if (BattleController.instance.battleEnded == true)
+        {
+            return;
+        }
+
         // This will check if the card is in hand
         if (inHand && BattleController.instance.currentPhrase == BattleController.TurnOrder.PlayerTurn && isPlayer)
         {

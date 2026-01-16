@@ -150,6 +150,11 @@ public class CardPointsController : MonoBehaviour
                 activePlayerCards[currentPlayerCardIndex].activeCard.animator.SetTrigger("Attack");
 
                 yield return new WaitForSeconds(timeBetweenActions);
+
+                // ending the loop if battle ended, so wont be having any extra attacks after 0 health
+                if (BattleController.instance.battleEnded == true) {
+                    currentPlayerCardIndex = activePlayerCards.Length;
+                }
             }
 
         } else {
@@ -164,6 +169,12 @@ public class CardPointsController : MonoBehaviour
                 activePlayerCards[currentPlayerCardIndex].activeCard.animator.SetTrigger("Attack");
 
                 yield return new WaitForSeconds(timeBetweenActions);
+
+                // ending the loop if battle ended, so wont be having any extra attacks after 0 health
+                if (BattleController.instance.battleEnded == true)
+                {
+                    currentPlayerCardIndex = activePlayerCards.Length;
+                }
             }
         }
 
@@ -248,7 +259,14 @@ public class CardPointsController : MonoBehaviour
                 activeEnemyCards[currentEnemyCardIndex].activeCard.animator.SetTrigger("Attack");
 
                 yield return new WaitForSeconds(timeBetweenActions);
+
+                // ending the loop if battle ended, so wont be having any extra attacks after 0 health
+                if (BattleController.instance.battleEnded == true)
+                {
+                    currentEnemyCardIndex = activeEnemyCards.Length;
+                }
             }
+
         }
         else
         {
@@ -262,6 +280,12 @@ public class CardPointsController : MonoBehaviour
                 activeEnemyCards[currentEnemyCardIndex].activeCard.animator.SetTrigger("Attack");
 
                 yield return new WaitForSeconds(timeBetweenActions);
+
+                // ending the loop if battle ended, so wont be having any extra attacks after 0 health
+                if (BattleController.instance.battleEnded == true)
+                {
+                    currentEnemyCardIndex = activeEnemyCards.Length;
+                }
             }
 
         }
