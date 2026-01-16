@@ -51,6 +51,12 @@ public class UiController : MonoBehaviour
     // This will be the battle end title text
     public TMP_Text battleEndTitleText;
 
+    // This will be the total number of battle scenes available
+    private int totallScenes = 13;
+
+    // This will be the current battle scene name
+    private string currentBattleSceneName = "Battle1";
+
     /**
     * Awake is called when the script instance is being loaded
     */
@@ -285,6 +291,9 @@ public class UiController : MonoBehaviour
     {
         Debug.Log("Restarting Level...");
 
+        // and afer we load it
+        SceneManager.LoadScene(currentBattleSceneName);
+
     }
 
 
@@ -295,8 +304,13 @@ public class UiController : MonoBehaviour
     {
         Debug.Log("Choosing New Battle...");
 
-        // Loading the main menu scene
-        SceneManager.LoadScene("Battle");
+        int newBattleNumber = Random.Range(1, totallScenes);
+
+        // we will change the current battle scene name
+        currentBattleSceneName = "Battle" + newBattleNumber;
+
+        // and afer we load it
+        SceneManager.LoadScene(currentBattleSceneName);
 
     }
 

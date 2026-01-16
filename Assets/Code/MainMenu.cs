@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     // Name of the battle scene to load
-    public string BattleSceneName = "BattleScene";
+    public string BattleSceneName = "MainMenu";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
