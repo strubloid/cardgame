@@ -61,8 +61,8 @@ public class BattleController : MonoBehaviour
     public float resultsScreenDelayTime = 1.0f;
 
     // some default colors
-    Color greenColor = new Color32(0x08, 0xA1, 0x06, 0xFF); // #08A106
-    Color redColor = new Color32(0xA1, 0x31, 0x05, 0xFF); // #A13105
+    Color greenColor = new Color32(0x08, 0xA1, 0x06, 0xB1); // #08A106
+    Color redColor = new Color32(0xA1, 0x31, 0x05, 0xB1); // #A13105
 
     /**
      * Awake is called when the script instance is being loaded
@@ -80,7 +80,8 @@ public class BattleController : MonoBehaviour
     void Start()
     {
         PlayerHealth = startHealth;
-        EnemyHealth = startHealth;
+        //EnemyHealth = startHealth;
+        EnemyHealth = 3;
 
         // updating the UI of the player health
         UiController.instance.SetPlayerHealthText(PlayerHealth);
@@ -423,6 +424,15 @@ public class BattleController : MonoBehaviour
             Image background = UiController.instance.battleEndScreen.GetComponent<Image>();
             background.color = greenColor;
 
+            // removing the enemy cards
+            foreach (CardPlacePoint point in CardPointsController.instance.EnemyCardPoints)
+            {
+                // we will clean all cards that are active only
+                if (point.activeCard != null) {
+                    point.activeCard.MoveCardToPoint(DiscardPoint.position, point.activeCard.transform.rotation);
+                }
+            }
+
         }
         else {
             UiController.instance.battleEndTitleText.text = "You Lost";
@@ -430,6 +440,16 @@ public class BattleController : MonoBehaviour
             // changing the color of the background
             Image background = UiController.instance.battleEndScreen.GetComponent<Image>();
             background.color = redColor;
+
+            // removing the enemy cards
+            foreach (CardPlacePoint point in CardPointsController.instance.PlayerCardPoints)
+            {
+                // we will clean all cards that are active only
+                if (point.activeCard != null)
+                {
+                    point.activeCard.MoveCardToPoint(DiscardPoint.position, point.activeCard.transform.rotation);
+                }
+            }
 
         }
         // Start the coroutine to show the results screen after a delay

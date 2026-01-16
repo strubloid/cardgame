@@ -3926,7 +3926,7 @@ MonoBehaviour:
   timeBeforeStartingTurn: 1
   DiscardPoint: {fileID: 79906682}
   PlayerHealth: 0
-  EnemyHealth: 2
+  EnemyHealth: 0
   enemyMana: 0
   enemyMaxMana: 12
   battleEnded: 0
