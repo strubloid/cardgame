@@ -97,4 +97,32 @@ public class HandController : MonoBehaviour
         heldCards.Add(cardToAdd);
         SetCardPositionsInHand();
     }
+
+    /**
+     * This will be emptying the player's hand
+     * and discarding all held cards
+     */
+    public void EmptyHand() {
+
+        // loop all cards in hand and move them to discard pile
+        foreach (Card heldCard in heldCards) {
+
+            // set the card as not in hand
+            heldCard.inHand = false;
+
+            // fliping 180 so the card back is facing up
+            heldCard.transform.rotation = Quaternion.Euler(
+                heldCard.transform.rotation.eulerAngles.x,
+                heldCard.transform.rotation.eulerAngles.y,
+                -180f
+            );
+
+            // move the card to discard pile
+            heldCard.MoveCardToPoint(BattleController.instance.DiscardPoint.position, heldCard.transform.rotation);
+        }
+
+        // clearing the array of held cards
+        heldCards.Clear();
+
+    }
 }

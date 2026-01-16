@@ -400,7 +400,11 @@ public class BattleController : MonoBehaviour
      * This will be ending the battle when one of the players reach 0 health
      */
     void EndBattle() {
+
         // Set the battle ended flag to true
         battleEnded = true;
+
+        // clear the player's hand
+        HandController.instance.EmptyHand();
     }
 }

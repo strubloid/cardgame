@@ -248,7 +248,7 @@ public class UiController : MonoBehaviour
     public void SetDrawCardButtonText(int drawCost)
     {
         if (drawCardButtonText == null) return;
-        drawCardButtonText.text = $"Draw Card\n-{drawCost} Mana :)";
+        drawCardButtonText.text = $"Draw Card {drawCost} Mana :)";
     }
 
     /**
