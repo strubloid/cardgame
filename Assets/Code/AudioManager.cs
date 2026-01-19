@@ -99,7 +99,7 @@ public class AudioManager : MonoBehaviour
             {
                 menuMusic.Play();
             }
-        }            
+        }
 
     }
 
@@ -110,7 +110,7 @@ public class AudioManager : MonoBehaviour
     public void PlayBattleSelectMusic()
     {
         // only play if not already playing
-        if (battleSelect.isPlaying == false) 
+        if (battleSelect.isPlaying == false)
         {
             // ensure all other music is stopped
             StopMusic();
@@ -121,7 +121,7 @@ public class AudioManager : MonoBehaviour
                 battleSelect.Play();
             }
         }
-        
+
 
     }
 
@@ -162,7 +162,8 @@ public class AudioManager : MonoBehaviour
     /**
      * This will be responsible for playing the requested sound effect
      */
-    public void PlaySoundEffect(int soundEffectToPlay) {
+    public void PlaySoundEffect(int soundEffectToPlay)
+    {
 
         // validating the index
         if (soundEffects == null || soundEffects.Count == 0)
@@ -188,5 +189,59 @@ public class AudioManager : MonoBehaviour
         sound.Play();
 
     }
+    /**
+     * This will be responsible for playing the button press sound effect
+     */
+    public void PlayButtonPress()
+    {
+        PlaySoundEffect(0);
+    }
 
+    /**
+     * This will be responsible for playing the card draw sound effect
+     */
+    public void PlayCardAttack()
+    {
+        PlaySoundEffect(1);
+    }
+
+    /**
+     * This will be responsible for playing the card defeat sound effect
+     */
+    public void PlayCardDefeat()
+    {
+        PlaySoundEffect(2);
+    }
+
+    /**
+     * This will be responsible for playing the card draw sound effect
+     */
+    public void PlayCardDraw()
+    {
+        PlaySoundEffect(3);
+    }
+
+    /**
+     * This will be responsible for playing the place sound effect
+     */
+    public void PlayPlace()
+    {
+        PlaySoundEffect(4);
+    }
+
+    /**
+     * This will be responsible for playing the hurt enemy sound effect
+     */
+    public void PlayHurtEnemy()
+    {
+        PlaySoundEffect(5);
+    }
+
+    /**
+     * This will be responsible for playing the hurt player sound effect
+     */
+    public void PlayHurtPlayer()
+    {
+        PlaySoundEffect(6);
+    }
 }

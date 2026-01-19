@@ -424,8 +424,9 @@ public class Card : MonoBehaviourWithMouseControls
 
         // reducing the current health
         currentHealth -= damageAmmount;
-        
-        if (currentHealth <= 0) {
+
+        if (currentHealth <= 0)
+        {
 
             // updating the health text
             currentHealth = 0;
@@ -447,9 +448,16 @@ public class Card : MonoBehaviourWithMouseControls
 
             // destroy the card if health is zero, will wait for 5 seconds before destroying
             Destroy(gameObject, TimeToDestroyACard);
+
+            // Playing the card destroy sound effect
+            AudioManager.instance.PlayCardDefeat();
+
+        } else {
+
+            // Playing the card hurt sound effect
+            AudioManager.instance.PlayCardAttack();
         }
-
-
+    
         // This will trigger the hurt animation
         animator.SetTrigger("Hurt");
 

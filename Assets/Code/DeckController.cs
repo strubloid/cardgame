@@ -117,6 +117,9 @@ public class DeckController : MonoBehaviour
 
         // Adding the new card to the player's hand
         HandController.instance.AddCardToHand(newCard);
+
+        // Playing the card draw sound effect
+        AudioManager.instance.PlayCardDraw();
     }
 
 
