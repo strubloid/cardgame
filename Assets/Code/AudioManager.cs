@@ -30,9 +30,13 @@ public class AudioManager : MonoBehaviour
 
             // Make sure this object persists across scenes
             DontDestroyOnLoad(gameObject);
+
+        } // Making sure we have one audio source
+        else if (instance != this)
+        {
+            Destroy(gameObject);
         }
     }
-
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

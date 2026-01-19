@@ -11,8 +11,11 @@ public class AudioManagerLoader : MonoBehaviour
         // Check if an AudioManager already exists in the scene
         if (Object.FindFirstObjectByType<AudioManager>() == null)
         {
-            // Instantiate the AudioManager prefab
-            Instantiate(audioManagerPrefab);
+            // loading the instance of AudioManager
+            AudioManager.instance = Instantiate(audioManagerPrefab);
+
+            // making sure that the AudioManager persists across scenes
+            DontDestroyOnLoad(AudioManager.instance.gameObject);
         }
     }
 }
