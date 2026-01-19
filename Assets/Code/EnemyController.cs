@@ -119,10 +119,6 @@ public class EnemyController : MonoBehaviour
      */
     IEnumerator EnemyActionCo()
     {
-
-        // we call this first 
-
-
         // Checking if we have cards to draw
         if (activeCards.Count == 0) { 
             SetupDeck();

@@ -68,6 +68,12 @@ public class BattleController : MonoBehaviour
     [Range(0f, 1f)]
     public float playerFirstChance = .5f;
 
+    // flag to indicate if it's the first turn
+    public bool firstTurn = true;
+
+    // counter for the first turn
+    public int FirstTurnCount = 0;
+
     /**
      * Awake is called when the script instance is being loaded
      */
@@ -192,6 +198,11 @@ public class BattleController : MonoBehaviour
             currentPhrase = 0;
         }
 
+        // after 4 turns, we disable the first turn flag
+        if (firstTurn && FirstTurnCount >= 4) {
+            firstTurn = false;
+        }
+
         // Show the turn change in the UI
         switch (currentPhrase)
         {
@@ -201,15 +212,18 @@ public class BattleController : MonoBehaviour
                 // Update the UI to show it's the player's turn
                 UiController.instance.SetPlayerTurn();
 
-                // we restart the turn order
-                currentPhrase = 0;
-
-                // when we get to this stage the next one will be the start of the player turn
-                // so we can refill mana here
-                IncrementMana();
-
                 // Those are the free action we can do at the start of the turn
                 DeckController.instance.DrawMultipleCards(DrawingCardsPerTurn);
+
+                // if isnt the first turn, we let the cards attack
+                if (!firstTurn)
+                {
+                    // only on the second turn forward, we are able to increment the mana
+                    IncrementMana();
+                } else {
+                    FirstTurnCount++;
+                }
+
                 break;
 
             // Player's cards attack
@@ -218,8 +232,15 @@ public class BattleController : MonoBehaviour
                 // Update the UI to show it's the player's card attack phase
                 UiController.instance.SetPlayerCardAttack();
 
-                // Let the cards attack
-                CardPointsController.instance.PlayerAttack();
+                // if isnt the first turn, we let the cards attack
+                if (!firstTurn) {
+                    CardPointsController.instance.PlayerAttack(); // Let the cards attack
+                } else {
+                    FirstTurnCount++;
+
+                    // we move the turn forward
+                    AdvanceTurn();
+                }
 
                 break;
 
@@ -229,11 +250,17 @@ public class BattleController : MonoBehaviour
                 // Update the UI to show it's the enemy's turn
                 UiController.instance.SetEnemyTurn();
 
-                // Refill enemy mana at the start of their turn
-                IncrementEnemyMana();
-
                 // Let the enemy play their actions
                 EnemyController.instance.StartAction();
+
+                // if isnt the first turn, we let the cards attack
+                if (!firstTurn)
+                {
+                    // only on the second turn forward, we are able to increment the mana
+                    IncrementEnemyMana();
+                } else {
+                    FirstTurnCount++;
+                }
 
                 break;
 
@@ -243,8 +270,17 @@ public class BattleController : MonoBehaviour
                 // Update the UI to show it's the enemy's card attack phase
                 UiController.instance.SetEnemyCardAttack();
 
-                // Let the enemy cards attack
-                CardPointsController.instance.EnemyAttack();
+                // if isnt the first turn, we let the cards attack
+                if (!firstTurn)
+                {
+                    // Let the enemy cards attack
+                    CardPointsController.instance.EnemyAttack();
+                } else {
+                    FirstTurnCount++;
+
+                    // we move the turn forward
+                    AdvanceTurn();
+                }
 
                 break;
         }
