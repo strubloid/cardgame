@@ -531,7 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee48a63f66ec4642ba7004a8710ea54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
-  BattleSceneName: Battle
+  BattleSceneName: SelectBattle
 --- !u!1 &809646325
 GameObject:
   m_ObjectHideFlags: 0
