@@ -64,6 +64,10 @@ public class BattleController : MonoBehaviour
     Color greenColor = new Color32(0x08, 0xA1, 0x06, 0xB1); // #08A106
     Color redColor = new Color32(0xA1, 0x31, 0x05, 0xB1); // #A13105
 
+    // Chance for the enemy to start first
+    [Range(0f, 1f)]
+    public float playerFirstChance = .5f;
+
     /**
      * Awake is called when the script instance is being loaded
      */
@@ -117,7 +121,7 @@ public class BattleController : MonoBehaviour
     public void WhoStartsFirst()
     {
         // Randomly decide who starts first
-        if (Random.value > .5f)
+        if (Random.value > playerFirstChance)
         {
             // turn before the enemy starts
             currentPhrase = TurnOrder.PlayerCardAttack;
