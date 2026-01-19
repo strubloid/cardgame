@@ -12,7 +12,9 @@ public class BattleSelectController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        // Play the menu music when the main menu is loaded
+        AudioManager.instance.PlayBattleSelectMusic();
+
     }
 
     // Update is called once per frame

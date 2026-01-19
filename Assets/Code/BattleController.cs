@@ -113,6 +113,9 @@ public class BattleController : MonoBehaviour
         // this will determine who starts first
         WhoStartsFirst();
 
+        // Play the background music for the battle
+        AudioManager.instance.PlayBackgroundMusic();
+
     }
 
     /**

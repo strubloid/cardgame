@@ -9,7 +9,8 @@ public class MainMenu : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        // Play the menu music when the main menu is loaded
+        AudioManager.instance.PlayMenuMusic();
     }
 
     // Update is called once per frame
