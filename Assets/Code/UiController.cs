@@ -267,8 +267,13 @@ public class UiController : MonoBehaviour
     /**
      * This will be the function to draw a card from the deck
      */
-    public void DrawCard() { 
+    public void DrawCard() {
+
+        // calling the draw card for mana function
         DeckController.instance.DrawCardForMana();
+
+        // playing the sound effect for drawing a card
+        AudioManager.instance.PlaySoundEffect(0);
     }
 
     /**
@@ -283,9 +288,13 @@ public class UiController : MonoBehaviour
     /**
      * This will be ending the player turn
      */
-    public void EndPlayerTurn() { 
+    public void EndPlayerTurn() {
+
+        // playing the sound effect for ending the turn
         BattleController.instance.EndPlayerTurn();
 
+        // playing the sound effect for ending the turn
+        AudioManager.instance.PlaySoundEffect(0);
     }
 
     /**
@@ -298,6 +307,9 @@ public class UiController : MonoBehaviour
 
         // Making sure that the time scale is set to 1
         Time.timeScale = 1f;
+
+        // playing the sound effect for going to main menu
+        AudioManager.instance.PlaySoundEffect(0);
     }
 
     /**
@@ -314,6 +326,9 @@ public class UiController : MonoBehaviour
 
         // Making sure that the time scale is set to 1
         Time.timeScale = 1f;
+
+        // playing the sound effect for restarting the level
+        AudioManager.instance.PlaySoundEffect(0);
     }
 
 
@@ -327,6 +342,9 @@ public class UiController : MonoBehaviour
 
         // Making sure that the time scale is set to 1
         Time.timeScale = 1f;
+
+        // playing the sound effect for going to battle selection
+        AudioManager.instance.PlaySoundEffect(0);
     }
 
     /**
@@ -352,7 +370,10 @@ public class UiController : MonoBehaviour
             // here we set the game to run at 1, the normal speed game
             Time.timeScale = 1f;
 
-        }        
+        }
+
+        // playing the sound effect for pausing/unpausing
+        AudioManager.instance.PlaySoundEffect(0);
     }
 
 }

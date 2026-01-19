@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     {
         // Play the menu music when the main menu is loaded
         AudioManager.instance.PlayMenuMusic();
+   
     }
 
     // Update is called once per frame
@@ -26,6 +27,9 @@ public class MainMenu : MonoBehaviour
     {
         // Loading the battle scene
         SceneManager.LoadScene(BattleSceneName);
+
+        // Play a sound effect to indicate the game is starting
+        AudioManager.instance.PlaySoundEffect(0);
     }
 
     /**
@@ -38,5 +42,8 @@ public class MainMenu : MonoBehaviour
 
         // Log a message to the console (useful for testing in the editor)
         Debug.Log("Quit Game!");
+
+        // Play a sound effect to indicate the game is quitting
+        AudioManager.instance.PlaySoundEffect(0);
     }
 }
