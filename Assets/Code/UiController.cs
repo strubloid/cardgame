@@ -51,11 +51,11 @@ public class UiController : MonoBehaviour
     // This will be the battle end title text
     public TMP_Text battleEndTitleText;
 
-    // This will be the total number of battle scenes available
-    private int totallScenes = 13;
+    // This will be the main menu scene name
+    public string mainMenuSceneName = "MainMenu";
 
-    // This will be the current battle scene name
-    private string currentBattleSceneName = "Battle1";
+    // This will be the battle selection scene name
+    public string battleSelecScene = "SelectBattle";
 
     /**
     * Awake is called when the script instance is being loaded
@@ -277,11 +277,9 @@ public class UiController : MonoBehaviour
      * This will be handling the battle end screen buttons
      */
     public void MainMenu() { 
-    
-        Debug.Log("Returning to Main Menu...");
 
         // Loading the main menu scene
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(mainMenuSceneName);
     }
 
     /**
@@ -289,11 +287,12 @@ public class UiController : MonoBehaviour
      */
     public void RestartLevel()
     {
-        Debug.Log("Restarting Level...");
 
-        // and afer we load it
-        SceneManager.LoadScene(currentBattleSceneName);
+        // loading the current active scene
+        Scene actualScene = SceneManager.GetActiveScene();
 
+        // Afer we load it
+        SceneManager.LoadScene(actualScene.name);
     }
 
 
@@ -302,15 +301,8 @@ public class UiController : MonoBehaviour
      */
     public void ChooseNewBattle()
     {
-        Debug.Log("Choosing New Battle...");
-
-        int newBattleNumber = Random.Range(1, totallScenes);
-
-        // we will change the current battle scene name
-        currentBattleSceneName = "Battle" + newBattleNumber;
-
-        // and afer we load it
-        SceneManager.LoadScene(currentBattleSceneName);
+        // we load the battle selection scene
+        SceneManager.LoadScene(battleSelecScene);
 
     }
 
