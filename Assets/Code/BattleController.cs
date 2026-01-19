@@ -106,6 +106,32 @@ public class BattleController : MonoBehaviour
         // taking some seconds before starting the first turn
         StartingTheInitialPhrase(timeBeforeStartingTurn);
 
+        // this will determine who starts first
+        WhoStartsFirst();
+
+    }
+
+    /**
+     * This will be determining who starts first in the battle
+     */
+    public void WhoStartsFirst()
+    {
+        // Randomly decide who starts first
+        if (Random.value > .5f)
+        {
+            // turn before the enemy starts
+            currentPhrase = TurnOrder.PlayerCardAttack;
+
+            // now it goes to the enemy turn
+            AdvanceTurn();
+
+        } else {
+            // turn before the player starts
+            currentPhrase = TurnOrder.EnemyCardAttack;
+
+            // now it goes to the player turn
+            AdvanceTurn();
+        }
     }
 
     // Update is called once per frame
@@ -420,12 +446,9 @@ public class BattleController : MonoBehaviour
         if (EnemyHealth <= 0) {
             UiController.instance.battleEndTitleText.text = "You Won";
 
-            // TODO: Add here the show and hide from the UiController perspective
-
             // changing the color of the background
             Image background = UiController.instance.battleEndScreen.GetComponent<Image>();
             background.color = greenColor;
-
 
             // loading the correct background
             UiController.instance.lose.SetActive(false);
