@@ -80,8 +80,7 @@ public class BattleController : MonoBehaviour
     void Start()
     {
         PlayerHealth = startHealth;
-        //EnemyHealth = startHealth;
-        EnemyHealth = 3;
+        EnemyHealth = startHealth;
 
         // updating the UI of the player health
         UiController.instance.SetPlayerHealthText(PlayerHealth);
