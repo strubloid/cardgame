@@ -119,9 +119,6 @@ public class CardPointsController : MonoBehaviour
                     // This will attacking the enemy directly
                     BattleController.instance.DamageEnemy(activePlayerCards[currentPlayerCardIndex].activeCard.attackPower);
 
-                    // Play direct attack sound effect
-                    AudioManager.instance.PlayHurtEnemy();
-
                 } else {
 
                     // Safety checks
@@ -167,9 +164,6 @@ public class CardPointsController : MonoBehaviour
             {
                 // No defending cards → player attacks enemy directly
                 BattleController.instance.DamageEnemy(activePlayerCards[currentPlayerCardIndex].activeCard.attackPower);
-
-                // Play direct attack sound effect
-                AudioManager.instance.PlayHurtEnemy();
 
                 // This will trigger the animation of Attack
                 activePlayerCards[currentPlayerCardIndex].activeCard.animator.SetTrigger("Attack");
@@ -235,8 +229,6 @@ public class CardPointsController : MonoBehaviour
                 {
                     BattleController.instance.DamagePlayer(activeEnemyCards[currentEnemyCardIndex].activeCard.attackPower);
 
-                    // Play direct attack sound effect
-                    AudioManager.instance.PlayHurtPlayer();
                 } else {
 
                     // Safety checks
@@ -287,9 +279,6 @@ public class CardPointsController : MonoBehaviour
 
                 // Trigger enemy animation
                 activeEnemyCards[currentEnemyCardIndex].activeCard.animator.SetTrigger("Attack");
-
-                // Play direct attack sound effect
-                AudioManager.instance.PlayHurtPlayer();
 
                 yield return new WaitForSeconds(timeBetweenActions);
 

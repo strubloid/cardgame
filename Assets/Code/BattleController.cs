@@ -409,6 +409,9 @@ public class BattleController : MonoBehaviour
 
         // show the damage indicator
         ShowDamage(UiController.instance.playerDamage, damageAmmount, UiController.instance.playerDamage.transform.parent);
+
+        // Play direct attack sound effect
+        AudioManager.instance.PlayHurtPlayer();
     }
 
     /**
@@ -436,6 +439,9 @@ public class BattleController : MonoBehaviour
 
         // show the damage indicator
         ShowDamage(UiController.instance.enemyDamage, damageAmmount, UiController.instance.enemyDamage.transform.parent);
+
+        // Play direct attack sound effect
+        AudioManager.instance.PlayHurtEnemy();
     }
 
     /**
