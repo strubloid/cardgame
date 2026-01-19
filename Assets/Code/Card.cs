@@ -217,6 +217,9 @@ public class Card : MonoBehaviourWithMouseControls
                         // We move to the point
                         MoveCardToPoint(selectedPoint.transform.position, Quaternion.identity);
 
+                        // Playing the card place sound effect
+                        AudioManager.instance.PlayCardPlace();
+
                         // reset the in hand as it was placed and isnt selected as it is in place
                         inHand = false;
                         isSelected = false;

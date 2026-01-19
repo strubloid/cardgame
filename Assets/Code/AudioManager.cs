@@ -224,7 +224,7 @@ public class AudioManager : MonoBehaviour
     /**
      * This will be responsible for playing the place sound effect
      */
-    public void PlayPlace()
+    public void PlayCardPlace()
     {
         PlaySoundEffect(4);
     }

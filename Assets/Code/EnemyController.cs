@@ -470,6 +470,9 @@ public class EnemyController : MonoBehaviour
 
         // Spending the enemy mana
         BattleController.instance.SpendEnemyMana(cardToPlay.manaCost);
+
+        // Playing the sound effect
+        AudioManager.instance.PlayCardPlace();
     }
 
     /**
