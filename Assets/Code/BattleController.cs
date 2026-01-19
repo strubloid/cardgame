@@ -250,17 +250,19 @@ public class BattleController : MonoBehaviour
                 // Update the UI to show it's the enemy's turn
                 UiController.instance.SetEnemyTurn();
 
-                // Let the enemy play their actions
-                EnemyController.instance.StartAction();
-
                 // if isnt the first turn, we let the cards attack
                 if (!firstTurn)
                 {
                     // only on the second turn forward, we are able to increment the mana
                     IncrementEnemyMana();
-                } else {
+                }
+                else
+                {
                     FirstTurnCount++;
                 }
+
+                // Let the enemy play their actions
+                EnemyController.instance.StartAction();
 
                 break;
 
