@@ -125,6 +125,12 @@ public class Card : MonoBehaviourWithMouseControls
     {
         base.Update();
 
+        // doing nothing when we are paused the game (the timescale == 0f means the game is paused)
+        if (Time.timeScale == 0f)
+        {
+            return;
+        }
+
         // Moving the card to the target point
         transform.position = Vector3.Lerp(transform.position, targetPoint, moveSpeed * Time.deltaTime);
 
@@ -254,6 +260,12 @@ public class Card : MonoBehaviourWithMouseControls
      */
     protected override void OnHoverEnter()
     {
+        // Doing nothing when we are paused the game (the timescale == 0f means the game is paused)
+        if (Time.timeScale == 0f)
+        {
+            return;
+        }
+
         // if the battle has ended, no hover actions
         if (BattleController.instance.battleEnded == true)
         {
@@ -362,6 +374,13 @@ public class Card : MonoBehaviourWithMouseControls
      */
     protected override void OnMouseDown()
     {
+
+        // Doing nothing when we are paused the game (the timescale == 0f means the game is paused)
+        if (Time.timeScale == 0f)
+        {
+            return;
+        }
+
         // if the battle has ended, no hover actions
         if (BattleController.instance.battleEnded == true)
         {

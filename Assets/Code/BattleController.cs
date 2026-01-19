@@ -81,6 +81,7 @@ public class BattleController : MonoBehaviour
     {
         PlayerHealth = startHealth;
         EnemyHealth = startHealth;
+        //EnemyHealth = 3;
 
         // updating the UI of the player health
         UiController.instance.SetPlayerHealthText(PlayerHealth);
@@ -419,9 +420,16 @@ public class BattleController : MonoBehaviour
         if (EnemyHealth <= 0) {
             UiController.instance.battleEndTitleText.text = "You Won";
 
+            // TODO: Add here the show and hide from the UiController perspective
+
             // changing the color of the background
             Image background = UiController.instance.battleEndScreen.GetComponent<Image>();
             background.color = greenColor;
+
+
+            // loading the correct background
+            UiController.instance.lose.SetActive(false);
+            UiController.instance.win.SetActive(true);
 
             // removing the enemy cards
             foreach (CardPlacePoint point in CardPointsController.instance.EnemyCardPoints)
@@ -432,13 +440,16 @@ public class BattleController : MonoBehaviour
                 }
             }
 
-        }
-        else {
+        } else {
             UiController.instance.battleEndTitleText.text = "You Lost";
 
             // changing the color of the background
             Image background = UiController.instance.battleEndScreen.GetComponent<Image>();
             background.color = redColor;
+
+            // loading the correct background
+            UiController.instance.win.SetActive(false);
+            UiController.instance.lose.SetActive(true);
 
             // removing the enemy cards
             foreach (CardPlacePoint point in CardPointsController.instance.PlayerCardPoints)

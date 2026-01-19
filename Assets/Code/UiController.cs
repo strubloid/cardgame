@@ -49,6 +49,10 @@ public class UiController : MonoBehaviour
     // This will be the reference of the battle end screen
     public GameObject battleEndScreen;
 
+    // Win and Lose game objects
+    public GameObject win;
+    public GameObject lose;
+
     // This will be the battle end title text
     public TMP_Text battleEndTitleText;
 
@@ -291,6 +295,9 @@ public class UiController : MonoBehaviour
 
         // Loading the main menu scene
         SceneManager.LoadScene(mainMenuSceneName);
+
+        // Making sure that the time scale is set to 1
+        Time.timeScale = 1f;
     }
 
     /**
@@ -304,6 +311,9 @@ public class UiController : MonoBehaviour
 
         // Afer we load it
         SceneManager.LoadScene(actualScene.name);
+
+        // Making sure that the time scale is set to 1
+        Time.timeScale = 1f;
     }
 
 
@@ -315,6 +325,8 @@ public class UiController : MonoBehaviour
         // we load the battle selection scene
         SceneManager.LoadScene(battleSelecScene);
 
+        // Making sure that the time scale is set to 1
+        Time.timeScale = 1f;
     }
 
     /**
