@@ -319,14 +319,26 @@ public class UiController : MonoBehaviour
 
     /**
      * This will be pausing or unpausing the game
+     * Here we learned that when is 0 is stopped, 1 is normal speed and
+     * 1.2 we would get slow motion feeling.
      */
     public void PauseUnpause()
     {
         if (pauseScreen.activeSelf == false) {
+
+            // showing the pause screen
             pauseScreen.SetActive(true);
+
+            // we set to the game to run at 0 speed, pausing the game
+            Time.timeScale = 0f;
+
         } else
         {
+            // remove the pause screen
             pauseScreen.SetActive(false);
+
+            // here we set the game to run at 1, the normal speed game
+            Time.timeScale = 1f;
 
         }        
     }
