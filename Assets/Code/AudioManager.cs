@@ -18,6 +18,9 @@ public class AudioManager : MonoBehaviour
     public List<AudioSource> backgroundMusic = new List<AudioSource>();
     public List<AudioSource> playedBackgroundMusic = new List<AudioSource>();
 
+    // This will store all the sound effects available
+    public List<AudioSource> soundEffects = new List<AudioSource>();
+
     /**
      * Awake is called when the script instance is being loaded
      */
@@ -154,6 +157,36 @@ public class AudioManager : MonoBehaviour
 
         // play it
         chosen.Play();
+    }
+
+    /**
+     * This will be responsible for playing the requested sound effect
+     */
+    public void PlaySoundEffect(int soundEffectToPlay) {
+
+        // validating the index
+        if (soundEffects == null || soundEffects.Count == 0)
+            return;
+
+        // validating the index
+        if (soundEffectToPlay < 0 || soundEffectToPlay >= soundEffects.Count)
+        {
+            return;
+        }
+
+        // getting the sound effect to play
+        AudioSource sound = soundEffects[soundEffectToPlay];
+
+        // validating the sound effect
+        if (sound == null)
+            return;
+
+        //  stoping whatver sound effect is playing
+        sound.Stop();
+
+        // playing the requested sound effect
+        sound.Play();
+
     }
 
 }
