@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -57,6 +58,9 @@ public class UiController : MonoBehaviour
     // This will be the battle selection scene name
     public string battleSelecScene = "SelectBattle";
 
+    // This will be the pause screen reference
+    public GameObject pauseScreen;
+
     /**
     * Awake is called when the script instance is being loaded
     */
@@ -87,6 +91,13 @@ public class UiController : MonoBehaviour
                 manaWarning.SetActive(false);
             }
         }
+
+        // This will handdle the pause/unpause input
+        if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            PauseUnpause();
+        }
+
     }
 
     /**
@@ -304,6 +315,20 @@ public class UiController : MonoBehaviour
         // we load the battle selection scene
         SceneManager.LoadScene(battleSelecScene);
 
+    }
+
+    /**
+     * This will be pausing or unpausing the game
+     */
+    public void PauseUnpause()
+    {
+        if (pauseScreen.activeSelf == false) {
+            pauseScreen.SetActive(true);
+        } else
+        {
+            pauseScreen.SetActive(false);
+
+        }        
     }
 
 }
