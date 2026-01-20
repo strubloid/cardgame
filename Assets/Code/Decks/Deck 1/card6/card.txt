@@ -8,6 +8,12 @@ resonance: false
 mana_generation_bonus_if_same_type: 0
 tags: Soak, Setup
 
+Description 
+ - A playful spirit that soaks enemies and sets up elemental combos.
+
+ Lore
+ - Dwelling in serene rivers, the River Sprite uses its watery powers to drench foes and prepare the battlefield for elemental synergy.
+
 rules:
   - On play: apply Soaked to an enemy (Soaked: -1 Shield while Soaked).
 

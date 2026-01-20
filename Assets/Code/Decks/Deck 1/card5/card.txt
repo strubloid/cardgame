@@ -8,6 +8,12 @@ resonance: false
 mana_generation_bonus_if_same_type: 0
 tags: Finisher, Burn
 
+Description 
+ - A fiery dragon that scorches enemies with intense flames.
+
+Lore 
+ - Born from the heart of a volcano, the Inferno Drake commands the power of fire to incinerate its foes.
+
 rules:
   - If the target is Burned, your hit triggers Wildfire: Burn spreads to another enemy if any.
 
