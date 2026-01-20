@@ -8,6 +8,12 @@ resonance: false
 mana_generation_bonus_if_same_type: 0
 tags: Support, Shield
 
+Description
+- Forge friend that will defend your base
+
+Lore
+- Shield is the key.
+
 rules:
   - On play: Give a friendly card +2 Shield.
   - If that card is Fire, it also gains +1 Attack this turn.
