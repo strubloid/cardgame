@@ -16,4 +16,15 @@ public class CardScriptableObject : ScriptableObject
     // Reference to the images that we will be using it
     public Sprite characterSprite, backgroundSprite;
 
+    // This is the type of card it is
+    public enum CardType
+    {
+        fire,
+        water,
+        wind,
+        earth
+    }
+
+    // The type of the card
+    public CardType cardType;
 }

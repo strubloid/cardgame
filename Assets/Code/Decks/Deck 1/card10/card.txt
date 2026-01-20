@@ -1,0 +1,27 @@
+name: Leviathan Warden
+type: Water
+life: 7
+shield: 3
+attack: 3
+mana_cost: 5
+resonance: false
+mana_generation_bonus_if_same_type: 0
+tags: Boss, Steam
+
+rules:
+  - Your Water damage deals +1 to enemies that are Burned (Steam).
+
+synergy:
+  - Turns Fire burn into Water burst damage.
+
+status_reference:
+  Burned: target takes 1 damage at start of its owner's turn
+  Soaked: target has -1 Shield (min 0) while Soaked
+  Rooted: target can't gain Shield while Rooted
+  Aerial: attacker ignores 1 Shield when dealing damage
+
+element_fusions:
+  Steam: Burned + Soaked => next hit deals +1 damage
+  Mud: Soaked + Rooted => target can't attack next turn
+  Wildfire: Burned + Aerial => Burn spreads to another enemy if any
+  Sandstorm: Rooted + Aerial => target Attack -1 next turn

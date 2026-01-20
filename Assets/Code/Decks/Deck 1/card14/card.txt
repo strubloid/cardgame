@@ -1,0 +1,28 @@
+name: Quake Brute
+type: Earth
+life: 5
+shield: 1
+attack: 4
+mana_cost: 4
+resonance: false
+mana_generation_bonus_if_same_type: 0
+tags: Bruiser, AOE
+
+rules:
+  - On attack: deal 1 splash damage to a second enemy if any.
+  - If the main target is Rooted, deal +1 damage.
+
+synergy:
+  - Punishes Rooted boards; closes games with splash.
+
+status_reference:
+  Burned: target takes 1 damage at start of its owner's turn
+  Soaked: target has -1 Shield (min 0) while Soaked
+  Rooted: target can't gain Shield while Rooted
+  Aerial: attacker ignores 1 Shield when dealing damage
+
+element_fusions:
+  Steam: Burned + Soaked => next hit deals +1 damage
+  Mud: Soaked + Rooted => target can't attack next turn
+  Wildfire: Burned + Aerial => Burn spreads to another enemy if any
+  Sandstorm: Rooted + Aerial => target Attack -1 next turn

@@ -1,0 +1,27 @@
+name: Blazebound Guard
+type: Fire
+life: 4
+shield: 2
+attack: 2
+mana_cost: 3
+resonance: false
+mana_generation_bonus_if_same_type: 0
+tags: Tank, Burn
+
+rules:
+  - Whenever this gains Shield: apply Burned to a random enemy.
+
+synergy:
+  - Combos with Earth Shield sources and Water bubble effects.
+
+status_reference:
+  Burned: target takes 1 damage at start of its owner's turn
+  Soaked: target has -1 Shield (min 0) while Soaked
+  Rooted: target can't gain Shield while Rooted
+  Aerial: attacker ignores 1 Shield when dealing damage
+
+element_fusions:
+  Steam: Burned + Soaked => next hit deals +1 damage
+  Mud: Soaked + Rooted => target can't attack next turn
+  Wildfire: Burned + Aerial => Burn spreads to another enemy if any
+  Sandstorm: Rooted + Aerial => target Attack -1 next turn

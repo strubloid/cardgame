@@ -1,0 +1,27 @@
+name: Colossus of Cairns
+type: Earth
+life: 10
+shield: 4
+attack: 4
+mana_cost: 6
+resonance: false
+mana_generation_bonus_if_same_type: 0
+tags: Titan, Tank
+
+rules:
+  - If you control another Earth card, this enters with +2 Shield.
+
+synergy:
+  - Big finisher; protect with Water shield/cleanse.
+
+status_reference:
+  Burned: target takes 1 damage at start of its owner's turn
+  Soaked: target has -1 Shield (min 0) while Soaked
+  Rooted: target can't gain Shield while Rooted
+  Aerial: attacker ignores 1 Shield when dealing damage
+
+element_fusions:
+  Steam: Burned + Soaked => next hit deals +1 damage
+  Mud: Soaked + Rooted => target can't attack next turn
+  Wildfire: Burned + Aerial => Burn spreads to another enemy if any
+  Sandstorm: Rooted + Aerial => target Attack -1 next turn

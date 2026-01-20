@@ -1,0 +1,27 @@
+name: River Sprite
+type: Water
+life: 2
+shield: 1
+attack: 1
+mana_cost: 1
+resonance: false
+mana_generation_bonus_if_same_type: 0
+tags: Soak, Setup
+
+rules:
+  - On play: apply Soaked to an enemy (Soaked: -1 Shield while Soaked).
+
+synergy:
+  - Starts Steam (Fire) or Mud (Earth) combos.
+
+status_reference:
+  Burned: target takes 1 damage at start of its owner's turn
+  Soaked: target has -1 Shield (min 0) while Soaked
+  Rooted: target can't gain Shield while Rooted
+  Aerial: attacker ignores 1 Shield when dealing damage
+
+element_fusions:
+  Steam: Burned + Soaked => next hit deals +1 damage
+  Mud: Soaked + Rooted => target can't attack next turn
+  Wildfire: Burned + Aerial => Burn spreads to another enemy if any
+  Sandstorm: Rooted + Aerial => target Attack -1 next turn
