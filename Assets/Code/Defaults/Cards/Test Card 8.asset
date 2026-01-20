@@ -15,6 +15,7 @@ MonoBehaviour:
   currentHealth: 3
   attackPower: 1
   manaCost: 1
+  shieldValue: 1
   cardName: ImpMAN
   actionDescription: Die!
   cardLore: Web auround all characters

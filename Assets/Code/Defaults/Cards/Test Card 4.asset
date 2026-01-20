@@ -15,6 +15,7 @@ MonoBehaviour:
   currentHealth: 6
   attackPower: 5
   manaCost: 6
+  shieldValue: 1
   cardName: Doom
   actionDescription: This will stop your magics for a round
   cardLore: Stop! in the name of love!

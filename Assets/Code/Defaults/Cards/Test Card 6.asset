@@ -15,6 +15,7 @@ MonoBehaviour:
   currentHealth: 3
   attackPower: 3
   manaCost: 1
+  shieldValue: 1
   cardName: SpiderMan
   actionDescription: Web +3
   cardLore: Web auround all characters

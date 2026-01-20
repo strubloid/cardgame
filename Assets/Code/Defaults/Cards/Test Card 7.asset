@@ -15,6 +15,7 @@ MonoBehaviour:
   currentHealth: 6
   attackPower: 2
   manaCost: 1
+  shieldValue: 2
   cardName: ChompMe
   actionDescription: ATK - 1 for all enemies
   cardLore: Web auround all characters

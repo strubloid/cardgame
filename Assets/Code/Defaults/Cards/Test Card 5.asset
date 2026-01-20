@@ -15,6 +15,7 @@ MonoBehaviour:
   currentHealth: 3
   attackPower: 4
   manaCost: 3
+  shieldValue: 1
   cardName: Saelpa
   actionDescription: Lightpower + 2
   cardLore: You cant see for a round

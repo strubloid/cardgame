@@ -1,7 +1,8 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 /**
  * Class that will be adding the rules of a card
@@ -18,10 +19,10 @@ public class Card : MonoBehaviourWithMouseControls
     public CardScriptableObject cardData;
 
     // Basic Integer values of a card
-    public int currentHealth, attackPower, manaCost;
+    public int currentHealth, attackPower, manaCost, shieldValue;
 
     // Reference to the text components that we will be using it
-    public TMP_Text healthText, attackText, manaText;
+    public TMP_Text healthText, attackText, manaText, shieldText;
     public TMP_Text nameText, actionDescriptionText, loreText;
 
     // Reference to the images that we will be using it
@@ -425,8 +426,11 @@ public class Card : MonoBehaviourWithMouseControls
      */
     public void DamageCard(int damageAmmount) {
 
+        // calculating the damage minus shield
+        int damagedMinusShield = damageAmmount - shieldValue;
+
         // reducing the current health
-        currentHealth -= damageAmmount;
+        currentHealth -= damagedMinusShield;
 
         if (currentHealth <= 0)
         {
@@ -472,6 +476,9 @@ public class Card : MonoBehaviourWithMouseControls
      * This will be updating the card display values
      */
     public void UpdateCardDisplay() {
+
+        // Loading the shield value to be the current shield
+        shieldText.text = shieldValue.ToString();
 
         // Loading the health of the card to be the current health
         healthText.text = currentHealth.ToString();

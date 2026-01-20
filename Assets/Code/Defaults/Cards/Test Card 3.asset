@@ -15,6 +15,7 @@ MonoBehaviour:
   currentHealth: 1
   attackPower: 4
   manaCost: 2
+  shieldValue: 1
   cardName: Gelinho Seco
   actionDescription: This will freeze you for a round
   cardLore: Sleep for a round

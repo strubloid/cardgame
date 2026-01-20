@@ -15,6 +15,7 @@ MonoBehaviour:
   currentHealth: 3
   attackPower: 4
   manaCost: 2
+  shieldValue: 1
   cardName: Soninho Brabo
   actionDescription: This card will suck your soul while sleeping it, so be carefull
     about sleeping at **the** *battle*

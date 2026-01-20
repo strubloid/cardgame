@@ -4,7 +4,7 @@ using UnityEngine;
 public class CardScriptableObject : ScriptableObject
 {
     // current values of health, power and mana cost
-    public int currentHealth, attackPower, manaCost;
+    public int currentHealth, attackPower, manaCost, shieldValue;
 
     // name of the card value
     public string cardName;
