@@ -8,6 +8,14 @@ resonance: false
 mana_generation_bonus_if_same_type: 0
 tags: Tank, Cleanse
 
+Description 
+ - A stalwart defender who uses water to shield allies and cleanse harmful effects.
+ Lore 
+ - Clad in armor forged from enchanted bubbles, the Bubble Templar stands as a bulwark against adversity, using its watery prowess to protect and purify.
+
+ Lore
+ - Water defense + 1
+
 rules:
   - On play: remove Burned from a friendly card.
   - Then give that card +2 Shield.

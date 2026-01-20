@@ -8,6 +8,13 @@ resonance: false
 mana_generation_bonus_if_same_type: 0
 tags: Boss, Steam
 
+Description:
+- A colossal guardian of the deep, the Leviathan Warden uses its mastery over water to
+  douse flames and protect its domain from fiery threats.
+
+Lore:
+  - Ancient tales tell of the Leviathan Warden, a mythical beast that rises from the ocean's
+
 rules:
   - Your Water damage deals +1 to enemies that are Burned (Steam).
 

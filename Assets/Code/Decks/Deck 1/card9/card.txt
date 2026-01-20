@@ -8,6 +8,11 @@ resonance: false
 mana_generation_bonus_if_same_type: 0
 tags: Tempo, Soak
 
+Description: 
+- Summons a watery vortex that drenches enemies, making them more vulnerable to attacks.
+Lore:
+- Legends speak of the Whirlpool Sirens, whose haunting songs lure sailors into treacherous waters
+
 rules:
   - On hit: apply Soaked.
   - If the target is already Soaked, deal +1 damage.

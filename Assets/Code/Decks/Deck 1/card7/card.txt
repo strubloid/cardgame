@@ -8,6 +8,13 @@ resonance: true
 mana_generation_bonus_if_same_type: 1
 tags: Resonance, Control
 
+Description 
+ - A wise elemental that harnesses the power of water to control the battlefield and sustain allies.
+ Lore 
+ - Water defense + 2
+
+Lore 
+ - The Tide Sage, an ancient being of water, uses its mastery over the tides to weaken foes and heal friends, embodying the essence of resilience and adaptability.
 rules:
   - Resonance: If you control another Water card, +1 mana generation.
   - Whenever you apply Soaked: heal a friendly card for 1 (once per turn).

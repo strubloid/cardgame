@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e85ec32995833a4ea6a11692296444b, type: 3}
+  m_Name: Whirlpool Siren
+  m_EditorClassIdentifier: Assembly-CSharp::CardScriptableObject
+  currentHealth: 4
+  attackPower: 3
+  manaCost: 3
+  shieldValue: 1
+  cardName: Whirlpool Siren
+  actionDescription: Summons a watery vortex that drenches enemies, making them more
+    vulnerable to attacks.
+  cardLore: Legends speak of the Whirlpool Sirens, whose haunting songs lure sailors
+    into treacherous waters
+  characterSprite: {fileID: 21300000, guid: 2b58f612fa8138c48bb2643a0a064ed3, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 31215d34c84b2644a8938b22a62253be, type: 3}
+  cardType: 1

@@ -8,6 +8,13 @@ resonance: false
 mana_generation_bonus_if_same_type: 0
 tags: Tank, Scaling
 
+Description:
+  - A sturdy turtle with a shell as hard as stone, the Pebbleback Turtle is a reliable defender
+	that grows stronger as it endures damage.
+Lore:
+  - In the quiet ponds of ancient forests, the Pebbleback Turtle is known to outlast storms and
+	foes alike, its resilience a testament to nature's enduring strength.
+
 rules:
   - Whenever this is damaged: gain +1 Shield (once per turn).
 

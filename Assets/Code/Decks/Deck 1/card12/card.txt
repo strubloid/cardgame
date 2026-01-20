@@ -8,6 +8,13 @@ resonance: true
 mana_generation_bonus_if_same_type: 1
 tags: Resonance, Root
 
+Description:
+  - A mystical shaman who draws power from the earth, the Stone Shaman can root enemies in place,
+	preventing them from gaining Shield and making them vulnerable to attacks.
+Lore:
+  - The Stone Shaman is said to commune with ancient earth spirits, channeling their strength to
+  bind foes and protect allies alike.
+
 rules:
   - Resonance: If you control another Earth card, +1 mana generation.
   - On play: apply Rooted to an enemy (Rooted: can't gain Shield).
