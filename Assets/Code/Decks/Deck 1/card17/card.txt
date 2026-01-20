@@ -8,6 +8,11 @@ resonance: true
 mana_generation_bonus_if_same_type: 1
 tags: Resonance, Debuff
 
+Description:
+- A mystical being that channels the power of the skies, weakening its enemies while empowering its allies through the resonance of the wind.
+Lore:
+- The Sky Channeler is revered among wind spirits for its ability to manipulate the air currents, creating storms that disorient foes and bolster the strength of those who share its elemental affinity.
+
 rules:
   - Resonance: If you control another Wind card, +1 mana generation.
   - Whenever your Aerial damage hits: apply Sandstorm (enemy Attack -1 next turn).

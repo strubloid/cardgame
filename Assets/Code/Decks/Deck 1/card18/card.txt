@@ -8,6 +8,11 @@ resonance: false
 mana_generation_bonus_if_same_type: 0
 tags: Support, Aerial
 
+Description:
+- A skilled archer who uses the power of the wind to enhance their agility and precision, providing aerial support to their allies on the battlefield.
+Lore:
+- The Tailwind Ranger is known for their ability to harness gusts of wind to propel their arrows with incredible speed and accuracy, striking from above while remaining elusive to enemies.
+
 rules:
   - On play: give a friendly card Aerial this turn.
   - If that card is Fire, its next hit also spreads Burn (Wildfire).

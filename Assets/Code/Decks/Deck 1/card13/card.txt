@@ -8,6 +8,12 @@ resonance: false
 mana_generation_bonus_if_same_type: 0
 tags: Tank, Mud
 
+Description: 
+- A sturdy guardian that fortifies allies and hinders foes with earthen might.
+
+Lore:
+- The Ironwood Protector stands as a living bastion, its bark-like skin and unyielding roots embodying the resilience of the ancient forests. It draws strength from the earth itself, using its formidable presence to shield allies and ensnare enemies in a web of mud and stone.
+
 rules:
   - When this hits a Soaked enemy: they become Rooted too (Mud setup).
 

@@ -8,6 +8,11 @@ resonance: false
 mana_generation_bonus_if_same_type: 0
 tags: Bruiser, AOE
 
+Description:
+- A formidable warrior whose ground-shaking strikes devastate foes and leave them vulnerable to further assault
+Lore:
+- The Quake Brute is a towering figure of raw power, its every movement causing the earth to tremble.
+
 rules:
   - On attack: deal 1 splash damage to a second enemy if any.
   - If the main target is Rooted, deal +1 damage.

@@ -8,6 +8,11 @@ resonance: false
 mana_generation_bonus_if_same_type: 0
 tags: Titan, Tank
 
+Description:
+- A towering giant whose very presence commands the battlefield, absorbing damage and protecting allies with unwavering strength
+Lore:
+- The Colossus of Cairns is a legendary figure, said to be carved from the very mountains themselves.
+
 rules:
   - If you control another Earth card, this enters with +2 Shield.
 

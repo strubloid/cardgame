@@ -8,6 +8,11 @@ resonance: false
 mana_generation_bonus_if_same_type: 0
 tags: Boss, Combo
 
+Description:
+- A majestic and powerful creature that soars through the skies, calling forth storms to devastate its enemies with relentless fury.
+Lore:
+- The Storm Herald Roc is a legendary beast known for its ability to summon fierce winds and lightning storms, striking fear into the hearts of those who dare to challenge it in battle.
+
 rules:
   - Whenever you play another card this turn: this gains +1 Attack until end of turn.
 

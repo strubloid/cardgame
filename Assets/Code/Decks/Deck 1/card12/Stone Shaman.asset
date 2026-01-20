@@ -22,6 +22,6 @@ MonoBehaviour:
     making them vulnerable to attacks."
   cardLore: " The Stone Shaman is said to commune with ancient earth spirits, channeling
     their strength to\n  bind foes and protect allies alike."
-  characterSprite: {fileID: 21300000, guid: 770104ae1e8b0d64e8d930283a39e78c, type: 3}
-  backgroundSprite: {fileID: 21300000, guid: 3646ede55a02c19419a8dec1c61017e2, type: 3}
+  characterSprite: {fileID: 21300000, guid: 51e408bf12fc7e44398e6f2b72709b48, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 7d79e1db2d3350a4f91ca4a21b2323e5, type: 3}
   cardType: 3

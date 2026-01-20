@@ -8,6 +8,13 @@ resonance: false
 mana_generation_bonus_if_same_type: 0
 tags: Aerial, Aggro
 
+Description:
+- A swift and cunning creature that harnesses the power of the wind to outmaneuver its
+  foes, striking quickly before they can react.
+Lore:
+  - The Gust Fox is a legendary being known for its speed and agility, often seen darting 
+	through the skies, leaving trails of wind in its wake.
+
 rules:
   - Aerial: ignores 1 Shield when dealing damage.
 
