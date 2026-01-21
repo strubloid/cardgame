@@ -491,7 +491,8 @@ public class BattleController : MonoBehaviour
         battleEnded = true;
 
         // clear the player's hand
-        HandController.instance.EmptyHand();
+        PlayerHandController.Instance.EmptyHand();
+        //EnemyHandController.Instance.EmptyHand();
 
         // Determine the battle outcome and update the UI
         if (EnemyHealth <= 0) {

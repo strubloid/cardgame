@@ -1,11 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandController : MonoBehaviour
+public abstract class HandController : MonoBehaviour
 {
-    // Singleton instance
-    public static HandController instance;
-
     // Cards array that the player is holding
     public List<Card> heldCards = new List<Card>();
 
@@ -16,69 +13,28 @@ public class HandController : MonoBehaviour
     public List<Vector3> cardPositions = new List<Vector3>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected virtual void Start()
     {
         SetCardPositionsInHand();
     }
 
-    /**
-     * Awake is called when the script instance is being loaded
-     */
-    private void Awake()
+    protected virtual void Awake()
     {
-        // Ensure only one instance of BattleController exists
-        if (instance == null)
-        {
-            instance = this;
-        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    /**
-     * This will be setting the card positions in the hand
-     */
-    public void SetCardPositionsInHand()
-    {
-        cardPositions.Clear();
-
-        // Always calculate positions using a fixed hand size, not heldCards.Count
-        int handSize = Mathf.Max(heldCards.Count, 1);
-
-        Vector3 distanceBetweenPoints = Vector3.zero;
-
-        // Checking if we have more than one position in the hand span
-        if (handSize > 1)
-        {
-            distanceBetweenPoints = (maxPos.position - minPos.position) / (handSize - 1);
-        }
-
-        // for loop that will be setting the card positions in the hand
-        for (int i = 0; i < heldCards.Count; i++)
-        {
-            // Clamp index into the span so cards always start at minPos and move right
-            float t = (handSize == 1) ? 0f : (float)i / (handSize - 1);
-            Vector3 position = Vector3.Lerp(minPos.position, maxPos.position, t);
-
-            cardPositions.Add(position);
-
-            // Moving the card to the position smoothly
-            heldCards[i].MoveCardToPoint(cardPositions[i], minPos.rotation);
-
-            // hold the cart in the moment
-            heldCards[i].inHand = true;
-            heldCards[i].handPosition = i;
-        }
-    }
+    // abstract method to be implemented in child classes
+    public abstract void SetCardPositionsInHand();
 
     /**
      * This will be removing a card from the hand
      */
     public void RemoveCardFromHand(Card cardToRemove) {
+
+        // Check if the hand position is valid
+        if (cardToRemove.handPosition < 0 || cardToRemove.handPosition >= heldCards.Count)
+        {
+            return;
+        }
 
         // Double check that the card is actually in the hand before removing
         if (heldCards[cardToRemove.handPosition] == cardToRemove)

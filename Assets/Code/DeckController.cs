@@ -18,6 +18,9 @@ public class DeckController : MonoBehaviour
     // This is the time between drawing each card, so they dont all draw at once
     public float timeBetweenDrawingCards = .35f;
 
+    // checking if is a deck for another player
+    public bool isEnemy = false;
+
     /**
      * Awake is called when the script instance is being loaded
      */
@@ -115,8 +118,12 @@ public class DeckController : MonoBehaviour
         // removing the first card from the active cards list
         activeCards.RemoveAt(0);
 
+        // TODO: Refactor here
         // Adding the new card to the player's hand
-        HandController.instance.AddCardToHand(newCard);
+        HandController targetHand = isEnemy ? EnemyHandController.Instance : PlayerHandController.Instance;
+        targetHand.AddCardToHand(newCard);
+
+        //HandController.instance.AddCardToHand(newCard);
 
         // Playing the card draw sound effect
         AudioManager.instance.PlayCardDraw();
