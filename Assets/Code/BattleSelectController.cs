@@ -32,6 +32,6 @@ public class BattleSelectController : MonoBehaviour
         SceneManager.LoadScene(levelToLoad);
 
         // Play a sound effect to indicate a battle has been selected
-        AudioManager.instance.PlaySoundEffect(0);
+        AudioManager.instance.PlayButtonPress();
     }
 }

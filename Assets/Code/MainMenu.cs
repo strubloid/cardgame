@@ -29,7 +29,7 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(BattleSceneName);
 
         // Play a sound effect to indicate the game is starting
-        AudioManager.instance.PlaySoundEffect(0);
+        AudioManager.instance.PlayButtonPress();
     }
 
     /**
@@ -44,6 +44,6 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Quit Game!");
 
         // Play a sound effect to indicate the game is quitting
-        AudioManager.instance.PlaySoundEffect(0);
+        AudioManager.instance.PlayButtonPress();
     }
 }

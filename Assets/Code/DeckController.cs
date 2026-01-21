@@ -9,9 +9,6 @@ using System.Collections;
  */
 public class DeckController : MonoBehaviour
 {
-    // Singleton instance
-    public static DeckController instance;
-
     // Cost to draw a card from the deck
     public int drawCost = 1;
 
@@ -21,23 +18,16 @@ public class DeckController : MonoBehaviour
     // checking if is a deck for another player
     public bool isEnemy = false;
 
-    /**
-     * Awake is called when the script instance is being loaded
-     */
-    private void Awake()
+    // Awake is called when the script instance is being loaded
+    protected virtual void Awake()
     {
-        // Ensure only one instance of BattleController exists
-        if (instance == null)
-        {
-            instance = this;
-        }
     }
 
     // This will be the deck to use in the battle
     public List<CardScriptableObject> deckToUse = new List<CardScriptableObject>();
 
     // This will be the active cards in the deck
-    private List<CardScriptableObject> activeCards = new List<CardScriptableObject>();
+    protected List<CardScriptableObject> activeCards = new List<CardScriptableObject>();
 
     // This will be the card to spawn from the deck
     public Card cardToSpawn;
@@ -54,11 +44,11 @@ public class DeckController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Tab as key for drawing a card for mana
-        if (Keyboard.current != null && Keyboard.current.tabKey.wasPressedThisFrame)
-        {
-            DrawCardForMana();
-        }
+        //// Tab as key for drawing a card for mana
+        //if (Keyboard.current != null && Keyboard.current.tabKey.wasPressedThisFrame)
+        //{
+        //    DrawCardForMana();
+        //}
     }
 
     /**
@@ -93,41 +83,8 @@ public class DeckController : MonoBehaviour
         }
     }
 
-    /**
-     * This will be drawing a card from the deck to the hand
-     */
-    public void DrawCardToHand() 
-    {
-        // Checking if we have cards to draw
-        if (activeCards.Count == 0) {
-            SetupDeck();
-        }
-
-        Vector3 initialPosition = transform.position;
-        Quaternion initialRotation = transform.rotation;
-
-        // This will create a copy of the card prefab at the deck position
-        Card newCard = Instantiate(cardToSpawn, initialPosition, initialRotation);
-
-        // Setting the card data to be the first card in the active cards
-        newCard.cardData = activeCards[0];
-
-        // Removing the drawn card from the active cards
-        newCard.SetupCard();
-
-        // removing the first card from the active cards list
-        activeCards.RemoveAt(0);
-
-        // TODO: Refactor here
-        // Adding the new card to the player's hand
-        HandController targetHand = isEnemy ? EnemyHandController.Instance : PlayerHandController.Instance;
-        targetHand.AddCardToHand(newCard);
-        //HandController.instance.AddCardToHand(newCard);
-
-        // Playing the card draw sound effect
-        AudioManager.instance.PlayCardDraw();
-    }
-
+    // This will be drawing a card to the hand
+    public virtual void DrawCardToHand() { }
 
     /**
      * 

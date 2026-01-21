@@ -106,7 +106,7 @@ public class BattleController : MonoBehaviour
         UiController.instance.SetEnemyManaText(playerMana);
 
         // This at the start of the battle we draw the starting cards
-        DeckController.instance.DrawMultipleCards(startingCardsAmount);
+        PlayerDeckController.Instance.DrawMultipleCards(startingCardsAmount);
 
         // Fill the mana at the start of the battle
         bool startMatch = true;
@@ -213,7 +213,7 @@ public class BattleController : MonoBehaviour
                 UiController.instance.SetPlayerTurn();
 
                 // Those are the free action we can do at the start of the turn
-                DeckController.instance.DrawMultipleCards(DrawingCardsPerTurn);
+                PlayerDeckController.Instance.DrawMultipleCards(DrawingCardsPerTurn);
 
                 // if isnt the first turn, we let the cards attack
                 if (!firstTurn)

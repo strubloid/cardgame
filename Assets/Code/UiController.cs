@@ -269,11 +269,13 @@ public class UiController : MonoBehaviour
      */
     public void DrawCard() {
 
+        // TODO: rafactor this
         // calling the draw card for mana function
-        DeckController.instance.DrawCardForMana();
+        PlayerDeckController.Instance.DrawCardForMana();
+        //DeckController.instance.DrawCardForMana();
 
         // playing the sound effect for drawing a card
-        AudioManager.instance.PlaySoundEffect(0);
+        AudioManager.instance.PlayButtonPress();
     }
 
     /**
@@ -294,7 +296,7 @@ public class UiController : MonoBehaviour
         BattleController.instance.EndPlayerTurn();
 
         // playing the sound effect for ending the turn
-        AudioManager.instance.PlaySoundEffect(0);
+        AudioManager.instance.PlayButtonPress();
     }
 
     /**
@@ -309,7 +311,7 @@ public class UiController : MonoBehaviour
         Time.timeScale = 1f;
 
         // playing the sound effect for going to main menu
-        AudioManager.instance.PlaySoundEffect(0);
+        AudioManager.instance.PlayButtonPress();
     }
 
     /**
@@ -328,7 +330,7 @@ public class UiController : MonoBehaviour
         Time.timeScale = 1f;
 
         // playing the sound effect for restarting the level
-        AudioManager.instance.PlaySoundEffect(0);
+        AudioManager.instance.PlayButtonPress();
     }
 
 
@@ -344,7 +346,7 @@ public class UiController : MonoBehaviour
         Time.timeScale = 1f;
 
         // playing the sound effect for going to battle selection
-        AudioManager.instance.PlaySoundEffect(0);
+        AudioManager.instance.PlayButtonPress();
     }
 
     /**
@@ -373,7 +375,7 @@ public class UiController : MonoBehaviour
         }
 
         // playing the sound effect for pausing/unpausing
-        AudioManager.instance.PlaySoundEffect(0);
+        AudioManager.instance.PlayButtonPress();
     }
 
 }

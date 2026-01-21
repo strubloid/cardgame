@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f27eadc982c4c498103b6973885d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleController
+  PlayerDeckController: {fileID: -1937097494821320830, guid: 19f293b954a13dc49886222c64eb3e1b, type: 3}
   startMana: 4
   maxMana: 12
   playerMana: 0
@@ -60,6 +61,9 @@ MonoBehaviour:
   enemyMaxMana: 12
   battleEnded: 0
   resultsScreenDelayTime: 1
+  playerFirstChance: 0.5
+  firstTurn: 1
+  FirstTurnCount: 0
 --- !u!1 &2580581852747364515
 GameObject:
   m_ObjectHideFlags: 0

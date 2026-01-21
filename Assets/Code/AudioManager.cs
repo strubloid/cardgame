@@ -164,7 +164,6 @@ public class AudioManager : MonoBehaviour
      */
     public void PlaySoundEffect(int soundEffectToPlay)
     {
-
         // validating the index
         if (soundEffects == null || soundEffects.Count == 0)
             return;
