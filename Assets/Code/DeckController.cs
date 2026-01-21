@@ -122,7 +122,6 @@ public class DeckController : MonoBehaviour
         // Adding the new card to the player's hand
         HandController targetHand = isEnemy ? EnemyHandController.Instance : PlayerHandController.Instance;
         targetHand.AddCardToHand(newCard);
-
         //HandController.instance.AddCardToHand(newCard);
 
         // Playing the card draw sound effect
