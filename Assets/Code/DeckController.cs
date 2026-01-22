@@ -117,7 +117,7 @@ public class DeckController : MonoBehaviour
     /**
      * This will be drawing multiple cards from the deck to the hand with a delay
      */
-    IEnumerator DrawMultipleCo(int amountToDraw) 
+    public IEnumerator DrawMultipleCo(int amountToDraw) 
     {
         // Main loop to draw multiple cards, in this case the ammount to draw will
         for (int i = 0; i < amountToDraw; i++)

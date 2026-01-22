@@ -108,6 +108,9 @@ public class BattleController : MonoBehaviour
         // This at the start of the battle we draw the starting cards
         PlayerDeckController.Instance.DrawMultipleCards(startingCardsAmount);
 
+        // This at the start of the battle we draw the starting cards for the enemy
+        EnemyDeckController.Instance.DrawMultipleCards(startingCardsAmount);
+
         // Fill the mana at the start of the battle
         bool startMatch = true;
         FillPlayerMana(startMatch);

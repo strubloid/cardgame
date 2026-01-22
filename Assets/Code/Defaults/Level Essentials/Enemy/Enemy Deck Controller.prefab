@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &254735681876397439
+--- !u!1 &7069665658222976520
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2204352546071948726}
-  - component: {fileID: -1937097494821320830}
+  - component: {fileID: 287808393554081442}
+  - component: {fileID: -3675913728169061686}
   m_Layer: 0
-  m_Name: Player Deck Controller
+  m_Name: Enemy Deck Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2204352546071948726
+--- !u!4 &287808393554081442
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 254735681876397439}
+  m_GameObject: {fileID: 7069665658222976520}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
   m_LocalPosition: {x: -1.47, y: 0.133, z: -0.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6052343005832776175}
+  - {fileID: 4206360455099297012}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
---- !u!114 &-1937097494821320830
+--- !u!114 &-3675913728169061686
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 254735681876397439}
+  m_GameObject: {fileID: 7069665658222976520}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d3b12b80b590e04b9aa4e76fbe15d49, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fae746073fa49d4087073f0b612e4ee, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerDeckController
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeckController
   drawCost: 1
   timeBetweenDrawingCards: 0.35
-  isEnemy: 0
+  isEnemy: 1
   deckToUse:
   - {fileID: 11400000, guid: 0bbce49a972ced543b1b82beb72fe392, type: 2}
   - {fileID: 11400000, guid: 72bc8c667ea1a2c4ca6f4a7a4d46bf5e, type: 2}
@@ -57,14 +57,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fe896f13fb621fa4a8db59b48f1a632f, type: 2}
   - {fileID: 11400000, guid: cd7c22a9f9b286248a14bdc86e581cb2, type: 2}
   - {fileID: 11400000, guid: e287e3b1757a5bb4fb52a1730edaae27, type: 2}
-  cardToSpawn: {fileID: 800371825764060356, guid: 273d8a735135c6740964932b91a159a6, type: 3}
---- !u!1001 &6085634788474416644
+  cardToSpawn: {fileID: 559753285050379698, guid: f4c233d32bdd5934883d65d520848a34, type: 3}
+--- !u!1001 &4455546508070931231
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2204352546071948726}
+    m_TransformParent: {fileID: 287808393554081442}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 1f89a578ed4ecee4b9b3d0429697416a, type: 3}
       propertyPath: m_LocalScale.z
@@ -119,8 +119,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f89a578ed4ecee4b9b3d0429697416a, type: 3}
---- !u!4 &6052343005832776175 stripped
+--- !u!4 &4206360455099297012 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1f89a578ed4ecee4b9b3d0429697416a, type: 3}
-  m_PrefabInstance: {fileID: 6085634788474416644}
+  m_PrefabInstance: {fileID: 4455546508070931231}
   m_PrefabAsset: {fileID: 0}
