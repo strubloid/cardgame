@@ -47,7 +47,7 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
      */
     private bool PlayerHasCardInHand()
     {
-        return handController != null && handController.heldCards.Count > 0;
+        return handController != null && handController.cardsInHand.Count > 0;
     }
 
 

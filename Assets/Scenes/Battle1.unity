@@ -1313,57 +1313,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1240882720282735792, guid: 744bb83820c711c4297c362c58512b41, type: 3}
-      propertyPath: deckToUse.Array.size
-      value: 8
+      propertyPath: enemyAIType
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1240882720282735792, guid: 744bb83820c711c4297c362c58512b41, type: 3}
-      propertyPath: 'deckToUse.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 0bbce49a972ced543b1b82beb72fe392, type: 2}
-    - target: {fileID: 1240882720282735792, guid: 744bb83820c711c4297c362c58512b41, type: 3}
-      propertyPath: 'deckToUse.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 72bc8c667ea1a2c4ca6f4a7a4d46bf5e, type: 2}
-    - target: {fileID: 1240882720282735792, guid: 744bb83820c711c4297c362c58512b41, type: 3}
-      propertyPath: 'deckToUse.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 22f7224e63ab6c44f90efe1634d16000, type: 2}
-    - target: {fileID: 1240882720282735792, guid: 744bb83820c711c4297c362c58512b41, type: 3}
-      propertyPath: 'deckToUse.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 2da3f64955fe92742924fdb664aeeacc, type: 2}
-    - target: {fileID: 1240882720282735792, guid: 744bb83820c711c4297c362c58512b41, type: 3}
-      propertyPath: 'deckToUse.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: f3e648820013b454fbaae4968e6f65e0, type: 2}
-    - target: {fileID: 1240882720282735792, guid: 744bb83820c711c4297c362c58512b41, type: 3}
-      propertyPath: 'deckToUse.Array.data[5]'
-      value: 
-      objectReference: {fileID: 11400000, guid: fe896f13fb621fa4a8db59b48f1a632f, type: 2}
-    - target: {fileID: 1240882720282735792, guid: 744bb83820c711c4297c362c58512b41, type: 3}
-      propertyPath: 'deckToUse.Array.data[6]'
-      value: 
-      objectReference: {fileID: 11400000, guid: cd7c22a9f9b286248a14bdc86e581cb2, type: 2}
-    - target: {fileID: 1240882720282735792, guid: 744bb83820c711c4297c362c58512b41, type: 3}
-      propertyPath: 'deckToUse.Array.data[7]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e287e3b1757a5bb4fb52a1730edaae27, type: 2}
-    - target: {fileID: 1240882720282735792, guid: 744bb83820c711c4297c362c58512b41, type: 3}
-      propertyPath: 'deckToUse.Array.data[8]'
-      value: 
-      objectReference: {fileID: 11400000, guid: f3e648820013b454fbaae4968e6f65e0, type: 2}
-    - target: {fileID: 1240882720282735792, guid: 744bb83820c711c4297c362c58512b41, type: 3}
-      propertyPath: 'deckToUse.Array.data[9]'
-      value: 
-      objectReference: {fileID: 11400000, guid: fe896f13fb621fa4a8db59b48f1a632f, type: 2}
-    - target: {fileID: 1240882720282735792, guid: 744bb83820c711c4297c362c58512b41, type: 3}
-      propertyPath: 'deckToUse.Array.data[10]'
-      value: 
-      objectReference: {fileID: 11400000, guid: cd7c22a9f9b286248a14bdc86e581cb2, type: 2}
-    - target: {fileID: 1240882720282735792, guid: 744bb83820c711c4297c362c58512b41, type: 3}
-      propertyPath: 'deckToUse.Array.data[11]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e287e3b1757a5bb4fb52a1730edaae27, type: 2}
     - target: {fileID: 7158143141096320547, guid: 744bb83820c711c4297c362c58512b41, type: 3}
       propertyPath: m_Name
       value: Enemy Controller
@@ -1595,11 +1547,11 @@ SceneRoots:
   - {fileID: 351562394}
   - {fileID: 579067468}
   - {fileID: 714967167}
+  - {fileID: 3145961022638111809}
   - {fileID: 7306193784270236758}
   - {fileID: 838206980734226297}
   - {fileID: 1565590629}
   - {fileID: 1741588294}
   - {fileID: 207752361}
   - {fileID: 3653007105165603002}
-  - {fileID: 3145961022638111809}
   - {fileID: 537758442}

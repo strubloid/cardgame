@@ -35,7 +35,7 @@ public class EnemyHandController : HandController
         cardPositions.Clear();
 
         // Always calculate positions using a fixed hand size, not heldCards.Count
-        int handSize = Mathf.Max(heldCards.Count, 1);
+        int handSize = Mathf.Max(cardsInHand.Count, 1);
 
         Vector3 distanceBetweenPoints = Vector3.zero;
 
@@ -46,7 +46,7 @@ public class EnemyHandController : HandController
         }
 
         // for loop that will be setting the card positions in the hand
-        for (int i = 0; i < heldCards.Count; i++)
+        for (int i = 0; i < cardsInHand.Count; i++)
         {
             // Clamp index into the span so cards always start at minPos and move right
             float t = (handSize == 1) ? 0f : (float)i / (handSize - 1);
@@ -55,16 +55,16 @@ public class EnemyHandController : HandController
             cardPositions.Add(position);
 
             // Moving the card to the position smoothly
-            heldCards[i].MoveCardToPoint(cardPositions[i], minPos.rotation);
+            cardsInHand[i].MoveCardToPoint(cardPositions[i], minPos.rotation);
 
             // hold the cart in the moment
-            heldCards[i].inHand = true;
-            heldCards[i].handPosition = i;
+            cardsInHand[i].inHand = true;
+            cardsInHand[i].handPosition = i;
 
             // keep enemy face-down
-            heldCards[i].transform.rotation = Quaternion.Euler(
-                heldCards[i].transform.rotation.eulerAngles.x,
-                heldCards[i].transform.rotation.eulerAngles.y,
+            cardsInHand[i].transform.rotation = Quaternion.Euler(
+                cardsInHand[i].transform.rotation.eulerAngles.x,
+                cardsInHand[i].transform.rotation.eulerAngles.y,
                 -180f
             );
         }

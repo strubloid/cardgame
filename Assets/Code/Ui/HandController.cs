@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class HandController : MonoBehaviour
 {
     // Cards array that the player is holding
-    public List<Card> heldCards = new List<Card>();
+    public List<Card> cardsInHand = new List<Card>();
 
     // Min and max position of the hand
     public Transform minPos, maxPos;
@@ -23,6 +23,29 @@ public abstract class HandController : MonoBehaviour
     {
     }
 
+    /**
+     * This will be returning a list of cards that can be played
+     * based on the available mana
+     */
+    public List<Card> CardsAvaiableToPlay(int maxMana) {
+
+        // those are the cards that we can play
+        List<Card> cardsAvaiableToPlay = new List<Card>();
+
+        // looping through the cards in hand
+        foreach (Card card in cardsInHand)
+        {
+            // checking if we have enough mana to play the card
+            if (card.cardData.manaCost <= maxMana)
+            {
+                cardsAvaiableToPlay.Add(card);
+            }
+        }
+
+        return cardsAvaiableToPlay;
+
+    }
+
     // abstract method to be implemented in child classes
     public abstract void SetCardPositionsInHand();
 
@@ -32,15 +55,15 @@ public abstract class HandController : MonoBehaviour
     public void RemoveCardFromHand(Card cardToRemove) {
 
         // Check if the hand position is valid
-        if (cardToRemove.handPosition < 0 || cardToRemove.handPosition >= heldCards.Count)
+        if (cardToRemove.handPosition < 0 || cardToRemove.handPosition >= cardsInHand.Count)
         {
             return;
         }
 
         // Double check that the card is actually in the hand before removing
-        if (heldCards[cardToRemove.handPosition] == cardToRemove)
+        if (cardsInHand[cardToRemove.handPosition] == cardToRemove)
         {
-            heldCards.RemoveAt(cardToRemove.handPosition);
+            cardsInHand.RemoveAt(cardToRemove.handPosition);
             SetCardPositionsInHand();
         }
     }
@@ -51,7 +74,7 @@ public abstract class HandController : MonoBehaviour
     public void AddCardToHand(Card cardToAdd) {
 
         // Add the card to the held cards list
-        heldCards.Add(cardToAdd);
+        cardsInHand.Add(cardToAdd);
         SetCardPositionsInHand();
     }
 
@@ -62,7 +85,7 @@ public abstract class HandController : MonoBehaviour
     public void EmptyHand() {
 
         // loop all cards in hand and move them to discard pile
-        foreach (Card heldCard in heldCards) {
+        foreach (Card heldCard in cardsInHand) {
 
             // set the card as not in hand
             heldCard.inHand = false;
@@ -79,7 +102,7 @@ public abstract class HandController : MonoBehaviour
         }
 
         // clearing the array of held cards
-        heldCards.Clear();
+        cardsInHand.Clear();
 
     }
 }

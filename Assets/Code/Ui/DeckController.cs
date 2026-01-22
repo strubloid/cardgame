@@ -27,7 +27,7 @@ public class DeckController : MonoBehaviour
     public List<CardScriptableObject> deckToUse = new List<CardScriptableObject>();
 
     // This will be the active cards in the deck
-    protected List<CardScriptableObject> activeCards = new List<CardScriptableObject>();
+    public List<CardScriptableObject> activeCards = new List<CardScriptableObject>();
 
     // This will be the card to spawn from the deck
     public Card cardToSpawn;
