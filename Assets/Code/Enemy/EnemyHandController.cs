@@ -45,6 +45,8 @@ public class EnemyHandController : HandController
             distanceBetweenPoints = (maxPos.position - minPos.position) / (handSize - 1);
         }
 
+        Debug.Log("Enemy Hand Size: " + handSize);
+
         // for loop that will be setting the card positions in the hand
         for (int i = 0; i < heldCards.Count; i++)
         {

@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHandController
   heldCards: []
-  minPos: {fileID: 0}
-  maxPos: {fileID: 0}
+  minPos: {fileID: 2870726332758098150}
+  maxPos: {fileID: 4186063176287632083}
   cardPositions: []
 --- !u!1 &3667349760188286086
 GameObject:

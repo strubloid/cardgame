@@ -89,8 +89,15 @@ public class Card : MonoBehaviourWithMouseControls
 
         SetupCard();
 
-        // Finding the hand controller in the scene
-        handController = Object.FindFirstObjectByType<HandController>();
+        // getting what is the controller of the hand, if the card is a player one will be the player hand controller
+        // otherwise the enemy hand controller
+        if (isPlayer)
+        {
+            handController = Object.FindFirstObjectByType<PlayerHandController>();
+        }
+        else {             
+            handController = Object.FindFirstObjectByType<EnemyHandController>();
+        }
 
         // Getting the collider component of the card
         theCollider = GetComponent<Collider>();
