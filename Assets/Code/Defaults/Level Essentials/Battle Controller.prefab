@@ -45,13 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f27eadc982c4c498103b6973885d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleController
-  PlayerDeckController: {fileID: -1937097494821320830, guid: 19f293b954a13dc49886222c64eb3e1b, type: 3}
-  startMana: 4
+  startMana: 6
   maxMana: 12
   playerMana: 0
-  manaPerTurn: 2
+  manaPerTurn: 3
   DrawingCardsPerTurn: 1
-  startingCardsAmount: 5
+  startingCardsAmount: 6
   currentPhrase: 0
   timeBeforeStartingTurn: 1
   DiscardPoint: {fileID: 5460118115069102201}

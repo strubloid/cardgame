@@ -9,16 +9,16 @@ public class BattleController : MonoBehaviour
     public static BattleController instance;
 
     // Starting mana variables
-    public int startMana = 4;
-    public int maxMana = 12;
+    public int startMana = 6;
+    public int maxMana = 21;
     public int playerMana;
-    public int manaPerTurn = 2;
+    public int manaPerTurn = 3;
 
     // cards variable
     public int DrawingCardsPerTurn = 1;
 
     // Quantity of starting cards
-    public int startingCardsAmount = 5;
+    public int startingCardsAmount = 6;
 
     // This is for the order of the turns in the game, if we add any new stage, we
     // should add it here

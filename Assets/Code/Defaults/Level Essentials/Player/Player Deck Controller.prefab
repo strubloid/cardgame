@@ -49,14 +49,27 @@ MonoBehaviour:
   timeBetweenDrawingCards: 0.35
   isEnemy: 0
   deckToUse:
-  - {fileID: 11400000, guid: 0bbce49a972ced543b1b82beb72fe392, type: 2}
-  - {fileID: 11400000, guid: 72bc8c667ea1a2c4ca6f4a7a4d46bf5e, type: 2}
-  - {fileID: 11400000, guid: 22f7224e63ab6c44f90efe1634d16000, type: 2}
-  - {fileID: 11400000, guid: 2da3f64955fe92742924fdb664aeeacc, type: 2}
-  - {fileID: 11400000, guid: f3e648820013b454fbaae4968e6f65e0, type: 2}
-  - {fileID: 11400000, guid: fe896f13fb621fa4a8db59b48f1a632f, type: 2}
-  - {fileID: 11400000, guid: cd7c22a9f9b286248a14bdc86e581cb2, type: 2}
-  - {fileID: 11400000, guid: e287e3b1757a5bb4fb52a1730edaae27, type: 2}
+  - {fileID: 11400000, guid: 74dffc80a5331fe48a565aaf297b9f22, type: 2}
+  - {fileID: 11400000, guid: 42327d2ef7e8aa749ae5cf296f8f0cfe, type: 2}
+  - {fileID: 11400000, guid: d8244787d5ceaf344850b3229380bb73, type: 2}
+  - {fileID: 11400000, guid: f751c10b4ad509e4ab93717c3d4f2760, type: 2}
+  - {fileID: 11400000, guid: 7838d7319df4e6949ad1549e68d8014b, type: 2}
+  - {fileID: 11400000, guid: cfda8eb9a95226548b896bb95e56455b, type: 2}
+  - {fileID: 11400000, guid: 254afc9da8a9f0445b8077d2638d367d, type: 2}
+  - {fileID: 11400000, guid: 8991cf5a4e246924fadf66b4888953cd, type: 2}
+  - {fileID: 11400000, guid: ce0a288354674be4c845d5728ee92669, type: 2}
+  - {fileID: 11400000, guid: 1af54bcbb408ae8409653743aa8c4319, type: 2}
+  - {fileID: 11400000, guid: e3332c1df846ac04e9d05e476d9ee578, type: 2}
+  - {fileID: 11400000, guid: deb3418f8585c614e8c89ef5458eb2ef, type: 2}
+  - {fileID: 11400000, guid: 6f4a12169194636498f2ac8df10929d6, type: 2}
+  - {fileID: 11400000, guid: 2b48b608ce012234eab82167bb5ee5a5, type: 2}
+  - {fileID: 11400000, guid: 898188f9a4ef7a04c89b51ea88bf5a5a, type: 2}
+  - {fileID: 11400000, guid: a832f81b363783347a4d752268f12d64, type: 2}
+  - {fileID: 11400000, guid: 886ba3cf36310984a893e3803e3cc92d, type: 2}
+  - {fileID: 11400000, guid: 67d6e51675086e140846cd2930326598, type: 2}
+  - {fileID: 11400000, guid: eb948a471b78c904796799cd5954e840, type: 2}
+  - {fileID: 11400000, guid: 538158b009ff4894c80b9542a65cbe6f, type: 2}
+  activeCards: []
   cardToSpawn: {fileID: 800371825764060356, guid: 273d8a735135c6740964932b91a159a6, type: 3}
 --- !u!1001 &6085634788474416644
 PrefabInstance:

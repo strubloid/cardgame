@@ -84,8 +84,7 @@ public class EnemyController : MonoBehaviour
         EnemyDeckController.Instance.DrawCardToHand();
 
         // will run the draw card to hand function
-        float drawingCardsDelay = timeBetweenDrawingCards + 2.0f;
-        yield return new WaitForSeconds(drawingCardsDelay);
+        float playingCardsDelay = timeBetweenDrawingCards + 1.0f;
 
         // temporary list to hold the card points
         List<CardPlacePoint> cardPoints = new List<CardPlacePoint>();
@@ -98,7 +97,13 @@ public class EnemyController : MonoBehaviour
         Card selectedCard = null;
 
         // safety iterations
-        int iterations = 0;
+        int maxIterations = 20;
+
+        // loading a card to play
+        selectedCard = GetCardToPlay();
+
+        // TODO: REMOVE THIS LIMITATION AFTER TESTING
+        int cardPlayMax = 1;
 
         // executing the AI type
         switch (enemyAIType) {
@@ -106,19 +111,17 @@ public class EnemyController : MonoBehaviour
             // AI that places a defensive card from hand to the field
             case AIType.handDefensive:
 
-                Debug.Log("Enemy AI: Hand Defensive");
-
-                // getting a random card index from hand
-                selectedCard = GetCardToPlay();
-
                 // this will load the PreferredPoints and SecondaryPoints lists
                 LoadPreferedSecondaryPoints(cardPoints, enemyAIType);
 
-                iterations = 20;
-
                 // we check if we have a card to play, the safe net of iterations and if we have a prefered or secondary point
-                while (selectedCard != null && iterations > 0 && PreferredPoints.Count + SecondaryPoints.Count > 0)
+                while (selectedCard != null && maxIterations > 0 && PreferredPoints.Count + SecondaryPoints.Count > 0)
                 {
+                    // limiting to play only one card for attacking AI
+                    if (cardPlayMax > 1) {
+                        break;
+                    }
+
                     // getting the selected point
                     selectedPoint = GetSelectedPoint();
 
@@ -129,10 +132,10 @@ public class EnemyController : MonoBehaviour
                     selectedCard = GetCardToPlay();
 
                     // decrementing iterations
-                    iterations--;
+                    maxIterations--;
 
                     // will run the draw card to hand function
-                    yield return new WaitForSeconds(timeBetweenDrawingCards);
+                    yield return new WaitForSeconds(playingCardsDelay);
 
                 }
 
@@ -141,21 +144,11 @@ public class EnemyController : MonoBehaviour
             // AI that places an attacking card from hand to the field
             case AIType.handAttacking:
 
-                Debug.Log("Enemy AI: Hand Attacking");
-
-                // getting a random card index from hand
-                selectedCard = GetCardToPlay();
-
                 // this will load the PreferredPoints and SecondaryPoints lists
                 LoadPreferedSecondaryPoints(cardPoints, enemyAIType);
 
-                iterations = 20;
-
-                // TODO: REMOVE THIS LIMITATION AFTER TESTING
-                int cardPlayMax = 1; 
-
                 // we check if we have a card to play, the safe net of iterations and if we have a prefered or secondary point
-                while (selectedCard != null && iterations > 0 && PreferredPoints.Count + SecondaryPoints.Count > 0)
+                while (selectedCard != null && maxIterations > 0 && PreferredPoints.Count + SecondaryPoints.Count > 0)
                 {
 
                     // limiting to play only one card for attacking AI
@@ -173,12 +166,12 @@ public class EnemyController : MonoBehaviour
                     selectedCard = GetCardToPlay();
 
                     // decrementing iterations
-                    iterations--;
+                    maxIterations--;
 
                     cardPlayMax++;
 
                     // will run the draw card to hand function
-                    yield return new WaitForSeconds(timeBetweenDrawingCards + 2.0f);
+                    yield return new WaitForSeconds(playingCardsDelay);
 
                 }
 
@@ -277,17 +270,6 @@ public class EnemyController : MonoBehaviour
      */
     public void PlayCard(Card cardToPlay, CardPlacePoint placePoint) 
     {
-
-        Debug.Log("Card To Play: " + cardToPlay);
-        Debug.Log("Placepoint: " + placePoint);
-
-
-        // Spawning the card at the spawn point
-        //Card newCard = Instantiate(cardToSpawn, cardSpawnPoint.position, cardSpawnPoint.rotation);
-
-        // Setting the card as enemy card
-        //newCard.cardData = cardToPlay.cardData;
-
         // Because of the setup of the card prefab, we need to apply an extra rotation to make it face the correct way
         Quaternion finalRotation = Quaternion.Euler(0f, 180f, 0f);
 
