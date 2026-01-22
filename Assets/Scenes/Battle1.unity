@@ -1192,6 +1192,22 @@ PrefabInstance:
       propertyPath: 'deckToUse.Array.data[7]'
       value: 
       objectReference: {fileID: 11400000, guid: e287e3b1757a5bb4fb52a1730edaae27, type: 2}
+    - target: {fileID: 1240882720282735792, guid: 744bb83820c711c4297c362c58512b41, type: 3}
+      propertyPath: 'deckToUse.Array.data[8]'
+      value: 
+      objectReference: {fileID: 11400000, guid: f3e648820013b454fbaae4968e6f65e0, type: 2}
+    - target: {fileID: 1240882720282735792, guid: 744bb83820c711c4297c362c58512b41, type: 3}
+      propertyPath: 'deckToUse.Array.data[9]'
+      value: 
+      objectReference: {fileID: 11400000, guid: fe896f13fb621fa4a8db59b48f1a632f, type: 2}
+    - target: {fileID: 1240882720282735792, guid: 744bb83820c711c4297c362c58512b41, type: 3}
+      propertyPath: 'deckToUse.Array.data[10]'
+      value: 
+      objectReference: {fileID: 11400000, guid: cd7c22a9f9b286248a14bdc86e581cb2, type: 2}
+    - target: {fileID: 1240882720282735792, guid: 744bb83820c711c4297c362c58512b41, type: 3}
+      propertyPath: 'deckToUse.Array.data[11]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e287e3b1757a5bb4fb52a1730edaae27, type: 2}
     - target: {fileID: 7158143141096320547, guid: 744bb83820c711c4297c362c58512b41, type: 3}
       propertyPath: m_Name
       value: Enemy Controller
@@ -1209,6 +1225,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 152856131533342204, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 588152330238021851, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1145018263419350078, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2261304919704694241, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.73929
@@ -1252,6 +1280,34 @@ PrefabInstance:
     - target: {fileID: 5579734706968398650, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
       propertyPath: m_Name
       value: Card Points Controller
+      objectReference: {fileID: 0}
+    - target: {fileID: 6203337178737482697, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6673077902393335443, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7894197967622911206, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8077473824740167028, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8226219848541274717, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508438937575305109, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8515181366969873180, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: m_Center.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

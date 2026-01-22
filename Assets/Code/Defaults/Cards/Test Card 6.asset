@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardScriptableObject
   currentHealth: 3
   attackPower: 3
-  manaCost: 1
+  manaCost: 2
   shieldValue: 1
   cardName: SpiderMan
   actionDescription: Web +3
   cardLore: Web auround all characters
   characterSprite: {fileID: 21300000, guid: e084025e714b66e499300c378ea766a4, type: 3}
   backgroundSprite: {fileID: 21300000, guid: 051b6f6c81b57ac4a9ef7f65b46ae866, type: 3}
+  cardType: 0

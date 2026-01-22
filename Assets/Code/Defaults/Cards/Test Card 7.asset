@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardScriptableObject
   currentHealth: 6
   attackPower: 2
-  manaCost: 1
+  manaCost: 2
   shieldValue: 2
   cardName: ChompMe
   actionDescription: ATK - 1 for all enemies
   cardLore: Web auround all characters
   characterSprite: {fileID: 21300000, guid: b7ae2cc239ca7dd4eb45ac845d2fa034, type: 3}
   backgroundSprite: {fileID: 21300000, guid: d935388c7a690114cb9a718551384eb5, type: 3}
+  cardType: 0
