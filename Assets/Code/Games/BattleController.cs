@@ -196,6 +196,8 @@ public class BattleController : MonoBehaviour
                 // only at the begining of the round 1
                 if (RoundsPlayed >= 1)
                 {
+                    Debug.Log("Player");
+
                     // Play the player turn animation
                     UiController.instance.PlayPlayerTurnAnimation();
 
@@ -216,6 +218,8 @@ public class BattleController : MonoBehaviour
 
                 // We will attack only if we have played at least one round
                 if (RoundsPlayed >= 1) {
+
+                    Debug.Log("Player Attack");
 
                     // Play the player attack animation
                     UiController.instance.PlayPlayerAttackAnimation();
@@ -241,6 +245,8 @@ public class BattleController : MonoBehaviour
                 // only show when is the first turn
                 if (RoundsPlayed >= 1)
                 {
+                    Debug.Log("Enemy");
+
                     // only on the second turn forward, we are able to increment the mana
                     IncrementEnemyMana();
 
@@ -264,6 +270,8 @@ public class BattleController : MonoBehaviour
                 // We will attack only if we have played at least one round
                 if (RoundsPlayed >= 1)
                 {
+                    Debug.Log("Enemy Attack");
+
                     // Play the enemy attack animation
                     UiController.instance.PlayEnemyAttackAnimation();
 
