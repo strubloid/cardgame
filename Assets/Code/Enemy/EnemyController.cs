@@ -290,6 +290,9 @@ public class EnemyController : MonoBehaviour
         // Assigning the selected point to the card
         cardToPlay.assignedPlace = placePoint;
 
+        // saying isnt at the hand of the enemy anymore
+        cardToPlay.inHand = false;
+
         // removing from the enemy hand controller
         EnemyHandController.Instance.RemoveCardFromHand(cardToPlay);
 

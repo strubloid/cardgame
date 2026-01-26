@@ -271,8 +271,6 @@ public class Card : MonoBehaviourWithMouseControls
      */
     protected override void OnHoverEnter()
     {
-        Debug.Log("Hover Entered on card: " + cardData.cardName);
-
         // Doing nothing when we are paused the game (the timescale == 0f means the game is paused)
         if (Time.timeScale == 0f)
         {
@@ -287,13 +285,11 @@ public class Card : MonoBehaviourWithMouseControls
 
         // player card hands action
         if (inHand && isPlayer) {
-            Debug.Log("Player card");
             onHoverEnterPlayer();
         }
 
         // enemy card hover action
         if (!inHand && !isPlayer) {
-            Debug.Log("Enemy card ");
             onHoverEnterEnemy();
         }
     }
@@ -313,6 +309,7 @@ public class Card : MonoBehaviourWithMouseControls
      */
     public void onHoverEnterEnemy()
     {
+
         float enemyHoverLiftY = 1.6f;
         enemyHoverActive = true;
 
@@ -401,8 +398,6 @@ public class Card : MonoBehaviourWithMouseControls
         {
             return;
         }
-
-        Debug.Log("Current Phrase" + BattleController.instance.currentPhrase);
 
         // This will check if the card is in hand
         if (inHand && BattleController.instance.currentPhrase == BattleController.TurnOrder.PlayerTurn && isPlayer)
