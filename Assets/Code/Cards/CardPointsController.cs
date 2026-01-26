@@ -13,7 +13,7 @@ public class CardPointsController : MonoBehaviour
     public CardPlacePoint[] EnemyCardPoints;
 
     // Time between actions in seconds
-    public float timeBetweenActions = 0.5f;
+    public float timeBetweenActions = 1.0f;
 
     /**
      * Awake is called when the script instance is being loaded

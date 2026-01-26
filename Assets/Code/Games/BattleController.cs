@@ -15,7 +15,7 @@ public class BattleController : MonoBehaviour
     public int manaPerTurn = 3;
 
     // Time for setting up the battle start
-    public float timeForSettingUpBatteStart = 4.0f;
+    public float WaitingTimeBforeEachRound = 0.8f;
 
     // rounds played variable
     public int RoundsPlayed = 0;
@@ -38,9 +38,6 @@ public class BattleController : MonoBehaviour
 
     // Current phase of the turn
     public TurnOrder currentPhrase;
-
-    // Time before starting the turn
-    public float timeBeforeStartingTurn = 1f;
 
     // Position that the card will move when discarded
     public Transform DiscardPoint;
@@ -170,8 +167,19 @@ public class BattleController : MonoBehaviour
             return;
         }
 
+        StartCoroutine(AdvanceTurnCo());
+
+    }
+
+    /**
+     * Coroutine to handle the turn advancement with delays
+     */
+    IEnumerator AdvanceTurnCo()
+    {
+
         // if we exceed the max size, we reset to zero
-        if ( (int) currentPhrase >= System.Enum.GetValues(typeof(TurnOrder)).Length){
+        if ((int)currentPhrase >= System.Enum.GetValues(typeof(TurnOrder)).Length)
+        {
             currentPhrase = 0;
 
             // this count the number of rounds played
@@ -196,8 +204,6 @@ public class BattleController : MonoBehaviour
                 // only at the begining of the round 1
                 if (RoundsPlayed >= 1)
                 {
-                    Debug.Log("Player");
-
                     // Play the player turn animation
                     UiController.instance.PlayPlayerTurnAnimation();
 
@@ -217,12 +223,13 @@ public class BattleController : MonoBehaviour
                 UiController.instance.SetPlayerCardAttack();
 
                 // We will attack only if we have played at least one round
-                if (RoundsPlayed >= 1) {
-
-                    Debug.Log("Player Attack");
-
+                if (RoundsPlayed >= 1)
+                {
                     // Play the player attack animation
                     UiController.instance.PlayPlayerAttackAnimation();
+
+                    // waiting for the time between actions
+                    yield return new WaitForSeconds(WaitingTimeBforeEachRound/2);
 
                     // Let the player cards attack
                     CardPointsController.instance.PlayerAttack();
@@ -245,13 +252,14 @@ public class BattleController : MonoBehaviour
                 // only show when is the first turn
                 if (RoundsPlayed >= 1)
                 {
-                    Debug.Log("Enemy");
-
                     // only on the second turn forward, we are able to increment the mana
                     IncrementEnemyMana();
 
                     // Play the enemy turn animation
                     UiController.instance.PlayEnemyTurnAnimation();
+
+                    // waiting for the time between actions
+                    yield return new WaitForSeconds(WaitingTimeBforeEachRound);
                 }
 
                 // Let the enemy play their actions
@@ -270,18 +278,21 @@ public class BattleController : MonoBehaviour
                 // We will attack only if we have played at least one round
                 if (RoundsPlayed >= 1)
                 {
-                    Debug.Log("Enemy Attack");
-
                     // Play the enemy attack animation
                     UiController.instance.PlayEnemyAttackAnimation();
 
+                    // waiting for the time between actions
+                    yield return new WaitForSeconds(WaitingTimeBforeEachRound/2);
+
                     // Let the enemy cards attack
                     CardPointsController.instance.EnemyAttack();
+
                 } else {
                     AdvanceTurn();
                 }
                 break;
         }
+
     }
 
     /**
