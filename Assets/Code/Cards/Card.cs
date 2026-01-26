@@ -72,10 +72,14 @@ public class Card : MonoBehaviourWithMouseControls
     private bool enemyHoverActive;
 
     // Time to destroy a card after being moved to discard pile
-    private float TimeToDestroyACard = 3f;
+    private float TimeToDestroyACard = 2f;
 
     // Reference to the animator component
     public Animator animator;
+
+    // Reference to the dead card effect animator
+    public GameObject DeadEffect;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -88,6 +92,8 @@ public class Card : MonoBehaviourWithMouseControls
         } 
 
         SetupCard();
+
+
 
         // getting what is the controller of the hand, if the card is a player one will be the player hand controller
         // otherwise the enemy hand controller
@@ -430,6 +436,29 @@ public class Card : MonoBehaviourWithMouseControls
     }
 
     /**
+     * This will be triggering the dead card effect
+     */
+    public void DamageDeadCardEffect()
+    {
+        // turning on the dead card effect
+        DeadEffect.SetActive(true);
+
+        // getting the slice effect transform
+        Transform SliceEffectTransform = DeadEffect.transform.Find("SliceEffect");
+
+        // add here the code for playing the slice effect
+        ParticleSystem CardSliceEffect = SliceEffectTransform.GetComponentInChildren<ParticleSystem>(true);
+        CardSliceEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        CardSliceEffect.Play(true);
+
+        // add here the code for playing the blood effect
+        Transform BloodEffectTransform = DeadEffect.transform.Find("BloodEffect");
+        ParticleSystem BloodEffect = BloodEffectTransform.GetComponentInChildren<ParticleSystem>(true);
+        BloodEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        BloodEffect.Play(true);
+    }
+
+    /**
      * This will be damaging the card with a specific ammount
      */
     public void DamageCard(int damageAmmount) {
@@ -451,15 +480,19 @@ public class Card : MonoBehaviourWithMouseControls
             {
                 assignedPlace.activeCard = null;
             }
+            
+            // Trigger the Jump animation while being destroyed
+            animator.SetTrigger("Hide");
+
+            // This will trigger the dead effect
+            DamageDeadCardEffect();
 
             // moving to the point
-            MoveCardToPoint(
-                BattleController.instance.DiscardPoint.position,
-                BattleController.instance.DiscardPoint.rotation
-            );
-
-            // Trigger the Jump animation while being destroyed
-            animator.SetTrigger("Jump");
+            //MoveCardToPoint(
+            //    BattleController.instance.DiscardPoint.position,
+            //    BattleController.instance.DiscardPoint.rotation
+            //);
+                       
 
             // destroy the card if health is zero, will wait for 5 seconds before destroying
             Destroy(gameObject, TimeToDestroyACard);
