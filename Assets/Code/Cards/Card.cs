@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -72,14 +73,14 @@ public class Card : MonoBehaviourWithMouseControls
     private bool enemyHoverActive;
 
     // Time to destroy a card after being moved to discard pile
-    private float TimeToDestroyACard = 2f;
+    private float TimeToDestroyACard = 1.8f;
+    private float TimeToDestroy = 0.6f;
 
     // Reference to the animator component
     public Animator animator;
 
     // Reference to the dead card effect animator
     public GameObject DeadEffect;
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -440,6 +441,17 @@ public class Card : MonoBehaviourWithMouseControls
      */
     public void DamageDeadCardEffect()
     {
+        StartCoroutine(DamageDeadCardEffectCo());
+    }
+
+    IEnumerator DamageDeadCardEffectCo() 
+    {
+        // Trigger the Jump animation while being destroyed
+        animator.SetTrigger("Hide");
+
+        // waiting for a second before showing the dead effect
+        yield return new WaitForSeconds(TimeToDestroy);
+
         // turning on the dead card effect
         DeadEffect.SetActive(true);
 
@@ -480,9 +492,6 @@ public class Card : MonoBehaviourWithMouseControls
             {
                 assignedPlace.activeCard = null;
             }
-            
-            // Trigger the Jump animation while being destroyed
-            animator.SetTrigger("Hide");
 
             // This will trigger the dead effect
             DamageDeadCardEffect();
@@ -492,7 +501,7 @@ public class Card : MonoBehaviourWithMouseControls
             //    BattleController.instance.DiscardPoint.position,
             //    BattleController.instance.DiscardPoint.rotation
             //);
-                       
+
 
             // destroy the card if health is zero, will wait for 5 seconds before destroying
             Destroy(gameObject, TimeToDestroyACard);
