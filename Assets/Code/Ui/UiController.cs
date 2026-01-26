@@ -384,10 +384,8 @@ public class UiController : MonoBehaviour
      */
     public void DrawCard() {
 
-        // TODO: rafactor this
-        // calling the draw card for mana function
+        // calling the player draw card for mana function
         PlayerDeckController.Instance.DrawCardForMana();
-        //DeckController.instance.DrawCardForMana();
 
         // playing the sound effect for drawing a card
         AudioManager.instance.PlayButtonPress();
