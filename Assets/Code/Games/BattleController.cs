@@ -14,6 +14,12 @@ public class BattleController : MonoBehaviour
     public int playerMana;
     public int manaPerTurn = 3;
 
+    // Time for setting up the battle start
+    public float timeForSettingUpBatteStart = 4.0f;
+
+    // rounds played variable
+    public int RoundsPlayed = 0;
+
     // cards variable
     public int DrawingCardsPerTurn = 1;
 
@@ -68,12 +74,6 @@ public class BattleController : MonoBehaviour
     [Range(0f, 1f)]
     public float playerFirstChance = .5f;
 
-    // flag to indicate if it's the first turn
-    public bool firstTurn = true;
-
-    // counter for the first turn
-    public int FirstTurnCount = 0;
-
     /**
      * Awake is called when the script instance is being loaded
      */
@@ -92,6 +92,9 @@ public class BattleController : MonoBehaviour
         PlayerHealth = startHealth;
         EnemyHealth = startHealth;
         //EnemyHealth = 3;
+
+        // Play the background music for the battle
+        AudioManager.instance.PlayBackgroundMusic();
 
         // updating the UI of the player health
         UiController.instance.SetPlayerHealthText(PlayerHealth);
@@ -113,18 +116,13 @@ public class BattleController : MonoBehaviour
 
         // Fill the mana at the start of the battle
         bool startMatch = true;
+
+        // filling the mana of both players
         FillPlayerMana(startMatch);
         FillEnemyMana(startMatch);
 
-        // taking some seconds before starting the first turn
-        StartingTheInitialPhrase(timeBeforeStartingTurn);
-
         // this will determine who starts first
         WhoStartsFirst();
-
-        // Play the background music for the battle
-        AudioManager.instance.PlayBackgroundMusic();
-
     }
 
     /**
@@ -136,14 +134,14 @@ public class BattleController : MonoBehaviour
         if (Random.value > playerFirstChance)
         {
             // turn before the enemy starts
-            currentPhrase = TurnOrder.PlayerCardAttack;
+            currentPhrase = TurnOrder.PlayerTurn;
 
             // now it goes to the enemy turn
             AdvanceTurn();
 
         } else {
             // turn before the player starts
-            currentPhrase = TurnOrder.EnemyCardAttack;
+            currentPhrase = TurnOrder.EnemyTurn;
 
             // now it goes to the player turn
             AdvanceTurn();
@@ -161,27 +159,6 @@ public class BattleController : MonoBehaviour
     }
 
     /**
-     * This will be starting the initial phrase after a waiting time
-     */
-    public void StartingTheInitialPhrase(float waitingTime) { 
-
-        StartCoroutine(StartingTheInitialPhraseCo(waitingTime));
-
-    }
-
-    /**
-     * Coroutine to advance the turn after a waiting time
-     */
-    IEnumerator StartingTheInitialPhraseCo(float waitingTime)
-    {
-        // will wait for the time between drawing cards
-        yield return new WaitForSeconds(waitingTime);
-
-        // will run the draw card to hand function
-        UiController.instance.SetPlayerTurn();
-    }
-
-    /**
      * This will be changing the turn to the next phase
      * the main responsibility of this method is to handle the turn order
      */
@@ -193,17 +170,15 @@ public class BattleController : MonoBehaviour
             return;
         }
 
-        // advance to the next turn phase
-        currentPhrase++;
-
         // if we exceed the max size, we reset to zero
         if ( (int) currentPhrase >= System.Enum.GetValues(typeof(TurnOrder)).Length){
             currentPhrase = 0;
-        }
 
-        // after 4 turns, we disable the first turn flag
-        if (firstTurn && FirstTurnCount >= 4) {
-            firstTurn = false;
+            // this count the number of rounds played
+            RoundsPlayed++;
+
+            // updating the rounds played in the UI
+            UiController.instance.SetRoundsText(RoundsPlayed);
         }
 
         // Show the turn change in the UI
@@ -218,13 +193,14 @@ public class BattleController : MonoBehaviour
                 // Those are the free action we can do at the start of the turn
                 PlayerDeckController.Instance.DrawMultipleCards(DrawingCardsPerTurn);
 
-                // if isnt the first turn, we let the cards attack
-                if (!firstTurn)
+                // only at the begining of the round 1
+                if (RoundsPlayed >= 1)
                 {
-                    // only on the second turn forward, we are able to increment the mana
+                    // Play the player turn animation
+                    UiController.instance.PlayPlayerTurnAnimation();
+
+                    // incrementing the mana of the player
                     IncrementMana();
-                } else {
-                    FirstTurnCount++;
                 }
 
                 break;
@@ -232,16 +208,22 @@ public class BattleController : MonoBehaviour
             // Player's cards attack
             case TurnOrder.PlayerCardAttack:
 
+                // advance to the next turn phase
+                currentPhrase++;
+
                 // Update the UI to show it's the player's card attack phase
                 UiController.instance.SetPlayerCardAttack();
 
-                // if isnt the first turn, we let the cards attack
-                if (!firstTurn) {
-                    CardPointsController.instance.PlayerAttack(); // Let the cards attack
-                } else {
-                    FirstTurnCount++;
+                // We will attack only if we have played at least one round
+                if (RoundsPlayed >= 1) {
 
-                    // we move the turn forward
+                    // Play the player attack animation
+                    UiController.instance.PlayPlayerAttackAnimation();
+
+                    // Let the player cards attack
+                    CardPointsController.instance.PlayerAttack();
+
+                } else {
                     AdvanceTurn();
                 }
 
@@ -250,43 +232,46 @@ public class BattleController : MonoBehaviour
             // Enemy's turn to play cards
             case TurnOrder.EnemyTurn:
 
+                // advance to the next turn phase
+                currentPhrase++;
+
                 // Update the UI to show it's the enemy's turn
                 UiController.instance.SetEnemyTurn();
 
-                // if isnt the first turn, we let the cards attack
-                if (!firstTurn)
+                // only show when is the first turn
+                if (RoundsPlayed >= 1)
                 {
                     // only on the second turn forward, we are able to increment the mana
                     IncrementEnemyMana();
-                }
-                else
-                {
-                    FirstTurnCount++;
+
+                    // Play the enemy turn animation
+                    UiController.instance.PlayEnemyTurnAnimation();
                 }
 
                 // Let the enemy play their actions
                 EnemyController.instance.StartAction();
-
                 break;
 
             // Enemy's cards attack
             case TurnOrder.EnemyCardAttack:
 
+                // advance to the next turn phase
+                currentPhrase++;
+
                 // Update the UI to show it's the enemy's card attack phase
                 UiController.instance.SetEnemyCardAttack();
 
-                // if isnt the first turn, we let the cards attack
-                if (!firstTurn)
+                // We will attack only if we have played at least one round
+                if (RoundsPlayed >= 1)
                 {
+                    // Play the enemy attack animation
+                    UiController.instance.PlayEnemyAttackAnimation();
+
                     // Let the enemy cards attack
                     CardPointsController.instance.EnemyAttack();
                 } else {
-                    FirstTurnCount++;
-
-                    // we move the turn forward
                     AdvanceTurn();
                 }
-
                 break;
         }
     }
@@ -406,6 +391,9 @@ public class BattleController : MonoBehaviour
     {
         // Disable the end turn button to prevent multiple clicks
         UiController.instance.endTurnButton.SetActive(false);
+
+        // we update the current phase only when we click the end turn button
+        currentPhrase++;
 
         // For now this is the same as advancing the turn
         AdvanceTurn();

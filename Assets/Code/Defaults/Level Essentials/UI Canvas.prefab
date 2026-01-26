@@ -1278,6 +1278,7 @@ MonoBehaviour:
   enemyTurnOff: {fileID: 1028553562946963074}
   enemyAttackOn: {fileID: 5650600910370795092}
   enemyAttackOff: {fileID: 6232906745149296503}
+  TurnAnimator: {fileID: 1825935211495092434}
   playerDamage: {fileID: 5900777481245284163}
   enemyDamage: {fileID: 2515036357087078084}
   battleEndScreen: {fileID: 4657047643770854564}
@@ -2469,6 +2470,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3303015982163103528}
+  - component: {fileID: 1825935211495092434}
   m_Layer: 5
   m_Name: CardTurnsAnimation
   m_TagString: Untagged
@@ -2499,6 +2501,28 @@ RectTransform:
   m_AnchoredPosition: {x: 177, y: 97}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1825935211495092434
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5389218257736067898}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c407efbe0fee265449bba16ee6f603e6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5410793470924738202
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 public class UiController : MonoBehaviour
 {
@@ -45,6 +46,13 @@ public class UiController : MonoBehaviour
     public GameObject enemyTurnOff;
     public GameObject enemyAttackOn;
     public GameObject enemyAttackOff;
+    public Animator TurnAnimator;
+
+    // Time between each action animation
+    public float timeBetweenActions = 15.0f;
+
+    // Rounds count reference
+    public TMP_Text RoundsText;
 
     // Damage indicator references
     public UiDamageIndicator playerDamage, enemyDamage;
@@ -138,6 +146,93 @@ public class UiController : MonoBehaviour
         EnemyHealthText.text = "" + life;
     }
 
+    /**
+     * This will be playing the turn animation
+     */
+    public void PlayPlayerTurnAnimation()
+    {
+        StartCoroutine(PlayPlayerTurnAnimationCo());
+    }
+
+    /**
+     * This will be the coroutine to play the player turn animation
+     */
+    IEnumerator PlayPlayerTurnAnimationCo()
+    {
+        // playing the player turn animation
+        TurnAnimator.SetTrigger("PlayerTurn");
+
+        // waiting for the time between actions
+        yield return new WaitForSeconds(timeBetweenActions);
+    }
+
+    /**
+     * This will be playing the turn animation
+     */
+    public void PlayEnemyTurnAnimation()
+    {
+        StartCoroutine(PlayEnemyTurnAnimationCo());
+    }
+
+    /**
+     * This will be the coroutine to play the enemy turn animation
+     */
+    IEnumerator PlayEnemyTurnAnimationCo()
+    {
+        // playing the enemy turn animation
+        TurnAnimator.SetTrigger("EnemyTurn");
+
+        // waiting for the time between actions
+        yield return new WaitForSeconds(timeBetweenActions);
+    }
+
+    /**
+     * This will be playing the player attack animation
+     */
+    public void PlayPlayerAttackAnimation()
+    {
+        StartCoroutine(PlayPlayerAttackAnimationCo());
+    }
+
+    /**
+     * This will be the coroutine to play the player attack animation
+     */
+    IEnumerator PlayPlayerAttackAnimationCo()
+    {
+        // playing the player attack animation
+        TurnAnimator.SetTrigger("PlayerAttack");
+
+        // waiting for the time between actions
+        yield return new WaitForSeconds(timeBetweenActions);
+    }
+
+    /**
+     * This will be playing the enemy attack animation
+     */
+    public void PlayEnemyAttackAnimation()
+    {
+        StartCoroutine(PlayEnemyAttackAnimationCo());
+    }
+
+    /**
+     * This will be the coroutine to play the enemy attack animation
+     */
+    IEnumerator PlayEnemyAttackAnimationCo()
+    {
+        // playing the enemy attack animation
+        TurnAnimator.SetTrigger("EnemyAttack");
+
+        // waiting for the time between actions
+        yield return new WaitForSeconds(timeBetweenActions);
+    }
+
+    /**
+     * This will be setting the rounds text in the UI
+     */
+    public void SetRoundsText(int round) {
+
+        RoundsText.text = "" + round;
+    }
 
     /**
      * This will be setting the UI for the player turn
@@ -237,7 +332,7 @@ public class UiController : MonoBehaviour
         EnemyCardAttackText.fontSizeMax = 22;
         EnemyCardAttackText.color = DisabledTurn;
         enemyAttackOn.SetActive(false);
-        enemyAttackOff.SetActive(true);
+        enemyAttackOff.SetActive(true);        
     }
 
     /**
@@ -271,7 +366,6 @@ public class UiController : MonoBehaviour
         EnemyCardAttackText.color = EnabledTurn; 
         enemyAttackOn.SetActive(true);
         enemyAttackOff.SetActive(false);
-
     }
 
 
