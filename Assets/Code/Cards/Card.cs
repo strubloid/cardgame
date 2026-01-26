@@ -74,7 +74,7 @@ public class Card : MonoBehaviourWithMouseControls
 
     // Time to destroy a card after being moved to discard pile
     private float TimeToDestroyACard = 1.8f;
-    private float TimeToDestroy = 0.6f;
+    private float TimeToHide = 0.5f;
 
     // Reference to the animator component
     public Animator animator;
@@ -450,7 +450,7 @@ public class Card : MonoBehaviourWithMouseControls
         animator.SetTrigger("Hide");
 
         // waiting for a second before showing the dead effect
-        yield return new WaitForSeconds(TimeToDestroy);
+        yield return new WaitForSeconds(TimeToHide);
 
         // turning on the dead card effect
         DeadEffect.SetActive(true);
