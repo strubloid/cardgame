@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: b287f43d668f28343812b25876aad907
+timeCreated: 1536575408
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295350
+  packageName: Game VFX - FireSkill Collection(URP)
+  packageVersion: 1.0
+  assetPath: Assets/FX_FireSkill/Materials/fireball_yellow.mat
+  uploadId: 690004

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ea05e0f73fcd41545825a36deb9f5626
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295350
+  packageName: Game VFX - FireSkill Collection(URP)
+  packageVersion: 1.0
+  assetPath: Assets/FX_FireSkill/Prefab/FX_FireHit_03.prefab
+  uploadId: 690004

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 968f6d063bcc5cc4c869cdc3a5fe6e40
+timeCreated: 1536584314
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295350
+  packageName: Game VFX - FireSkill Collection(URP)
+  packageVersion: 1.0
+  assetPath: Assets/FX_FireSkill/Materials/glow_fire_01.mat
+  uploadId: 690004

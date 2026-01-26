@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 86415e427b4f8454dbdd6ed22466410a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295350
+  packageName: Game VFX - FireSkill Collection(URP)
+  packageVersion: 1.0
+  assetPath: Assets/FX_FireSkill/Prefab/Mesh/20020_Arrow.prefab
+  uploadId: 690004

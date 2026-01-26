@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fb20da6e7fe3e984cbdaaa2c21601ba9
+timeCreated: 1463388114
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295350
+  packageName: Game VFX - FireSkill Collection(URP)
+  packageVersion: 1.0
+  assetPath: Assets/FX_FireSkill/Materials/Fire_real 4.mat
+  uploadId: 690004

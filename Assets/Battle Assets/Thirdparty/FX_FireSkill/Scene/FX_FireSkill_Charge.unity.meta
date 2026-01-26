@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5f62f73b06f2a934ea70bbe81602306c
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295350
+  packageName: Game VFX - FireSkill Collection(URP)
+  packageVersion: 1.0
+  assetPath: Assets/FX_FireSkill/Scene/FX_FireSkill_Charge.unity
+  uploadId: 690004

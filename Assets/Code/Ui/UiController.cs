@@ -47,6 +47,7 @@ public class UiController : MonoBehaviour
     public GameObject enemyAttackOn;
     public GameObject enemyAttackOff;
     public Animator TurnAnimator;
+    public ParticleSystem BackgroundTurnAnimator;
 
     // Time between each action animation
     public float timeBetweenActions = 15.0f;
@@ -113,6 +114,14 @@ public class UiController : MonoBehaviour
             PauseUnpause();
         }
 
+        //If we press T, we advance the turn
+        if (Keyboard.current != null && Keyboard.current.tKey.wasPressedThisFrame)
+        {
+            //AdvanceTurn();
+            PlayPlayerTurnAnimation();
+
+        }
+
     }
 
     /**
@@ -162,6 +171,10 @@ public class UiController : MonoBehaviour
         // playing the player turn animation
         TurnAnimator.SetTrigger("PlayerTurn");
 
+        // playing the background turn animation
+        BackgroundTurnAnimator.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        BackgroundTurnAnimator.Play(true);
+
         // waiting for the time between actions
         yield return new WaitForSeconds(timeBetweenActions);
     }
@@ -182,8 +195,13 @@ public class UiController : MonoBehaviour
         // playing the enemy turn animation
         TurnAnimator.SetTrigger("EnemyTurn");
 
+        // playing the background turn animation
+        BackgroundTurnAnimator.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        BackgroundTurnAnimator.Play(true);
+
         // waiting for the time between actions
         yield return new WaitForSeconds(timeBetweenActions);
+
     }
 
     /**
@@ -202,8 +220,13 @@ public class UiController : MonoBehaviour
         // playing the player attack animation
         TurnAnimator.SetTrigger("PlayerAttack");
 
+        // playing the background turn animation
+        BackgroundTurnAnimator.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        BackgroundTurnAnimator.Play(true);
+
         // waiting for the time between actions
         yield return new WaitForSeconds(timeBetweenActions);
+
     }
 
     /**
@@ -222,8 +245,13 @@ public class UiController : MonoBehaviour
         // playing the enemy attack animation
         TurnAnimator.SetTrigger("EnemyAttack");
 
+        // playing the background turn animation
+        BackgroundTurnAnimator.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        BackgroundTurnAnimator.Play(true);
+
         // waiting for the time between actions
         yield return new WaitForSeconds(timeBetweenActions);
+
     }
 
     /**

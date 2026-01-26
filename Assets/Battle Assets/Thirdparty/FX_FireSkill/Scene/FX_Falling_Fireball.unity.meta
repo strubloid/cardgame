@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9352aff6fe6b4e345b1593dd4d2f6fc7
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295350
+  packageName: Game VFX - FireSkill Collection(URP)
+  packageVersion: 1.0
+  assetPath: Assets/FX_FireSkill/Scene/FX_Falling_Fireball.unity
+  uploadId: 690004

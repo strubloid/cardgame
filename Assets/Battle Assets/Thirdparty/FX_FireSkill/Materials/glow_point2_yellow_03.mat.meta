@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 11f539182ee3b03439f2ce34a013db3d
+timeCreated: 1528979677
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295350
+  packageName: Game VFX - FireSkill Collection(URP)
+  packageVersion: 1.0
+  assetPath: Assets/FX_FireSkill/Materials/glow_point2_yellow_03.mat
+  uploadId: 690004

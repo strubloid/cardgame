@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 4be75f5660cd2ca48bce0770ea0905ab
+timeCreated: 1531896460
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295350
+  packageName: Game VFX - FireSkill Collection(URP)
+  packageVersion: 1.0
+  assetPath: Assets/FX_FireSkill/Materials/Fx_Rin022.mat
+  uploadId: 690004

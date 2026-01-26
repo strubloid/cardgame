@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e470f4ca76dd4324294507b988698db5
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295350
+  packageName: Game VFX - FireSkill Collection(URP)
+  packageVersion: 1.0
+  assetPath: Assets/FX_FireSkill/Prefab/Mesh/sphere_8pl.prefab
+  uploadId: 690004

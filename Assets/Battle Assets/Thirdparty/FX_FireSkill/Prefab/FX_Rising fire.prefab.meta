@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 79f9a31615293194bab9d86a4bdaa771
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295350
+  packageName: Game VFX - FireSkill Collection(URP)
+  packageVersion: 1.0
+  assetPath: Assets/FX_FireSkill/Prefab/FX_Rising fire.prefab
+  uploadId: 690004

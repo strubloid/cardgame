@@ -148,11 +148,6 @@ public class BattleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //If we press T, we advance the turn
-        if (Keyboard.current != null && Keyboard.current.tKey.wasPressedThisFrame)
-        {
-            AdvanceTurn();
-        }
     }
 
     /**

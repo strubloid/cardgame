@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1db85c7f47754e5488ddf6cc91ae0898
+timeCreated: 1441666645
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295350
+  packageName: Game VFX - FireSkill Collection(URP)
+  packageVersion: 1.0
+  assetPath: Assets/FX_FireSkill/Materials/particle_sprite.mat
+  uploadId: 690004

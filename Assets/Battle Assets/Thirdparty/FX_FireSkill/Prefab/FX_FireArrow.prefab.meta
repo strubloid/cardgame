@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d718d3bcace645149ad8ff9144f97061
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295350
+  packageName: Game VFX - FireSkill Collection(URP)
+  packageVersion: 1.0
+  assetPath: Assets/FX_FireSkill/Prefab/FX_FireArrow.prefab
+  uploadId: 690004

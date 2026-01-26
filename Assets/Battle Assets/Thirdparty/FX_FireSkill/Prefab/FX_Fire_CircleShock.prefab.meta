@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c3c079ba5b19a164c9981ff5febaaf96
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295350
+  packageName: Game VFX - FireSkill Collection(URP)
+  packageVersion: 1.0
+  assetPath: Assets/FX_FireSkill/Prefab/FX_Fire_CircleShock.prefab
+  uploadId: 690004
