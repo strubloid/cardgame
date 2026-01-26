@@ -32,16 +32,19 @@ public class UiController : MonoBehaviour
     public TMP_Text EnemyTurnText;
     public TMP_Text EnemyCardAttackText;
 
-    // Colors for the player
-    private Color PlayerTurnColor = new Color32(0x10, 0x4D, 0x00, 0xB1); // #104D00, A=177
-    private Color PlayerCardAttackColor = new Color32(0xD9, 0x4D, 0x29, 0xB1); // #D90429 (red - attack)
-
-    // Colors for the enemy
-    private Color EnemyTurnColor = new Color32(0x8B, 0x00, 0x00, 0xB1); // #8B0000 (red - enemy turn)
-    private Color EnemyCardAttackColor = new Color32(0xD9, 0x04, 0x29, 0xB1); // #D90429 (red - attack)
-
-    // Disabled turn color
+    // Colors for the player and enemy turn texts
+    private Color EnabledTurn = new Color32(0xEF, 0xBF, 0x0D, 0xFF); // #EFBF0D  
     private Color DisabledTurn = new Color32(0x55, 0x55, 0x55, 0xB1); // #555555
+
+    // background game objects for the turn indicators
+    public GameObject playerTurnOn;
+    public GameObject playerTurnOff;
+    public GameObject playerAttackOn;
+    public GameObject playerAttackOff;
+    public GameObject enemyTurnOn;
+    public GameObject enemyTurnOff;
+    public GameObject enemyAttackOn;
+    public GameObject enemyAttackOff;
 
     // Damage indicator references
     public UiDamageIndicator playerDamage, enemyDamage;
@@ -148,21 +151,26 @@ public class UiController : MonoBehaviour
         drawCardButton.SetActive(true);
 
         // Setting up the player turn Text as visble and the other ones disabled
-        PlayerTurnText.fontSizeMax = 30;
-        PlayerTurnText.color = PlayerTurnColor;
-        PlayerTurnText.fontStyle = FontStyles.Italic;
+        PlayerTurnText.fontSizeMax = 26;
+        PlayerTurnText.color = EnabledTurn;
+        playerTurnOn.SetActive(true);
+        playerTurnOff.SetActive(false);
 
-        PlayerCardAttackText.fontSizeMax = 26;
+        PlayerCardAttackText.fontSizeMax = 22;
         PlayerCardAttackText.color= DisabledTurn;
-        PlayerCardAttackText.fontStyle = FontStyles.Normal;
+        playerAttackOn.SetActive(false);
+        playerAttackOff.SetActive(true);
 
-        EnemyTurnText.fontSizeMax = 26;
+
+        EnemyTurnText.fontSizeMax = 22;
         EnemyTurnText.color = DisabledTurn;
-        EnemyTurnText.fontStyle = FontStyles.Normal;
+        enemyTurnOn.SetActive(false);
+        enemyTurnOff.SetActive(true);
 
-        EnemyCardAttackText.fontSizeMax = 26;
+        EnemyCardAttackText.fontSizeMax = 22;
         EnemyCardAttackText.color = DisabledTurn;
-        EnemyCardAttackText.fontStyle = FontStyles.Normal;
+        enemyAttackOn.SetActive(false);
+        enemyAttackOff.SetActive(true);
 
     }
 
@@ -178,21 +186,25 @@ public class UiController : MonoBehaviour
         drawCardButton.SetActive(false);
 
         // Setting up the player attack Text as visble and the other ones disabled
-        PlayerTurnText.fontSizeMax = 26;
+        PlayerTurnText.fontSizeMax = 22;
         PlayerTurnText.color = DisabledTurn;
-        PlayerTurnText.fontStyle = FontStyles.Normal;
+        playerTurnOn.SetActive(false);
+        playerTurnOff.SetActive(true);
 
-        PlayerCardAttackText.fontSizeMax = 30;
-        PlayerCardAttackText.color = PlayerCardAttackColor;
-        PlayerCardAttackText.fontStyle = FontStyles.Italic;
+        PlayerCardAttackText.fontSizeMax = 26;
+        PlayerCardAttackText.color = EnabledTurn;
+        playerAttackOn.SetActive(true);
+        playerAttackOff.SetActive(false);
 
-        EnemyTurnText.fontSizeMax = 26;
+        EnemyTurnText.fontSizeMax = 22;
         EnemyTurnText.color = DisabledTurn;
-        EnemyTurnText.fontStyle = FontStyles.Normal;
+        enemyTurnOn.SetActive(false);
+        enemyTurnOff.SetActive(true);
 
-        EnemyCardAttackText.fontSizeMax = 26;
+        EnemyCardAttackText.fontSizeMax = 22;
         EnemyCardAttackText.color = DisabledTurn;
-        EnemyCardAttackText.fontStyle = FontStyles.Normal;
+        enemyAttackOn.SetActive(false);
+        enemyAttackOff.SetActive(true);
     }
 
     /**
@@ -207,21 +219,25 @@ public class UiController : MonoBehaviour
         drawCardButton.SetActive(false);
 
         // Setting up the enemy turn Text as visble and the other ones disabled
-        PlayerTurnText.fontSizeMax = 26;
+        PlayerTurnText.fontSizeMax = 22;
         PlayerTurnText.color = DisabledTurn;
-        PlayerTurnText.fontStyle = FontStyles.Normal;
+        playerTurnOn.SetActive(false);
+        playerTurnOff.SetActive(true);
 
-        PlayerCardAttackText.fontSizeMax = 26;
+        PlayerCardAttackText.fontSizeMax = 22;
         PlayerCardAttackText.color = DisabledTurn;
-        PlayerTurnText.fontStyle = FontStyles.Normal;
+        playerAttackOn.SetActive(false);
+        playerAttackOff.SetActive(true);
 
-        EnemyTurnText.fontSizeMax = 30;
-        EnemyTurnText.color = EnemyTurnColor;
-        EnemyTurnText.fontStyle = FontStyles.Italic;
+        EnemyTurnText.fontSizeMax = 26;
+        EnemyTurnText.color = EnabledTurn; 
+        enemyTurnOn.SetActive(true);
+        enemyTurnOff.SetActive(false);
 
-        EnemyCardAttackText.fontSizeMax = 26;
+        EnemyCardAttackText.fontSizeMax = 22;
         EnemyCardAttackText.color = DisabledTurn;
-        EnemyCardAttackText.fontStyle = FontStyles.Normal;
+        enemyAttackOn.SetActive(false);
+        enemyAttackOff.SetActive(true);
     }
 
     /**
@@ -236,21 +252,26 @@ public class UiController : MonoBehaviour
         drawCardButton.SetActive(false);
 
         // Setting up the enemy attack Text as visble and the other ones disabled
-        PlayerTurnText.fontSizeMax = 26;
+        PlayerTurnText.fontSizeMax = 22;
         PlayerTurnText.color = DisabledTurn;
-        PlayerTurnText.fontStyle = FontStyles.Normal;
+        playerTurnOn.SetActive(false);
+        playerTurnOff.SetActive(true);
 
-        PlayerCardAttackText.fontSizeMax = 26;
+        PlayerCardAttackText.fontSizeMax = 22;
         PlayerCardAttackText.color = DisabledTurn;
-        PlayerTurnText.fontStyle = FontStyles.Normal;
+        playerAttackOn.SetActive(false);
+        playerAttackOff.SetActive(true);
 
-        EnemyTurnText.fontSizeMax = 26;
+        EnemyTurnText.fontSizeMax = 22;
         EnemyTurnText.color = DisabledTurn;
-        EnemyTurnText.fontStyle = FontStyles.Normal;
+        enemyTurnOn.SetActive(false);
+        enemyTurnOff.SetActive(true);
 
-        EnemyCardAttackText.fontSizeMax = 30;
-        EnemyCardAttackText.color = EnemyCardAttackColor;
-        EnemyCardAttackText.fontStyle = FontStyles.Italic;
+        EnemyCardAttackText.fontSizeMax = 26;
+        EnemyCardAttackText.color = EnabledTurn; 
+        enemyAttackOn.SetActive(true);
+        enemyAttackOff.SetActive(false);
+
     }
 
 
