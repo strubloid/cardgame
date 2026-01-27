@@ -13,6 +13,14 @@ public class CardPlacePointEnemy : MonoBehaviourWithMouseControls
     }
 
     /**
+    * Update is called once per frame
+    **/
+    protected override void Update()
+    {
+        base.Update();
+    }
+
+    /**
      * This will be called when the mouse hover enters the card
      */
     protected override void OnHoverEnter()
