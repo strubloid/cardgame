@@ -14,9 +14,9 @@ public class BattleController : MonoBehaviour
     public int playerMana;
     public int manaPerTurn = 3;
 
-    // Time for setting up the battle start
-    //public float WaitingTimeBforeEachRound = 0.8f;
-    public float WaitingTimeBforeEachRound = 1.6f;
+    // Timers between turns
+    public float WaitingTimeEachTurn = 1.5f;
+    public float WaitingTimeEachTurnLong = 3.1f;
 
     // rounds played variable
     public int RoundsPlayed = 0;
@@ -200,6 +200,9 @@ public class BattleController : MonoBehaviour
                 // only at the begining of the round 1
                 if (RoundsPlayed >= 1)
                 {
+                    // waiting for the time between actions
+                    yield return new WaitForSeconds(WaitingTimeEachTurn);
+
                     // Play the player turn animation
                     UiController.instance.PlayPlayerTurnAnimation();
 
@@ -221,11 +224,15 @@ public class BattleController : MonoBehaviour
                 // We will attack only if we have played at least one round
                 if (RoundsPlayed >= 1)
                 {
+                    // waiting for the time between actions
+                    yield return new WaitForSeconds(WaitingTimeEachTurn);
+
                     // Play the player attack animation
                     UiController.instance.PlayPlayerAttackAnimation();
 
                     // waiting for the time between actions
-                    yield return new WaitForSeconds(WaitingTimeBforeEachRound/2);
+                    yield return new WaitForSeconds(WaitingTimeEachTurn);
+
 
                     // Let the player cards attack
                     CardPointsController.instance.PlayerAttack();
@@ -251,11 +258,12 @@ public class BattleController : MonoBehaviour
                     // only on the second turn forward, we are able to increment the mana
                     IncrementEnemyMana();
 
+                    // waiting for the time between actions
+                    yield return new WaitForSeconds(WaitingTimeEachTurnLong);
+
                     // Play the enemy turn animation
                     UiController.instance.PlayEnemyTurnAnimation();
-
-                    // waiting for the time between actions
-                    yield return new WaitForSeconds(WaitingTimeBforeEachRound);
+                                      
                 }
 
                 // Let the enemy play their actions
@@ -274,11 +282,14 @@ public class BattleController : MonoBehaviour
                 // We will attack only if we have played at least one round
                 if (RoundsPlayed >= 1)
                 {
+                    // waiting for the time between actions
+                    yield return new WaitForSeconds(WaitingTimeEachTurnLong/2);
+
                     // Play the enemy attack animation
                     UiController.instance.PlayEnemyAttackAnimation();
 
                     // waiting for the time between actions
-                    yield return new WaitForSeconds(WaitingTimeBforeEachRound/2);
+                    yield return new WaitForSeconds(WaitingTimeEachTurnLong/2);
 
                     // Let the enemy cards attack
                     CardPointsController.instance.EnemyAttack();

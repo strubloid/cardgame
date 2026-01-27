@@ -13,7 +13,7 @@ public class CardPointsController : MonoBehaviour
     public CardPlacePoint[] EnemyCardPoints;
 
     // Time between actions in seconds
-    public float timeBetweenActions = 1.0f;
+    public float timeBetweenActions = 1.5f;
 
     /**
      * Awake is called when the script instance is being loaded
@@ -87,9 +87,6 @@ public class CardPointsController : MonoBehaviour
      */
     IEnumerator PlayerAttackCo() {
 
-        // Loop through each player card point
-        yield return new WaitForSeconds(timeBetweenActions);
-
         // Get all active enemy cards
         CardPlacePoint[]  activeEnemyCards = GetActiveEnemyCards();
 
@@ -146,10 +143,10 @@ public class CardPointsController : MonoBehaviour
 
                 }
 
-                // This will trigger the animation of Attack
-                activePlayerCards[currentPlayerCardIndex].activeCard.animator.SetTrigger("Attack");
-
                 yield return new WaitForSeconds(timeBetweenActions);
+
+                // This will trigger the animation of Attack
+                activePlayerCards[currentPlayerCardIndex].activeCard.animator.SetTrigger("Attack");               
 
                 // ending the loop if battle ended, so wont be having any extra attacks after 0 health
                 if (BattleController.instance.battleEnded == true) {
@@ -198,9 +195,6 @@ public class CardPointsController : MonoBehaviour
      */
     IEnumerator EnemyAttackCo()
     {
-        // Wait a bit between actions
-        yield return new WaitForSeconds(timeBetweenActions);
-
         // Get all active enemy cards (attackers)
         CardPlacePoint[] activeEnemyCards = GetActiveEnemyCards();
 
