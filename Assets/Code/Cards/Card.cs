@@ -51,7 +51,7 @@ public class Card : MonoBehaviourWithMouseControls
     private bool isSelected;
 
     // Reference to the collider of the card
-    private Collider theCollider;
+    private Collider CardCollider;
 
     // Layer mask to identify the desktop area
     public LayerMask whatIsDesktop, whatIsPlacement;
@@ -107,7 +107,7 @@ public class Card : MonoBehaviourWithMouseControls
         }
 
         // Getting the collider component of the card
-        theCollider = GetComponent<Collider>();
+        CardCollider = GetComponent<Collider>();
     }
 
     /**
@@ -245,9 +245,12 @@ public class Card : MonoBehaviourWithMouseControls
                 defaultDeckRotation = selectedPoint.transform.rotation;
                 hasDefaultDeckPosition = true;
             }
-
+            
             // Action of moving the card to the selected point
             MoveCardToPoint(selectedPoint.transform.position, Quaternion.identity);
+
+            // after placing the card, enabling the collider again
+            CardCollider.enabled = true;
 
             // Playing the card place sound effect
             AudioManager.instance.PlayCardPlace();
@@ -414,6 +417,13 @@ public class Card : MonoBehaviourWithMouseControls
             return;
         }
 
+        // Doing actions when we click with right button
+        if (Mouse.current.rightButton.wasPressedThisFrame)
+        {
+            Debug.Log("Right click detected, ignoring hover on player card");
+            return;
+        }
+
         // This will check if the card is in hand
         if (inHand && BattleController.instance.currentPhrase == BattleController.TurnOrder.PlayerTurn && isPlayer)
         {
@@ -423,7 +433,7 @@ public class Card : MonoBehaviourWithMouseControls
             isSelected = true;
 
             // Disabling the collider while we are dragging the card
-            theCollider.enabled = false;
+            CardCollider.enabled = false;
 
             justPressed = true;
         }
@@ -440,7 +450,7 @@ public class Card : MonoBehaviourWithMouseControls
         if (SelectedCard == this)
             SelectedCard = null;
 
-        theCollider.enabled = true;
+        CardCollider.enabled = true;
         MoveCardToPoint(handController.cardPositions[handPosition], handController.minPos.rotation);
     }
 
