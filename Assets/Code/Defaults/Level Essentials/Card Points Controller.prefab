@@ -136,6 +136,10 @@ MonoBehaviour:
   frameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
   frameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
   errorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
+  AirElementColor: {r: 0.62352943, g: 0.90588236, b: 1, a: 1}
+  FireElementColor: {r: 1, g: 0.47843137, b: 0.23529412, a: 1}
+  EarthElementColor: {r: 0.47843137, g: 0.60784316, b: 0.30588236, a: 1}
+  WaterElementColor: {r: 0.23529412, g: 0.5529412, b: 1, a: 1}
   HoverEffectAnimator: {fileID: 3401201560334021534}
 --- !u!1 &1275176304658564795
 GameObject:
@@ -273,6 +277,10 @@ MonoBehaviour:
   frameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
   frameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
   errorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
+  AirElementColor: {r: 0.62352943, g: 0.90588236, b: 1, a: 1}
+  FireElementColor: {r: 1, g: 0.47843137, b: 0.23529412, a: 1}
+  EarthElementColor: {r: 0.47843137, g: 0.60784316, b: 0.30588236, a: 1}
+  WaterElementColor: {r: 0.23529412, g: 0.5529412, b: 1, a: 1}
   HoverEffectAnimator: {fileID: 590461009900240830}
 --- !u!1 &1328716383500823342
 GameObject:
@@ -410,6 +418,10 @@ MonoBehaviour:
   frameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
   frameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
   errorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
+  AirElementColor: {r: 0.62352943, g: 0.90588236, b: 1, a: 1}
+  FireElementColor: {r: 1, g: 0.47843137, b: 0.23529412, a: 1}
+  EarthElementColor: {r: 0.47843137, g: 0.60784316, b: 0.30588236, a: 1}
+  WaterElementColor: {r: 0.23529412, g: 0.5529412, b: 1, a: 1}
   HoverEffectAnimator: {fileID: 2176841036580422196}
 --- !u!1 &1535499508369972190
 GameObject:
@@ -15229,6 +15241,10 @@ MonoBehaviour:
   frameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
   frameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
   errorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
+  AirElementColor: {r: 0.62352943, g: 0.90588236, b: 1, a: 1}
+  FireElementColor: {r: 1, g: 0.47843137, b: 0.23529412, a: 1}
+  EarthElementColor: {r: 0.47843137, g: 0.60784316, b: 0.30588236, a: 1}
+  WaterElementColor: {r: 0.23529412, g: 0.5529412, b: 1, a: 1}
   HoverEffectAnimator: {fileID: 1925561439295568083}
 --- !u!1 &2672828810641404996
 GameObject:
@@ -20260,6 +20276,10 @@ MonoBehaviour:
   frameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
   frameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
   errorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
+  AirElementColor: {r: 0.62352943, g: 0.90588236, b: 1, a: 1}
+  FireElementColor: {r: 1, g: 0.47843137, b: 0.23529412, a: 1}
+  EarthElementColor: {r: 0.47843137, g: 0.60784316, b: 0.30588236, a: 1}
+  WaterElementColor: {r: 0.23529412, g: 0.5529412, b: 1, a: 1}
   HoverEffectAnimator: {fileID: 2397856102182018569}
 --- !u!1 &3430194877291967611
 GameObject:
@@ -20397,6 +20417,10 @@ MonoBehaviour:
   frameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
   frameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
   errorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
+  AirElementColor: {r: 0.62352943, g: 0.90588236, b: 1, a: 1}
+  FireElementColor: {r: 1, g: 0.47843137, b: 0.23529412, a: 1}
+  EarthElementColor: {r: 0.47843137, g: 0.60784316, b: 0.30588236, a: 1}
+  WaterElementColor: {r: 0.23529412, g: 0.5529412, b: 1, a: 1}
   HoverEffectAnimator: {fileID: 1750028312950483362}
 --- !u!1 &4144748809533648511
 GameObject:
@@ -25301,6 +25325,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7369908604268151980}
+  - component: {fileID: 7309685224614227912}
   m_Layer: 0
   m_Name: Enemy Card Points
   m_TagString: Untagged
@@ -25328,6 +25353,22 @@ Transform:
   - {fileID: 2399272113808554358}
   m_Father: {fileID: 2261304919704694241}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7309685224614227912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4226116848642052865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1300a204fbf811e4cb54b2834e753753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardPlacePoinEnemy
+  rayDistance: 200
+  hoverMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &4448514149981218729
 GameObject:
   m_ObjectHideFlags: 0
@@ -25464,6 +25505,10 @@ MonoBehaviour:
   frameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
   frameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
   errorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
+  AirElementColor: {r: 0.62352943, g: 0.90588236, b: 1, a: 1}
+  FireElementColor: {r: 1, g: 0.47843137, b: 0.23529412, a: 1}
+  EarthElementColor: {r: 0.47843137, g: 0.60784316, b: 0.30588236, a: 1}
+  WaterElementColor: {r: 0.23529412, g: 0.5529412, b: 1, a: 1}
   HoverEffectAnimator: {fileID: 6735502388430998758}
 --- !u!1 &4632176904114663007
 GameObject:
@@ -25601,6 +25646,10 @@ MonoBehaviour:
   frameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
   frameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
   errorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
+  AirElementColor: {r: 0.62352943, g: 0.90588236, b: 1, a: 1}
+  FireElementColor: {r: 1, g: 0.47843137, b: 0.23529412, a: 1}
+  EarthElementColor: {r: 0.47843137, g: 0.60784316, b: 0.30588236, a: 1}
+  WaterElementColor: {r: 0.23529412, g: 0.5529412, b: 1, a: 1}
   HoverEffectAnimator: {fileID: 8987524724050075501}
 --- !u!1 &4884980957380752817
 GameObject:
@@ -25611,6 +25660,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6931587760542453268}
+  - component: {fileID: 5868096255414566760}
   m_Layer: 0
   m_Name: Player Card Points
   m_TagString: Untagged
@@ -25638,6 +25688,22 @@ Transform:
   - {fileID: 7357684355861831256}
   m_Father: {fileID: 2261304919704694241}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5868096255414566760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4884980957380752817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85da6c2da6794f84ebf9e806a1b7feb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardPlacePoinPlayer
+  rayDistance: 200
+  hoverMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &4918505444026391139
 GameObject:
   m_ObjectHideFlags: 0
@@ -25774,6 +25840,10 @@ MonoBehaviour:
   frameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
   frameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
   errorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
+  AirElementColor: {r: 0.62352943, g: 0.90588236, b: 1, a: 1}
+  FireElementColor: {r: 1, g: 0.47843137, b: 0.23529412, a: 1}
+  EarthElementColor: {r: 0.47843137, g: 0.60784316, b: 0.30588236, a: 1}
+  WaterElementColor: {r: 0.23529412, g: 0.5529412, b: 1, a: 1}
   HoverEffectAnimator: {fileID: 4355717853081605117}
 --- !u!1 &5307755247625690360
 GameObject:
@@ -45546,6 +45616,10 @@ MonoBehaviour:
   frameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
   frameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
   errorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
+  AirElementColor: {r: 0.62352943, g: 0.90588236, b: 1, a: 1}
+  FireElementColor: {r: 1, g: 0.47843137, b: 0.23529412, a: 1}
+  EarthElementColor: {r: 0.47843137, g: 0.60784316, b: 0.30588236, a: 1}
+  WaterElementColor: {r: 0.23529412, g: 0.5529412, b: 1, a: 1}
   HoverEffectAnimator: {fileID: 7676271891843239845}
 --- !u!1 &8704474464036479847
 GameObject:
