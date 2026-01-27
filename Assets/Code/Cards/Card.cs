@@ -24,7 +24,10 @@ public class Card : MonoBehaviourWithMouseControls
 
     // Reference to the text components that we will be using it
     public TMP_Text healthText, attackText, manaText, shieldText;
-    public TMP_Text nameText, actionDescriptionText, loreText;
+    public TMP_Text nameText, actionDescriptionText, loreText, manaBack;
+
+    // Right click button
+    public GameObject ClickRightButton;
 
     // Reference to the images that we will be using it
     public Image characterImage, backgroundImage;
@@ -400,6 +403,21 @@ public class Card : MonoBehaviourWithMouseControls
     }
 
     /**
+     * This will be calculating the mana back ammount from the current mana cost
+     * The rule here is when is hiher than 0.5 goes up, otherwise goes down.
+     */
+    private int ManaBackCalculation()
+    {
+        // calculating the mana back ammount from the current mana cost
+        float manaBackCalculations = manaCost * 0.75f;
+
+        // rounding to the nearest integer
+        int intManaBack = Mathf.RoundToInt(manaBackCalculations);
+
+        return intManaBack;
+    }
+
+    /**
      * This will be called when the mouse button is pressed down on the card
      */
     protected override void OnMouseDown()
@@ -420,7 +438,11 @@ public class Card : MonoBehaviourWithMouseControls
         // Doing actions when we click with right button
         if (Mouse.current.rightButton.wasPressedThisFrame)
         {
-            Debug.Log("Right click detected, ignoring hover on player card");
+            // turning on the click right button
+            ClickRightButton.SetActive(true);
+
+            // updating the mana back text
+            manaBack.SetText("" + ManaBackCalculation());
             return;
         }
 
@@ -437,6 +459,30 @@ public class Card : MonoBehaviourWithMouseControls
 
             justPressed = true;
         }
+    }
+
+    /**
+     * This will be recovering mana from the card when is destroyed
+     */
+    public void RecoveryManaFromCard()
+    {
+        // calculating the mana to recover
+        int manaToRecover = ManaBackCalculation();
+
+        // recovering the mana to the player
+        BattleController.instance.RecoverPlayerMana(manaToRecover);
+        
+        // we remove the asigned place card reference
+        assignedPlace.activeCard = null;
+
+        // This will trigger the dead effect
+        DamageDeadCardEffect();
+
+        // destroy the card if health is zero, will wait for 5 seconds before destroying
+        Destroy(gameObject, TimeToDestroyACard);
+
+        // Playing the card destroy sound effect
+        AudioManager.instance.PlayCardDefeat();
     }
 
     /**

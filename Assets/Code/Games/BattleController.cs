@@ -104,7 +104,7 @@ public class BattleController : MonoBehaviour
         UiController.instance.SetPlayerManaText(playerMana);
 
         // Update the mana for the enemy at the start
-        UiController.instance.SetEnemyManaText(playerMana);
+        UiController.instance.SetEnemyManaText(enemyMana);
 
         // This at the start of the battle we draw the starting cards
         PlayerDeckController.Instance.DrawMultipleCards(startingCardsAmount);
@@ -568,6 +568,61 @@ public class BattleController : MonoBehaviour
 
         // Show the battle end screen
         UiController.instance.battleEndScreen.SetActive(true);
+
+    }
+
+    /**
+     * This will be recovering the player mana to the defined ammount
+     */
+    public void RecoverPlayerMana(int mana) {
+
+        // we calculate the new mana after recovery
+        int playerManaAdded = playerMana + mana;
+
+        // we check if we exceed the maximum mana
+        if (playerManaAdded >= maxMana) {
+
+            // we update the max mana
+            maxMana++;
+
+            // we set the player mana to the maximum
+            playerMana = maxMana;
+
+        } else {
+
+            // we just add the mana recovered
+            playerMana = playerManaAdded;
+        }
+
+        // Update the mana for the player at the start
+        UiController.instance.SetPlayerManaText(playerMana);
+
+    }
+
+    /**
+     * This will be recovering the enemy mana to the defined ammount
+     */
+    public void RecoverEnemyMana(int mana) { 
+
+        // we calculate the new mana after recovery
+        int enemyManaAdded = enemyMana + mana;
+
+        // we check if we exceed the maximum mana
+        if (enemyManaAdded >= enemyMaxMana)
+        {
+            // we update the max mana
+            enemyMaxMana++;
+            // we set the player mana to the maximum
+            enemyMana = enemyMaxMana;
+        }
+        else
+        {
+            // we just add the mana recovered
+            enemyMana = enemyManaAdded;
+        }
+
+        // Update the mana for the enemy at the start
+        UiController.instance.SetEnemyManaText(enemyMana);
 
     }
 }
