@@ -205,59 +205,67 @@ public class Card : MonoBehaviourWithMouseControls
         // This will allow if we press the left mouse button and isnt the just pressed
         if (Mouse.current.leftButton.wasPressedThisFrame && justPressed == false ) {
 
-            // if we click and iteract with what is placement, we hit one of those card place points
-            if (Physics.Raycast(ray, out hit, 100f, whatIsPlacement) && BattleController.instance.currentPhrase == BattleController.TurnOrder.PlayerTurn )
+            // rule to check if we are at our turn and we can place the card
+            bool areYouAtYourTurn = BattleController.instance.currentPhrase == BattleController.TurnOrder.PlayerTurn;
+            bool isItAPlacement = Physics.Raycast(ray, out hit, 100f, whatIsPlacement);
+
+            // Must be a placement point and must be our turn
+            if (!isItAPlacement || !areYouAtYourTurn)
             {
-                CardPlacePoint selectedPoint = hit.collider.GetComponent<CardPlacePoint>();
-
-                // there is nothing assined to the current card
-                // select card section!
-                if (selectedPoint.activeCard == null && selectedPoint.isPlayerPoint)
-                {
-                    // Check if we can play the card, if we have the quantity of mana to cast
-                    if (BattleController.instance.playerMana >= manaCost)
-                    {
-                        selectedPoint.activeCard = this;
-                        assignedPlace = selectedPoint;
-
-                        // here we will be assinging the default deck position to be the place point position
-                        // If no deck position assigned, use current as default
-                        if (!hasDefaultDeckPosition)
-                        {
-                            defaultDeckPosition = selectedPoint.transform.position;
-                            defaultDeckRotation = selectedPoint.transform.rotation;
-                            hasDefaultDeckPosition = true;
-                        }
-
-                        // We move to the point
-                        MoveCardToPoint(selectedPoint.transform.position, Quaternion.identity);
-
-                        // Playing the card place sound effect
-                        AudioManager.instance.PlayCardPlace();
-
-                        // reset the in hand as it was placed and isnt selected as it is in place
-                        inHand = false;
-                        isSelected = false;
-
-                        // Clear the current selected card reference (no longer in hand)
-                        if (SelectedCard == this)
-                            SelectedCard = null;
-
-                        // Removing the card from the array
-                        handController.RemoveCardFromHand(this);
-
-                        // removing the player mana after playing the card
-                        BattleController.instance.SpendPlayerMana(manaCost);
-                    } else {
-                        ReturnToHand();
-                        UiController.instance.ShowManaWarning();
-                    }
-                } else {
-                    ReturnToHand();
-                }
-            } else {
                 ReturnToHand();
+                return;
             }
+
+            // Getting the component that we are pointing at
+            CardPlacePoint selectedPoint = hit.collider.GetComponent<CardPlacePoint>();
+
+            // Must be a player placement point and must be empty
+            if (!selectedPoint.isPlayerPoint || selectedPoint.activeCard != null)
+            {
+                ReturnToHand();
+                return;
+            }
+
+            // Must have enough mana
+            if (BattleController.instance.playerMana < manaCost)
+            {
+                ReturnToHand();
+                UiController.instance.ShowManaWarning();
+                return;
+            }
+
+            selectedPoint.activeCard = this;
+            assignedPlace = selectedPoint;
+
+            // here we will be assinging the default deck position to be the place point position
+            // If no deck position assigned, use current as default
+            if (!hasDefaultDeckPosition)
+            {
+                defaultDeckPosition = selectedPoint.transform.position;
+                defaultDeckRotation = selectedPoint.transform.rotation;
+                hasDefaultDeckPosition = true;
+            }
+
+            // Action of moving the card to the selected point
+            MoveCardToPoint(selectedPoint.transform.position, Quaternion.identity);
+
+            // Playing the card place sound effect
+            AudioManager.instance.PlayCardPlace();
+
+            // reset the in hand as it was placed and isnt selected as it is in place
+            inHand = false;
+            isSelected = false;
+
+            // Clear the current selected card reference (no longer in hand)
+            if (SelectedCard == this)
+                SelectedCard = null;
+
+            // Removing the card from the array
+            handController.RemoveCardFromHand(this);
+
+            // removing the player mana after playing the card
+            BattleController.instance.SpendPlayerMana(manaCost);
+
         }
     }
 

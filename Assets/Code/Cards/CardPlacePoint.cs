@@ -20,6 +20,12 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
     public Color frameSelectedColor = new Color32(0xDE, 0xAD, 0x5D, 0xFF); // #DEAD5D
     public Color errorSelectionColor = new Color32(0xFF, 0x5A, 0x5A, 0xFF); // #FF5A5A
 
+    // Element colors
+    public Color AirElementColor = new Color32(0x9F, 0xE7, 0xFF, 0xFF); // #9FE7FF – light sky / wind
+    public Color FireElementColor = new Color32(0xFF, 0x7A, 0x3C, 0xFF); // #FF7A3C – ember orange
+    public Color EarthElementColor = new Color32(0x7A, 0x9B, 0x4E, 0xFF); // #7A9B4E – moss / soil
+    public Color WaterElementColor = new Color32(0x3C, 0x8D, 0xFF, 0xFF); // #3C8DFF – deep water blue
+
     // Particle system for hover effect
     public ParticleSystem HoverEffectAnimator;
 
@@ -70,7 +76,33 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
         return Card.SelectedCard != null && Card.SelectedCard.inHand;
     }
 
+    /**
+     * This will change the frame color to the earth element color
+     */
+    public void ChangeToElementFireColor() {
+        spriteRenderer.color = FireElementColor;
+    }
 
+    /**
+     * This will change the frame color to the earth element color
+     */
+    public void ChangeToElementWaterColor() {
+        spriteRenderer.color = WaterElementColor;
+    }
+
+    /**
+     * This will change the frame color to the earth element color
+     */
+    public void ChangeToElementEarthColor() {
+        spriteRenderer.color = EarthElementColor;
+    }
+
+    /**
+     * This will change the frame color to the air element color
+     */
+    public void ChangeToElementAirColor() {
+        spriteRenderer.color = AirElementColor;
+    }
     /**
      * This will be called when the mouse hover enters the card
      */
@@ -85,13 +117,11 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
             {
                 spriteRenderer.color = frameSelectedColor;
 
-                //HoverEffectAnimator.SetActive(true);
+                // we play the hover effect
                 HoverEffectAnimator.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
                 HoverEffectAnimator.Play(true);
 
-
-            }
-            else {                     
+            } else {                     
                 spriteRenderer.color = errorSelectionColor; 
             }
         }
