@@ -20,6 +20,9 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
     public Color frameSelectedColor = new Color32(0xDE, 0xAD, 0x5D, 0xFF); // #DEAD5D
     public Color errorSelectionColor = new Color32(0xFF, 0x5A, 0x5A, 0xFF); // #FF5A5A
 
+    // Particle system for hover effect
+    public ParticleSystem HoverEffectAnimator;
+
     /**
      * Awake is called when the script instance is being loaded
      * so we can initialize the sprite renderer and set the base color
@@ -81,7 +84,14 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
             if (!HasCardAlreadyPlaced())
             {
                 spriteRenderer.color = frameSelectedColor;
-            } else {                     
+
+                //HoverEffectAnimator.SetActive(true);
+                HoverEffectAnimator.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+                HoverEffectAnimator.Play(true);
+
+
+            }
+            else {                     
                 spriteRenderer.color = errorSelectionColor; 
             }
         }
@@ -96,9 +106,11 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
         if (isPlayerPoint && spriteRenderer != null)
         {
             // Reset to base color when not hovering    
-            spriteRenderer.color = frameBaseColor;    
+            spriteRenderer.color = frameBaseColor;
+            HoverEffectAnimator.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
         }
-        
+
     }
 
 }
