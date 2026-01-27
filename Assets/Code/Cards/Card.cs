@@ -73,8 +73,8 @@ public class Card : MonoBehaviourWithMouseControls
     private bool enemyHoverActive;
 
     // Time to destroy a card after being moved to discard pile
-    private float TimeToDestroyACard = 1.8f;
-    private float TimeToHide = 0.5f;
+    private float TimeToDestroyACard = 1.6f;
+    private float TimeToHide = 0.9f;
 
     // Reference to the animator component
     public Animator animator;

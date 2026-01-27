@@ -15,7 +15,8 @@ public class BattleController : MonoBehaviour
     public int manaPerTurn = 3;
 
     // Time for setting up the battle start
-    public float WaitingTimeBforeEachRound = 0.8f;
+    //public float WaitingTimeBforeEachRound = 0.8f;
+    public float WaitingTimeBforeEachRound = 1.6f;
 
     // rounds played variable
     public int RoundsPlayed = 0;

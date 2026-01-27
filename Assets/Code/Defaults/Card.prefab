@@ -696,8 +696,6 @@ MonoBehaviour:
   hasDefaultDeckPosition: 0
   animator: {fileID: 3209873709617646853}
   DeadEffect: {fileID: 7473789071823147084}
-  CardSliceAnimator: {fileID: 7473789073017226426}
-  CardSliceBloodAnimator: {fileID: 7473789072834429804}
 --- !u!65 &322692140321803569
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1713,15 +1711,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7095422676695834965, guid: 4cf9de615ff6ee54a8613084e9c14515, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: 7095422676695834965, guid: 4cf9de615ff6ee54a8613084e9c14515, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 7095422676695834965, guid: 4cf9de615ff6ee54a8613084e9c14515, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.2
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 7095422676695834965, guid: 4cf9de615ff6ee54a8613084e9c14515, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1733,7 +1731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7095422676695834965, guid: 4cf9de615ff6ee54a8613084e9c14515, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.015
       objectReference: {fileID: 0}
     - target: {fileID: 7095422676695834965, guid: 4cf9de615ff6ee54a8613084e9c14515, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1753,11 +1751,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7095422676695834965, guid: 4cf9de615ff6ee54a8613084e9c14515, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 7095422676695834965, guid: 4cf9de615ff6ee54a8613084e9c14515, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.02
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 7095422676695834965, guid: 4cf9de615ff6ee54a8613084e9c14515, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1788,16 +1786,6 @@ GameObject:
 --- !u!224 &7473789071823147085 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7095422676695834965, guid: 4cf9de615ff6ee54a8613084e9c14515, type: 3}
-  m_PrefabInstance: {fileID: 414395783224488216}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &7473789072834429804 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7095422676230861428, guid: 4cf9de615ff6ee54a8613084e9c14515, type: 3}
-  m_PrefabInstance: {fileID: 414395783224488216}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &7473789073017226426 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7095422675507525026, guid: 4cf9de615ff6ee54a8613084e9c14515, type: 3}
   m_PrefabInstance: {fileID: 414395783224488216}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8908065348378859117
