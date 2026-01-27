@@ -27,4 +27,10 @@ public class CardScriptableObject : ScriptableObject
 
     // The type of the card
     public CardType cardType;
+
+    // Method to get the type index
+    public int GetTypeIndex()
+    {
+        return (int)cardType;
+    }
 }

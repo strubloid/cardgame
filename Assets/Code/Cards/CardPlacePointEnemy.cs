@@ -1,8 +1,13 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
 public class CardPlacePointEnemy : MonoBehaviourWithMouseControls
 {
+    // List with all enemy card frames
+    public List<GameObject> CardFrames = new List<GameObject>();
+
     /**
      * Awake is called when the script instance is being loaded
      * so we can initialize the sprite renderer and set the base color

@@ -119,12 +119,22 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &147106165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3275502511731501721, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+  m_PrefabInstance: {fileID: 3653007105165603002}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &157059922 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4448514149981218729, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+  m_PrefabInstance: {fileID: 3653007105165603002}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &162036963 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5222038591311495216, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
   m_PrefabInstance: {fileID: 3653007105165603002}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 157059922}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e0b4aac9c27dab48a9959160d1a863e, type: 3}
@@ -403,6 +413,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 354ca0b531876ce48887dc5a1c8c43e7, type: 3}
+--- !u!1 &406736935 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4884980957380752817, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+  m_PrefabInstance: {fileID: 3653007105165603002}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &501623922 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4632176904114663007, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+  m_PrefabInstance: {fileID: 3653007105165603002}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &537758442
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -585,6 +605,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af2e03d5212a0240b0c8db7c5c479e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Card
+--- !u!1 &872682997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4918505444026391139, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+  m_PrefabInstance: {fileID: 3653007105165603002}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &902176406 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 803166303370289985, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+  m_PrefabInstance: {fileID: 3653007105165603002}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &961739749
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,6 +769,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
+--- !u!1 &992523181 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1275176304658564795, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+  m_PrefabInstance: {fileID: 3653007105165603002}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1014116577
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,17 +875,32 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1070758021 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8543140140507485762, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+  m_PrefabInstance: {fileID: 3653007105165603002}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1098561014 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 853090697080266106, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
   m_PrefabInstance: {fileID: 3653007105165603002}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1968719951}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e0b4aac9c27dab48a9959160d1a863e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardPlacePoint
+--- !u!1 &1151848124 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3430194877291967611, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+  m_PrefabInstance: {fileID: 3653007105165603002}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1318413610 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1328716383500823342, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+  m_PrefabInstance: {fileID: 3653007105165603002}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1565590629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -923,6 +973,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af2e03d5212a0240b0c8db7c5c479e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Card
+--- !u!1 &1706014857 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4226116848642052865, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+  m_PrefabInstance: {fileID: 3653007105165603002}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1741588294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1167,6 +1222,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774610669}
   m_CullTransparentMesh: 1
+--- !u!1 &1968719951 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2460741571707171579, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+  m_PrefabInstance: {fileID: 3653007105165603002}
+  m_PrefabAsset: {fileID: 0}
 --- !u!198 &1973479315 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 926885499448983602, guid: df1b3c9fa0d2e424f9d5bbf8f88acab1, type: 3}
@@ -1395,6 +1455,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 853090697080266106, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: father
+      value: 
+      objectReference: {fileID: 1706014857}
     - target: {fileID: 2261304919704694241, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.73929
@@ -1435,10 +1499,94 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2382104430999713857, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: father
+      value: 
+      objectReference: {fileID: 1706014857}
+    - target: {fileID: 3076182204497529600, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: father
+      value: 
+      objectReference: {fileID: 1706014857}
+    - target: {fileID: 4588009976899611210, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: father
+      value: 
+      objectReference: {fileID: 406736935}
+    - target: {fileID: 5222038591311495216, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: father
+      value: 
+      objectReference: {fileID: 1706014857}
     - target: {fileID: 5579734706968398650, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
       propertyPath: m_Name
       value: Card Points Controller
       objectReference: {fileID: 0}
+    - target: {fileID: 5868096255414566760, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: CardFrames.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868096255414566760, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: 'CardFrames.Array.data[0]'
+      value: 
+      objectReference: {fileID: 501623922}
+    - target: {fileID: 5868096255414566760, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: 'CardFrames.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1070758021}
+    - target: {fileID: 5868096255414566760, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: 'CardFrames.Array.data[2]'
+      value: 
+      objectReference: {fileID: 992523181}
+    - target: {fileID: 5868096255414566760, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: 'CardFrames.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1318413610}
+    - target: {fileID: 5868096255414566760, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: 'CardFrames.Array.data[4]'
+      value: 
+      objectReference: {fileID: 872682997}
+    - target: {fileID: 7040958433740685708, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: father
+      value: 
+      objectReference: {fileID: 406736935}
+    - target: {fileID: 7309685224614227912, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: CardFrames.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309685224614227912, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: 'CardFrames.Array.data[0]'
+      value: 
+      objectReference: {fileID: 902176406}
+    - target: {fileID: 7309685224614227912, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: 'CardFrames.Array.data[1]'
+      value: 
+      objectReference: {fileID: 157059922}
+    - target: {fileID: 7309685224614227912, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: 'CardFrames.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1968719951}
+    - target: {fileID: 7309685224614227912, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: 'CardFrames.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1151848124}
+    - target: {fileID: 7309685224614227912, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: 'CardFrames.Array.data[4]'
+      value: 
+      objectReference: {fileID: 147106165}
+    - target: {fileID: 7537816701687853005, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: father
+      value: 
+      objectReference: {fileID: 406736935}
+    - target: {fileID: 7869213382710518483, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: father
+      value: 
+      objectReference: {fileID: 406736935}
+    - target: {fileID: 8419883283226730013, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: father
+      value: 
+      objectReference: {fileID: 406736935}
+    - target: {fileID: 8455932277413589683, guid: 2cc43a577c8ad0f4b9d004a11cacd6c1, type: 3}
+      propertyPath: father
+      value: 
+      objectReference: {fileID: 1706014857}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

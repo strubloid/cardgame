@@ -29,6 +29,9 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
     // Particle system for hover effect
     public ParticleSystem HoverEffectAnimator;
 
+    // Reference to the father object
+    public GameObject father;
+
     /**
      * Awake is called when the script instance is being loaded
      * so we can initialize the sprite renderer and set the base color

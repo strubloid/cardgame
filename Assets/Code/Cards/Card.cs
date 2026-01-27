@@ -255,6 +255,19 @@ public class Card : MonoBehaviourWithMouseControls
             // after placing the card, enabling the collider again
             CardCollider.enabled = true;
 
+            // getting the cardPlacePointPlayer
+            if (assignedPlace.father != null) {
+
+                // getting the father component
+                CardPlacePointPlayer CardPlacePointPlayer = assignedPlace.father.GetComponent<CardPlacePointPlayer>();
+
+                // Checking if exists and rebuilding the cards by type
+                if (CardPlacePointPlayer != null)
+                {
+                    CardPlacePointPlayer.RebuildCardsByType();
+                }
+            }
+
             // Playing the card place sound effect
             AudioManager.instance.PlayCardPlace();
 
