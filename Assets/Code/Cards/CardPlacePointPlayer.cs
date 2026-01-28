@@ -79,7 +79,10 @@ public class CardPlacePointPlayer : MonoBehaviourWithMouseControls
             FireElements.ForEach(point => point.ChangeToElementFireColor());
         } else {
             // if we have less means back to base color
-            FireElements.ForEach(point => point.ChangeToFrameBaseColorColor());
+            if (FireElements.ToArray().Length == 1)
+            {
+                FireElements[0].ChangeToFrameBaseColorColor();
+            }
         }
 
     }
@@ -96,8 +99,11 @@ public class CardPlacePointPlayer : MonoBehaviourWithMouseControls
             // we loop all wind element cards placed
             WindElements.ForEach(point => point.ChangeToElementAirColor());
         } else {
-            // if we have less means back to base color
-            WindElements.ForEach(point => point.ChangeToFrameBaseColorColor());
+            // specifically check if there's only one to change
+            if (WindElements.ToArray().Length == 1)
+            {
+                WindElements[0].ChangeToFrameBaseColorColor();
+            }
         }
     }
 
@@ -114,7 +120,10 @@ public class CardPlacePointPlayer : MonoBehaviourWithMouseControls
             WaterElements.ForEach(point => point.ChangeToElementWaterColor());
         } else {
             // if we have less means back to base color
-            WaterElements.ForEach(point => point.ChangeToFrameBaseColorColor());
+            if (WaterElements.ToArray().Length == 1)
+            {
+                WaterElements[0].ChangeToFrameBaseColorColor();
+            }
         }
     }
 
@@ -124,6 +133,7 @@ public class CardPlacePointPlayer : MonoBehaviourWithMouseControls
     public void SetEarthElement()
     {
         List<CardPlacePoint> EarthElements = GetAllEarthElements();
+
         // We check if the minimum criteria is met
         if (EarthElements.Count >= 2)
         {
@@ -131,7 +141,9 @@ public class CardPlacePointPlayer : MonoBehaviourWithMouseControls
             EarthElements.ForEach(point => point.ChangeToElementEarthColor());
         } else {
             // if we have less means back to base color
-            EarthElements.ForEach(point => point.ChangeToFrameBaseColorColor());
+            if (EarthElements.ToArray().Length == 1) { 
+                EarthElements[0].ChangeToFrameBaseColorColor();
+            }
         }
     }
 
