@@ -261,11 +261,15 @@ public class Card : MonoBehaviourWithMouseControls
                 // getting the father component
                 CardPlacePointPlayer CardPlacePointPlayer = assignedPlace.father.GetComponent<CardPlacePointPlayer>();
 
-                // Checking if exists and rebuilding the cards by type
-                if (CardPlacePointPlayer != null)
-                {
-                    CardPlacePointPlayer.RebuildCardsByType();
-                }
+                //// Checking if exists and rebuilding the cards by type
+                //if (CardPlacePointPlayer != null)
+                //{
+                //    // we build the cards by type
+                //    CardPlacePointPlayer.RebuildCardsByType();
+
+                //    // And then we set each color by multiple card type
+                //    CardPlacePointPlayer.SetColorByMultipleType();
+                //}
             }
 
             // Playing the card place sound effect

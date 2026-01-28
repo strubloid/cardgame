@@ -12,6 +12,12 @@ public class CardPlacePointPlayer : MonoBehaviourWithMouseControls
     // Dictionary to hold cards by their type
     private Dictionary<CardType, List<CardPlacePoint>> CardsByType;
 
+    // Interval for checking card effects
+    [SerializeField] private float checkIntervalSeconds = 1.2f;
+
+    // Timer to track time until next check
+    private float timeUntilNextCheck;
+
     /**
      * Awake is called when the script instance is being loaded
      */
@@ -42,6 +48,91 @@ public class CardPlacePointPlayer : MonoBehaviourWithMouseControls
             SetColorByMultipleType();
 
         }
+
+        // updating the timer
+        timeUntilNextCheck -= Time.deltaTime;
+
+        // if the timer hasn't reached zero yet, we exit
+        if (timeUntilNextCheck > 0f) return;
+
+        // resetting the timer
+        timeUntilNextCheck = checkIntervalSeconds;
+
+        // we build the cards by type
+        RebuildCardsByType();
+
+        // Truns once every 2 seconds
+        SetColorByMultipleType();
+    }
+
+    /**
+     * This method sets the color of fire element cards placed
+     **/
+    public void SetFireElement()
+    {
+        List<CardPlacePoint> FireElements = GetAllFireElements();
+
+        // We check if the minimum criteria is met
+        if (FireElements.Count >= 2)
+        {
+            // we quickly loop all fire element cards placed
+            FireElements.ForEach(point => point.ChangeToElementFireColor());
+        } else {
+            // if we have less means back to base color
+            FireElements.ForEach(point => point.ChangeToFrameBaseColorColor());
+        }
+
+    }
+
+    /**
+     * This method sets the color of wind element cards placed
+     **/
+    public void SetWindElement()
+    {
+        List<CardPlacePoint> WindElements = GetAllWindElements();
+        // We check if the minimum criteria is met
+        if (WindElements.Count >= 2)
+        {
+            // we loop all wind element cards placed
+            WindElements.ForEach(point => point.ChangeToElementAirColor());
+        } else {
+            // if we have less means back to base color
+            WindElements.ForEach(point => point.ChangeToFrameBaseColorColor());
+        }
+    }
+
+    /**
+     * This method sets the color of water element cards placed
+     **/
+    public void SetWaterElement()
+    {
+        List<CardPlacePoint> WaterElements = GetAllWaterElements();
+        // We check if the minimum criteria is met
+        if (WaterElements.Count >= 2)
+        {
+            // we loop all water element cards placed
+            WaterElements.ForEach(point => point.ChangeToElementWaterColor());
+        } else {
+            // if we have less means back to base color
+            WaterElements.ForEach(point => point.ChangeToFrameBaseColorColor());
+        }
+    }
+
+    /**
+     * This method sets the color of earth element cards placed
+     **/
+    public void SetEarthElement()
+    {
+        List<CardPlacePoint> EarthElements = GetAllEarthElements();
+        // We check if the minimum criteria is met
+        if (EarthElements.Count >= 2)
+        {
+            // we loop all earth element cards placed
+            EarthElements.ForEach(point => point.ChangeToElementEarthColor());
+        } else {
+            // if we have less means back to base color
+            EarthElements.ForEach(point => point.ChangeToFrameBaseColorColor());
+        }
     }
 
     /**
@@ -49,61 +140,19 @@ public class CardPlacePointPlayer : MonoBehaviourWithMouseControls
      **/
     public void SetColorByMultipleType()
     {
-        List<CardPlacePoint> FireElements = GetAllFireElements();
+        // we first set fire element
+        SetFireElement();
 
-        // we will only play if we have more than 1 card placed
-        if (FireElements.Count >= 2)
-        {
+        // second is wind element
+        SetWindElement();
 
-            // we loop all fire element cards placed
-            foreach (CardPlacePoint point in FireElements)
-            {
-                // we change to the color of fire
-                point.ChangeToElementFireColor();
-            }
-        }
+        // third is water element
+        SetWaterElement();
 
-        List<CardPlacePoint> WaterElements = GetAllWaterElements();
-
-        // we will only play if we have more than 1 card placed
-        if (WaterElements.Count >= 2)
-        {
-            // we loop all water element cards placed
-            foreach (CardPlacePoint point in WaterElements)
-            {
-                // we change to the color of water
-                point.ChangeToElementWaterColor();
-            }
-        }
-
-        List<CardPlacePoint> EarthElements = GetAllEarthElements();
-
-        // we will only play if we have more than 1 card placed
-        if (EarthElements.Count >= 2)
-        {
-            // we loop all earth element cards placed
-            foreach (CardPlacePoint point in EarthElements)
-            {
-                // we change to the color of earth
-                point.ChangeToElementEarthColor();
-            }
-        }
-
-        List<CardPlacePoint> WindElements = GetAllWindElements();
-
-        // we will only play if we have more than 1 card placed
-        if (WindElements.Count >= 2)
-        {
-            // we loop all wind element cards placed
-            foreach (CardPlacePoint point in WindElements)
-            {
-                // we change to the color of wind
-                point.ChangeToElementAirColor();
-            }
-        }
+        // forth is the earth element
+        SetEarthElement();
 
     }
-
 
     /**
      * This method rebuilds the CardsByType dictionary
@@ -111,9 +160,6 @@ public class CardPlacePointPlayer : MonoBehaviourWithMouseControls
      **/
     public void RebuildCardsByType()
     {
-
-        Debug.Log("Rebuilding CardsByType dictionary...");
-
         // Clearing the previous entries
         foreach (var list in CardsByType.Values)
             list.Clear();
@@ -133,7 +179,6 @@ public class CardPlacePointPlayer : MonoBehaviourWithMouseControls
 
             // adding the card to the corresponding list
             CardsByType[type].Add(point);
-            Debug.Log("ADD");
         }
     }
 

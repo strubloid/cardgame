@@ -106,6 +106,15 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
     public void ChangeToElementAirColor() {
         spriteRenderer.color = AirElementColor;
     }
+
+    /**
+     * This will change the frame color to the fire base color
+     */
+    public void ChangeToFrameBaseColorColor()
+    {
+        spriteRenderer.color = frameBaseColor;
+    }
+    
     /**
      * This will be called when the mouse hover enters the card
      */
