@@ -16,9 +16,10 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
     private HandController handController;
 
     // Frame colors for selection indication
-    public Color frameBaseColor = new Color32(0xAA, 0xAC, 0xFF, 0xFF); // #AAACFF
-    public Color frameSelectedColor = new Color32(0xDE, 0xAD, 0x5D, 0xFF); // #DEAD5D
-    public Color errorSelectionColor = new Color32(0xFF, 0x5A, 0x5A, 0xFF); // #FF5A5A
+    public Color BaseColor = new Color32(0xAA, 0xAC, 0xFF, 0xFF); // #AAACFF
+    public Color FrameBaseColor = new Color32(0xAA, 0xAC, 0xFF, 0xFF); // #AAACFF
+    public Color FrameSelectedColor = new Color32(0xDE, 0xAD, 0x5D, 0xFF); // #DEAD5D
+    public Color ErrorSelectionColor = new Color32(0xFF, 0x5A, 0x5A, 0xFF); // #FF5A5A
 
     // Element colors
     public Color AirElementColor = new Color32(0x9F, 0xE7, 0xFF, 0xFF); // #9FE7FF – light sky / wind
@@ -49,7 +50,7 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
             // Set the initial frame color to base color
             if (spriteRenderer != null)
             {
-                spriteRenderer.color = frameBaseColor;
+                spriteRenderer.color = FrameBaseColor;
             }
         }       
     }
@@ -83,28 +84,48 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
      * This will change the frame color to the earth element color
      */
     public void ChangeToElementFireColor() {
-        spriteRenderer.color = FireElementColor;
+
+        // we set the base color to fire element color
+        BaseColor = FireElementColor;
+
+        // we change the sprite renderer color to base color
+        spriteRenderer.color = BaseColor;
     }
 
     /**
      * This will change the frame color to the earth element color
      */
     public void ChangeToElementWaterColor() {
-        spriteRenderer.color = WaterElementColor;
+
+        // we set the base color to water element color
+        FrameBaseColor = WaterElementColor;
+
+        // we change the sprite renderer color to base color
+        spriteRenderer.color = FrameBaseColor;
     }
 
     /**
      * This will change the frame color to the earth element color
      */
     public void ChangeToElementEarthColor() {
-        spriteRenderer.color = EarthElementColor;
+
+        // we set the base color to earth element color
+        FrameBaseColor = EarthElementColor;
+
+        // we change the sprite renderer color to base color
+        spriteRenderer.color = FrameBaseColor;
     }
 
     /**
      * This will change the frame color to the air element color
      */
     public void ChangeToElementAirColor() {
-        spriteRenderer.color = AirElementColor;
+
+        // we set the base color to air element color
+        FrameBaseColor = AirElementColor;
+
+        // we change the sprite renderer color to base color
+        spriteRenderer.color = FrameBaseColor;
     }
 
     /**
@@ -112,7 +133,11 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
      */
     public void ChangeToFrameBaseColorColor()
     {
-        spriteRenderer.color = frameBaseColor;
+        // we set the base color to frame base color
+        FrameBaseColor = BaseColor;
+
+        // we set the base color to base color
+        spriteRenderer.color = FrameBaseColor;
     }
     
     /**
@@ -121,21 +146,30 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
     protected override void OnHoverEnter()
     {
 
-        // just changed for the player point for now
+        // Action only for the player point
         if (isPlayerPoint && PlayerHasCardInHand() && PlayerHasACardInHands() && spriteRenderer != null)
         {
-            // Change to selected color when is hovering
-            if (!HasCardAlreadyPlaced())
-            {
-                spriteRenderer.color = frameSelectedColor;
+            OnHoverEnterPlayer();
+        }
+    }
 
-                // we play the hover effect
-                HoverEffectAnimator.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-                HoverEffectAnimator.Play(true);
+    /**
+     * This will be called when the mouse hover enters the card for the player point
+     */
+    private void OnHoverEnterPlayer() 
+    {
+        // Change to selected color when is hovering
+        if (!HasCardAlreadyPlaced())
+        {
+            // We change the sprite renderer color to selected color
+            spriteRenderer.color = FrameSelectedColor;
 
-            } else {                     
-                spriteRenderer.color = errorSelectionColor; 
-            }
+            // we play the hover effect
+            HoverEffectAnimator.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            HoverEffectAnimator.Play(true);
+
+        } else  {
+            spriteRenderer.color = ErrorSelectionColor;
         }
     }
 
@@ -147,10 +181,13 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
         // just changed for the player point for now
         if (isPlayerPoint && spriteRenderer != null)
         {
-            // Reset to base color when not hovering    
-            spriteRenderer.color = frameBaseColor;
-            HoverEffectAnimator.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            // we check if the current frame contain another color, if doesn't we reset to base color
+            if (FrameBaseColor == BaseColor) {
+                spriteRenderer.color = FrameBaseColor;
+            }
 
+            // we stop the hover effect
+            HoverEffectAnimator.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         }
 
     }

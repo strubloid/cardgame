@@ -13,7 +13,7 @@ public class CardPlacePointPlayer : MonoBehaviourWithMouseControls
     private Dictionary<CardType, List<CardPlacePoint>> CardsByType;
 
     // Interval for checking card effects
-    [SerializeField] private float checkIntervalSeconds = 1.2f;
+    [SerializeField] private float checkIntervalSeconds = 1f;
 
     // Timer to track time until next check
     private float timeUntilNextCheck;
@@ -42,12 +42,10 @@ public class CardPlacePointPlayer : MonoBehaviourWithMouseControls
         base.Update();
 
         // if we press L key, 
-        if (Keyboard.current != null && Keyboard.current.lKey.wasPressedThisFrame)
-        {
-
-            SetColorByMultipleType();
-
-        }
+        //if (Keyboard.current != null && Keyboard.current.lKey.wasPressedThisFrame)
+        //{
+        //    SetColorByMultipleType();
+        //}
 
         // updating the timer
         timeUntilNextCheck -= Time.deltaTime;
@@ -61,7 +59,7 @@ public class CardPlacePointPlayer : MonoBehaviourWithMouseControls
         // we build the cards by type
         RebuildCardsByType();
 
-        // Truns once every 2 seconds
+        // Truns once every second
         SetColorByMultipleType();
     }
 
@@ -180,17 +178,22 @@ public class CardPlacePointPlayer : MonoBehaviourWithMouseControls
         foreach (GameObject cardFrame in CardFrames)
         {
             // getting the CardPlacePoint component
-            CardPlacePoint point = cardFrame.GetComponent<CardPlacePoint>();
+            CardPlacePoint CardFramePoint = cardFrame.GetComponent<CardPlacePoint>();
 
-            // checking if we have an active card
-            if (point == null || point.activeCard == null)
-                continue;
+            // if we have an active card, we proceed
+            if (CardFramePoint != null && CardFramePoint.activeCard != null)
+            {
+                // getting the type of the card
+                CardType type = CardFramePoint.activeCard.cardData.cardType;
 
-            // getting the type of the card
-            CardType type = point.activeCard.cardData.cardType;
+                // adding the card to the corresponding list
+                CardsByType[type].Add(CardFramePoint);
+            } else {
 
-            // adding the card to the corresponding list
-            CardsByType[type].Add(point);
+                // we add to frame base color
+                CardFramePoint.ChangeToFrameBaseColorColor();
+
+            }
         }
     }
 

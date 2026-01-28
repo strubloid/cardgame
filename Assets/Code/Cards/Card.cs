@@ -76,8 +76,8 @@ public class Card : MonoBehaviourWithMouseControls
     private bool enemyHoverActive;
 
     // Time to destroy a card after being moved to discard pile
-    private float TimeToDestroyACard = 1.6f;
-    private float TimeToHide = 0.9f;
+    private float TimeToDestroyACard = 1.2f;
+    private float TimeToHide = 0.7f;
 
     // Reference to the animator component
     public Animator animator;
@@ -93,11 +93,10 @@ public class Card : MonoBehaviourWithMouseControls
         if (targetPoint == Vector3.zero) {
             targetPoint = transform.position;
             targetRotation = transform.rotation;
-        } 
+        }
 
+        // Setting up the card values from the scriptable object
         SetupCard();
-
-
 
         // getting what is the controller of the hand, if the card is a player one will be the player hand controller
         // otherwise the enemy hand controller
@@ -259,17 +258,7 @@ public class Card : MonoBehaviourWithMouseControls
             if (assignedPlace.father != null) {
 
                 // getting the father component
-                CardPlacePointPlayer CardPlacePointPlayer = assignedPlace.father.GetComponent<CardPlacePointPlayer>();
-
-                //// Checking if exists and rebuilding the cards by type
-                //if (CardPlacePointPlayer != null)
-                //{
-                //    // we build the cards by type
-                //    CardPlacePointPlayer.RebuildCardsByType();
-
-                //    // And then we set each color by multiple card type
-                //    CardPlacePointPlayer.SetColorByMultipleType();
-                //}
+                //CardPlacePointPlayer CardPlacePointPlayer = assignedPlace.father.GetComponent<CardPlacePointPlayer>();
             }
 
             // Playing the card place sound effect
