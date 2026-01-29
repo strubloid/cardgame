@@ -880,6 +880,15 @@ MonoBehaviour:
   hasDefaultDeckPosition: 0
   animator: {fileID: 3209873709617646853}
   DeadEffect: {fileID: 7473789071823147084}
+  CardMeshRenderer: {fileID: 7808779534122355433}
+  SpecialFireFrontMaterial: {fileID: 2100000, guid: c29afe7890500034ca006e51f68e5761, type: 2}
+  SpecialWaterFrontMaterial: {fileID: 2100000, guid: c84708b6e4b43a64db2e7ae68e2154b4, type: 2}
+  SpecialEarthFrontMaterial: {fileID: 2100000, guid: 7effa6ab808d18d4d9da6da972e10c5c, type: 2}
+  SpecialAirFrontMaterial: {fileID: 2100000, guid: 6b5ffa46fdfb5374c9f73ba0e0b710d8, type: 2}
+  FireFrontMaterial: {fileID: 2100000, guid: f02219fda579f0244b5c22a47dc47164, type: 2}
+  WaterFrontMaterial: {fileID: 2100000, guid: b47af294d01943540a42c68fec33bae3, type: 2}
+  EarthFrontMaterial: {fileID: 2100000, guid: ddbb65a332407984aac7c7a71225663f, type: 2}
+  AirFrontMaterial: {fileID: 2100000, guid: 394c3b52a0426e04faca46d894a258ed, type: 2}
 --- !u!65 &322692140321803569
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2197,6 +2206,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f89a578ed4ecee4b9b3d0429697416a, type: 3}
+--- !u!23 &7808779534122355433 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 1f89a578ed4ecee4b9b3d0429697416a, type: 3}
+  m_PrefabInstance: {fileID: 8908065348378859117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8941183759368843654 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1f89a578ed4ecee4b9b3d0429697416a, type: 3}

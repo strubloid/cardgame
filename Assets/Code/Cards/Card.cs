@@ -84,10 +84,29 @@ public class Card : MonoBehaviourWithMouseControls
 
     // Reference to the dead card effect animator
     public GameObject DeadEffect;
+    
+    // Textures for different card types
+    [SerializeField] private MeshRenderer CardMeshRenderer;
 
+    // Special Materials for different card types
+    [Header("Special Materials")]
+    [SerializeField] private Material SpecialFireFrontMaterial;
+    [SerializeField] private Material SpecialWaterFrontMaterial;
+    [SerializeField] private Material SpecialEarthFrontMaterial;
+    [SerializeField] private Material SpecialAirFrontMaterial;
+
+    // Textures for different card types
+    [Header("Special Materials")]
+    [SerializeField] private Material FireFrontMaterial;
+    [SerializeField] private Material WaterFrontMaterial;
+    [SerializeField] private Material EarthFrontMaterial;
+    [SerializeField] private Material AirFrontMaterial;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // checking the type to be able to pick what is the card to render
+        SetCardTypeRender(true);
 
         // Failsafe in case the main target point is not set
         if (targetPoint == Vector3.zero) {
@@ -110,6 +129,63 @@ public class Card : MonoBehaviourWithMouseControls
 
         // Getting the collider component of the card
         CardCollider = GetComponent<Collider>();
+    }
+
+    /**
+     * This will be setting the card render based on the type
+     */
+    public void SetCardTypeRender(bool useSpecial = true) 
+    {
+        Debug.Log("Setting card type render for: " + cardData.cardName);
+
+        // checking if we have the card mesh renderer
+        if (CardMeshRenderer == null)
+        {
+            Debug.LogError("Card Mesh Renderer is not assigned!");
+            return;
+        }
+
+        // getting the current materials array
+        Material[] Materials = CardMeshRenderer.materials;
+
+        // Creating a new material property block
+        MaterialPropertyBlock block = new MaterialPropertyBlock();
+
+        // Getting the current property block from the mesh renderer
+        CardMeshRenderer.GetPropertyBlock(block, 1);
+
+        switch (cardData.cardType)
+        {
+            // setting the card render based on the type
+            case CardScriptableObject.CardType.fire:
+
+                Debug.Log("Setting fire card render");
+                Materials[1] = useSpecial ? SpecialFireFrontMaterial : FireFrontMaterial;
+                break;
+
+            case CardScriptableObject.CardType.water:
+
+                Debug.Log("Setting water card render");
+                Materials[1] = useSpecial ? SpecialWaterFrontMaterial : WaterFrontMaterial; // set water card render
+
+                break;
+
+            case CardScriptableObject.CardType.wind:
+
+                Debug.Log("Setting wind card render");
+                Materials[1] = useSpecial ? SpecialAirFrontMaterial : AirFrontMaterial; // set wind card render
+                break;
+
+            case CardScriptableObject.CardType.earth:
+
+                Debug.Log("Setting earth card render");
+                Materials[1] = useSpecial ? SpecialEarthFrontMaterial : EarthFrontMaterial; // set earth card render
+                break;
+        }
+
+        // assigning the materials back to the mesh renderer
+        CardMeshRenderer.materials = Materials;
+
     }
 
     /**

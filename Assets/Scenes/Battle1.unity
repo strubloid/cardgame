@@ -492,6 +492,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Deck Controller
       objectReference: {fileID: 0}
+    - target: {fileID: 254735681876397439, guid: 19f293b954a13dc49886222c64eb3e1b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2204352546071948726, guid: 19f293b954a13dc49886222c64eb3e1b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.47
