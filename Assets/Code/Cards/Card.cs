@@ -136,8 +136,6 @@ public class Card : MonoBehaviourWithMouseControls
      */
     public void SetCardTypeRender(bool useSpecial = true) 
     {
-        Debug.Log("Setting card type render for: " + cardData.cardName);
-
         // checking if we have the card mesh renderer
         if (CardMeshRenderer == null)
         {
@@ -159,26 +157,22 @@ public class Card : MonoBehaviourWithMouseControls
             // setting the card render based on the type
             case CardScriptableObject.CardType.fire:
 
-                Debug.Log("Setting fire card render");
                 Materials[1] = useSpecial ? SpecialFireFrontMaterial : FireFrontMaterial;
                 break;
 
             case CardScriptableObject.CardType.water:
 
-                Debug.Log("Setting water card render");
                 Materials[1] = useSpecial ? SpecialWaterFrontMaterial : WaterFrontMaterial; // set water card render
 
                 break;
 
             case CardScriptableObject.CardType.wind:
 
-                Debug.Log("Setting wind card render");
                 Materials[1] = useSpecial ? SpecialAirFrontMaterial : AirFrontMaterial; // set wind card render
                 break;
 
             case CardScriptableObject.CardType.earth:
 
-                Debug.Log("Setting earth card render");
                 Materials[1] = useSpecial ? SpecialEarthFrontMaterial : EarthFrontMaterial; // set earth card render
                 break;
         }

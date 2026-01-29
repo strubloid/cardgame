@@ -13,10 +13,13 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
     private SpriteRenderer spriteRenderer;
 
     // Reference to the hand controller
-    private HandController handController;
+    public HandController HandController;
+
 
     // Frame colors for selection indication
     public Color BaseColor = new Color32(0xAA, 0xAC, 0xFF, 0xFF); // #AAACFF
+    public Color EnemyBaseColor = new Color32(0xC0, 0x58, 0x58, 0xFF); // #C05858
+
     public Color FrameBaseColor = new Color32(0xAA, 0xAC, 0xFF, 0xFF); // #AAACFF
     public Color FrameSelectedColor = new Color32(0xDE, 0xAD, 0x5D, 0xFF); // #DEAD5D
     public Color ErrorSelectionColor = new Color32(0xFF, 0x5A, 0x5A, 0xFF); // #FF5A5A
@@ -40,19 +43,21 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
     private void Awake()
     {
         // Finding the hand controller in the scene
-        handController = Object.FindFirstObjectByType<HandController>();
+        HandController = Object.FindFirstObjectByType<HandController>();
 
         // Initialize the sprite renderer
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // just changed for the player point for now
-        if (isPlayerPoint) {
-            // Set the initial frame color to base color
-            if (spriteRenderer != null)
-            {
+        // Set the initial base color
+        if (spriteRenderer != null)
+        {
+            // Set the initial color based on whether it's a player point or enemy point
+            if (isPlayerPoint) {
                 spriteRenderer.color = FrameBaseColor;
+            } else {
+                spriteRenderer.color = EnemyBaseColor;
             }
-        }       
+        }
     }
 
     /**
@@ -60,7 +65,7 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
      */
     private bool PlayerHasCardInHand()
     {
-        return handController != null && handController.cardsInHand.Count > 0;
+        return HandController != null && HandController.cardsInHand.Count > 0;
     }
 
 

@@ -133,14 +133,18 @@ MonoBehaviour:
     m_Bits: 4294967295
   activeCard: {fileID: 0}
   isPlayerPoint: 0
-  frameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
-  frameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
-  errorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
+  handController: {fileID: 0}
+  BaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
+  EnemyBaseColor: {r: 0.7529412, g: 0.34509805, b: 0.34509805, a: 1}
+  FrameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
+  FrameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
+  ErrorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
   AirElementColor: {r: 0.62352943, g: 0.90588236, b: 1, a: 1}
   FireElementColor: {r: 1, g: 0.47843137, b: 0.23529412, a: 1}
   EarthElementColor: {r: 0.47843137, g: 0.60784316, b: 0.30588236, a: 1}
   WaterElementColor: {r: 0.23529412, g: 0.5529412, b: 1, a: 1}
   HoverEffectAnimator: {fileID: 3401201560334021534}
+  father: {fileID: 4226116848642052865}
 --- !u!1 &1275176304658564795
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,14 +278,18 @@ MonoBehaviour:
     m_Bits: 4294967295
   activeCard: {fileID: 0}
   isPlayerPoint: 1
-  frameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
-  frameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
-  errorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
+  handController: {fileID: 0}
+  BaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
+  EnemyBaseColor: {r: 0.7529412, g: 0.34509805, b: 0.34509805, a: 1}
+  FrameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
+  FrameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
+  ErrorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
   AirElementColor: {r: 0.62352943, g: 0.90588236, b: 1, a: 1}
   FireElementColor: {r: 1, g: 0.47843137, b: 0.23529412, a: 1}
   EarthElementColor: {r: 0.47843137, g: 0.60784316, b: 0.30588236, a: 1}
   WaterElementColor: {r: 0.23529412, g: 0.5529412, b: 1, a: 1}
   HoverEffectAnimator: {fileID: 590461009900240830}
+  father: {fileID: 4884980957380752817}
 --- !u!1 &1328716383500823342
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,14 +423,18 @@ MonoBehaviour:
     m_Bits: 4294967295
   activeCard: {fileID: 0}
   isPlayerPoint: 1
-  frameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
-  frameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
-  errorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
+  handController: {fileID: 0}
+  BaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
+  EnemyBaseColor: {r: 0.7529412, g: 0.34509805, b: 0.34509805, a: 1}
+  FrameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
+  FrameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
+  ErrorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
   AirElementColor: {r: 0.62352943, g: 0.90588236, b: 1, a: 1}
   FireElementColor: {r: 1, g: 0.47843137, b: 0.23529412, a: 1}
   EarthElementColor: {r: 0.47843137, g: 0.60784316, b: 0.30588236, a: 1}
   WaterElementColor: {r: 0.23529412, g: 0.5529412, b: 1, a: 1}
   HoverEffectAnimator: {fileID: 2176841036580422196}
+  father: {fileID: 4884980957380752817}
 --- !u!1 &1535499508369972190
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +462,7 @@ Transform:
   m_GameObject: {fileID: 1535499508369972190}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1040001, z: 0}
   m_LocalScale: {x: 0.59999996, y: 0.59999996, z: 0.59999996}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5344,7 +5356,7 @@ Transform:
   m_GameObject: {fileID: 1542419248553264189}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1040001, z: 0}
   m_LocalScale: {x: 0.59999996, y: 0.59999996, z: 0.59999996}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -10238,7 +10250,7 @@ Transform:
   m_GameObject: {fileID: 2386631736208367865}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.10400011, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1040001, z: 0}
   m_LocalScale: {x: 0.59999996, y: 0.59999996, z: 0.59999996}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -15238,14 +15250,18 @@ MonoBehaviour:
     m_Bits: 4294967295
   activeCard: {fileID: 0}
   isPlayerPoint: 0
-  frameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
-  frameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
-  errorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
+  handController: {fileID: 0}
+  BaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
+  EnemyBaseColor: {r: 0.7529412, g: 0.34509805, b: 0.34509805, a: 1}
+  FrameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
+  FrameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
+  ErrorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
   AirElementColor: {r: 0.62352943, g: 0.90588236, b: 1, a: 1}
   FireElementColor: {r: 1, g: 0.47843137, b: 0.23529412, a: 1}
   EarthElementColor: {r: 0.47843137, g: 0.60784316, b: 0.30588236, a: 1}
   WaterElementColor: {r: 0.23529412, g: 0.5529412, b: 1, a: 1}
   HoverEffectAnimator: {fileID: 1925561439295568083}
+  father: {fileID: 4226116848642052865}
 --- !u!1 &2672828810641404996
 GameObject:
   m_ObjectHideFlags: 0
@@ -15273,7 +15289,7 @@ Transform:
   m_GameObject: {fileID: 2672828810641404996}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.10400011, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1040001, z: 0}
   m_LocalScale: {x: 0.59999996, y: 0.59999996, z: 0.59999996}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -20273,14 +20289,18 @@ MonoBehaviour:
     m_Bits: 4294967295
   activeCard: {fileID: 0}
   isPlayerPoint: 0
-  frameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
-  frameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
-  errorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
+  handController: {fileID: 0}
+  BaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
+  EnemyBaseColor: {r: 0.7529412, g: 0.34509805, b: 0.34509805, a: 1}
+  FrameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
+  FrameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
+  ErrorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
   AirElementColor: {r: 0.62352943, g: 0.90588236, b: 1, a: 1}
   FireElementColor: {r: 1, g: 0.47843137, b: 0.23529412, a: 1}
   EarthElementColor: {r: 0.47843137, g: 0.60784316, b: 0.30588236, a: 1}
   WaterElementColor: {r: 0.23529412, g: 0.5529412, b: 1, a: 1}
   HoverEffectAnimator: {fileID: 2397856102182018569}
+  father: {fileID: 4226116848642052865}
 --- !u!1 &3430194877291967611
 GameObject:
   m_ObjectHideFlags: 0
@@ -20414,14 +20434,18 @@ MonoBehaviour:
     m_Bits: 4294967295
   activeCard: {fileID: 0}
   isPlayerPoint: 0
-  frameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
-  frameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
-  errorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
+  handController: {fileID: 0}
+  BaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
+  EnemyBaseColor: {r: 0.7529412, g: 0.34509805, b: 0.34509805, a: 1}
+  FrameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
+  FrameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
+  ErrorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
   AirElementColor: {r: 0.62352943, g: 0.90588236, b: 1, a: 1}
   FireElementColor: {r: 1, g: 0.47843137, b: 0.23529412, a: 1}
   EarthElementColor: {r: 0.47843137, g: 0.60784316, b: 0.30588236, a: 1}
   WaterElementColor: {r: 0.23529412, g: 0.5529412, b: 1, a: 1}
   HoverEffectAnimator: {fileID: 1750028312950483362}
+  father: {fileID: 4226116848642052865}
 --- !u!1 &4144748809533648511
 GameObject:
   m_ObjectHideFlags: 0
@@ -20449,7 +20473,7 @@ Transform:
   m_GameObject: {fileID: 4144748809533648511}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1040001, z: 0}
   m_LocalScale: {x: 0.59999996, y: 0.59999996, z: 0.59999996}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -25369,6 +25393,13 @@ MonoBehaviour:
   hoverMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  CardFrames:
+  - {fileID: 803166303370289985}
+  - {fileID: 4448514149981218729}
+  - {fileID: 2460741571707171579}
+  - {fileID: 3430194877291967611}
+  - {fileID: 3275502511731501721}
+  checkIntervalSeconds: 1
 --- !u!1 &4448514149981218729
 GameObject:
   m_ObjectHideFlags: 0
@@ -25502,14 +25533,18 @@ MonoBehaviour:
     m_Bits: 4294967295
   activeCard: {fileID: 0}
   isPlayerPoint: 0
-  frameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
-  frameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
-  errorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
+  handController: {fileID: 0}
+  BaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
+  EnemyBaseColor: {r: 0.7529412, g: 0.34509805, b: 0.34509805, a: 1}
+  FrameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
+  FrameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
+  ErrorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
   AirElementColor: {r: 0.62352943, g: 0.90588236, b: 1, a: 1}
   FireElementColor: {r: 1, g: 0.47843137, b: 0.23529412, a: 1}
   EarthElementColor: {r: 0.47843137, g: 0.60784316, b: 0.30588236, a: 1}
   WaterElementColor: {r: 0.23529412, g: 0.5529412, b: 1, a: 1}
   HoverEffectAnimator: {fileID: 6735502388430998758}
+  father: {fileID: 4226116848642052865}
 --- !u!1 &4632176904114663007
 GameObject:
   m_ObjectHideFlags: 0
@@ -25643,14 +25678,18 @@ MonoBehaviour:
     m_Bits: 4294967295
   activeCard: {fileID: 0}
   isPlayerPoint: 1
-  frameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
-  frameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
-  errorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
+  handController: {fileID: 0}
+  BaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
+  EnemyBaseColor: {r: 0.7529412, g: 0.34509805, b: 0.34509805, a: 1}
+  FrameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
+  FrameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
+  ErrorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
   AirElementColor: {r: 0.62352943, g: 0.90588236, b: 1, a: 1}
   FireElementColor: {r: 1, g: 0.47843137, b: 0.23529412, a: 1}
   EarthElementColor: {r: 0.47843137, g: 0.60784316, b: 0.30588236, a: 1}
   WaterElementColor: {r: 0.23529412, g: 0.5529412, b: 1, a: 1}
   HoverEffectAnimator: {fileID: 8987524724050075501}
+  father: {fileID: 4884980957380752817}
 --- !u!1 &4884980957380752817
 GameObject:
   m_ObjectHideFlags: 0
@@ -25704,6 +25743,13 @@ MonoBehaviour:
   hoverMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  CardFrames:
+  - {fileID: 4632176904114663007}
+  - {fileID: 8543140140507485762}
+  - {fileID: 1275176304658564795}
+  - {fileID: 1328716383500823342}
+  - {fileID: 4918505444026391139}
+  checkIntervalSeconds: 1
 --- !u!1 &4918505444026391139
 GameObject:
   m_ObjectHideFlags: 0
@@ -25837,14 +25883,18 @@ MonoBehaviour:
     m_Bits: 4294967295
   activeCard: {fileID: 0}
   isPlayerPoint: 1
-  frameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
-  frameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
-  errorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
+  handController: {fileID: 0}
+  BaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
+  EnemyBaseColor: {r: 0.7529412, g: 0.34509805, b: 0.34509805, a: 1}
+  FrameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
+  FrameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
+  ErrorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
   AirElementColor: {r: 0.62352943, g: 0.90588236, b: 1, a: 1}
   FireElementColor: {r: 1, g: 0.47843137, b: 0.23529412, a: 1}
   EarthElementColor: {r: 0.47843137, g: 0.60784316, b: 0.30588236, a: 1}
   WaterElementColor: {r: 0.23529412, g: 0.5529412, b: 1, a: 1}
   HoverEffectAnimator: {fileID: 4355717853081605117}
+  father: {fileID: 4884980957380752817}
 --- !u!1 &5307755247625690360
 GameObject:
   m_ObjectHideFlags: 0
@@ -25872,7 +25922,7 @@ Transform:
   m_GameObject: {fileID: 5307755247625690360}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.104, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1040001, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -30825,7 +30875,7 @@ Transform:
   m_GameObject: {fileID: 6737132892977628830}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.10400011, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1040001, z: 0}
   m_LocalScale: {x: 0.59999996, y: 0.59999996, z: 0.59999996}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -35719,7 +35769,7 @@ Transform:
   m_GameObject: {fileID: 6909220308351208996}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1040001, z: 0}
   m_LocalScale: {x: 0.59999996, y: 0.59999996, z: 0.59999996}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -40613,7 +40663,7 @@ Transform:
   m_GameObject: {fileID: 7382224848794076971}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1040001, z: 0}
   m_LocalScale: {x: 0.59999996, y: 0.59999996, z: 0.59999996}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -45613,14 +45663,18 @@ MonoBehaviour:
     m_Bits: 4294967295
   activeCard: {fileID: 0}
   isPlayerPoint: 1
-  frameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
-  frameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
-  errorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
+  handController: {fileID: 0}
+  BaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
+  EnemyBaseColor: {r: 0.7529412, g: 0.34509805, b: 0.34509805, a: 1}
+  FrameBaseColor: {r: 0.6666667, g: 0.6745098, b: 1, a: 1}
+  FrameSelectedColor: {r: 0.87058824, g: 0.6784314, b: 0.3647059, a: 1}
+  ErrorSelectionColor: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
   AirElementColor: {r: 0.62352943, g: 0.90588236, b: 1, a: 1}
   FireElementColor: {r: 1, g: 0.47843137, b: 0.23529412, a: 1}
   EarthElementColor: {r: 0.47843137, g: 0.60784316, b: 0.30588236, a: 1}
   WaterElementColor: {r: 0.23529412, g: 0.5529412, b: 1, a: 1}
   HoverEffectAnimator: {fileID: 7676271891843239845}
+  father: {fileID: 4884980957380752817}
 --- !u!1 &8704474464036479847
 GameObject:
   m_ObjectHideFlags: 0
@@ -45648,7 +45702,7 @@ Transform:
   m_GameObject: {fileID: 8704474464036479847}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.10400011, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1040001, z: 0}
   m_LocalScale: {x: 0.59999996, y: 0.59999996, z: 0.59999996}
   m_ConstrainProportionsScale: 1
   m_Children: []

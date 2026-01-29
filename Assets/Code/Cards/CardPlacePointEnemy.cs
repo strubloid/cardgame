@@ -2,45 +2,67 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+using static CardScriptableObject;
 
-public class CardPlacePointEnemy : MonoBehaviourWithMouseControls
+public class CardPlacePointEnemy : CardPlacePointBase
 {
-    // List with all enemy card frames
-    public List<GameObject> CardFrames = new List<GameObject>();
 
     /**
-     * Awake is called when the script instance is being loaded
-     * so we can initialize the sprite renderer and set the base color
+     * Update is called once per frame
      **/
-    private void Awake()
-    {
-               
-    }
-
-    /**
-    * Update is called once per frame
-    **/
     protected override void Update()
     {
         base.Update();
     }
 
     /**
-     * This will be called when the mouse hover enters the card
-     */
-    protected override void OnHoverEnter()
+     * This method sets the color of cards based on multiple types placed
+     **/
+    public override void SetColorByMultipleType()
     {
+        // we first set fire element
+        SetFireElement();
 
-        
+        // second is wind element
+        SetWindElement();
+
+        // third is water element
+        SetWaterElement();
+
+        // forth is the earth element
+        SetEarthElement();
+
     }
 
     /**
-     * This will be called when the mouse hover exits the card
-     */
-    protected override void OnHoverExit()
+     * This method rebuilds the CardsByType dictionary
+     * to ensure it reflects the current state of placed cards.
+     **/
+    public override void RebuildCardsByType()
     {
-        
+        // Clearing the previous entries
+        foreach (var list in CardsByType.Values)
+            list.Clear();
 
+        // Populating the dictionary with current placed cards
+        foreach (GameObject cardFrame in CardFrames)
+        {
+            // getting the CardPlacePoint component
+            CardPlacePoint CardFramePoint = cardFrame.GetComponent<CardPlacePoint>();
+
+            // if we have an active card, we proceed
+            if (CardFramePoint != null && CardFramePoint.activeCard != null)
+            {
+                // getting the type of the card
+                CardType type = CardFramePoint.activeCard.cardData.cardType;
+
+                // adding the card to the corresponding list
+                CardsByType[type].Add(CardFramePoint);
+            } else {
+                // we add to frame base color
+                CardFramePoint.ChangeToFrameBaseColorColor();
+            }
+        }
     }
 
 }
