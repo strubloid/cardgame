@@ -52,9 +52,38 @@ MonoBehaviour:
   - {fileID: 3127783089071585906}
   - {fileID: 7853414146962732770}
   CurrentPage: 1
+  MaxPages: 0
   NextButton: {fileID: 1591929853212900984}
   PreviousButton: {fileID: 1702328772976940915}
   itemsPerPage: 6
+  RotateTarget: {fileID: 8385637266833153682}
+  DegreesPerPage: 30
+  RotateDuration: 0.35
+  RotateCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  RotationAxis: {x: 0, y: 0, z: 0}
 --- !u!1 &1834156712474742066
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,6 +1338,14 @@ PrefabInstance:
     - target: {fileID: 2295680611814781085, guid: 0e180324d67839b4b8e26c3a7bc5d5bc, type: 3}
       propertyPath: m_Name
       value: Previous Page
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351675928428377638, guid: 0e180324d67839b4b8e26c3a7bc5d5bc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1099470373028870618}
+    - target: {fileID: 6351675928428377638, guid: 0e180324d67839b4b8e26c3a7bc5d5bc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PreviousPage
       objectReference: {fileID: 0}
     - target: {fileID: 8872133325468624506, guid: 0e180324d67839b4b8e26c3a7bc5d5bc, type: 3}
       propertyPath: m_Pivot.x

@@ -519,17 +519,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c959be2096f8e94980a8cd64ce50a21, type: 3}
---- !u!114 &1728470022 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1099470373028870618, guid: 4ceed87abb35f824d97fa74cac1119d4, type: 3}
-  m_PrefabInstance: {fileID: 4329414345780138008}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92c88c1fd93f6c744b9cf6bdd35201ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BattleCollectionControler
 --- !u!1 &1859933159
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,14 +684,6 @@ PrefabInstance:
     - target: {fileID: 2265223959424980629, guid: 4ceed87abb35f824d97fa74cac1119d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5792095584958566856, guid: 4ceed87abb35f824d97fa74cac1119d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1728470022}
-    - target: {fileID: 5792095584958566856, guid: 4ceed87abb35f824d97fa74cac1119d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PreviousPage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

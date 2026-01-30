@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -21,8 +22,9 @@ public class BattleCollectionControler : MonoBehaviour
     // Current page being viewed
     public int CurrentPage = 1;
 
+    [Header("Paging")]
     // Maximum number of pages available
-    private int MaxPages;
+    [SerializeField]  private int MaxPages;
 
     // Reference to the Next and Previous Button GameObject
     public GameObject NextButton;
@@ -31,9 +33,26 @@ public class BattleCollectionControler : MonoBehaviour
     // Number of items to display per page
     public int itemsPerPage = 6;
 
+    [Header("Rotation")]
+    [SerializeField] private Transform RotateTarget;
+    [SerializeField] private float DegreesPerLevel = 180.0f;
+    [SerializeField] private float DurationRotateLevel = 1.15f;
+    [SerializeField] private AnimationCurve RotateCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+    
+    // Axis: if rotation looks wrong, switch to Vector3.forward
+    [SerializeField] private Vector3 RotationAxis = default;
+
+    // Coroutine for handling rotation
+    private Coroutine RotateRoutine;
+
     // This will start with some initial setup
     private void Awake()
     {
+        // setting the rotation axis to up if not set
+        if (RotationAxis == default) {
+            RotationAxis = Vector3.up;
+        } 
+
         // loading the available battle scenes
         AvaiableBattleScenes = GetBattleScenes();
 
@@ -186,6 +205,9 @@ public class BattleCollectionControler : MonoBehaviour
             return;
         }
 
+        // we rotate to the right
+        RotateRight();
+
         // We increment the current page
         CurrentPage++;
 
@@ -209,6 +231,9 @@ public class BattleCollectionControler : MonoBehaviour
             return;
         }
 
+        // we rotate to the left
+        RotateLeft();
+
         // We decrement the current page
         CurrentPage--;
 
@@ -221,4 +246,64 @@ public class BattleCollectionControler : MonoBehaviour
         // Play a sound effect to indicate a battle has been selected
         AudioManager.instance.PlayButtonPress();
     }
+
+    /**
+     * This will rotate the target to the right by the specified degrees per page.
+     */
+    private void RotateRight()
+    {
+        RotateBy(+DegreesPerLevel);
+    }
+
+    /**
+     * This will rotate the target to the left by the specified degrees per page.
+     */
+    private void RotateLeft()
+    {
+        RotateBy(-DegreesPerLevel);
+    }
+
+    /**
+     * This will rotate the target by the specified delta degrees.
+     */
+    private void RotateBy(float deltaDegrees)
+    {
+        if (RotateTarget == null) return;
+
+        if (RotateRoutine != null)
+            StopCoroutine(RotateRoutine);
+
+        RotateRoutine = StartCoroutine(RotateSmooth(deltaDegrees));
+    }
+
+    /**
+     * This will rotate the target smoothly by the specified delta degrees.
+     */
+    private IEnumerator RotateSmooth(float deltaDegrees)
+    {
+        Quaternion startRotation = RotateTarget.localRotation;
+        Quaternion endRotation = startRotation * Quaternion.AngleAxis(deltaDegrees, RotationAxis.normalized);
+
+        float elapsed = 0f;
+
+        // rotating over time
+        while (elapsed < DurationRotateLevel)
+        {
+            elapsed += Time.deltaTime;
+
+            // calculating normalized time
+            float NormalizedTime = Mathf.Clamp01(elapsed / DurationRotateLevel);
+
+            // applying easing if curve is provided
+            float easedT = RotateCurve != null ? RotateCurve.Evaluate(NormalizedTime) : NormalizedTime;
+            
+            // Slerping the rotation
+            RotateTarget.localRotation = Quaternion.Slerp(startRotation, endRotation, easedT);
+            yield return null;
+        }
+
+        RotateTarget.localRotation = endRotation;
+        RotateRoutine = null;
+    }
+
 }
