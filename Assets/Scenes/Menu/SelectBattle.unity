@@ -641,6 +641,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 48368260181288766, guid: 4ceed87abb35f824d97fa74cac1119d4, type: 3}
+      propertyPath: m_text
+      value: Battle 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 172274086694395295, guid: 4ceed87abb35f824d97fa74cac1119d4, type: 3}
+      propertyPath: m_text
+      value: Battle 1
+      objectReference: {fileID: 0}
     - target: {fileID: 567131267463943541, guid: 4ceed87abb35f824d97fa74cac1119d4, type: 3}
       propertyPath: m_Name
       value: Levels
@@ -684,6 +692,54 @@ PrefabInstance:
     - target: {fileID: 2265223959424980629, guid: 4ceed87abb35f824d97fa74cac1119d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2431565026452670217, guid: 4ceed87abb35f824d97fa74cac1119d4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919802117445184512, guid: 4ceed87abb35f824d97fa74cac1119d4, type: 3}
+      propertyPath: m_text
+      value: Battle 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2934349268672559440, guid: 4ceed87abb35f824d97fa74cac1119d4, type: 3}
+      propertyPath: m_text
+      value: Battle 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989841129356844248, guid: 4ceed87abb35f824d97fa74cac1119d4, type: 3}
+      propertyPath: m_text
+      value: Battle 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900180532915095917, guid: 4ceed87abb35f824d97fa74cac1119d4, type: 3}
+      propertyPath: m_text
+      value: Battle 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064520645809349896, guid: 4ceed87abb35f824d97fa74cac1119d4, type: 3}
+      propertyPath: m_text
+      value: Battle 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4158497817608959822, guid: 4ceed87abb35f824d97fa74cac1119d4, type: 3}
+      propertyPath: m_text
+      value: Battle 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4897518314283176544, guid: 4ceed87abb35f824d97fa74cac1119d4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4934077161799019768, guid: 4ceed87abb35f824d97fa74cac1119d4, type: 3}
+      propertyPath: m_text
+      value: Battle 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6217618699087702375, guid: 4ceed87abb35f824d97fa74cac1119d4, type: 3}
+      propertyPath: m_text
+      value: Battle 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438929453534642515, guid: 4ceed87abb35f824d97fa74cac1119d4, type: 3}
+      propertyPath: m_text
+      value: Battle 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6861288078146223969, guid: 4ceed87abb35f824d97fa74cac1119d4, type: 3}
+      propertyPath: m_text
+      value: Battle 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -34,7 +34,7 @@ public class BattleCollectionControler : MonoBehaviour
     public int itemsPerPage = 6;
 
     [Header("Rotation")]
-    [SerializeField] private Transform RotateTarget;
+    [SerializeField] private List<Transform> RotateTargets = new List<Transform>();
     [SerializeField] private float DegreesPerLevel = 180.0f;
     [SerializeField] private float DurationRotateLevel = 1.15f;
     [SerializeField] private AnimationCurve RotateCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
@@ -268,18 +268,20 @@ public class BattleCollectionControler : MonoBehaviour
      */
     private void RotateBy(float deltaDegrees)
     {
-        if (RotateTarget == null) return;
+        if (RotateTargets == null) return;
 
         if (RotateRoutine != null)
             StopCoroutine(RotateRoutine);
 
-        RotateRoutine = StartCoroutine(RotateSmooth(deltaDegrees));
+        foreach (Transform Target in RotateTargets) {
+            RotateRoutine = StartCoroutine(RotateSmooth(deltaDegrees, Target));
+        }            
     }
 
     /**
      * This will rotate the target smoothly by the specified delta degrees.
      */
-    private IEnumerator RotateSmooth(float deltaDegrees)
+    private IEnumerator RotateSmooth(float deltaDegrees, Transform RotateTarget)
     {
         Quaternion startRotation = RotateTarget.localRotation;
         Quaternion endRotation = startRotation * Quaternion.AngleAxis(deltaDegrees, RotationAxis.normalized);
@@ -296,7 +298,7 @@ public class BattleCollectionControler : MonoBehaviour
 
             // applying easing if curve is provided
             float easedT = RotateCurve != null ? RotateCurve.Evaluate(NormalizedTime) : NormalizedTime;
-            
+
             // Slerping the rotation
             RotateTarget.localRotation = Quaternion.Slerp(startRotation, endRotation, easedT);
             yield return null;
