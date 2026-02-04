@@ -73,7 +73,7 @@ public class Card : MonoBehaviourWithMouseControls
     public bool hasDefaultDeckPosition;
 
     // To know when we are hovering an enemy card
-    private bool enemyHoverActive;
+    private bool enemyHoverActive, playerHoverActive;
 
     // Time to destroy a card after being moved to discard pile
     private float TimeToDestroyACard = 1.2f;
@@ -395,8 +395,20 @@ public class Card : MonoBehaviourWithMouseControls
      * This will be called when the mouse hover enters a player card
      */
     public void onHoverEnterPlayer() {
+
+        float playerHoverLiftY = 5.0f;
+        playerHoverActive = true;
+
+        // configuration of the point to move to when hovering
+        float xPositionOffset = 0f;
+        float yPositionOffset = 0.5f * playerHoverLiftY;
+        float zPositionOffset = 2.0f;
+        
+        Vector3 pointToMoveTo = handController.cardPositions[handPosition] + new Vector3(xPositionOffset, yPositionOffset, zPositionOffset);
+
+        // moving up the card when hovering
         MoveCardToPoint(
-            handController.cardPositions[handPosition] + new Vector3(0f, 0.5f, 0.5f),
+            pointToMoveTo,
             Quaternion.identity
         );
     }
