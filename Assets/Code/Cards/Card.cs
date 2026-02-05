@@ -433,9 +433,9 @@ public class Card : MonoBehaviourWithMouseControls
         float playerHoverLiftY = 5.0f;
 
         // configuration of the point to move to when hovering
-        float xPositionOffset = 0f;
+        float xPositionOffset = -0.1f;
         float yPositionOffset = 0.5f * playerHoverLiftY;
-        float zPositionOffset = 1.1f;
+        float zPositionOffset = 1.0f;
         
         Vector3 pointToMoveTo = handController.cardPositions[handPosition] + new Vector3(xPositionOffset, yPositionOffset, zPositionOffset);
 
@@ -560,8 +560,8 @@ public class Card : MonoBehaviourWithMouseControls
             return;
         }
 
-        // Doing actions when we click with right button
-        if (Mouse.current.rightButton.wasPressedThisFrame)
+        // Doing actions when we click with right button and the card is not in hand
+        if (Mouse.current.rightButton.wasPressedThisFrame && !inHand)
         {
             // turning on the click right button
             ClickRightButton.SetActive(true);
