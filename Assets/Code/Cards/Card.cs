@@ -430,22 +430,25 @@ public class Card : MonoBehaviourWithMouseControls
      */
     public void onHoverEnterPlayer() 
     {
-        // defining the hover lift and back values, you can adjust these to your liking
-        float hoverLift = 4f; 
-        float hoverBack = 1.0f;
+        // Tunable hover offsets
+        float hoverLift = 4.7f;     // vertical lift for readability
+        float hoverBack = 1.0f;     // pull card slightly toward the player
 
-        // Base position of the card (the position it will hover from)
+        // Base transform data
         Vector3 basePosition = transform.position;
-        Vector3 localUp = transform.up;
-        Vector3 localBack = transform.forward;
+        Quaternion baseRotation = transform.rotation;
 
-        // Calculate the point to move to by adding the hover lift and back in the local space of the card
-        Vector3 pointToMoveTo = basePosition + localUp * hoverLift + localBack * hoverBack;
+        // Card-local directions
+        Vector3 liftDirection = transform.up;
+        Vector3 backDirection = transform.forward;
 
-        // Keep rotation exactly as-is
-        Quaternion currentRotation = transform.rotation;
+        // Final hover position
+        Vector3 hoverPosition = basePosition
+            + liftDirection * hoverLift
+            + backDirection * hoverBack;
 
-        MoveCardToPoint(pointToMoveTo, currentRotation);
+        // Move while preserving rotation
+        MoveCardToPoint(hoverPosition, baseRotation);
     }
 
     /**
