@@ -111,5 +111,30 @@ public class PlayerHandController : HandController
     }
 
 
+    /**
+     * This will be disabling the colliders of all the cards in hand except the active card
+     */
+    public void DisableAllCardCollidersExcept(Card activeCard)
+    {
+        foreach (var card in cardsInHand)
+        {
+            if (card != activeCard)
+                card.SetColliderEnabled(false);
+        }
+    }
+
+    /**
+     * This will be enabling the colliders of all the cards in hand
+     */
+    public void EnableAllCardColliders()
+    {
+        foreach (var card in cardsInHand)
+        {
+            card.SetColliderEnabled(true);
+        }
+    }
+
+
+
 
 }

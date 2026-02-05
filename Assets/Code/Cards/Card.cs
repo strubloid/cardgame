@@ -345,6 +345,9 @@ public class Card : MonoBehaviourWithMouseControls
             // Removing the card from the array
             handController.RemoveCardFromHand(this);
 
+            // In the case of not hovering off the card, we need to enable the colliders back to be able to hover other cards
+            PlayerHandController.Instance.EnableAllCardColliders();
+
             // removing the player mana after playing the card
             BattleController.instance.SpendPlayerMana(manaCost);
 
@@ -430,8 +433,11 @@ public class Card : MonoBehaviourWithMouseControls
      */
     public void onHoverEnterPlayer() 
     {
+        // Lock input ownership
+        PlayerHandController.Instance.DisableAllCardCollidersExcept(this);
+
         // Tunable hover offsets
-        float hoverLift = 4.7f;     // vertical lift for readability
+        float hoverLift = 4.3f;     // vertical lift for readability
         float hoverBack = 1.0f;     // pull card slightly toward the player
 
         // Base transform data
@@ -505,6 +511,9 @@ public class Card : MonoBehaviourWithMouseControls
      */
     public void onHoverExitPlayer()
     {
+        // enabling all the colliders of the cards in hand so we can hover them again
+        PlayerHandController.Instance.EnableAllCardColliders();
+
         // we load the rotation default from the hand controller 
         Quaternion defaultRotation = handController.cardRotations[handPosition];
 
@@ -726,5 +735,14 @@ public class Card : MonoBehaviourWithMouseControls
         // Loading the current mana cost to be at the mana text 
         manaText.text = manaCost.ToString();
 
+    }
+
+    /**
+     * This will be enabling or disabling the collider of the card
+     */
+    public void SetColliderEnabled(bool enabled)
+    {
+        if (CardCollider != null)
+            CardCollider.enabled = enabled;
     }
 }
