@@ -109,7 +109,7 @@ public class UiController : MonoBehaviour
     {
         // current hand count and max hand size
         int handCount = PlayerHandController.Instance.cardsInHand.Count;
-        int maxHandSize = PlayerHandController.Instance.MaxHandSize;
+        int maxHandSize = PlayerHandController.Instance.MaximumHandSize;
 
         // checking if we have at least 1 mana to draw a card
         bool playerHasOneMana = BattleController.instance.playerMana >= 1;
@@ -469,7 +469,7 @@ public class UiController : MonoBehaviour
     {
         // checking if we can draw a card per max count in hand
         int handCount = PlayerHandController.Instance.cardsInHand.Count;
-        int maxHandSize = PlayerHandController.Instance.MaxHandSize;
+        int maxHandSize = PlayerHandController.Instance.MaximumHandSize;
         if (handCount >= maxHandSize)
         {
             ShowMaxCardsWarning();

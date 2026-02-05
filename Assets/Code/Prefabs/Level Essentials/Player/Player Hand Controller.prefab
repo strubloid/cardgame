@@ -62,11 +62,11 @@ MonoBehaviour:
     m_Knots:
     - Position:
         x: -1
-        y: 2.5
-        z: -3
+        y: 0.5
+        z: -3.0000002
       TangentIn:
-        x: -0
-        y: -0
+        x: 0
+        y: 0
         z: -0.42426407
       TangentOut:
         x: 0
@@ -74,13 +74,13 @@ MonoBehaviour:
         z: 0.42426407
       Rotation:
         value:
-          x: 0.3659348
-          y: 0.49823752
-          z: 0.6050552
-          w: 0.50175625
+          x: 0.49545807
+          y: 0.36927152
+          z: 0.5045009
+          w: 0.6030246
     - Position:
         x: 3
-        y: 3.5
+        y: 1.5
         z: -2
       TangentIn:
         x: 0
@@ -92,14 +92,14 @@ MonoBehaviour:
         z: 3
       Rotation:
         value:
-          x: 0.5000002
+          x: 0.49999994
           y: 0.5
           z: 0.5
-          w: 0.49999985
+          w: 0.50000006
     - Position:
         x: 7
-        y: 2.5
-        z: -3
+        y: 0.5
+        z: -3.0000002
       TangentIn:
         x: -0
         y: -0
@@ -110,12 +110,12 @@ MonoBehaviour:
         z: 0.42426407
       Rotation:
         value:
-          x: 0.6050552
-          y: 0.5017562
-          z: 0.36593476
-          w: 0.4982375
+          x: 0.60505503
+          y: 0.5017565
+          z: 0.36593458
+          w: 0.49823764
     m_MetaData:
-    - Mode: 0
+    - Mode: 3
       Tension: 0.5
     - Mode: 2
       Tension: 0.5
@@ -247,4 +247,4 @@ MonoBehaviour:
   cardPositions: []
   cardRotations: []
   SplineContainer: {fileID: 8197044961942256458}
-  MaxHandSize: 12
+  MaxHandSize: 10

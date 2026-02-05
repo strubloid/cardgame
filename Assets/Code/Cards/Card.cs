@@ -433,9 +433,9 @@ public class Card : MonoBehaviourWithMouseControls
         float playerHoverLiftY = 5.0f;
 
         // configuration of the point to move to when hovering
-        float xPositionOffset = -0.1f;
+        float xPositionOffset = 0.0f;
         float yPositionOffset = 0.5f * playerHoverLiftY;
-        float zPositionOffset = 1.0f;
+        float zPositionOffset = 0.5f;
         
         Vector3 pointToMoveTo = handController.cardPositions[handPosition] + new Vector3(xPositionOffset, yPositionOffset, zPositionOffset);
 
