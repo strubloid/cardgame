@@ -51,13 +51,13 @@ public class PlayerHandController : HandController
         // loop that will be setting the card positions in the hand
         for (int i = 0; i < cardsInHand.Count; i++)
         {
-            // Calculate the position for the current card based on its index and the spacing
-            float postition = FirstCardPosition + i * CardSpacing;
+            // getting from the left to the right
+            float position = GetPositionFromLeftToRight(FirstCardPosition, CardSpacing, i, handSize);
 
             // Evaluate the position on the spline for the current card
-            Vector3 SplinePosition = Spline.EvaluatePosition(postition);
-            Vector3 Forward = Spline.EvaluateTangent(postition);
-            Vector3 Up = Spline.EvaluateUpVector(postition);
+            Vector3 SplinePosition = Spline.EvaluatePosition(position);
+            Vector3 Forward = Spline.EvaluateTangent(position);
+            Vector3 Up = Spline.EvaluateUpVector(position);
 
             // Base rotation aligned to the spline
             Quaternion splineRotation = Quaternion.LookRotation(Up, Vector3.Cross(Up, Forward).normalized);

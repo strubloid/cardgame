@@ -115,4 +115,24 @@ public abstract class HandController : MonoBehaviour
         cardsInHand.Clear();
 
     }
+
+    /**
+     * This will be getting the position of the card in the hand from the right to the left
+     */
+    public float GetPositionFromRightToLeft(float CardPosition, float CardSpacing, int index) 
+    {
+        // getting from the right to the left
+        float postition = CardPosition + index * CardSpacing;
+        return postition;
+    }
+
+    /**
+     * This will be getting the position of the card in the hand from the left to the right
+     */
+    public float GetPositionFromLeftToRight(float CardPosition, float CardSpacing, int index, int handSize) 
+    {
+        // getting from the left to the right
+        float postition = CardPosition + (handSize - 1 - index) * CardSpacing;
+        return postition;
+    }
 }
