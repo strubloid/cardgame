@@ -63,7 +63,7 @@ public class PlayerHandController : HandController
             Quaternion splineRotation = Quaternion.LookRotation(Up, Vector3.Cross(Up, Forward).normalized);
 
             // Extra tilt (15 degrees)
-            Quaternion tiltRotation = Quaternion.Euler(0f, 0f, 15f);
+            Quaternion tiltRotation = Quaternion.Euler(0f, 0f, 20f);
 
             // Final rotation
             Quaternion Rotation = splineRotation * tiltRotation;
