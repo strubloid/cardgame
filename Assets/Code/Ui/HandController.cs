@@ -20,7 +20,7 @@ public abstract class HandController : MonoBehaviour
     public SplineContainer SplineContainer;
 
     // This is the max hand size that the player can hold
-    protected int MaxHandSize = 12; 
+    public int MaxHandSize = 12; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()

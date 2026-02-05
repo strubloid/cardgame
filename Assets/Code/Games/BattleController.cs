@@ -625,4 +625,37 @@ public class BattleController : MonoBehaviour
         UiController.instance.SetEnemyManaText(enemyMana);
 
     }
+
+    /**
+     * This will be checking if is the player turn
+     */
+    public bool IsPlayerTurn()
+    {
+        // we check if the current phase is one of the player phases
+        bool isPlayerPhase = currentPhrase switch
+        {
+            TurnOrder.PlayerTurn => true,
+            TurnOrder.PlayerCardAttack => false,
+            _ => false
+        };
+
+        return isPlayerPhase;
+
+    }
+
+    /**
+     * This will be checking if is the player card attack phase
+     */
+    public bool IsEnemyTurn()
+    {
+        // we check if the current phase is one of the player phases
+        bool isPlayerPhase = currentPhrase switch
+        {
+            TurnOrder.EnemyTurn => true,
+            TurnOrder.EnemyCardAttack => true,
+            _ => false
+        };
+
+        return isPlayerPhase;
+    }
 }

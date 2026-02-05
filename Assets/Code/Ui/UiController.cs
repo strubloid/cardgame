@@ -1,9 +1,10 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections;
+using static BattleController;
 
 public class UiController : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class UiController : MonoBehaviour
     public GameObject manaWarning;
     public float manaWarningTime = 2.0f;
     private float manaWarningCounter;
+
+    // This will be the reference of the max cards warning
+    public GameObject maxCardsWarning;
+    public float maxCardsWarningTime = 2.0f;
+    private float maxCardsWarningCounter;
 
     // Text elements to display player and enemy health
     public TMP_Text PlayerHealthText;
@@ -95,6 +101,30 @@ public class UiController : MonoBehaviour
         
     }
 
+    /**
+     * This will be the rules for the draw card button, if we have the max cards in hand we will disable the button
+     * and if we can draw more cards we will enable the button
+     */
+    public void DrawCardsButtonRule()
+    {
+        // current hand count and max hand size
+        int handCount = PlayerHandController.Instance.cardsInHand.Count;
+        int maxHandSize = PlayerHandController.Instance.MaxHandSize;
+
+        // checking if we have at least 1 mana to draw a card
+        bool playerHasOneMana = BattleController.instance.playerMana >= 1;
+
+        // checking if we have less cards in hand than the max hand size
+        bool handCountLessThanMax = handCount < maxHandSize;
+
+        // checking if the current turn is PlayerTurn or PlayerCardAttack
+        if (playerHasOneMana && handCountLessThanMax && BattleController.instance.IsPlayerTurn()) {
+            drawCardButton.SetActive(true);
+        } else {
+            drawCardButton.SetActive(false);
+        }
+    }
+
     // Update is called once per frame
     void Update(){
 
@@ -107,6 +137,21 @@ public class UiController : MonoBehaviour
                 manaWarning.SetActive(false);
             }
         }
+
+        // if we get a counter means we will process the deltaTime
+        if (maxCardsWarningCounter > 0)
+        {
+            maxCardsWarningCounter -= Time.deltaTime;
+
+            // if this goes below zero, we disable the mana warning UI
+            if (maxCardsWarningCounter <= 0)
+            {
+                maxCardsWarning.SetActive(false);
+            }
+        }
+
+        // This will be the rules for the draw card button, if we have the max cards in hand we will disable the button
+        DrawCardsButtonRule();
 
         // This will handdle the pause/unpause input
         if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
@@ -408,9 +453,28 @@ public class UiController : MonoBehaviour
     }
 
     /**
+     * This will be showing the max cards warning UI element
+     */
+    public void ShowMaxCardsWarning()
+    {
+        // Activate the mana warning UI element
+        maxCardsWarning.SetActive(true);
+        maxCardsWarningCounter = maxCardsWarningTime;
+    }
+
+    /**
      * This will be the function to draw a card from the deck
      */
-    public void DrawCard() {
+    public void DrawCard() 
+    {
+        // checking if we can draw a card per max count in hand
+        int handCount = PlayerHandController.Instance.cardsInHand.Count;
+        int maxHandSize = PlayerHandController.Instance.MaxHandSize;
+        if (handCount >= maxHandSize)
+        {
+            ShowMaxCardsWarning();
+            return;
+        }
 
         // calling the player draw card for mana function
         PlayerDeckController.Instance.DrawCardForMana();

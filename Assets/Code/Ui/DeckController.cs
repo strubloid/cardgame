@@ -92,7 +92,7 @@ public class DeckController : MonoBehaviour
      */
     public void DrawCardForMana()
     {
-        // 
+        // checking if the player has enough mana to draw a card
         if (BattleController.instance.playerMana >= drawCost)
         {
             DrawCardToHand();

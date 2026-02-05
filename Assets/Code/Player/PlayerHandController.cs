@@ -37,7 +37,7 @@ public class PlayerHandController : HandController
         }
 
         // Calculate the spacing between cards based on the max hand size
-        float CardSpacing = 1.5f / MaxHandSize;
+        float CardSpacing = 0.8f / MaxHandSize;
 
         // This is the center position of the hand span (0.5 means the middle)
         float CenterPosition = 0.5f;
@@ -62,8 +62,8 @@ public class PlayerHandController : HandController
             // Base rotation aligned to the spline
             Quaternion splineRotation = Quaternion.LookRotation(Up, Vector3.Cross(Up, Forward).normalized);
 
-            // Extra tilt (15 degrees)
-            Quaternion tiltRotation = Quaternion.Euler(0f, 0f, 20f);
+            // Extra tilt (12 degrees)
+            Quaternion tiltRotation = Quaternion.Euler(0f, 0f, 12f);
 
             // Final rotation
             Quaternion Rotation = splineRotation * tiltRotation;
