@@ -32,55 +32,84 @@ public class PlayerHandController : HandController
         int handSize = Mathf.Max(cardsInHand.Count, 1);
 
         // checking if we dont have any cards in hand, if we dont have any cards we will just return
-        if (handSize == 0) {
+        if (handSize == 0)
+        {
             return;
         }
 
         // Calculate the spacing between cards based on the max hand size
-        float CardSpacing = 1.1f / MaximumHandSize;
+        // FIX: use a constant visible gap instead of compressing by hand size
+        float CardSpacing = 0.12f; // guarantees side-by-side visibility
 
         // This is the center position of the hand span (0.5 means the middle)
         float CenterPosition = 0.5f;
 
         // Calculate the position of the first card so that the hand is centered around the middle
-        float FirstCardPosition = CenterPosition - (handSize - 1) * CardSpacing /2 ;
+        float FirstCardPosition = CenterPosition - (handSize - 1) * CardSpacing / 2f;
 
         // Getting the spline from the spline container
         Spline Spline = SplineContainer.Spline;
+
+        float splineStart = 0.15f;
+        float splineEnd = 0.85f;
+        float usableRange = splineEnd - splineStart;
 
         // loop that will be setting the card positions in the hand
         for (int i = 0; i < cardsInHand.Count; i++)
         {
             // getting from the left to the right
-            float position = GetPositionFromLeftToRight(FirstCardPosition, CardSpacing, i, handSize);
+            //float position = FirstCardPosition + i * CardSpacing;
+
+            float t = handSize == 1 ? 0.5f : (float)i / (handSize - 1);
+
+            float position = splineStart + t * usableRange;
 
             // Evaluate the position on the spline for the current card
-            Vector3 SplinePosition = Spline.EvaluatePosition(position);
+            Vector3 splinePosition = Spline.EvaluatePosition(position);
             Vector3 Forward = Spline.EvaluateTangent(position);
-            Vector3 Up = Spline.EvaluateUpVector(position);
 
-            // Base rotation aligned to the spline
-            Quaternion splineRotation = Quaternion.LookRotation(Up, Vector3.Cross(Up, Forward).normalized);
+            // ---------- FAN CALC ----------
+            float centerIndex = (handSize - 1) * 0.5f;
+            float normalizedIndex = centerIndex == 0 ? 0 : (i - centerIndex) / centerIndex;
 
-            // Extra tilt (12 degrees)
-            Quaternion tiltRotation = Quaternion.Euler(0f, 0f, 10f);
+            // FIX: small, readable fan
+            float maxFanAngle = 15f;
+            float fanAngle = normalizedIndex * maxFanAngle;
+
+            // ---------- ROTATION ----------
+
+            // Use spline direction ONLY for yaw (horizontal)
+            Vector3 flatForward = new Vector3(Forward.x, 0f, Forward.z).normalized;
+            if (flatForward.sqrMagnitude < 0.001f)
+                flatForward = Vector3.forward;
+
+            // Base rotation (yaw only)
+            Quaternion yawRotation = Quaternion.LookRotation(flatForward, Vector3.up);
+
+            // Mesh correction (card faces +X)
+            Quaternion meshCorrection = Quaternion.Euler(0f, -90f, 0f);
+
+            // Fan roll
+            Quaternion fanRotation = Quaternion.Euler(0f, 0f, fanAngle);
 
             // Final rotation
-            Quaternion Rotation = splineRotation * tiltRotation;
+            Quaternion rotation = yawRotation * meshCorrection * fanRotation;
 
             // Add the calculated position to the card positions list
-            cardPositions.Add(SplinePosition);
+            cardPositions.Add(splinePosition);
 
             // Add the calculated rotation to the card rotations list
-            cardRotations.Add(Rotation);
+            cardRotations.Add(rotation);
 
             // Moving the card to the position smoothly
-            cardsInHand[i].MoveCardToPoint(SplinePosition, Rotation);
+            cardsInHand[i].MoveCardToPoint(splinePosition, rotation);
 
             // hold the cart in the moment
             cardsInHand[i].inHand = true;
             cardsInHand[i].handPosition = i;
         }
     }
+
+
 
 }

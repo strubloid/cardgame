@@ -83,6 +83,9 @@ public class UiController : MonoBehaviour
     // This will be the pause screen reference
     public GameObject pauseScreen;
 
+    // This will be the header top part reference
+    public GameObject HeaderTopPart;
+
     /**
     * Awake is called when the script instance is being loaded
     */
