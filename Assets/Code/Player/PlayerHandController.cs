@@ -37,7 +37,7 @@ public class PlayerHandController : HandController
         }
 
         // Calculate the spacing between cards based on the max hand size
-        float CardSpacing = 1.0f / MaxHandSize;
+        float CardSpacing = 1.5f / MaxHandSize;
 
         // This is the center position of the hand span (0.5 means the middle)
         float CenterPosition = 0.5f;

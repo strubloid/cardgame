@@ -72,9 +72,6 @@ public class Card : MonoBehaviourWithMouseControls
     public Quaternion defaultDeckRotation;
     public bool hasDefaultDeckPosition;
 
-    // To know when we are hovering an enemy card
-    private bool enemyHoverActive, playerHoverActive;
-
     // Time to destroy a card after being moved to discard pile
     private float TimeToDestroyACard = 1.2f;
     private float TimeToHide = 0.7f;
@@ -101,7 +98,10 @@ public class Card : MonoBehaviourWithMouseControls
     [SerializeField] private Material WaterFrontMaterial;
     [SerializeField] private Material EarthFrontMaterial;
     [SerializeField] private Material AirFrontMaterial;
-    
+
+    // Static reference to the currently hovered card
+    public static Card HoveredCard { get; private set; }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -364,6 +364,24 @@ public class Card : MonoBehaviourWithMouseControls
     }
 
     /**
+     * This will be forcing the hover exit of the card, this is useful when we want to hover another card and we want to force the previous hovered card to exit the hover state
+     */
+    public void ForceHoverExit()
+    {
+        // Forcing player card hover exit and only one card at the time
+        if (inHand && isPlayer)
+            onHoverExitPlayer();
+
+        // Forcing enemy card hover exit and only one card at the time
+        if (!inHand && !isPlayer)
+            onHoverExitEnemy();
+
+        // cleaning the hovered card reference if this card was the hovered one
+        if (HoveredCard == this)
+            HoveredCard = null;
+    }
+
+    /**
      * This will be called when the mouse hover enters the card
      */
     protected override void OnHoverEnter()
@@ -380,12 +398,28 @@ public class Card : MonoBehaviourWithMouseControls
             return;
         }
 
-        // player card hands action
+        // Do not allow hover while a card is being selected / dragged
+        if (SelectedCard != null)
+        {
+            return;
+        }
+
+        // Do not allow hover if another card is already hovered
+        if (HoveredCard != null && HoveredCard != this)
+        {
+            // Force the currently hovered card to exit hover state before hovering this new card
+            HoveredCard.ForceHoverExit();
+        }
+
+        // getting the reference of the currently hovered card to this card
+        HoveredCard = this;
+
+        // Hover player card and only one card at the time
         if (inHand && isPlayer) {
             onHoverEnterPlayer();
         }
 
-        // enemy card hover action
+        // Hover enemy card and only one card at the time
         if (!inHand && !isPlayer) {
             onHoverEnterEnemy();
         }
@@ -397,12 +431,11 @@ public class Card : MonoBehaviourWithMouseControls
     public void onHoverEnterPlayer() {
 
         float playerHoverLiftY = 3.0f;
-        playerHoverActive = true;
 
         // configuration of the point to move to when hovering
         float xPositionOffset = 0f;
         float yPositionOffset = 0.5f * playerHoverLiftY;
-        float zPositionOffset = 2.0f;
+        float zPositionOffset = 1.0f;
         
         Vector3 pointToMoveTo = handController.cardPositions[handPosition] + new Vector3(xPositionOffset, yPositionOffset, zPositionOffset);
 
@@ -418,9 +451,7 @@ public class Card : MonoBehaviourWithMouseControls
      */
     public void onHoverEnterEnemy()
     {
-
         float enemyHoverLiftY = 1.6f;
-        enemyHoverActive = true;
 
         // rotation basic when a card is back to the center
         Quaternion finalRotation = Quaternion.Euler(0f, 0f, 0f);
@@ -443,6 +474,11 @@ public class Card : MonoBehaviourWithMouseControls
             return;
         }
 
+        // Do not allow hover exit if this card is not the currently hovered card
+        if (HoveredCard != this){
+            return;
+        }
+
         // player card hands action
         if (inHand && isPlayer)
         {
@@ -454,6 +490,9 @@ public class Card : MonoBehaviourWithMouseControls
         {
             onHoverExitEnemy();
         }
+
+        // Clear the hovered card reference
+        HoveredCard = null;
     }
 
     /**
@@ -475,22 +514,16 @@ public class Card : MonoBehaviourWithMouseControls
      */
     public void onHoverExitEnemy()
     {
-        try 
-        {
-            if (!enemyHoverActive) {
-                return;
-            }
+        // validating if we have a default deck position assigned, if we dont have it
+        // means that we will not be able to move the card back to the default position and rotation
+        if (!hasDefaultDeckPosition)
+            return;
 
-            // reset hover state
-            enemyHoverActive = false;
-            Quaternion finalRotation = defaultDeckRotation;
-            Vector3 pointToMoveTo = defaultDeckPosition;
+        // going back to the default position and rotation of the deck
+        MoveCardToPoint(defaultDeckPosition, defaultDeckRotation);
 
-            MoveCardToPoint(pointToMoveTo, finalRotation);
-
-        } finally {
-            assignedPlace = null;
-        }
+        // reset the assigned place reference
+        assignedPlace = null;
     }
 
     /**
@@ -513,6 +546,7 @@ public class Card : MonoBehaviourWithMouseControls
      */
     protected override void OnMouseDown()
     {
+        HoveredCard = null;
 
         // Doing nothing when we are paused the game (the timescale == 0f means the game is paused)
         if (Time.timeScale == 0f)
@@ -650,13 +684,6 @@ public class Card : MonoBehaviourWithMouseControls
 
             // This will trigger the dead effect
             DamageDeadCardEffect();
-
-            // moving to the point
-            //MoveCardToPoint(
-            //    BattleController.instance.DiscardPoint.position,
-            //    BattleController.instance.DiscardPoint.rotation
-            //);
-
 
             // destroy the card if health is zero, will wait for 5 seconds before destroying
             Destroy(gameObject, TimeToDestroyACard);
