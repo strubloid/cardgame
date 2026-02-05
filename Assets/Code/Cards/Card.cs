@@ -396,7 +396,7 @@ public class Card : MonoBehaviourWithMouseControls
      */
     public void onHoverEnterPlayer() {
 
-        float playerHoverLiftY = 5.0f;
+        float playerHoverLiftY = 3.0f;
         playerHoverActive = true;
 
         // configuration of the point to move to when hovering
@@ -461,10 +461,13 @@ public class Card : MonoBehaviourWithMouseControls
      */
     public void onHoverExitPlayer()
     {
-        MoveCardToPoint(
-            handController.cardPositions[handPosition],
-            handController.minPos.rotation
-        );
+        // we load the rotation default from the hand controller 
+        Quaternion defaultRotation = handController.cardRotations[handPosition];
+
+        // we load the position default from the hand controller
+        Vector3 defaultPosition = handController.cardPositions[handPosition];
+
+        MoveCardToPoint(defaultPosition, defaultRotation);
     }
 
     /**

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Splines;
 
 public abstract class HandController : MonoBehaviour
 {
@@ -11,6 +12,15 @@ public abstract class HandController : MonoBehaviour
 
     // This is a list of vectors that will be holding the card positions in the hand
     public List<Vector3> cardPositions = new List<Vector3>();
+
+    // this will hold the card rotations in the hand
+    public List<Quaternion> cardRotations = new List<Quaternion>();
+
+    // This is the spline container that will be used to move the cards in the hand
+    public SplineContainer SplineContainer;
+
+    // This is the max hand size that the player can hold
+    protected int MaxHandSize = 12; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()

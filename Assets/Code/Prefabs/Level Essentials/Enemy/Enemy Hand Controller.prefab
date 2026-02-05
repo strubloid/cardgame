@@ -46,10 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2d91ee943730ad49b4c0a7d74cf5dc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHandController
-  heldCards: []
+  cardsInHand: []
   minPos: {fileID: 2870726332758098150}
   maxPos: {fileID: 4186063176287632083}
   cardPositions: []
+  SplineContainer: {fileID: 0}
 --- !u!1 &3667349760188286086
 GameObject:
   m_ObjectHideFlags: 0
