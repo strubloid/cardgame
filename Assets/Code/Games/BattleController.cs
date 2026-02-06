@@ -40,9 +40,6 @@ public class BattleController : MonoBehaviour
     // Current phase of the turn
     public TurnOrder currentPhrase;
 
-    // Position that the card will move when discarded
-    public Transform DiscardPoint;
-
     // default starting health
     private int startHealth = 20;
 
@@ -71,6 +68,12 @@ public class BattleController : MonoBehaviour
     // Chance for the enemy to start first
     [Range(0f, 1f)]
     public float playerFirstChance = .5f;
+
+    [Header("Position Objects")]
+    // This is the point where we will be moving the cards that are discarded, this is used to move the cards that are discarded to the discard pile
+    public Transform DiscardPoint;
+    public Transform PlayerPosition;
+    public Transform EnemyPosition;
 
     /**
      * Awake is called when the script instance is being loaded

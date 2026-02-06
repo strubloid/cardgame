@@ -99,6 +99,9 @@ public class Card : MonoBehaviourWithMouseControls
     [SerializeField] private Material EarthFrontMaterial;
     [SerializeField] private Material AirFrontMaterial;
 
+    [Header("Powers")]
+    public CardPowerController PowerController;
+
     // Static reference to the currently hovered card
     public static Card HoveredCard { get; private set; }
 

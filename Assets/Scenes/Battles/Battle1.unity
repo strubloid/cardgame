@@ -1073,34 +1073,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8197044961942256458, guid: 890137c9e78e96d4ea80dc307273d14c, type: 3}
-      propertyPath: m_Splines.Array.data[0].m_MetaData.Array.data[0].Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8197044961942256458, guid: 890137c9e78e96d4ea80dc307273d14c, type: 3}
-      propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[0].TangentIn.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8197044961942256458, guid: 890137c9e78e96d4ea80dc307273d14c, type: 3}
-      propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[0].TangentIn.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8197044961942256458, guid: 890137c9e78e96d4ea80dc307273d14c, type: 3}
-      propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[0].Rotation.value.w
-      value: 0.50175625
-      objectReference: {fileID: 0}
-    - target: {fileID: 8197044961942256458, guid: 890137c9e78e96d4ea80dc307273d14c, type: 3}
-      propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[0].Rotation.value.x
-      value: 0.36593473
-      objectReference: {fileID: 0}
-    - target: {fileID: 8197044961942256458, guid: 890137c9e78e96d4ea80dc307273d14c, type: 3}
-      propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[0].Rotation.value.y
-      value: 0.4982375
-      objectReference: {fileID: 0}
-    - target: {fileID: 8197044961942256458, guid: 890137c9e78e96d4ea80dc307273d14c, type: 3}
-      propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[0].Rotation.value.z
-      value: 0.60505515
-      objectReference: {fileID: 0}
     - target: {fileID: 8430908975482100299, guid: 890137c9e78e96d4ea80dc307273d14c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

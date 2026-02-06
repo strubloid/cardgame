@@ -110,9 +110,14 @@ public class CardPointsController : MonoBehaviour
             // looping through each player card point
             for (int currentPlayerCardIndex = 0; currentPlayerCardIndex < activePlayerCards.Length; currentPlayerCardIndex++)
             {
+                Vector3 currentTargetPosition;
+
                 // checkinf if we have enemy cards to attack
                 if (currentEnemyCardIndex >= activeEnemyCards.Length)
                 {
+                    // loading the position to throw the attack animation to the enemy directly
+                    currentTargetPosition = BattleController.instance.EnemyPosition.position;
+
                     // This will attacking the enemy directly
                     BattleController.instance.DamageEnemy(activePlayerCards[currentPlayerCardIndex].activeCard.attackPower);
 
@@ -130,6 +135,9 @@ public class CardPointsController : MonoBehaviour
                         continue;
                     }
 
+                    // this will be the position to throw the attack animation
+                    currentTargetPosition = activeEnemyCards[currentEnemyCardIndex].activeCard.transform.position;
+
                     // attack from player card to enemy card
                     activeEnemyCards[currentEnemyCardIndex].activeCard.DamageCard(
                         activePlayerCards[currentPlayerCardIndex].activeCard.attackPower
@@ -143,10 +151,16 @@ public class CardPointsController : MonoBehaviour
 
                 }
 
-                yield return new WaitForSeconds(timeBetweenActions);
-
                 // This will trigger the animation of Attack
-                activePlayerCards[currentPlayerCardIndex].activeCard.animator.SetTrigger("Attack");               
+                //activePlayerCards[currentPlayerCardIndex].activeCard.animator.SetTrigger("Attack");
+                //
+
+                // we will turn the power and set the animation to damage the enemy card
+                activePlayerCards[currentPlayerCardIndex].activeCard.PowerController.ActivatePowerAnimation(
+                    currentTargetPosition
+                );
+
+                yield return new WaitForSeconds(timeBetweenActions);
 
                 // ending the loop if battle ended, so wont be having any extra attacks after 0 health
                 if (BattleController.instance.battleEnded == true) {
@@ -159,11 +173,19 @@ public class CardPointsController : MonoBehaviour
             // looping through each player card point
             for (int currentPlayerCardIndex = 0; currentPlayerCardIndex < activePlayerCards.Length; currentPlayerCardIndex++)
             {
+                // this will be the position to throw the attack animation
+                Vector3 currentTargetPosition = BattleController.instance.EnemyPosition.position;
+
                 // No defending cards → player attacks enemy directly
                 BattleController.instance.DamageEnemy(activePlayerCards[currentPlayerCardIndex].activeCard.attackPower);
 
                 // This will trigger the animation of Attack
-                activePlayerCards[currentPlayerCardIndex].activeCard.animator.SetTrigger("Attack");
+                //activePlayerCards[currentPlayerCardIndex].activeCard.animator.SetTrigger("Attack");
+
+                // we will turn the power and set the animation to damage the enemy card
+                activePlayerCards[currentPlayerCardIndex].activeCard.PowerController.ActivatePowerAnimation(
+                    currentTargetPosition
+                );
 
                 yield return new WaitForSeconds(timeBetweenActions);
 
@@ -218,9 +240,15 @@ public class CardPointsController : MonoBehaviour
             // Loop through each enemy card (attacker)
             for (int currentEnemyCardIndex = 0; currentEnemyCardIndex < activeEnemyCards.Length; currentEnemyCardIndex++)
             {
+                // this will be the position to throw the attack animation
+                Vector3 currentTargetPosition;
+
                 // If we ran out of player defenders, enemy attacks directly
                 if (currentPlayerCardIndex >= activePlayerCards.Length)
                 {
+                    // loading the position to throw the attack animation to the player directly
+                    currentTargetPosition = BattleController.instance.PlayerPosition.position;
+
                     BattleController.instance.DamagePlayer(activeEnemyCards[currentEnemyCardIndex].activeCard.attackPower);
 
                 } else {
@@ -237,6 +265,9 @@ public class CardPointsController : MonoBehaviour
                         continue;
                     }
 
+                    // loading the position to throw the attack animation
+                    currentTargetPosition = activePlayerCards[currentPlayerCardIndex].activeCard.transform.position;
+
                     // Attack from enemy card to player card
                     activePlayerCards[currentPlayerCardIndex].activeCard.DamageCard(
                         activeEnemyCards[currentEnemyCardIndex].activeCard.attackPower
@@ -251,7 +282,12 @@ public class CardPointsController : MonoBehaviour
                 }
 
                 // Trigger attacker animation
-                activeEnemyCards[currentEnemyCardIndex].activeCard.animator.SetTrigger("Attack");
+                //activeEnemyCards[currentEnemyCardIndex].activeCard.animator.SetTrigger("Attack");
+
+                // we will turn the power and set the animation to damage the enemy card
+                activeEnemyCards[currentEnemyCardIndex].activeCard.PowerController.ActivatePowerAnimation(
+                    currentTargetPosition
+                );
 
                 yield return new WaitForSeconds(timeBetweenActions);
 
@@ -268,11 +304,19 @@ public class CardPointsController : MonoBehaviour
             // Looping through each enemy card (attacker)
             for (int currentEnemyCardIndex = 0; currentEnemyCardIndex < activeEnemyCards.Length; currentEnemyCardIndex++)
             {
+                // this will be the position to throw the attack animation
+                Vector3 currentTargetPosition = BattleController.instance.PlayerPosition.position;
+
                 // No defending cards -> enemy attacks player directly
                 BattleController.instance.DamagePlayer(activeEnemyCards[currentEnemyCardIndex].activeCard.attackPower);
 
                 // Trigger enemy animation
-                activeEnemyCards[currentEnemyCardIndex].activeCard.animator.SetTrigger("Attack");
+                //activeEnemyCards[currentEnemyCardIndex].activeCard.animator.SetTrigger("Attack");
+
+                // we will turn the power and set the animation to damage the enemy card
+                activeEnemyCards[currentEnemyCardIndex].activeCard.PowerController.ActivatePowerAnimation(
+                    currentTargetPosition
+                );
 
                 yield return new WaitForSeconds(timeBetweenActions);
 
