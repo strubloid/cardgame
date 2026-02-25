@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 3
   particleSystemPrefab: {fileID: 4279378550468598859, guid: e8b278d39ace203408bb0f388acad395, type: 3}
-  travelTime: 0.5
+  travelTime: 0.9
   lingerTime: 2
-  impactEffectPrefab: {fileID: 985543094118924563, guid: f86cb5314749bba4fac7e520f30b30ff, type: 3}
+  impactEffectPrefab: {fileID: 2470526412627155888, guid: a7313e9f071257847a5e11a3ddf4f9bd, type: 3}

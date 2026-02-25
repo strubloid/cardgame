@@ -110,7 +110,7 @@ Material:
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Alpha_Clip: 0
-    - _Blend: 0
+    - _Blend: 1
     - _BumpScale: 1
     - _CastShadows: 1
     - _CenterMove: 0.06
@@ -138,7 +138,7 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SrcBlend: 5
+    - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 1
     - _WorkflowMode: 1

@@ -7,6 +7,9 @@ using UnityEngine;
  */
 public class CardPowerController : MonoBehaviour
 {
+    // Delegate for damage callback
+    public delegate void OnDamageCallback();
+
     // Reference to the card this power controller belongs to
     private Card card;
 
@@ -31,8 +34,8 @@ public class CardPowerController : MonoBehaviour
         }
     }
 
-    // Activate power animation for this card's type
-    public void ActivatePowerAnimation(Vector3 destinationPosition)
+    // Activate power animation for this card's type with optional damage callback
+    public void ActivatePowerAnimation(Vector3 destinationPosition, OnDamageCallback onDamageCallback = null)
     {
         if (card == null || card.cardData == null)
         {
@@ -60,12 +63,12 @@ public class CardPowerController : MonoBehaviour
         if (powerData.particleSystemPrefab != null)
         {
             currentParticleInstance = Instantiate(powerData.particleSystemPrefab, transform);
-            currentPowerParticle = currentParticleInstance.GetComponent<ParticleSystem>();
+            currentPowerParticle = currentParticleInstance.GetComponentInChildren<ParticleSystem>();
 
             if (currentPowerParticle != null)
             {
                 activePowerRoutine = StartCoroutine(
-                    MovePowerParticle(currentPowerParticle, destinationPosition, powerData.impactEffectPrefab, powerData.travelTime, powerData.lingerTime)
+                    MovePowerParticle(currentPowerParticle, destinationPosition, powerData.impactEffectPrefab, powerData.travelTime, powerData.lingerTime, onDamageCallback)
                 );
             }
             else
@@ -82,7 +85,7 @@ public class CardPowerController : MonoBehaviour
     /**
      * This coroutine moves the power particle from its current position to the destination position over a specified travel time, then allows it to linger for a specified time before stopping the particle effect and hiding the prefab.
      */
-    IEnumerator MovePowerParticle(ParticleSystem powerParticle, Vector3 destination, GameObject impactEffectPrefab, float travelTime, float lingerTime)
+    IEnumerator MovePowerParticle(ParticleSystem powerParticle, Vector3 destination, GameObject impactEffectPrefab, float travelTime, float lingerTime, OnDamageCallback onDamageCallback)
     {
         if (powerParticle == null)
         {
@@ -114,6 +117,13 @@ public class CardPowerController : MonoBehaviour
 
         // Ensure the particle system is exactly at the destination after the loop
         powerParticle.transform.position = destination;
+
+        // Call the damage callback - this applies damage when the particle reaches the target
+        if (onDamageCallback != null)
+        {
+            onDamageCallback.Invoke();
+            Debug.Log("CardPowerController: Damage applied on impact");
+        }
 
         // Instantiate impact effect at destination if provided
         GameObject impactInstance = null;

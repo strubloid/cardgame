@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WindPowerData
   m_EditorClassIdentifier: 
   cardType: 2
-  particleSystemPrefab: {fileID: 7865647857051383288, guid: dbbffc7a1041f61429858d2b7e0af5ba, type: 3}
-  travelTime: 0.5
+  particleSystemPrefab: {fileID: 4279378550468598859, guid: e8b278d39ace203408bb0f388acad395, type: 3}
+  travelTime: 0.9
   lingerTime: 2
-  impactEffectPrefab: {fileID: 3427544185795231522, guid: a033b7b373cddee4fa0ebbcb27688647, type: 3}
+  impactEffectPrefab: {fileID: 2470526412627155888, guid: a7313e9f071257847a5e11a3ddf4f9bd, type: 3}
