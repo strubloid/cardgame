@@ -7,12 +7,13 @@ using UnityEngine;
  */
 public class CardPowerController : MonoBehaviour
 {
-    // Effect prefab for the power, this will be used to instantiate the visual effects of the powers
-    public GameObject PowerEffectPrefab;
+    // Reference to the card this power controller belongs to
+    private Card card;
 
-    // Particle system for the power, this will be used to play the particle effects of the powers
-    public ParticleSystem PowerParticle;
-    
+    // Current active particle system instance
+    private ParticleSystem currentPowerParticle;
+    private GameObject currentParticleInstance;
+
     // Coroutine reference for the active power animation, this will be used to stop the animation if a new one is triggered before the previous one finishes
     private Coroutine activePowerRoutine;
 
@@ -21,33 +22,81 @@ public class CardPowerController : MonoBehaviour
     */
     private void Awake()
     {
-        // stoping the particle system and hiding the prefab at the start of the game
-        PowerParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        // Get the card component from parent
+        card = GetComponentInParent<Card>();
 
+        if (card == null)
+        {
+            Debug.LogError("CardPowerController: Could not find Card component in parent!");
+        }
     }
 
-    // add destination for the particle system to be the card itself, so that it will follow the card when it moves
-    public void ActivatePowerAnimation( Vector3 destinationPosition, float travelTime = 0.5f, float lingerTime = 0.2f)
+    // Activate power animation for this card's type
+    public void ActivatePowerAnimation(Vector3 destinationPosition)
     {
+        if (card == null || card.cardData == null)
+        {
+            Debug.LogError("CardPowerController: Card or cardData is null!");
+            return;
+        }
+
+        // Get the power data for this card type (creates PowerManager if needed)
+        PowerData powerData = PowerManager.GetPowerDataForType(card.cardData.cardType);
+        if (powerData == null)
+        {
+            Debug.LogWarning($"CardPowerController: No PowerData found for {card.cardData.cardType}");
+            return;
+        }
+
+        // Stop previous animation if running
         if (activePowerRoutine != null)
             StopCoroutine(activePowerRoutine);
 
-        activePowerRoutine = StartCoroutine(
-            MovePowerParticle(destinationPosition, travelTime, lingerTime)
-        );
+        // Clean up previous particle instance
+        if (currentParticleInstance != null)
+            Destroy(currentParticleInstance);
+
+        // Instantiate the particle system for this power type
+        if (powerData.particleSystemPrefab != null)
+        {
+            currentParticleInstance = Instantiate(powerData.particleSystemPrefab, transform);
+            currentPowerParticle = currentParticleInstance.GetComponent<ParticleSystem>();
+
+            if (currentPowerParticle != null)
+            {
+                activePowerRoutine = StartCoroutine(
+                    MovePowerParticle(currentPowerParticle, destinationPosition, powerData.impactEffectPrefab, powerData.travelTime, powerData.lingerTime)
+                );
+            }
+            else
+            {
+                Debug.LogWarning("CardPowerController: Instantiated prefab does not have a ParticleSystem component!");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("CardPowerController: PowerData has no particle system prefab assigned!");
+        }
     }
 
     /**
      * This coroutine moves the power particle from its current position to the destination position over a specified travel time, then allows it to linger for a specified time before stopping the particle effect and hiding the prefab.
      */
-    IEnumerator MovePowerParticle( Vector3 destination, float travelTime, float lingerTime)
+    IEnumerator MovePowerParticle(ParticleSystem powerParticle, Vector3 destination, GameObject impactEffectPrefab, float travelTime, float lingerTime)
     {
+        if (powerParticle == null)
+        {
+            Debug.LogError("CardPowerController: ParticleSystem is null in MovePowerParticle!");
+            activePowerRoutine = null;
+            yield break;
+        }
+
         // Restart the particle system to ensure it plays from the beginning
-        PowerParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-        PowerParticle.Play(true);
+        powerParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        powerParticle.Play(true);
 
         // Store the starting position of the particle system
-        Vector3 startPosition = PowerParticle.transform.position;
+        Vector3 startPosition = powerParticle.transform.position;
         float elapsed = 0f;
 
         // Move the particle system towards the destination over the travel time
@@ -58,22 +107,40 @@ public class CardPowerController : MonoBehaviour
             float t = elapsed / travelTime;
 
             // Moving the particle using Lerp for smooth movement
-            PowerParticle.transform.position = Vector3.Lerp(startPosition, destination, t);
+            powerParticle.transform.position = Vector3.Lerp(startPosition, destination, t);
 
             yield return null;
         }
 
         // Ensure the particle system is exactly at the destination after the loop
-        PowerParticle.transform.position = destination;
+        powerParticle.transform.position = destination;
+
+        // Instantiate impact effect at destination if provided
+        GameObject impactInstance = null;
+        if (impactEffectPrefab != null)
+        {
+            impactInstance = Instantiate(impactEffectPrefab, destination, Quaternion.identity);
+            Debug.Log($"CardPowerController: Impact effect instantiated at {destination}");
+        }
+        else
+        {
+            Debug.LogWarning("CardPowerController: No impact effect prefab assigned for this power type");
+        }
 
         // waiting for a bit
         yield return new WaitForSeconds(lingerTime);
 
         // Stop the particle system and clear it to hide the effect
-        PowerParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        powerParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
 
         // Clear the particle system to reset it for the next activation
-        PowerParticle.Clear();
+        powerParticle.Clear();
+
+        // Clean up impact effect
+        if (impactInstance != null)
+        {
+            Destroy(impactInstance);
+        }
 
         // Reset the active power routine reference
         activePowerRoutine = null;

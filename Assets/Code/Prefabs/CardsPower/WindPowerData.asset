@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02fc845107ca1e147ad04492267e48e7, type: 3}
+  m_Name: WindPowerData
+  m_EditorClassIdentifier: 
+  cardType: 2
+  particleSystemPrefab: {fileID: 7865647857051383288, guid: dbbffc7a1041f61429858d2b7e0af5ba, type: 3}
+  travelTime: 0.5
+  lingerTime: 2
+  impactEffectPrefab: {fileID: 3427544185795231522, guid: a033b7b373cddee4fa0ebbcb27688647, type: 3}
