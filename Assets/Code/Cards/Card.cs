@@ -25,6 +25,10 @@ public class Card : MonoBehaviourWithMouseControls
     // Basic Integer values of a card
     public int currentHealth, attackPower, manaCost, shieldValue;
 
+    // Shield system
+    private int baseShieldValue; // Base shield that resets each round
+    private bool shieldBrokenThisRound;
+
     // Reference to the text components that we will be using it
     public TMP_Text healthText, attackText, manaText, shieldText;
     public TMP_Text nameText, actionDescriptionText, loreText, manaBack;
@@ -197,6 +201,11 @@ public class Card : MonoBehaviourWithMouseControls
         currentHealth = cardData.currentHealth;
         attackPower = cardData.attackPower;
         manaCost = cardData.manaCost;
+
+        // Initialize shield system
+        baseShieldValue = cardData.shieldValue; // Save the original base shield
+        shieldValue = baseShieldValue; // Current shield starts at base
+        shieldBrokenThisRound = false;
 
         // Initial update of the card display
         UpdateCardDisplay();
@@ -684,8 +693,11 @@ public class Card : MonoBehaviourWithMouseControls
      */
     public void DamageCard(int damageAmmount) {
 
-        // calculating the damage minus shield
+        // Current damage calulcation with the shield value
         int damagedMinusShield = damageAmmount - shieldValue;
+
+        // we set the shield value to be the 0 if the damage is bigger than the shield value, otherwise we recude the shield value
+        shieldValue =  shieldValue <= damageAmmount ? 0 : shieldValue - damageAmmount;
 
         // reducing the current health
         currentHealth -= damagedMinusShield;
@@ -743,6 +755,16 @@ public class Card : MonoBehaviourWithMouseControls
         // Loading the current mana cost to be at the mana text 
         manaText.text = manaCost.ToString();
 
+    }
+
+    /**
+     * Reset shield for the start of a new round
+     */
+    public void ResetShieldForNewRound()
+    {
+        shieldValue = baseShieldValue; // Reset to current base (which may be reduced if broken)
+        shieldBrokenThisRound = false;
+        UpdateCardDisplay();
     }
 
     /**

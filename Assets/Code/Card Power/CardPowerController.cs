@@ -21,6 +21,9 @@ public class CardPowerController : MonoBehaviour
     private Card targetCard;
     private int damageAmount;
 
+    // Event for base damage (when no target card)
+    public event System.Action<int> OnBaseDamageOnImpact;
+
     /**
     * Awake is called when the script instance is being loaded
     */
@@ -123,10 +126,12 @@ public class CardPowerController : MonoBehaviour
         Vector3 startPosition = currentParticleInstance.transform.position;
         yield return StartCoroutine(MoveToDestination(startPosition, destination, travelTime));
 
-        // Apply damage to target - this will trigger the OnDamageTaken event
-        if (targetCard != null)
-        {
-            targetCard.DamageCard(damageAmount);
+        // Apply damage on impact
+        if (targetCard != null) {
+            targetCard.DamageCard(damageAmount); // Card damage - triggers OnDamageTaken event
+        } else if (damageAmount > 0) {
+            // Base damage - triggers event for BattleController to handle
+            OnBaseDamageOnImpact?.Invoke(damageAmount);
         }
 
         // Instantiate impact effect if provided

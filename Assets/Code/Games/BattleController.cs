@@ -197,6 +197,9 @@ public class BattleController : MonoBehaviour
                 // Update the UI to show it's the player's turn
                 UiController.instance.SetPlayerTurn();
 
+                // Reset shield for all active cards at start of turn
+                ResetPlayerShield();
+
                 // Those are the free action we can do at the start of the turn
                 PlayerDeckController.Instance.DrawMultipleCards(DrawingCardsPerTurn);
 
@@ -254,6 +257,9 @@ public class BattleController : MonoBehaviour
 
                 // Update the UI to show it's the enemy's turn
                 UiController.instance.SetEnemyTurn();
+
+                // Reset shield for all active cards at start of turn
+                ResetEnemyShield();
 
                 // only show when is the first turn
                 if (RoundsPlayed >= 1)
@@ -660,5 +666,38 @@ public class BattleController : MonoBehaviour
         };
 
         return isPlayerPhase;
+    }
+
+    /**
+    * This will restarting the enemy shield each round, when this will be called is
+    * the turn that enemy starts, so only at your turn you can get your shield back.
+    */
+    private void ResetEnemyShield() {
+        
+        foreach (var cardPoint in CardPointsController.instance.EnemyCardPoints)
+        {
+            if (cardPoint.activeCard != null)
+            {
+                cardPoint.activeCard.ResetShieldForNewRound();
+            }
+        }
+    }
+
+    /**
+    * This will restarting the player shield each round, when this will be called is
+    * the turn that player starts, so only at your turn you can get your shield back.
+    */
+    private void ResetPlayerShield()
+    {
+        // Reset player cards
+        foreach (var cardPoint in CardPointsController.instance.PlayerCardPoints)
+        {
+            if (cardPoint.activeCard != null)
+            {
+                cardPoint.activeCard.ResetShieldForNewRound();
+            }
+        }
+
+       
     }
 }

@@ -25255,6 +25255,7 @@ Transform:
   - {fileID: 1835619280}
   - {fileID: 1555812005}
   - {fileID: 153741375}
+  - {fileID: 1546927221}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963265672
@@ -40004,6 +40005,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0, type: 3}
+--- !u!4 &1546927221 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7284737060865696788, guid: a7313e9f071257847a5e11a3ddf4f9bd, type: 3}
+  m_PrefabInstance: {fileID: 7719964194735777483}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1555812005 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3942245187376093894, guid: 11a973be430c708419dd77d633b3ee93, type: 3}
@@ -50543,7 +50549,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 956243018}
     m_Modifications:
     - target: {fileID: 7284737060865696788, guid: a7313e9f071257847a5e11a3ddf4f9bd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -50563,15 +50569,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7284737060865696788, guid: a7313e9f071257847a5e11a3ddf4f9bd, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7284737060865696788, guid: a7313e9f071257847a5e11a3ddf4f9bd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7284737060865696788, guid: a7313e9f071257847a5e11a3ddf4f9bd, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7284737060865696788, guid: a7313e9f071257847a5e11a3ddf4f9bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -50588,6 +50594,10 @@ PrefabInstance:
     - target: {fileID: 7742834432374186706, guid: a7313e9f071257847a5e11a3ddf4f9bd, type: 3}
       propertyPath: m_Name
       value: FX_Earth_Impact
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742834432374186706, guid: a7313e9f071257847a5e11a3ddf4f9bd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -50672,4 +50682,3 @@ SceneRoots:
   - {fileID: 1509266309}
   - {fileID: 956243018}
   - {fileID: 1565590629}
-  - {fileID: 7719964194735777483}
