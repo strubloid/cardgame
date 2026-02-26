@@ -98,31 +98,31 @@ public class CardPowerController : MonoBehaviour
         powerParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         powerParticle.Play(true);
 
-        // Store the starting position of the particle system
-        Vector3 startPosition = powerParticle.transform.position;
+        // Store the starting position of the prefab root (not the particle component)
+        Vector3 startPosition = currentParticleInstance.transform.position;
         float elapsed = 0f;
 
-        // Move the particle system towards the destination over the travel time
+        // Move the entire prefab towards the destination over the travel time
         while (elapsed < travelTime)
         {
             // Increment the elapsed time
             elapsed += Time.deltaTime;
             float t = elapsed / travelTime;
 
-            // Moving the particle using Lerp for smooth movement
-            powerParticle.transform.position = Vector3.Lerp(startPosition, destination, t);
+            // Moving the entire prefab instance using Lerp for smooth movement
+            currentParticleInstance.transform.position = Vector3.Lerp(startPosition, destination, t);
 
             yield return null;
         }
 
-        // Ensure the particle system is exactly at the destination after the loop
-        powerParticle.transform.position = destination;
+        // Ensure the entire prefab is exactly at the destination after the loop
+        currentParticleInstance.transform.position = destination;
 
         // Call the damage callback - this applies damage when the particle reaches the target
         if (onDamageCallback != null)
         {
             onDamageCallback.Invoke();
-            Debug.Log("CardPowerController: Damage applied on impact");
+            // Debug.Log("CardPowerController: Damage applied on impact");
         }
 
         // Instantiate impact effect at destination if provided
@@ -130,7 +130,7 @@ public class CardPowerController : MonoBehaviour
         if (impactEffectPrefab != null)
         {
             impactInstance = Instantiate(impactEffectPrefab, destination, Quaternion.identity);
-            Debug.Log($"CardPowerController: Impact effect instantiated at {destination}");
+            // Debug.Log($"CardPowerController: Impact effect instantiated at {destination}");
         }
         else
         {
@@ -150,6 +150,13 @@ public class CardPowerController : MonoBehaviour
         if (impactInstance != null)
         {
             Destroy(impactInstance);
+        }
+
+        // Destroy the particle instance when animation is complete
+        if (currentParticleInstance != null)
+        {
+            Destroy(currentParticleInstance);
+            currentParticleInstance = null;
         }
 
         // Reset the active power routine reference
