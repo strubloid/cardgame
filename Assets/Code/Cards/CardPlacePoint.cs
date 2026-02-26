@@ -25,10 +25,10 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
     public Color ErrorSelectionColor = new Color32(0xFF, 0x5A, 0x5A, 0xFF); // #FF5A5A
 
     // Element colors
-    public Color AirElementColor = new Color32(0x9F, 0xE7, 0xFF, 0xFF); // #9FE7FF – light sky / wind
-    public Color FireElementColor = new Color32(0xFF, 0x7A, 0x3C, 0xFF); // #FF7A3C – ember orange
-    public Color EarthElementColor = new Color32(0x7A, 0x9B, 0x4E, 0xFF); // #7A9B4E – moss / soil
-    public Color WaterElementColor = new Color32(0x3C, 0x8D, 0xFF, 0xFF); // #3C8DFF – deep water blue
+    public Color AirElementColor = new Color32(0x9F, 0xE7, 0xFF, 0xFF); // #9FE7FF ï¿½ light sky / wind
+    public Color FireElementColor = new Color32(0xFF, 0x7A, 0x3C, 0xFF); // #FF7A3C ï¿½ ember orange
+    public Color EarthElementColor = new Color32(0x7A, 0x9B, 0x4E, 0xFF); // #7A9B4E ï¿½ moss / soil
+    public Color WaterElementColor = new Color32(0x3C, 0x8D, 0xFF, 0xFF); // #3C8DFF ï¿½ deep water blue
 
     // Particle system for hover effect
     public ParticleSystem HoverEffectAnimator;
@@ -90,11 +90,11 @@ public class CardPlacePoint : MonoBehaviourWithMouseControls
      */
     public void ChangeToElementFireColor() {
 
-        // we set the base color to fire element color
-        BaseColor = FireElementColor;
+        // we set the frame base color to fire element color
+        FrameBaseColor = FireElementColor;
 
-        // we change the sprite renderer color to base color
-        spriteRenderer.color = BaseColor;
+        // we change the sprite renderer color to frame base color
+        spriteRenderer.color = FrameBaseColor;
     }
 
     /**
