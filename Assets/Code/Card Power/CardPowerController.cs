@@ -21,6 +21,9 @@ public class CardPowerController : MonoBehaviour
     private Card targetCard;
     private int damageAmount;
 
+    // Store the last overflow damage from an attack
+    public int LastOverflowDamage { get; private set; }
+
     // Event for base damage (when no target card)
     public event System.Action<int> OnBaseDamageOnImpact;
 
@@ -128,9 +131,10 @@ public class CardPowerController : MonoBehaviour
 
         // Apply damage on impact
         if (targetCard != null) {
-            targetCard.DamageCard(damageAmount); // Card damage - triggers OnDamageTaken event
+            LastOverflowDamage = targetCard.DamageCard(damageAmount); // Card damage - triggers OnDamageTaken event
         } else if (damageAmount > 0) {
             // Base damage - triggers event for BattleController to handle
+            LastOverflowDamage = 0;
             OnBaseDamageOnImpact?.Invoke(damageAmount);
         }
 

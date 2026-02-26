@@ -689,12 +689,12 @@ public class Card : MonoBehaviourWithMouseControls
     }
 
     /**
-     * This will be damaging the card with a specific ammount
+     * This will be damaging the card with a specific ammount and return any overflow damage
      */
-    public void DamageCard(int damageAmmount) {
+    public int DamageCard(int damageAmmount) {
 
-        // Current damage calulcation with the shield value
-        int damagedMinusShield = damageAmmount - shieldValue;
+        // Current damage calculation with the shield value (clamped to 0 so health never increases)
+        int damagedMinusShield = Mathf.Max(0, damageAmmount - shieldValue);
 
         // we set the shield value to be the 0 if the damage is bigger than the shield value, otherwise we recude the shield value
         shieldValue =  shieldValue <= damageAmmount ? 0 : shieldValue - damageAmmount;
@@ -704,6 +704,14 @@ public class Card : MonoBehaviourWithMouseControls
 
         // Broadcast damage event
         OnDamageTaken?.Invoke(this, damagedMinusShield);
+
+        // Calculate overflow damage (damage that exceeds this card's health)
+        int overflowDamage = 0;
+        if (currentHealth < 0)
+        {
+            overflowDamage = -currentHealth;
+            currentHealth = 0;
+        }
 
         if (currentHealth <= 0)
         {
@@ -736,6 +744,8 @@ public class Card : MonoBehaviourWithMouseControls
 
         // updating the ui text
         UpdateCardDisplay();
+
+        return overflowDamage;
     }
 
     /**

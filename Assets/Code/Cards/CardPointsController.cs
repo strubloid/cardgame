@@ -107,6 +107,9 @@ public class CardPointsController : MonoBehaviour
         // if exist card to defend the attack we should loop through them
         if (activeEnemyCards.Length > 0)
         {
+            // Track overflow damage from previous target
+            int carryOverDamage = 0;
+
             // looping through each player card point
             for (int currentPlayerCardIndex = 0; currentPlayerCardIndex < activePlayerCards.Length; currentPlayerCardIndex++)
             {
@@ -119,17 +122,20 @@ public class CardPointsController : MonoBehaviour
                     currentTargetPosition = BattleController.instance.EnemyPosition.position;
 
                     // Trigger animation and apply direct enemy damage on impact
-                    int attackDamage = activePlayerCards[currentPlayerCardIndex].activeCard.attackPower;
+                    int attackDamage = activePlayerCards[currentPlayerCardIndex].activeCard.attackPower + carryOverDamage;
                     var powerController = activePlayerCards[currentPlayerCardIndex].activeCard.PowerController;
 
                     // subscribe to base damage event to apply damage when the animation hits
                     powerController.OnBaseDamageOnImpact += BattleController.instance.DamageEnemy;
-                    
+
                     // Trigger animation (no target card damage since attacking base)
                     powerController.ActivatePowerAnimation(currentTargetPosition, null, attackDamage);
 
                     // Unsubscribe after animation
                     powerController.OnBaseDamageOnImpact -= BattleController.instance.DamageEnemy;
+
+                    // Reset overflow for next attacker
+                    carryOverDamage = 0;
 
                 } else {
 
@@ -148,9 +154,9 @@ public class CardPointsController : MonoBehaviour
                     // this will be the position to throw the attack animation
                     currentTargetPosition = activeEnemyCards[currentEnemyCardIndex].activeCard.transform.position;
 
-                    // Store target and damage for the animation, attack damange and power controller 
+                    // Store target and damage for the animation, attack damange and power controller
                     Card targetCard = activeEnemyCards[currentEnemyCardIndex].activeCard;
-                    int attackDamage = activePlayerCards[currentPlayerCardIndex].activeCard.attackPower;
+                    int attackDamage = activePlayerCards[currentPlayerCardIndex].activeCard.attackPower + carryOverDamage;
                     var powerController = activePlayerCards[currentPlayerCardIndex].activeCard.PowerController;
 
                     // Subscribe to event to apply damage when the animation hits
@@ -171,6 +177,16 @@ public class CardPointsController : MonoBehaviour
                 }
 
                 yield return new WaitForSeconds(timeBetweenActions);
+
+                // Capture overflow damage from the last attack for use in next attack
+                if (currentEnemyCardIndex < activeEnemyCards.Length)
+                {
+                    var lastAttackingCard = activePlayerCards[currentPlayerCardIndex].activeCard;
+                    if (lastAttackingCard != null)
+                    {
+                        carryOverDamage = lastAttackingCard.PowerController.LastOverflowDamage;
+                    }
+                }
 
                 // ending the loop if battle ended, so wont be having any extra attacks after 0 health
                 if (BattleController.instance.battleEnded == true) {
@@ -252,6 +268,9 @@ public class CardPointsController : MonoBehaviour
         // If player has cards to defend, loop through them
         if (activePlayerCards.Length > 0)
         {
+            // Track overflow damage from previous target
+            int carryOverDamage = 0;
+
             // Loop through each enemy card (attacker)
             for (int currentEnemyCardIndex = 0; currentEnemyCardIndex < activeEnemyCards.Length; currentEnemyCardIndex++)
             {
@@ -265,11 +284,14 @@ public class CardPointsController : MonoBehaviour
                     currentTargetPosition = BattleController.instance.PlayerPosition.position;
 
                     // Trigger animation and apply direct player damage on impact
-                    int attackDamage = activeEnemyCards[currentEnemyCardIndex].activeCard.attackPower;
+                    int attackDamage = activeEnemyCards[currentEnemyCardIndex].activeCard.attackPower + carryOverDamage;
                     var powerController = activeEnemyCards[currentEnemyCardIndex].activeCard.PowerController;
                     powerController.OnBaseDamageOnImpact += BattleController.instance.DamagePlayer;
                     powerController.ActivatePowerAnimation(currentTargetPosition, null, attackDamage);
                     powerController.OnBaseDamageOnImpact -= BattleController.instance.DamagePlayer;
+
+                    // Reset overflow for next attacker
+                    carryOverDamage = 0;
 
                 } else {
 
@@ -290,12 +312,11 @@ public class CardPointsController : MonoBehaviour
 
                     // Store target and damage
                     Card targetCard = activePlayerCards[currentPlayerCardIndex].activeCard;
-                    int attackDamage = activeEnemyCards[currentEnemyCardIndex].activeCard.attackPower;
+                    int attackDamage = activeEnemyCards[currentEnemyCardIndex].activeCard.attackPower + carryOverDamage;
+                    var powerController = activeEnemyCards[currentEnemyCardIndex].activeCard.PowerController;
 
                     // Trigger animation and apply damage via event system
-                    activeEnemyCards[currentEnemyCardIndex].activeCard.PowerController.ActivatePowerAnimation(
-                        currentTargetPosition, targetCard, attackDamage
-                    );
+                    powerController.ActivatePowerAnimation(currentTargetPosition, targetCard, attackDamage);
 
                     // If player died, advance defender index
                     if (activePlayerCards[currentPlayerCardIndex].activeCard == null)
@@ -306,6 +327,16 @@ public class CardPointsController : MonoBehaviour
                 }
 
                 yield return new WaitForSeconds(timeBetweenActions);
+
+                // Capture overflow damage from the last attack for use in next attack
+                if (currentPlayerCardIndex < activePlayerCards.Length)
+                {
+                    var lastAttackingCard = activeEnemyCards[currentEnemyCardIndex].activeCard;
+                    if (lastAttackingCard != null)
+                    {
+                        carryOverDamage = lastAttackingCard.PowerController.LastOverflowDamage;
+                    }
+                }
 
                 // ending the loop if battle ended, so wont be having any extra attacks after 0 health
                 if (BattleController.instance.battleEnded == true)
