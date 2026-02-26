@@ -29,7 +29,7 @@ Material:
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
   stringTagMap:
@@ -42,7 +42,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_4f7017334adb4c31b376db39df7ead2d:
-        m_Texture: {fileID: 2800000, guid: 41f9c8458b8e1a848ac9d4cdcb03437d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1ee982c2803ad594381d1e0eec4b75ab, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_bc1d9eb6d4344d4084d949d7b33e529a:
@@ -114,7 +114,7 @@ Material:
     - _Blend: 0
     - _BumpScale: 1
     - _CastShadows: 1
-    - _CenterMove: 0
+    - _CenterMove: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -155,6 +155,6 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _TextureUV: {r: 1, g: 1, b: 0, a: 0}
+    - _TextureUV: {r: 1, g: 2, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

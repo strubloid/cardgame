@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaterPowerData
   m_EditorClassIdentifier: 
   cardType: 1
-  particleSystemPrefab: {fileID: 4279378550468598859, guid: e8b278d39ace203408bb0f388acad395, type: 3}
+  particleSystemPrefab: {fileID: 7910665698844016516, guid: 11a973be430c708419dd77d633b3ee93, type: 3}
   travelTime: 0.9
   lingerTime: 2
-  impactEffectPrefab: {fileID: 2470526412627155888, guid: a7313e9f071257847a5e11a3ddf4f9bd, type: 3}
+  impactEffectPrefab: {fileID: 409749485951992752, guid: f946a4102ae333f4399cfd7fa95639eb, type: 3}
