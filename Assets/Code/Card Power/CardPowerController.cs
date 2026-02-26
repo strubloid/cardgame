@@ -51,6 +51,13 @@ public class CardPowerController : MonoBehaviour
             return;
         }
 
+        // Validate particle system prefab exists
+        if (powerData.particleSystemPrefab == null)
+        {
+            Debug.LogWarning("CardPowerController: PowerData has no particle system prefab assigned!");
+            return;
+        }
+
         // Stop previous animation if running
         if (activePowerRoutine != null)
             StopCoroutine(activePowerRoutine);
@@ -59,27 +66,36 @@ public class CardPowerController : MonoBehaviour
         if (currentParticleInstance != null)
             Destroy(currentParticleInstance);
 
-        // Instantiate the particle system for this power type
-        if (powerData.particleSystemPrefab != null)
-        {
-            currentParticleInstance = Instantiate(powerData.particleSystemPrefab, transform);
-            currentPowerParticle = currentParticleInstance.GetComponentInChildren<ParticleSystem>();
+        // Instantiate and get particle system
+        currentParticleInstance = Instantiate(powerData.particleSystemPrefab, transform);
+        currentPowerParticle = currentParticleInstance.GetComponentInChildren<ParticleSystem>();
 
-            if (currentPowerParticle != null)
-            {
-                activePowerRoutine = StartCoroutine(
-                    MovePowerParticle(currentPowerParticle, destinationPosition, powerData.impactEffectPrefab, powerData.travelTime, powerData.lingerTime, onDamageCallback)
-                );
-            }
-            else
-            {
-                Debug.LogWarning("CardPowerController: Instantiated prefab does not have a ParticleSystem component!");
-            }
-        }
-        else
+        if (currentPowerParticle == null)
         {
-            Debug.LogWarning("CardPowerController: PowerData has no particle system prefab assigned!");
+            Debug.LogWarning("CardPowerController: Instantiated prefab does not have a ParticleSystem component!");
+            return;
         }
+
+        // Start animation
+        activePowerRoutine = StartCoroutine(
+            MovePowerParticle(currentPowerParticle, destinationPosition, powerData.impactEffectPrefab, powerData.travelTime, powerData.lingerTime, onDamageCallback)
+        );
+    }
+
+    /**
+     * Moves the particle prefab from start to destination over the specified travel time
+     */
+    private IEnumerator MoveToDestination(Vector3 startPosition, Vector3 destination, float travelTime)
+    {
+        float elapsed = 0f;
+        while (elapsed < travelTime)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / travelTime;
+            currentParticleInstance.transform.position = Vector3.Lerp(startPosition, destination, t);
+            yield return null;
+        }
+        currentParticleInstance.transform.position = destination;
     }
 
     /**
@@ -98,68 +114,37 @@ public class CardPowerController : MonoBehaviour
         powerParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         powerParticle.Play(true);
 
-        // Store the starting position of the prefab root (not the particle component)
-        Vector3 startPosition = currentParticleInstance.transform.position;
-        float elapsed = 0f;
-
         // Move the entire prefab towards the destination over the travel time
-        while (elapsed < travelTime)
-        {
-            // Increment the elapsed time
-            elapsed += Time.deltaTime;
-            float t = elapsed / travelTime;
+        Vector3 startPosition = currentParticleInstance.transform.position;
+        yield return StartCoroutine(MoveToDestination(startPosition, destination, travelTime));
 
-            // Moving the entire prefab instance using Lerp for smooth movement
-            currentParticleInstance.transform.position = Vector3.Lerp(startPosition, destination, t);
+        // Call the damage callback
+        onDamageCallback?.Invoke();
 
-            yield return null;
-        }
-
-        // Ensure the entire prefab is exactly at the destination after the loop
-        currentParticleInstance.transform.position = destination;
-
-        // Call the damage callback - this applies damage when the particle reaches the target
-        if (onDamageCallback != null)
-        {
-            onDamageCallback.Invoke();
-            // Debug.Log("CardPowerController: Damage applied on impact");
-        }
-
-        // Instantiate impact effect at destination if provided
+        // Instantiate impact effect if provided
         GameObject impactInstance = null;
-        if (impactEffectPrefab != null)
-        {
+        if (impactEffectPrefab != null) {
             impactInstance = Instantiate(impactEffectPrefab, destination, Quaternion.identity);
-            // Debug.Log($"CardPowerController: Impact effect instantiated at {destination}");
-        }
-        else
-        {
+        } else {
             Debug.LogWarning("CardPowerController: No impact effect prefab assigned for this power type");
         }
 
         // waiting for a bit
         yield return new WaitForSeconds(lingerTime);
 
-        // Stop the particle system and clear it to hide the effect
-        powerParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-
-        // Clear the particle system to reset it for the next activation
-        powerParticle.Clear();
-
-        // Clean up impact effect
-        if (impactInstance != null)
+        // Cleanup
+        if (powerParticle != null)
         {
-            Destroy(impactInstance);
+            powerParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            powerParticle.Clear();
         }
 
-        // Destroy the particle instance when animation is complete
-        if (currentParticleInstance != null)
-        {
-            Destroy(currentParticleInstance);
-            currentParticleInstance = null;
-        }
-
-        // Reset the active power routine reference
+        // Destroy the impact effect instance if it was created
+        if (impactInstance != null) Destroy(impactInstance);
+        if (currentParticleInstance != null) Destroy(currentParticleInstance);
+        
+        // Reset references
+        currentParticleInstance = null;
         activePowerRoutine = null;
     }
 

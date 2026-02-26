@@ -2236,6 +2236,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 9188531512986509299}
     m_Modifications:
     - target: {fileID: 687199146422516036, guid: 8fcac0d5c4641a842b7dd74cb4323958, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 687199146422516036, guid: 8fcac0d5c4641a842b7dd74cb4323958, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 687199146422516036, guid: 8fcac0d5c4641a842b7dd74cb4323958, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 687199146422516036, guid: 8fcac0d5c4641a842b7dd74cb4323958, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.041049957
       objectReference: {fileID: 0}
@@ -2291,11 +2303,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 838000050548816151}
   m_SourcePrefab: {fileID: 100100000, guid: 8fcac0d5c4641a842b7dd74cb4323958, type: 3}
---- !u!198 &470215267870940208 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3125054992750124200, guid: 8fcac0d5c4641a842b7dd74cb4323958, type: 3}
-  m_PrefabInstance: {fileID: 3303644030713659544}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1935119248024742115 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3963741660165056635, guid: 8fcac0d5c4641a842b7dd74cb4323958, type: 3}
@@ -2313,8 +2320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeff750a6fd2e6040b414b352f163d2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardPowerController
-  PowerEffectPrefab: {fileID: 1935119248024742115}
-  PowerParticle: {fileID: 470215267870940208}
 --- !u!4 &2617028188243507676 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 687199146422516036, guid: 8fcac0d5c4641a842b7dd74cb4323958, type: 3}

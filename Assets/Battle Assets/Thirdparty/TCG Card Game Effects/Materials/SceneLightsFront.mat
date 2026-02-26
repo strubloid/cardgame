@@ -37,7 +37,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_4f7017334adb4c31b376db39df7ead2d:
-        m_Texture: {fileID: 2800000, guid: 0b9f21e4cda50a540b60f1246df8deb6, type: 3}
+        m_Texture: {fileID: 2800000, guid: ee6b013d78a644f42806e8a79fb1e76a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_bc1d9eb6d4344d4084d949d7b33e529a:
@@ -141,6 +141,7 @@ Material:
     - CircleColor: {r: 766.9961, g: 634.47845, b: 433.69412, a: 1}
     - Color_18d890ee80824248a51ee0a2b47a330e: {r: 7.3772106, g: 7.222714, b: 1.4290932, a: 1}
     - Vector2_47b54501113b4c409f7770bf21e02d97: {r: -1, g: 0, b: 0, a: 0}
+    - White: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 102.75575, g: 51.64687, b: 0, a: 1}
     - _Direction: {r: 0, g: 0.37, b: 0, a: 0}
