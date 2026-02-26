@@ -10,6 +10,9 @@ using static UnityEngine.Rendering.DebugUI;
  */
 public class Card : MonoBehaviourWithMouseControls
 {
+    // Event triggered when this card takes damage
+    public event System.Action<Card, int> OnDamageTaken;
+
     // Singleton-ish reference to the currently selected card (the one being dragged/played)
     public static Card SelectedCard { get; private set; }
 
@@ -687,9 +690,11 @@ public class Card : MonoBehaviourWithMouseControls
         // reducing the current health
         currentHealth -= damagedMinusShield;
 
+        // Broadcast damage event
+        OnDamageTaken?.Invoke(this, damagedMinusShield);
+
         if (currentHealth <= 0)
         {
-
             // updating the health text
             currentHealth = 0;
 
@@ -713,7 +718,7 @@ public class Card : MonoBehaviourWithMouseControls
             // Playing the card hurt sound effect
             AudioManager.instance.PlayCardAttack();
         }
-    
+
         // This will trigger the hurt animation
         animator.SetTrigger("Hurt");
 

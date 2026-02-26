@@ -111,7 +111,6 @@ public class CardPointsController : MonoBehaviour
             for (int currentPlayerCardIndex = 0; currentPlayerCardIndex < activePlayerCards.Length; currentPlayerCardIndex++)
             {
                 Vector3 currentTargetPosition;
-                CardPowerController.OnDamageCallback damageCallback = null;
 
                 // checkinf if we have enemy cards to attack
                 if (currentEnemyCardIndex >= activeEnemyCards.Length)
@@ -119,12 +118,12 @@ public class CardPointsController : MonoBehaviour
                     // loading the position to throw the attack animation to the enemy directly
                     currentTargetPosition = BattleController.instance.EnemyPosition.position;
 
-                    // Create callback for direct enemy damage
+                    // Trigger animation and apply direct enemy damage
                     int attackDamage = activePlayerCards[currentPlayerCardIndex].activeCard.attackPower;
-                    damageCallback = () =>
-                    {
-                        BattleController.instance.DamageEnemy(attackDamage);
-                    };
+                    activePlayerCards[currentPlayerCardIndex].activeCard.PowerController.ActivatePowerAnimation(
+                        currentTargetPosition, null, 0
+                    );
+                    BattleController.instance.DamageEnemy(attackDamage);
 
                 } else {
 
@@ -143,18 +142,14 @@ public class CardPointsController : MonoBehaviour
                     // this will be the position to throw the attack animation
                     currentTargetPosition = activeEnemyCards[currentEnemyCardIndex].activeCard.transform.position;
 
-                    // Create a callback to apply damage when the particle hits
+                    // Store target and damage for the animation
                     Card targetCard = activeEnemyCards[currentEnemyCardIndex].activeCard;
                     int attackDamage = activePlayerCards[currentPlayerCardIndex].activeCard.attackPower;
 
-                    damageCallback = () =>
-                    {
-                        // Only apply damage if the target still exists
-                        if (targetCard != null)
-                        {
-                            targetCard.DamageCard(attackDamage);
-                        }
-                    };
+                    // Trigger animation and apply damage via event system
+                    activePlayerCards[currentPlayerCardIndex].activeCard.PowerController.ActivatePowerAnimation(
+                        currentTargetPosition, targetCard, attackDamage
+                    );
 
                     // If enemy died, advance enemy index
                     if (activeEnemyCards[currentEnemyCardIndex].activeCard == null)
@@ -163,15 +158,6 @@ public class CardPointsController : MonoBehaviour
                     }
 
                 }
-
-                // This will trigger the animation of Attack
-                //activePlayerCards[currentPlayerCardIndex].activeCard.animator.SetTrigger("Attack");
-                //
-
-                // we will turn the power and set the animation to damage the enemy card (damage applied on impact)
-                activePlayerCards[currentPlayerCardIndex].activeCard.PowerController.ActivatePowerAnimation(
-                    currentTargetPosition, damageCallback
-                );
 
                 yield return new WaitForSeconds(timeBetweenActions);
 
@@ -192,12 +178,9 @@ public class CardPointsController : MonoBehaviour
                 // No defending cards → player attacks enemy directly
                 BattleController.instance.DamageEnemy(activePlayerCards[currentPlayerCardIndex].activeCard.attackPower);
 
-                // This will trigger the animation of Attack
-                //activePlayerCards[currentPlayerCardIndex].activeCard.animator.SetTrigger("Attack");
-
-                // we will turn the power and set the animation to damage the enemy card
+                // Trigger animation (no target card damage since attacking base)
                 activePlayerCards[currentPlayerCardIndex].activeCard.PowerController.ActivatePowerAnimation(
-                    currentTargetPosition
+                    currentTargetPosition, null, 0
                 );
 
                 yield return new WaitForSeconds(timeBetweenActions);
@@ -255,7 +238,6 @@ public class CardPointsController : MonoBehaviour
             {
                 // this will be the position to throw the attack animation
                 Vector3 currentTargetPosition;
-                CardPowerController.OnDamageCallback damageCallback = null;
 
                 // If we ran out of player defenders, enemy attacks directly
                 if (currentPlayerCardIndex >= activePlayerCards.Length)
@@ -263,11 +245,12 @@ public class CardPointsController : MonoBehaviour
                     // loading the position to throw the attack animation to the player directly
                     currentTargetPosition = BattleController.instance.PlayerPosition.position;
 
+                    // Trigger animation and apply direct player damage
                     int attackDamage = activeEnemyCards[currentEnemyCardIndex].activeCard.attackPower;
-                    damageCallback = () =>
-                    {
-                        BattleController.instance.DamagePlayer(attackDamage);
-                    };
+                    activeEnemyCards[currentEnemyCardIndex].activeCard.PowerController.ActivatePowerAnimation(
+                        currentTargetPosition, null, 0
+                    );
+                    BattleController.instance.DamagePlayer(attackDamage);
 
                 } else {
 
@@ -286,17 +269,14 @@ public class CardPointsController : MonoBehaviour
                     // loading the position to throw the attack animation
                     currentTargetPosition = activePlayerCards[currentPlayerCardIndex].activeCard.transform.position;
 
-                    // Create callback to apply damage when particle hits
+                    // Store target and damage
                     Card targetCard = activePlayerCards[currentPlayerCardIndex].activeCard;
                     int attackDamage = activeEnemyCards[currentEnemyCardIndex].activeCard.attackPower;
 
-                    damageCallback = () =>
-                    {
-                        if (targetCard != null)
-                        {
-                            targetCard.DamageCard(attackDamage);
-                        }
-                    };
+                    // Trigger animation and apply damage via event system
+                    activeEnemyCards[currentEnemyCardIndex].activeCard.PowerController.ActivatePowerAnimation(
+                        currentTargetPosition, targetCard, attackDamage
+                    );
 
                     // If player died, advance defender index
                     if (activePlayerCards[currentPlayerCardIndex].activeCard == null)
@@ -305,14 +285,6 @@ public class CardPointsController : MonoBehaviour
                     }
 
                 }
-
-                // Trigger attacker animation
-                //activeEnemyCards[currentEnemyCardIndex].activeCard.animator.SetTrigger("Attack");
-
-                // we will turn the power and set the animation to damage the player card (damage applied on impact)
-                activeEnemyCards[currentEnemyCardIndex].activeCard.PowerController.ActivatePowerAnimation(
-                    currentTargetPosition, damageCallback
-                );
 
                 yield return new WaitForSeconds(timeBetweenActions);
 
@@ -332,20 +304,14 @@ public class CardPointsController : MonoBehaviour
                 // this will be the position to throw the attack animation
                 Vector3 currentTargetPosition = BattleController.instance.PlayerPosition.position;
 
-                // Create callback for direct player damage
-                int attackDamage = activeEnemyCards[currentEnemyCardIndex].activeCard.attackPower;
-                CardPowerController.OnDamageCallback damageCallback = () =>
-                {
-                    BattleController.instance.DamagePlayer(attackDamage);
-                };
-
-                // Trigger enemy animation
-                //activeEnemyCards[currentEnemyCardIndex].activeCard.animator.SetTrigger("Attack");
-
-                // we will turn the power and set the animation to damage the player (damage applied on impact)
+                // Trigger animation (no target card damage since attacking base)
                 activeEnemyCards[currentEnemyCardIndex].activeCard.PowerController.ActivatePowerAnimation(
-                    currentTargetPosition, damageCallback
+                    currentTargetPosition, null, 0
                 );
+
+                // Apply player damage separately
+                int attackDamage = activeEnemyCards[currentEnemyCardIndex].activeCard.attackPower;
+                BattleController.instance.DamagePlayer(attackDamage);
 
                 yield return new WaitForSeconds(timeBetweenActions);
 
